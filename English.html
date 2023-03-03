@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotamu Wisataku</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+    
+</head>             
+<body>
+    <header class="header">
+        <a href="index.html" class="logo"><img src="img/logo1.png" width="120" alt="logo"></a>
+        <!-- navbar -->
+        <nav class="navbar">
+            <div id="nav-close" class="fas fa-times"></div>
+            <a href="#" target="_top" >Beranda</a>
+            <a href="#Rekomendasi">Recommendations</a>
+            <a href="#Artikel">News</a>
+            <a href="#waw">Nearby Attractions</a>
+        </nav>
+        
+        
+        <div class="dropdown">
+            
+            <a href="English.html"><img src="img/eng.png" alt="" width="25" height="20"></a>
+            </li>
+            <ul class="wrapper">
+                <li onclick="update_country(this);" class="usb">
+                    <a href="index.html"><img src="img/indonesia.png" alt="" width="25" height="20">
+                </li>
+            </ul>
+        
+        </div>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <i class="bi bi-moon-fill" id="darkmode"></i>
+        </div>
+    </header>
+
+<div class="search-form">
+    <div id="close-search" class="fas fa-times"></div>
+    <form action="">
+        <input type="search" name="" placeholder="mencari disini..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+</div>
+
+<section class="home" id="home">
+    <div class="swiper home-slider">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="box" style="background: url(img/bromo.jpg) no-repeat">
+                    <div class="content">
+                        <h3>Mount Bromo</h3>
+                        <span>Jawa Timur,<br>Indonesia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="box" style="background: url(img/borobudur.jpg) no-repeat">
+                    <div class="content">
+                        <h3>Borobudur Temple</h3>
+                        <span>Jawa Tengah,<br> Indonesia</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-slide">
+                <div class="box" style="background: url(img/ulun.jpg) no-repeat">
+                    <div class="content">
+                        <h3>Ulun Danu Temple</h3>
+                        <span>Bali,<br> Indonesia</span>
+                    </div>    
+                </div>
+            </div>
+         </div>
+
+         <div class="swiper-button-next"></div>
+         <div class="swiper-button-prev" ></div>
+    </div>
+    <div class="linkrekomendasi" id="Rekomendasi">
+
+    </div>
+</section >
+
+
+<div class="rekomendasi"> 
+    <div class="header2" >
+        <div class="judulnya">
+            <h1  id="white">Our Best Travel Recommendations</h1>
+        </div>
+        
+        <div class="garis"></div>
+        
+        
+        <div class="atasGambar2">
+            <h1 id="rekomen">Recommendations</h1>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="gambarRekomendasi">
+            <div class="gambar gambar1">
+                <a href="Recomendations.html">
+                    <img src="Image/Kelingking Beach.jpg" alt="">
+
+                </a>
+                <p>Situ Mountain</p>
+            </div>
+        
+            <div class="gambar gambar2">
+                <img src="Image/Kota Tua.jpg" alt="">
+                <p>Old Town</p>
+            </div>
+        
+            <div class="gambar gambar3">
+                <img src="Image/Lombok.jpg" alt="">
+                <p>Lombok</p>
+            </div>
+            
+            <div class="gambar gambar4">
+                <img src="Image/Borobudur.jpg" alt="">
+                <p>Borobudur</p>
+            </div>
+            <div class="gambar gambar5">
+                <img src="Image/Gunung Merapi.jpg" alt="">
+                <p>Mount Merapi</p>
+            </div>
+            
+            <div class="gambar gambar6">
+                <img src="Image/Pulo Uran.jpg" alt="">
+                <p>Ulun Island</p>
+            </div>
+    
+            <div class="gambar gambar7">
+                <img src="Image/Pulo Badar.jpg" alt="">
+                <p>Padar Island</p>
+            </div>
+            
+            <div class="gambar gambar8">
+                <img src="Image/Prambanan.jpg" alt="">
+                <p>Prambanan</p>
+            </div>
+            
+            <div class="gambar gambar9">
+                <img src="Image/Situ Gunung.jpg" alt="">
+                <p>Situ Gunung</p>
+            </div>
+            
+            <div class="gambar gambar10">
+                <img src="Image/Raja Ampat.jpg" alt="">
+                <p>Raja Ampat</p>
+            </div>
+
+            <div class="gambar gambar11">
+                <img src="img/gbk.jpg" alt="">
+                <p>Gelora Bung Karno</p>
+            </div>
+            
+            <div class="gambar gambar12">
+                <img src="img/Istiqlal.jpg" alt="">
+                <p>Istiqlal</p>
+            </div>
+
+            <div class="gambar gambar13">
+                <img src="img/ulun.jpg" alt="">
+                <p>Ulun</p>
+            </div>
+            
+            <div class="gambar gambar14">
+                <img src="img/monas.jpg" alt="">
+                <p>Monas</p>
+            </div>
+            
+            <div class="gambar gambar15">
+                <img src="img/raja.jpg" alt="">
+                <p>Raja</p>
+            </div>
+ 
+ 
+            <div class="gambar gambar1">
+                <a href="ComeToRecommend.html">
+                    <img src="Image/Kelingking Beach.jpg" alt="">
+                </a>
+                <p>Situ Mountain</p>
+            </div>
+        
+            <div class="gambar gambar2">
+                <img src="Image/Kota Tua.jpg" alt="">
+                <p>Old Town</p>
+            </div>
+        
+            <div class="gambar gambar3">
+                <img src="Image/Lombok.jpg" alt="">
+                <p>Lombok</p>
+            </div>
+            
+            <div class="gambar gambar4">
+                <img src="Image/Borobudur.jpg" alt="">
+                <p>Borobudur</p>
+            </div>
+            <div class="gambar gambar5">
+                <img src="Image/Gunung Merapi.jpg" alt="">
+                <p>Mount Merapi</p>
+            </div>
+        </div>
+    
+    </div>
+    
+    <div id="load-more"><p>Read More</p></div>
+    
+    <div class="footer1">
+        
+        <div class="bawah" style="background-image: url(Image/subscribe.jpg);">
+            <div class="logo"><img src="Image/Logo 1.png" alt=""></div>
+            <div class="isi">
+                <p>Subscribe and Get Info About Travel across INDONESIA </p>
+                
+                <div class="inputbutton">
+                    <form onsubmit="sendEmail(); reset(); return false;">
+                        <input type="text" name="FirstName" id="namaa" placeholder="Enter your email here....." required   >
+                        <button type="button" onclick="sendEmail()"><p class="subscribe">Subscribe</p></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+    <!-- End Rekomendasi -->
+
+ </div> 
+
+
+<!-- Artikel -->
+<div class="linkrekomendasi2" id="Artikel">
+
+</div>
+<div class="artikel">
+    <div class="header2">
+        <div class="judulnya2">
+            <h1 id="white2">Readings For Traveler Friends</h1>
+        </div>
+        
+        <div class="garis"></div>
+    </div>
+
+    <div class="atasGambar2">
+        <h1 id="berita">News</h1>
+    </div>
+    
+    <div class="main2">
+        <div class="gambarartikel">
+            <div class="gambarartikel2">
+                <div class="gambarmain2 mandalika">
+                    <div class="atas">
+                        <p>Must Know! Here's the Complete Rules of Perpetrators...
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="img/krt.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                        </div>
+                        <div class="kanan">
+                            <p id="mandalika">Sobat Pesona, as a prevention of the increase in Covid-19 cases in Indonesia, the government has again implemented travel provisions and health protocol appeals to domestic travelers (PPDN) during the Covid-19 pandemic. ..</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 komodo">
+                    <div class="atas">
+                        <p>20 Tourist Attractions in Indonesia that are popu...
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="img/tinggilancip.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p id="komodo">Our beloved country, Indonesia, does have a very beautiful nature. From Sabang to Merauke, we can easily find beautiful and stunning places...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 kerampuang">
+                    <div class="atas">
+                        <p>Find Out, How to Be Healthy and Safe...
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="img/kayadanau.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p id="karampuang">Some regions in Indonesia are entering a transition period, so that some tourist sites can already operate again with well-monitored hygiene and health protocol regulations. The presence of special regulations during the transition period of adaptation to new habits accompanied by ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 rajaampat">
+                    <div class="atas">
+                        <p>The Latest Regulations for Entering Indonesia for...
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="img/kayaanya.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p id="raja">In order to tighten the implementation of health protocols and prevent the spread of COVID-19 in Indonesia, the government through the Air Task Force for Handling COVID-19 and PT. Angkasa Pura has established a number of important procedures that apply to local passengers (WNI) and ...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gambarmain2 mandalika">
+                    <div class="atas">
+                        <p>Mandalika Is A Small Beautiful Island
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/Mandalika.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                        </div>
+                        <div class="kanan">
+                            <p>Mandalika is a small beautiful island that located in Java Sea. It located straight in front of Portuguese fort beach, which about 2 Km from Donorejo village, Donorejo sub district, Jepara, Central Java. The location is near bordered with Pati regency, and it close to Muria mountains in the north ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 komodo">
+                    <div class="atas">
+                        <p>10 Best Travel Destinations in Indonesia According to Foreign Tourists.
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/komodo1.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p>The natural beauty of Indonesia will never end to be explored. In fact, some foreign tourists acknowledge Indonesia’s truly captivating beauty. From Sabang to Merauke, several foreign tourists choose some of the best tourist destinations. Reporting from ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 kerampuang">
+                    <div class="atas">
+                        <p>Mandalika Adalah Pulau Kecil yang Indah
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/Mandalika.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                        </div>
+                        <div class="kanan">
+                            <p id="mandalika">Mandalika adalah pulau kecil yang indah yang terletak di Laut Jawa. Terletak tepat di depan pantai benteng Portugis, yang berjarak sekitar 2 Km dari desa Donorejo, kecamatan Donorejo, Jepara, Jawa Tengah. Lokasinya dekat berbatasan dengan kabupaten Pati, dan dekat dengan pegunungan Muria di utara ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 komodo">
+                    <div class="atas">
+                        <p>10 Destinasi Wisata Terbaik di Indonesia Versi Wisatawan Mancanegara.
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/komodo1.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p id="komodo">Keindahan alam Indonesia tidak akan pernah berakhir untuk dijelajahi. Bahkan, beberapa wisatawan mancanegara mengakui keindahan Indonesia yang benar-benar menawan. Dari Sabang sampai Merauke, beberapa wisatawan mancanegara memilih beberapa destinasi wisata terbaik. Dilansir dari ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 kerampuang">
+                    <div class="atas">
+                        <p>Wisata Pulau Karampuang di Mamuju
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/Dermaga-karampuang.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p id="karampuang">Pulau Karampuang adalah sebuah pulau indah yang terletak di Desa Karampuang, Kecamatan Mamuju, Kabupaten Mamuju, Provinsi Sulawesi Barat. Dengan menaiki kapal sebagai satu-satunya alat transportasi menuju Pulau Karampuang dari pelabuhan Mamuju, pengunjung sudah dapat menikmati keindahan pulau yang ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 rajaampat">
+                    <div class="atas">
+                        <p>Wisata Pulau Karampuang di Mamuju
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="img/ampat.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p id="raja">Raja Ampat adalah sebuah kabupaten di Papua Barat dan juga menjadi salah satu tujuan indah di Indonesia oleh pemandangan alam yang indah dan terumbu karang. Ibu kota terletak di Waisai ...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gambarmain2 mandalika">
+                    <div class="atas">
+                        <p>Mandalika Is A Small Beautiful Island
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/Mandalika.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                        </div>
+                        <div class="kanan">
+                            <p>Mandalika is a small beautiful island that located in Java Sea. It located straight in front of Portuguese fort beach, which about 2 Km from Donorejo village, Donorejo sub district, Jepara, Central Java. The location is near bordered with Pati regency, and it close to Muria mountains in the north ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gambarmain2 komodo">
+                    <div class="atas">
+                        <p>10 Best Travel Destinations in Indonesia According to Foreign Tourists.
+                        </p>
+                    </div>
+                    <div class="gambarmain3">
+                        <img src="Image/komodo1.jpg" alt="">
+                    </div>
+                    <div class="bawahgambarmain3">
+                        <div class="kiri">
+                            
+                        </div>
+                        <div class="kanan">
+                            <p>The natural beauty of Indonesia will never end to be explored. In fact, some foreign tourists acknowledge Indonesia’s truly captivating beauty. From Sabang to Merauke, several foreign tourists choose some of the best tourist destinations. Reporting from ...</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="load-more2"><p>Read More</p>
+
+            </div>
+            
+            <div class="waw" id="waw"></div> 
+            <div class="waw" id="waw"></div>
+            
+            <section class="nearby-place" id="nearby-place">
+                    <div class="locate">
+                        <div id="dot"><i class="fa-solid fa-location-dot"></i></div>
+                        <h3>Jakarta, Indonesia</h3>
+                    </div>
+                    
+                    <div class="garis3"></div>
+                    
+                    <div class="atasGambar2">
+                        <h1 id="rekomen">Nearby Attractions</h1>
+                    </div>
+
+                    <div class="wisataterdekat">
+                        <div class="kiri">
+                            <div class="gambarwisataterdekat">
+                                <div class="bawahgambarwisataterdekat">
+                                    <img src="img/monas.jpg" alt="">
+                                </div>
+                                <div class="map">
+                                    <h1>Monumen Nasional</h1>
+                                    <div class="direction">
+                                        <a href="https://goo.gl/maps/fAXHsSdA5fdRSe5i7" target="_blank">Direction</a>
+                                        <a href="https://goo.gl/maps/fAXHsSdA5fdRSe5i7" target="_blank"><i class="bi bi-signpost-split-fill" id="icon-direction"></i></a>
+                                    </div>
+                                    <div class="garissamping"></div>
+                                    <div class="gambarmaps">
+
+                                        <p id="monas">Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta</p>
+                                        <div id="map"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="kanan">
+
+                            <div class="gambar ">
+                                <div class="kumpulangambarkanan">
+                                    <img src="img/lapangan.jpg" alt="">
+                                    <p>Bull Field</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gambar">
+                                <div class="kumpulangambarkanan">
+                                    <img src="img/Istiqlal.jpg" alt="">
+                                    <p>Istiqlal Mosque</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gambar">
+                                <div class="kumpulangambarkanan">
+                                    <img src="img/gereja.png" alt="">
+                                    <p>Cathedral Church</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gambar">
+                                <div class="kumpulangambarkanan">
+                                    <img src="img/kota.jpg" alt="">
+                                    <p>Old Town</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gambar">
+                                <div class="kumpulangambarkanan">
+                                    <img src="img/tim.jpeg" alt="">
+                                    <p>Taman Ismail Marzuki</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gambar">
+                                <div class="kumpulangambarkanan">
+                                    <img src="img/gbk.jpg" alt="">
+                                    <p>Komplek GBK</p>
+                                </div>
+                            </div>
+                            
+                            <div class="garis2bawah">
+                                <img src="img/panah.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <footer class="footer2">
+                    <div class="row">
+                        <div class="col1">
+                            <img src="img/logo1.png" alt="logo" class="logo">
+                            <div class="sosmed">
+                                <i class="fa-brands fa-instagram"></i>
+                                <i class="fa-brands fa-facebook"></i>
+                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-brands fa-tiktok"></i>
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </div>
+                        <div class="col">
+                            
+                        </div>
+                        <div class="col2">
+                            <form onsubmit="sendEmail(); reset(); return false;">
+                                <input type="email" name="email" id="" placeholder="Enter your email...">
+                                <button type="button" onclick="sendEmail()">Subscription</button>
+                            </form>
+                            <div class="cookie">
+                                <a href="#">Go to Help (Contact Us) |</a>
+                                <a href="#">Privacy Policy  |</a>
+                                <a href="#">Cookie Policy  |</a >
+                                <a href="#">Terms and Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="kumpulan">
+                        <span class="desc">This site is a site made by students of Gunadarma Kalimalang University. All contents listed inside 
+                            <br>
+                            <br> This site is intended to provide information and not as a commercial purpose</span> 
+                    </div>
+                    <p class="copyright">&#169;2022 Si Paling USB</p>
+                </footer> 
+        </div> 
+
+        
+</body>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="js/script.js"></script>
+</html>
+

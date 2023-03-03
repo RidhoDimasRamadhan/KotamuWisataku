@@ -1,0 +1,180 @@
+.ke1{
+    position: relative;
+    top: -80rem;
+}
+
+    .ke1 img{
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        clip-path: inset(80rem 0 30rem 0);
+    }
+    
+    
+    
+    .isi{
+      top: -110rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+
+}
+
+.isi .kiri{
+    width: 100%;
+    height: 300px;
+
+}
+.kumpulankiri{
+    width: 727px;
+    position: relative;
+    margin: auto;
+
+}
+
+
+.situgunung h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    color: #000000;
+}
+
+.situgunung .tipis1{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+
+color: #000000;
+}
+
+.situgunung .tebel{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 21px;
+
+color: #000000;
+}
+
+.situgunung .tipis{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+
+color: #000000;
+}
+
+
+.kanan{
+    width: 30px;
+    height: 100px;
+}
+
+.bawah {
+    position: relative;
+    display: flex;
+    width: 1150px;
+    border-radius: 15px;
+    margin: auto;
+    top: 27rem;
+    background-repeat: repeat;
+    background-position: center;
+  }
+  
+  .bawah .logo{
+    width: 30%;
+  }
+  .bawah .logo img{
+  width: 100%; 
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: contain;
+  }
+  .bawah .isi .isi1{
+      position: absolute;
+      width: 100%;
+      top: -3rem;
+    }
+    .bawah .isi{
+        position: relative;
+        right: -3rem;
+        color: white;
+        top: 5rem;
+        height: 10%;
+  }
+  
+  .bawah .isi .inputbutton{
+      position: relative;
+  }
+  .bawah .isi p{
+    font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.29);
+  position: relative;
+  }
+  
+  .bawah .isi button{
+  height: 50px;
+  background: #62BAE7;
+  border-radius: 15px;
+  margin-left: 1rem ;
+  }
+
+  .bawah .isi .subscribe{
+    position: relative;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+  
+  .bawah input::placeholder{
+    position: relative;
+    left: 2rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.22);
+  }
+.ul{
+    margin-left: 2rem;
+}
+
+.kumpulangambar img{
+width: 100%;
+}
+.kumpulangambar{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 350px;
+  border: 1px solid red;
+}
+.situgunung img{
+  width: 100%; 
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/berita1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo"><img src="img/logo1.png" width="120" alt="logo"></a>
+        <!-- start navbar -->
+            <nav class="navbar">
+                <div id="nav-close" class="fas fa-times"></div>
+                <a href="#" target="_top" >Beranda</a>
+                <a href="#Rekomendasi">Rekomendasi</a>
+                <a href="#Artikel">Berita</a>
+                <a href="#waw">Wisata Terdekat</a>
+            </nav>
+            
+            <div class="dropdown">
+                    <a href="index.html"><img src="img/indonesia.png" alt="" width="20" height="20">
+
+                <ul class="wrapper">
+                    
+                    <li onclick="update_country(this);" class="usb">
+                        <a href="English.html"><img src="img/eng.png" alt="" width="20" height="20"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+                <i class="bi bi-moon-fill" id="darkmode"></i>
+            </div>
+    </header>
+
+            <div class="search-form">
+                <div id="close-search" class="fas fa-times"></div>
+                    <form action="">
+                        <input type="search" name="" placeholder="mencari disini..." id="search-box">
+                        <label for="search-box" class="fas fa-search"></label>
+                    </form>
+            </div>
+        <!-- end navbar -->
+
+    <div class="head-img">
+        <img src="img/krt.jpg" alt="">
+    </div>
+
+    
+
+    <!--Content Start-->
+    <div class="main-content">
+        <div class="head-link">
+            <span>Beranda</span>
+            <h1>></h1>
+            <span>Berita</span>
+            <h1>></h1>
+            <span>Wajib Tahu! Ini Aturan Lengkap Pelaku Perjalanan Dalam Negeri (PPDN)</span>
+        </div>
+        <div class="headline"></div>
+        <div class="content">
+            <h1 id="judul">Wajib Tahu! Ini Aturan Lengkap Pelaku Perjalanan Dalam Negeri (PPDN)</h1>
+            <div class="article">
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magnam ea voluptatibus dolores commodi nihil nulla pariatur accusantium rerum odit! Praesentium aut illum quam harum, quasi iste eum nihil. Sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, consectetur! In, mollitia. Libero, impedit aspernatur esse quia minima voluptate perferendis? Odit illo similique eligendi. Obcaecati ad magni iste cum ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, et rem. Quibusdam tempore deserunt et corrupti doloribus sunt molestias debitis ratione reprehenderit, sapiente nobis quas libero impedit architecto ullam at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni autem dolores eligendi iure esse nulla distinctio quisquam corporis nihil aspernatur est, nesciunt, optio molestiae id obcaecati soluta amet ab reprehenderit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam vitae itaque eius eum voluptates nesciunt voluptatibus quo fugit rem ratione. Impedit culpa facilis dolores natus magnam itaque libero nulla molestiae.</span>
+                <br><br>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit obcaecati quo optio rerum laborum, dolor ducimus sit. Aliquid quae voluptate accusamus iusto laborum ad laboriosam quasi quas in. Fugiat, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sequi aliquam nam ut? Eum est enim ipsum doloribus excepturi inventore praesentium repellendus libero! Molestias voluptatem, odit consectetur eaque odio qui? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident repellendus nihil expedita totam praesentium, commodi ex exercitationem dolorum nobis! Accusamus quo at enim libero voluptates vitae officiis adipisci quidem sit.</span>
+                <br><br>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit obcaecati quo optio rerum laborum, dolor ducimus sit. Aliquid quae voluptate accusamus iusto laborum ad laboriosam quasi quas in. Fugiat, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sequi aliquam nam ut? Eum est enim ipsum doloribus excepturi inventore praesentium repellendus libero! Molestias voluptatem, odit consectetur eaque odio qui? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident repellendus nihil expedita totam praesentium, commodi ex exercitationem dolorum nobis! Accusamus quo at enim libero voluptates vitae officiis adipisci quidem sit.</span>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit obcaecati quo optio rerum laborum, dolor ducimus sit. Aliquid quae voluptate accusamus iusto laborum ad laboriosam quasi quas in. Fugiat, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sequi aliquam nam ut? Eum est enim ipsum doloribus excepturi inventore praesentium repellendus libero! Molestias voluptatem, odit consectetur eaque odio qui? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident repellendus nihil expedita totam praesentium, commodi ex exercitationem dolorum nobis! Accusamus quo at enim libero voluptates vitae officiis adipisci quidem sit.</span>
+                
+                <img src="img/pswt.jpg" alt="" id="img-content">
+
+                <br><br>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit obcaecati quo optio rerum laborum, dolor ducimus sit. Aliquid quae voluptate accusamus iusto laborum ad laboriosam quasi quas in. Fugiat, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sequi aliquam nam ut? Eum est enim ipsum doloribus excepturi inventore praesentium repellendus libero! Molestias voluptatem, odit consectetur eaque odio qui? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident repellendus nihil expedita totam praesentium, commodi ex exercitationem dolorum nobis! Accusamus quo at enim libero voluptates vitae officiis adipisci quidem sit.</span>
+                <br><br>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit obcaecati quo optio rerum laborum, dolor ducimus sit. Aliquid quae voluptate accusamus iusto laborum ad laboriosam quasi quas in. Fugiat, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sequi aliquam nam ut? Eum est enim ipsum doloribus excepturi inventore praesentium repellendus libero! Molestias voluptatem, odit consectetur eaque odio qui? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident repellendus nihil expedita totam praesentium, commodi ex exercitationem dolorum nobis! Accusamus quo at enim libero voluptates vitae officiis adipisci quidem sit.</span>
+            </div>   
+        <div class="footline"></div>
+        </div>
+    </div>
+
+    <div class="bot-content">
+        <h1>Berita Pilihan Untuk Anda</h1>
+
+        <div class="wrapp">
+            <div class="card_wrap">
+                <div class="card_item">
+                    <div class="card_inner">
+                        <div class="card_img">
+                            <img src="Image/Pulo Badar.jpg" alt="">
+                            <div class="card_tittle">
+                                <h3>Wajib Tahu! Ini Aturan blablabal</h3>
+                                <p>09 Oktober 2022</p>
+                            </div>
+                        </div>
+                        <div class="card_bott">
+                            <div class="card_sideline"></div>
+                            <div class="card_info">
+                                <span>Lorem ipsum dolor sit amet consectetur fugit quas adipisci.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card_item">
+                    <div class="card_inner">
+                        <div class="card_img">
+                            <img src="Image/Pulo Badar.jpg" alt="">
+                            <div class="card_tittle">
+                                <h3>Wajib Tahu! Ini Aturan blablabal</h3>
+                                <p>09 Oktober 2022</p>
+                            </div>
+                        </div>
+                        <div class="card_bott">
+                            <div class="card_sideline"></div>
+                            <div class="card_info">
+                                <span>Lorem ipsum dolor sit amet consectetur fugit quas adipisci.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card_item">
+                    <div class="card_inner">
+                        <div class="card_img">
+                            <img src="Image/Pulo Badar.jpg" alt="">
+                            <div class="card_tittle">
+                                <h3>Wajib Tahu! Ini Aturan blablabal</h3>
+                                <p>09 Oktober 2022</p>
+                            </div>
+                        </div>
+                        <div class="card_bott">
+                            <div class="card_sideline"></div>
+                            <div class="card_info">
+                                <span>Lorem ipsum dolor sit amet consectetur fugit quas adipisci.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card_item">
+                    <div class="card_inner">
+                        <div class="card_img">
+                            <img src="Image/Pulo Badar.jpg" alt="">
+                            <div class="card_tittle">
+                                <h3>Wajib Tahu! Ini Aturan blablabal</h3>
+                                <p>09 Oktober 2022</p>
+                            </div>
+                        </div>
+                        <div class="card_bott">
+                            <div class="card_sideline"></div>
+                            <div class="card_info">
+                                <span>Lorem ipsum dolor sit amet consectetur fugit quas adipisci.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer2">
+        <div class="row">
+            <div class="col1">
+                <img src="img/logo1.png" alt="logo" class="logo">
+                <div class="sosmed">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-tiktok"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+            <div class="col">
+                
+            </div>
+            <div class="col2">
+                <form onsubmit="sendEmail(); reset(); return false;">
+                    <input type="email" name="email" id="" placeholder="Masukkan Email Anda ...">
+                    <button type="button" onclick="sendEmail()">Berlangganan</button>
+                </form>
+                <div class="cookie">
+                    <a href="#">Buka Bantuan (Hubungi Kami) |</a>
+                    <a href="#">Kebijakan Privasi  |</a>
+                    <a href="#">Kebijakan Cookie  |</a >
+                    <a href="#">Syarat dan Ketentuan</a>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="kumpulan">
+            <span class="desc">Situs ini merupakan situs buatan mahasiswa Universitas Gunadarma Kalimalang. Semua isi yang tercantum di dalam 
+                <br>
+                <br> situs ini bertujuan untuk memberikan informasi dan bukan sebagai tujuan komersial</span> 
+        </div>
+        <p class="copyright">&#169;2022 Si Paling USB</p>
+    </footer> 
+
+
+    <!--Script JS-->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

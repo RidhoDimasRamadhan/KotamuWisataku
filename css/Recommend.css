@@ -1,0 +1,506 @@
+body{
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Navbar */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 9%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  height: 9rem;
+  transition: 2s;
+}
+
+.header.active {
+  background-color: #1717176a;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+/* end navbar */
+
+
+
+/* gambar */
+.ke1{
+  position: relative;
+  top: -80rem;
+}
+
+.ke1 img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  clip-path: inset(80rem 0 30rem 0);
+}
+/* end gambar */
+    
+
+/* beranda */
+.isi .beranda{
+  display: inline;
+  float: left;
+  position: relative;
+margin-left: 17rem;
+}
+.beranda a,
+.beranda img,
+.beranda p{
+  float: left;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+/* identical to box height */
+color: #000000;
+}
+.beranda img{
+  width: 1.4rem;
+  margin: 0 1rem;
+}
+/* end beranda */
+
+
+/* garis */
+.garis{
+  position: relative;
+  width: 90%;
+  z-index: 11;
+}
+/* end garis */
+    
+
+  /* container kiri */
+  .isi{
+    margin-top: -110rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /* end*/
+
+
+  /* .kiri */
+  .kumpulankiri{
+    width: 727px;
+    position: relative;
+    margin: auto;
+  }
+  .isi .kanan,
+  .isi .kiri{
+    margin-top: 1rem;
+  }
+  .isi .kiri{
+    width: 70%;
+    height: auto;
+  }
+  .isi .kanan{
+    width: 30%;
+  }
+  
+  
+  
+  .situgunung h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    color: #000000;
+  }
+  
+  .situgunung .tipis1{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+
+color: #000000;
+  }
+  
+  .situgunung .tebel{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    
+    color: #000000;
+  }
+  
+  .situgunung .tipis{
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+
+color: #000000;
+  }
+  .kumpulangambar img{
+    width: 100%;
+    }
+    .kumpulangambar{
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 350px;
+    }
+    .situgunung img{
+      width: 100%; 
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      object-fit: cover;
+      background-size: contain;
+    }
+    .ul{
+      margin-left: 2rem;
+      font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+
+color: #000000;
+    }
+    
+  /* end kiri*/
+  
+
+/* subscribe */
+.bawah {
+  position: relative;
+  display: flex;
+  width: 1150px;
+  border-radius: 15px;
+  margin: auto;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.bawah .logo{
+  width: 30%;
+}
+.bawah .logo img{
+  width: 100%; 
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+}
+.bawah .isi .isi1{
+  position: absolute;
+  width: 100%;
+}
+.bawah .isi{
+  right: -3rem;
+  color: white;
+  margin-top: 3rem;
+}
+
+.bawah .isi p{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.29);
+  position: relative;
+}
+
+.bawah .isi button{
+  height: 50px;
+  background: #62BAE7;
+  border-radius: 15px;
+  margin-left: 1rem ;
+}
+
+.bawah .isi .subscribe{
+  position: relative;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+
+.bawah input::placeholder{
+  position: relative;
+  left: 2rem;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.22);
+}
+/* end subscribe */
+
+
+
+
+
+
+#map { 
+  width: 90%;
+  margin-top: 1rem;
+  height: 180px; }
+
+  .sosmed{
+    display: inline;
+    margin-top: -3rem;
+  }
+  .sosmed h3{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+margin-left: 2rem;
+
+color: #000000;
+  }
+  .sosmed .fa-brands {
+    position: relative;
+    display: inline;
+    top: -3rem;
+    left: 9rem;
+    color: white;
+    font-size: 2rem;
+    padding: .7rem;
+    height: 4rem;
+    border-radius: 100%;
+    background-color: #62BAE7;
+  }
+
+  .sosmedd .fa-brands {
+    width: 45px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #001D2C;
+    background: #FFFFFF;
+    cursor: pointer;
+    line-height: 35px;
+    margin-right: 5px;
+    position: relative;
+    top:-6rem;
+    left: 2rem;
+  }
+
+  footer {
+    width: 100%;
+    position: relative;
+    top: 7rem;
+    background-color: #001D2C;
+    color: #FFFFFF;
+    padding: 0.5rem 1%;
+    z-index: 222;
+  }
+
+  @media (max-width: 1200px) {
+    .bawah {
+      position: relative;
+      display: flex;
+      width: 800px;
+      border-radius: 15px;
+      margin: auto;
+      background-repeat: repeat;
+      background-position: center;
+    }
+    .isi .kiri{
+      padding-left: 3rem;
+    }
+    .ke1 img{
+      height: 150rem;
+    }
+    .ke1{
+      position: relative;
+      top: -80rem;
+    }
+    
+    .bawah{
+      margin-top: -4rem;
+    }
+    .isi1{
+      margin-top: -3rem;
+      font-size: .1rem;
+      padding-right: 1rem;
+    }
+  }
+  @media (max-width: 992px){
+    footer {
+      width: 100%;
+      position: relative;
+      margin-top: -1rem;
+      background-color: #001D2C;
+      color: #FFFFFF;
+      padding: 0.5rem 1%;
+      z-index: 222;
+    }
+
+  }
+@media (max-width: 1100px){
+  .kumpulankiri{
+    width: 627px;
+    position: relative;
+    margin: auto;
+  }
+  .isi .kiri .kumpulankiri{
+    width: 80%;
+    margin: 0 auto;
+  }
+  .isi .kiri {
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+  }
+  .isi .kanan{
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 1rem;
+  }
+
+  #map{
+    width: 90%;
+    margin: 0 auto;
+  }
+ .sosmed{
+   position: relative;
+ }
+ .bawah {
+  width: 800px;
+  margin-top: -6rem;
+}
+}
+
+@media (max-width: 872px){
+  .bawah {
+    width: 700px;
+  }
+  .isi1{
+    margin-top: -3rem;
+    font-size: .1rem;
+    padding-right: 5rem;
+  }
+  .bawah .isi{
+    width: 100%;
+  }
+}
+
+@media (max-width: 723px){
+  .bawah {
+    width: 500px;
+  }
+  .isi1{
+    margin-top: -3rem;
+    font-size: .1rem;
+    padding-right: 1rem;
+  }
+  .bawah .isi p{
+    font-size: 1rem;
+  }
+  .logo{
+    width: 40%;
+    padding: 0;
+    margin: 0;
+  }
+  .logo img{
+    width: 100%;
+    padding-right: 1rem;
+    margin-left: 2rem;
+  }
+  .row .col1 .logo{
+    margin-top: 3rem;
+    width: 70%;
+  }
+  .sosmedd .fa-brands{
+    width: 10%;
+  }
+}
+
+
+@media (max-width:587px ){
+
+
+ /* aaa */
+ .bawah .logo{
+   width: 100%;
+ }
+      .bawah .logo img{
+        width: 100%;
+        margin: auto;
+      }
+      .bawah{
+        position: relative;
+        display: block;
+        margin: auto;
+        width: 400px;
+        height: 500px;
+        margin-top: -5rem;
+      }
+      .bawah .isi{
+        position: relative;
+     width: 100%;
+     margin: auto;
+        width:90%;
+        right: -1rem;
+      }
+      .bawah .isi p{
+        font-family: 'Poppins';
+      font-size: 14px;
+      }
+      .bawah .isi button{
+      width: 124px;
+      height: 40px;
+      }
+      .bawah input{
+      width: 200px;
+      height: 40px; 
+      }
+      .isi .beranda{
+      margin-left: 4rem;
+      }
+}
+
+@media (max-width:450px ){
+  .kumpulangambar{
+    width: 100%;
+  }
+  .kumpulangambar img{
+    width: 100%;
+
+  }
+  .bawah{
+    width: 300px;
+  }
+  .bawah .isi{
+    width: 101%;
+  }
+  .bawah .isi .inputbutton{
+    margin-top: 1rem;
+  }
+  .bawah input{
+    width: 150px;
+    height: 40px; 
+    }
+    .a{
+      margin-left: 2rem;
+      margin-top: -1rem;
+    }
+}

@@ -1,0 +1,377 @@
+.head-img{
+    padding: 0;
+}
+
+.head-img img{
+    width: 100%;
+    height: 60rem;
+    object-fit: cover;
+    background-position: top !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.head-link{
+    position: relative;
+    padding: 1rem 3%;
+    display: flex;
+    font-size: 1.3rem;
+    top: 1rem;
+    left: 2rem;
+    width: 100%;
+    font-weight: bold;
+}
+
+.head-link h1{
+    padding: 0 1%;
+    position: relative;
+    top: -10px;
+    color: black;
+}
+
+/*Content Start*/
+
+.main-content{
+    width: 1300px;
+}
+
+.content{
+    width: 1200px;
+}
+
+.headline{
+    background: #c5c5c5;
+    width: 96%;
+    height: 1px;
+    position: relative;
+    left: 4.5%;
+}
+
+.footline{
+    background: #c5c5c5;
+    position: relative;
+    top: 5rem;
+    width: 104%;
+    height: 1px;
+    left: 4.5%;
+}
+
+#judul{
+    font-size: 3.5rem;
+    left: 4.5%;
+    position: relative;
+}
+
+.article{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 4.5%;
+    top: 3rem;
+}
+
+.article span{
+    font-size: 1.3rem;
+}
+
+#img-content{
+    width: 1200px;
+    height: 500px;
+    object-fit: cover;
+    padding: 3rem 5%;
+    position: relative;
+    top: 10px;
+}
+
+.bot-content{
+    position: relative;
+    top: 7rem;
+    padding: 1rem 3.7%;
+}
+
+.bot-content h1{
+    font-size: 3.5rem;
+}
+
+.wrapp{
+    margin: 20px 0;
+    width: 100%;
+}
+
+.wrapp .card_wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card_wrap .card_item{
+    width: 25%;
+    padding: 10px;
+}
+
+.card_wrap .card_inner{
+    border: 2px solid #D9D9D9;
+    border-radius: 15px;
+    height: 28rem;
+}
+
+.card_wrap .card_inner:hover{
+    border: 2px solid #64CDD4;
+}
+
+.card_img img{
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+    padding: 15px;
+    padding-bottom: 0;
+    border-radius: 25px;
+}
+
+.card_tittle{
+    color: white;
+    position: relative;
+    top: -50px;
+    padding-left: 2.5rem;
+}
+
+.card_wrap .card_bott{
+    display: flex;
+    position: relative;
+    padding-left: 10px;
+    top: -3rem;
+}
+
+.card_bott .card_sideline{
+    width: 4px;
+    height: 5rem;
+    background: #D2D2D2;
+    border-radius: 10px;
+    position: relative;
+    top: 1rem;
+}
+
+.card_bott .card_sideline:active{
+    background: #64CDD4;
+}
+
+.card_bott .card_info{
+    padding-left: 5px;
+    position: relative;
+    top: .8rem;
+    font-size: 11px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Media Queries Start*/
+
+@media screen and (min-width: 1220px){ /*TV*/
+
+    .headline{
+        width: 89%;
+    }
+
+    .footline{
+        width: 100%;
+    }
+
+    .content{
+        width: 1150px;
+        position: relative;
+        left: 1.5rem;
+        top: 10px;
+    }
+
+    #img-content{
+        width: 1090px;
+        left: 30px;
+    }
+
+    .bot-content h1{
+        left: 2rem;
+        position: relative;
+    } 
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1220px){ /*Laptop*/
+
+    .headline{
+        width: 83%;
+    }
+
+    .footline{
+        width: 100%;
+    }
+    
+    .content{
+        width: 1000px;
+        position: relative;
+        left: 2.2rem;
+        top: 10px;
+    }
+
+    #img-content{
+        width: 1000px;
+        left: 30px;
+    }
+
+    .bot-content h1{
+        left: 2rem;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){ /*Tablet*/
+    
+    .head-link{
+        width: 80%;
+    }
+
+    .head-link h1{
+        top: -11px;
+    }
+
+    .headline{
+        width: 55.5%;
+    }
+
+    .footline{
+        width: 100%;
+    }
+
+    .content{
+        width: 700px;
+        position: relative;
+        left: 2.5rem;
+        top: 10px;
+    }
+
+    #img-content{
+        width: 700px;
+    }
+
+    .bot-content h1{
+        position: relative;
+        left: 2.5rem;
+    }
+
+    .card_wrap .card_item{
+        width: 40%;
+        position: relative;
+        left: 6.5rem;
+    }
+
+    .card_wrap .card_inner{
+        height: 26rem;
+    }
+}
+
+@media screen and (max-width: 768px){ /*Mobile*/
+
+    .head-img img{
+        height: 40rem;
+    }
+
+    .head-link{
+        font-size: 80%;
+        padding: 1rem 1%;
+    }
+
+    .head-link h1{
+        top: -5px;
+        padding: 0 5px;
+    }
+
+    .headline{
+        width: 26%;
+        left: 3.5rem;
+        top: 2px;   
+    }
+
+    .footline{
+        width: 94%;
+        left: 4rem;
+    }
+
+    .content{
+        width: 350px;
+    }
+
+    #judul{
+        font-size: 2.5rem;
+        left: 7.5%;
+        top: 10px;
+    }
+
+    .article{
+        width: 300px;
+        left: 1.5%;
+    }
+
+    #img-content{
+        width: 350px;
+        height: 250px;
+        object-fit: cover;
+        left: -1.8rem;
+    }
+
+    .bot-content h1{
+        font-size: 2.5rem;
+        position: relative;
+        left: 5%;
+    }
+
+    .card_wrap .card_inner{
+        height: 35rem;
+    }
+
+    .card_wrap .card_item{
+        width: 50%;
+    }
+
+    .card_bott .card_sideline{
+        top: -5px;
+        height: 6rem;
+    }
+
+    .card_bott .card_info{
+        top: -8px;
+        font-size: 9px;
+    }
+}

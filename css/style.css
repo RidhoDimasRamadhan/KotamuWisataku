@@ -1,0 +1,2047 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap");
+.leaflet-container {
+  width: 100%;
+  height: 130px;
+}
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: 0.2s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #1b1b1b;
+}
+
+section {
+  padding: 5rem 9%;
+}
+
+.linkrekomendasi{
+  position: relative;
+  top: -4.3rem;
+}
+
+.linkrekomendasi2{
+position: relative;
+top: 3rem;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 7%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 2s;
+}
+
+.header.active {
+  background-color: #1717176a;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  margin-right: auto;
+}
+.header .navbar a {
+  margin-left: 2rem;
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+.header .navbar a:hover {
+  color: #62BAE7;
+}
+.gambarartikel2 .gambarmain2:hover{
+  border: 2px solid #000000;
+}
+.gambarartikel2 .gambarmain2:hover  .kiri{
+  background-color: #64CDD4;
+}
+.header .navbar #nav-close {
+  font-size: 5rem;
+  cursor: pointer;
+  color: #fff;
+  display: none;
+}
+
+.header .icons a,#darkmode,
+.header .icons div {
+  font-size: 2rem;
+  margin-left: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.header .icons a:hover,
+.header .icons div:hover {
+  color: #62BAE7;
+}
+
+.header #menu-btn {
+  display: none;
+}
+
+.search-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transform: translateY(-110%);
+}
+
+.search-form.active {
+  transform: translateY(0%);
+}
+
+.search-form #close-search {
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 6rem;
+}
+
+.search-form #close-search:hover {
+  color: #62BAE7;
+}
+
+.search-form form {
+  width: 70rem;
+  padding-bottom: 2rem;
+  border-bottom: 0.2rem solid #fff;
+  display: flex;
+  align-items: center;
+}
+
+.search-form form input {
+  width: 100%;
+  font-size: 2rem;
+  color: #fff;
+  text-transform: none;
+  background: none;
+}
+
+.search-form form input:-ms-input-placeholder {
+  color: #aaa;
+}
+
+.search-form form input::-moz-placeholder {
+  color: #aaa;
+}
+
+.search-form form input::placeholder {
+  color: #aaa;
+}
+
+.search-form form label {
+  font-size: 3rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.search-form form label:hover {
+  color: #62BAE7;
+}
+
+.home {
+  padding: 0;
+}
+
+.home .box {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-size: cover !important;
+  background-position: center !important;
+  justify-content: flex-start;
+  padding: 2rem 9%;
+}
+
+.home .box .content {
+  width: 60rem;
+}
+
+.home .box .content span {
+  font-size: 5rem;
+  color: #fff;
+}
+
+.home .box .content h3 {
+  font-size: 7rem;
+  color: #fff;
+  padding-top: 0.5rem;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 3rem;
+  color: #fff;
+}
+
+
+.nearby-place{
+  position: absolute;
+  top: 6rem;
+  width: 100%;
+}
+.locate {
+  display: flex;
+  top: 2rem;
+  margin-left: 4rem;
+}
+
+#dot {
+  color: #FF9900;
+  font-size: 3rem;
+}
+
+.locate h3 {
+  display: inline;
+  color: #62BAE7;
+  font-size: 2.2rem;
+  padding: 0.9rem 1%;
+  font-weight: bold;
+}
+
+.lines {
+  width: 100%;
+  background: #1b1b1b;
+  height: 1px;
+  top: 5rem;
+}
+
+h2 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+/*languange*/
+.dropdown{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  left: 14px;
+}
+
+.dropdown .usb{
+  margin-top: 10px;
+}
+
+.wrapper{
+  display: none;
+  position: absolute;
+  min-width: auto;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.wrapper a{
+  padding: auto;
+  display: block;
+}
+
+.dropdown:hover .wrapper{
+  display: block;
+}
+
+#search-btn,#darkmode{
+  position: relative;
+  left: 10px;
+}
+
+
+@media (max-width: 991px) {
+  html {
+    font-size: 70%;
+    scroll-padding-top: 7rem;
+  }
+  .home .box {
+    padding: 2rem;
+    justify-content: center;
+    background-position: right !important;
+  }
+  .home .box.second {
+    justify-content: center;
+    background-position: left !important;
+  }
+  .home .box .content {
+    text-align: center;
+  }
+  .home .box .content span {
+    font-size: 3rem;
+  }
+  .home .box .content h3 {
+    font-size: 4rem;
+  }
+
+    .navbar,
+    .dropdown,
+    .icons{
+      position: relative;
+      left: -4rem;
+    }
+}
+@media (max-width: 768px) {
+  .header #menu-btn {
+    display: inline-block;
+  }
+  .header .navbar {
+    position: fixed;
+    top: 0;
+    left: -110%;
+    background: #1b1b1b;
+    z-index: 10000;
+    width: 35rem;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .header .navbar.active {
+    left: 0;
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
+  }
+  .header .navbar a {
+    margin: 1rem 0;
+    font-size: 2.8rem;
+  }
+  .header .navbar #nav-close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+  .heading {
+    font-size: 3rem;
+  }
+}/*# sourceMappingURL=style.css.map */
+
+
+
+
+
+/* REKOMENDASI */
+.judulnya{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 1rem;
+}
+
+.judulnya h1{
+  color: #62BAE7;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.garis{
+  position: relative;
+  top: 1rem;
+  width: 1150px;
+  height: 1px;
+  margin: auto;
+background: #4E4E4E;
+}
+.atasGambar{
+  position: relative;
+  left: 3rem;
+  top: 10px;
+}
+
+.atasGambar h1{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 48px;
+line-height: 72px;
+color: #000000;
+}
+
+
+.gambarRekomendasi{
+  flex-wrap: wrap;
+  width: 80%;
+  display: flex;
+  margin-top: 13rem;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  top: 8rem;
+}
+.gambarRekomendasi .gambar img{
+  transform-origin: 55% 15%;
+  transition: transform 1s, filter .5s ease-out;
+  border-radius: 15px;
+}
+          
+
+.gambarRekomendasi .gambar{
+  overflow: hidden;
+  align-items: center;
+  justify-items: center;
+  width: 18%;
+  position: relative;
+  height: 292px;
+  margin-top: 1rem;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#load-more{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: auto;
+  padding: 1rem 0;
+  width: 24rem;
+  margin-top: 7rem;
+  top: 2rem;  
+  background: linear-gradient(265.46deg, #62BAE7 46.32%, #64CDD4 77.59%);
+  border-radius: 45px;
+  cursor: pointer;
+  transition: .2s linear;
+}
+.waw{
+  position: absolute;
+  width: 300px;
+  height:10px;
+  margin-bottom: 14rem;
+}
+
+#load-more p{
+  text-align: center;
+  width: 230px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+#load-more2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: auto;
+  padding: 1rem 0;
+  width: 24rem;
+  top: 9rem;  
+  background: linear-gradient(265.46deg, #62BAE7 46.32%, #64CDD4 77.59%);
+  border-radius: 45px;
+  cursor: pointer;
+  transition: .2s linear;
+}
+
+#load-more2 p{
+  text-align: center;
+  width: 230px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+#load-more:hover{
+  background-color: crimson;
+  border-color: crimson;
+  color:#fff;
+}
+
+
+.main .gambarRekomendasi .gambar{
+  display: none;
+}
+
+.main .gambarRekomendasi .gambar:nth-child(1),
+.main .gambarRekomendasi .gambar:nth-child(2),
+.main .gambarRekomendasi .gambar:nth-child(3),
+.main .gambarRekomendasi .gambar:nth-child(4),
+.main .gambarRekomendasi .gambar:nth-child(5),
+.main .gambarRekomendasi .gambar:nth-child(6),
+.main .gambarRekomendasi .gambar:nth-child(7),
+.main .gambarRekomendasi .gambar:nth-child(8),
+.main .gambarRekomendasi .gambar:nth-child(9),
+.main .gambarRekomendasi .gambar:nth-child(10){
+  display: inline-block;
+}
+
+.main2 .gambarartikel2 .gambarmain2{
+  display: none;
+}
+
+.main2 .gambarartikel2 .gambarmain2:nth-child(1),
+.main2 .gambarartikel2 .gambarmain2:nth-child(2),
+.main2 .gambarartikel2 .gambarmain2:nth-child(3),
+.main2 .gambarartikel2 .gambarmain2:nth-child(4){
+  display: inline-block;
+}
+.gambarRekomendasi .gambar:hover img{
+  transform: scale(1.2);
+}
+
+.gambarRekomendasi .gambar p{
+  position: relative;
+  bottom: 4rem;
+  text-align: center;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 30px;
+color: #FFFFFF;;
+}
+
+      .gambarRekomendasi .gambar1 img{
+          width: 100%;
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+          z-index: -11;
+      }
+      .gambarRekomendasi .gambar2 img{
+          width: 100%;
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+          
+      }
+      .gambarRekomendasi .gambar3 img{
+          width: 100%;
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+          
+      }
+      .gambarRekomendasi .gambar4 img{
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+          
+      }
+      .gambarRekomendasi .gambar5 img{
+          width: 100%; 
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          object-fit: cover;
+          
+      }
+      .gambarRekomendasi .gambar6 img{
+          width: 100%; 
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+          
+      }
+      .gambarRekomendasi .gambar7 img{
+          width: 100%; 
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+      }
+      .gambarRekomendasi .gambar8 img{
+          width: 100%; 
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          object-fit: cover;
+      }
+      
+      .gambarRekomendasi .gambar9 img{
+          width: 100%; 
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          object-fit: cover;
+          background-size: contain;
+          
+      }
+      .gambarRekomendasi .gambar10 img{
+          max-width: 100%; 
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          object-fit: cover;
+          background-size: contain;
+}
+
+.gambarRekomendasi .gambar img{
+  max-width: 100%; 
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+}
+
+
+
+.lebihBanyak{
+  position: relative;
+  bottom: -5rem;
+  left: -18rem;
+}
+.lebihBanyak button{
+  float: right;
+  width: 2rem;
+  background-color: orange;
+  border-radius: 50%;
+  margin-left: .3rem;
+}
+
+.lebihBanyak .kiri{
+  float: right;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height */
+color: #62BAE7;
+}
+
+
+.bawah {
+  position: relative;
+  display: flex;
+  width: 1150px;
+height: 170px;
+border-radius: 15px;
+
+  margin: auto;
+  top: 5rem;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.bawah .logo{
+  width: 30%;
+
+}
+.bawah .isi {
+  width: 70%;
+  color: white;
+}
+.bawah .logo img{
+width: 100%; 
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+}
+.bawah .isi{
+  position: relative;
+  top: 2rem;
+  right: -3rem;
+}
+
+.bawah .isi .inputbutton{
+  margin-top: -4rem;
+}
+
+.bawah .isi p{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700; 
+font-size: 20px;
+line-height: 30px;
+color: #FFFFFF;
+text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.29);
+}
+
+.bawah .isi button{
+  width: 164px;
+height: 50px;
+background: #62BAE7;
+border-radius: 15px;
+margin-left: 1rem ;
+
+}
+.bawah .isi .subscribe{
+  position: relative;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+
+.bawah input{
+  width: 530px;
+height: 50px;
+left: 510px;
+top: 900px;
+background: #FFFFFF;
+border-radius: 15px;
+}
+.bawah input::placeholder{
+  position: relative;
+  left: 2rem;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.22);
+}
+/* END REKOMENDASI  */
+
+
+/* ARTIKEL */
+.artikel{
+  position: relative;
+  top: 7rem;
+}
+.judulnya2{
+  width: 100%;
+  display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.judulnya2 h1{
+  position: relative;
+    color: #62BAE7;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.atasGambar2{
+  position: absolute;
+left: 180px;
+margin-top: 1rem;
+}
+
+.atasGambar2 h1{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 48px;
+line-height: 72px;
+color: #000000;
+}
+
+.artikel .gambarartikel{
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  top: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.artikel .gambarartikel2{
+  margin-top: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.gambarartikel2 .gambarmain2{
+  position: relative;
+  top: 11rem;
+  width: 560px;
+  height: 339px;
+  margin-bottom: 3rem;
+   border: 1px solid #BDBDBD;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 15px;
+}
+
+.gambarartikel2 .gambarmain2 .atas{
+  width: 90%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 12rem;
+  left: 3rem;
+}
+
+.gambarartikel2 .gambarmain2 .atas p{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+color: #FFFFFF;
+z-index: 11;
+}
+
+.gambarmain3{
+  position: relative;
+  display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+  width: 520px;
+  padding: auto;
+  height: 200px;
+  margin-top: 2rem; 
+}
+.bawahgambarmain3{
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 520px;
+  z-index: 1;
+  top: 2rem;
+}
+.bawahgambarmain3 .kiri{
+  float: right;
+  position: absolute;
+width: 10px;
+height: 70px;
+background-color: #BDBDBD;
+top: .8rem;
+}
+.bawahgambarmain3 .kanan{
+  margin-left:2rem;
+  margin-top: .8rem;
+}
+.bawahgambarmain3 .kanan p{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+
+color: black;
+text-align: justify;
+}
+
+.gambarmain3 img{
+  width: 100%; 
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  object-position: center;
+  object-fit: cover;
+  border-radius: 20PX;
+}
+.komodo img{
+  
+  object-position: 70% 30%;
+}
+.rajaampat img{
+  object-position: bottom;
+
+}
+
+.button2{
+  position: relative;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  top: 84rem;
+  height: 50px;
+}
+
+.artikel .button2 button{
+  cursor: pointer;
+  background: linear-gradient(265.46deg, #62BAE7 46.32%, #64CDD4 77.59%);
+  border-radius: 45px;
+}
+
+.artikel .button2 button p{
+  width: 230px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+.wisataterdekat{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 670px;
+  margin-top: -10rem;
+}
+.wisataterdekat .kanan,
+.wisataterdekat .kiri{
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 300px;
+}
+.wisataterdekat .kiri .gambarwisataterdekat{
+  border: 1px solid #D2D2D2;
+  width: 560px;
+height: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 15px;
+  margin: auto;
+}
+.wisataterdekat .kiri .gambarwisataterdekat .bawahgambarwisataterdekat{
+  position: absolute;
+  width: 90%;
+  height: 430px;
+  top: 2rem;
+  border: 1px solid #BDBDBD;
+  border-radius: 15px;
+}
+.wisataterdekat .kiri .gambarwisataterdekat .bawahgambarwisataterdekat img{
+ 
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+  border-radius: 15px;
+  width: 100%; 
+  height: 100%;
+}
+.wisataterdekat .kiri .gambarwisataterdekat .map{
+  position: absolute;
+  bottom: 1rem;
+  left: 5rem;
+  width: 520px;
+}
+.garissamping{
+  position: absolute;
+  width: 10px;
+  height: 160px;
+  left: -3rem;
+  background: #64CDD4;
+  border-radius: 5px;
+}
+
+.map .gambarmaps{
+  width: 95%;
+}
+.map .gambarmaps #map{
+  width: 100%;
+height: 130px;
+}
+.map .gambarmaps #map2{
+  width: 100%;
+height: 330px;
+position: relative;
+z-index: 12;
+top: 30rem;
+border: 1px solid black;
+}
+.map .gambarmaps p{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.wisataterdekat .kiri .gambarwisataterdekat .map h1{
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  left: -3rem;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.wisataterdekat .kanan .gambar{
+  width: 45%;
+  height: 195.76px;
+  border: 1px solid #BDBDBD;
+  padding: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 15px;
+} 
+.wisataterdekat .kanan .gambar .kumpulangambarkanan{
+  width: 100%;
+  height: 100%;
+}
+.wisataterdekat .kanan .gambar .kumpulangambarkanan img{
+  width: 100%;
+  height: 173.76px;
+  background-position: center ;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+  border-radius: 15px;
+}
+.wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 30px;
+top: -4rem;
+/* identical to box height */
+color: #FFFFFF;
+}
+.garis2bawah{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 1rem;
+  width: 263px;
+  height: 50px;
+  border-radius: 45px;
+  background: linear-gradient(265.46deg, #62BAE7 46.32%, #64CDD4 77.59%);
+}
+.garis2bawah img{
+  position: relative;
+  right: -10.5rem;
+}
+
+
+.garis3{
+  position: relative;
+  top: 1rem;
+  width: 100%;
+  height: 1px;
+  margin: auto;
+background: black;
+}
+
+
+
+/* footer */
+
+footer {
+  width: 100%;
+  position: relative;
+  top: 27rem;
+  background-color: #001D2C;
+  color: #FFFFFF;
+  padding: 0.5rem 1%;
+  z-index: 222;
+}
+
+.map h1{
+  position: relative;
+  top: 30px;
+  display: inline-block;
+}
+
+.direction{
+  background: #62BAE7;
+  width: 12rem;
+  position: relative;
+  cursor: pointer;
+  left: 65%;
+  padding: .5rem 3%;
+  border-radius: 5px;
+  top: -5px;
+}
+
+.direction a{
+  color: white;
+  font-size: 1.5rem;
+}
+
+#icon-direction{
+  color: white;
+  position: relative;
+  display: inline;
+  left: 10px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.col {
+  padding: 2rem;
+}
+
+.row {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 230px;
+  position: relative;
+}
+.row .col1{
+  margin-top: -4rem;
+}
+.sosmed .fa-brands {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #001D2C;
+  background: #FFFFFF;
+  cursor: pointer;
+  line-height: 35px;
+  margin-right: 5px;
+  position: relative;
+  top:-6rem;
+  left: 2rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 70px;
+}
+
+form input {
+  border: 0;
+  outline: none;
+  width: 493px;
+  height: 50px;
+  padding: 5px 10px;
+  background: #FFFFFF;
+  border-radius: 15px;  
+  margin-right: 10px;
+  text-transform: lowercase;
+}
+
+form button {
+  color: white;
+  padding: 10px;
+  background: linear-gradient(265.46deg, #62BAE7 46.32%, #64CDD4 77.59%);
+  border-radius: 15px;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  width: 148px;
+  height: 50px;
+}
+
+a {
+  color: #FFFFFF;
+}
+
+.kumpulan{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.span {
+  text-align: center;
+
+}
+
+.cookie {
+  top: 80px;
+  position: relative;
+  padding-right: 10px;
+  margin-left: 10px;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 20px;
+
+color: #FFFFFF;
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #62BAE7;
+  position: relative;
+  top: -50px;
+}
+
+.desc {
+  text-align: center;
+  position: relative;
+  top: -20px;
+
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 20px;
+text-align: center;
+
+color: #FFFFFF;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 4rem;
+}
+
+.col2 form button{
+  background-color: #62BAE7;
+}
+/* end */
+
+
+@media(min-width:1250px){
+  .lebihBanyak{
+      z-index: 3;
+      right: 12rem;
+  }
+  /* artikel */
+  .judulnya2 h1{
+      top: 1rem;
+  }
+  .artikel .button2{
+      top : 153rem;
+    }
+    .nearby-place{
+      position: relative;
+      top: 10rem;
+    }
+
+    .wisataterdekat .kanan{
+      width: 50%;
+    }
+
+    .map .gambarmaps{
+      width: 90%;
+    }
+    .wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+      font-size: 17px;
+    }
+
+    
+}
+
+
+@media(max-width:1250px){
+  .lebihBanyak{
+      z-index: 3;
+      right: 12rem;
+  }
+  /* artikel */
+  .judulnya2 h1{
+      top: 1rem;
+  }
+  .artikel .button2{
+      top : 153rem;
+    }
+    .nearby-place{
+      position: relative;
+      top: 10rem;
+    }
+
+    .wisataterdekat .kanan{
+      width: 50%;
+    }
+
+    .map .gambarmaps{
+      width: 83%;
+    }
+    .wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+      font-size: 17px;
+    }
+
+    .footer{
+  bottom: -253rem;
+    }
+
+    .garis2bawah{
+      left: -10rem;
+    }
+}
+
+
+@media (max-width:1200px){
+  .garis{
+      width: 76%;
+  }
+  .atasGambar h1{
+      font-size: 38px;
+  }
+  .gambarRekomendasi .gambar p{
+      font-size: 2vmax;
+  }
+  .gambarRekomendasi .gambar{
+      width: 30%;
+  }
+  .lebihBanyak{
+      z-index: 3;
+      right: 9rem;
+  }
+
+  /* Artikel */
+  .judulnya2 h1{
+      top: 1rem;
+  }
+
+  /* aa */
+  .bawah .logo img{
+    width: 80%;
+  }
+  .bawah{
+    width: 900px;
+  }
+  .bawah .isi{
+    width:80%;
+    right: -9rem;
+  }
+  .bawah .isi p{
+    font-family: 'Poppins';
+  font-size: 14px;
+  }
+.bawah .isi button{
+  width: 124px;
+height: 40px;
+
+}
+.bawah input{
+  width: 330px;
+height: 40px; 
+}
+.garis3{
+  width: 90%;
+}
+
+.garis2bawah{
+  position: relative;
+  left: 9rem;
+}
+
+.locate {
+  margin-left: 7rem;
+  margin-top: 4rem;
+}
+
+.wisataterdekat{
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  position: relative;
+  top: -9rem;
+}
+.direction{
+  margin-left: -8rem;
+}
+
+.map .gambarmaps p{
+  width:85%;
+}
+.map .gambarmaps #map{
+  width:83%;
+}
+.wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+  font-size: 17.5px;
+}
+/*  */
+
+  .header {
+    padding: 2rem;
+  }
+  section {
+    padding: 3rem 2rem;
+  }
+
+  .navbar,
+    .dropdown,
+    .icons{
+      position: relative;
+      left: -4rem;
+    }
+
+
+/* footer */
+
+footer {
+  top: 22rem;
+}
+.row {
+  width: 100%;
+}
+/* end */
+
+}
+
+@media (max-width:991px){
+  .garis{
+      width: 70%;
+      margin-top: 4px;
+  }
+  .gambarRekomendasi .gambar{
+      width: 40%;
+  }
+  .gambarRekomendasi .gambar p{
+      font-size: 2.5vmax;
+  }.atasGambar h1{
+      font-size: 4vmax;
+  }
+  .atasGambar{
+    margin-left: 12rem;
+  }
+  .judulnya h1{
+      font-size: 18px;
+  }
+  .lebihBanyak{
+      z-index: 2;
+      left: -13rem;
+  }
+
+  /* Artikel */
+  .judulnya2 h1{
+      top: 1rem;
+  }
+  .artikel .button2{
+    top: 139rem;
+  }
+
+  /* aaa */
+.bawah .logo img{
+  width: 80%;
+}
+.bawah{
+  width: 800px;
+}
+.bawah .isi{
+  width:80%;
+  right: -2rem;
+}
+.bawah .isi p{
+  font-family: 'Poppins';
+font-size: 14px;
+}
+.bawah .isi button{
+width: 124px;
+height: 40px;
+
+}
+.bawah input{
+width: 330px;
+height: 40px; 
+}
+/*  */
+
+
+.garis3{
+  width: 85%;
+}
+.kiri .map{
+  margin-bottom: -2rem;
+}
+.map .gambarmaps{
+  width: 90%;
+}
+.map .gambarmaps p{
+  width:100%;
+}
+.map .gambarmaps #map{
+  width:100%;
+}
+
+.wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+  font-size: 15px;
+}
+.wisataterdekat{
+  position: relative;
+  margin-top: 18rem;
+  flex-wrap: wrap;
+}
+.wisataterdekat .kiri{
+  width: 100%;
+}
+.wisataterdekat .kanan{
+  margin-top: 34rem;
+  width: 100%;
+
+  margin-left: 2rem;
+}
+
+.wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+  font-size: 20px;
+}
+
+.garis2bawah img{
+  position: relative;
+  right: -9.5rem;
+}
+.garis2{
+  left: 20rem;
+}
+.nearby-place{
+display: inline-block;
+width: 100%;
+padding: 0;
+margin:0;
+}
+.wisataterdekat .kiri .gambarwisataterdekat .map{
+  width: 95%;
+  bottom: 2rem;
+  position: absolute;
+}
+.atasGambar2{
+  left: 6rem;
+}
+/* fppter */
+footer {
+  top: 55rem;
+}
+
+.row .col1,
+.row .col2{
+  margin: auto;
+}
+.row .col1{
+  margin-top: -4rem;
+}
+.row .col2 {
+  margin-top: -2rem;
+  padding-bottom: 2rem;
+}
+
+.kumpulan{
+  margin-top: 8rem;
+}
+
+footer{
+  margin-top: 11rem;
+}
+.navbar,
+    .dropdown,
+    .icons{
+      position: relative;
+      left: -1rem;
+      font-size: .1rem;
+    }
+/* end */
+}
+
+
+
+@media (max-width:768px ){
+  .judulnya h1{
+      font-size: 15px;
+  }
+  .gambarRekomendasi .gambar{
+      width: 40%;
+  }
+  .lebihBanyak{
+      z-index: 3;
+      right: 9.6rem;
+  }
+
+  /* artikel */
+      .judulnya2 h1{
+          top: 1rem;
+      }   
+      .gambarartikel2 .gambarmain2{
+          width: 470px;
+      }
+      .gambarmain3 {
+          width: 420px;
+      }
+      .bawahgambarmain3{
+          width: 420px;
+      }
+      .bawahgambarmain3 .kanan p{
+          font-size: 10px;
+      }
+      /* aaa */
+      .bawah .logo img{
+        width: 100%;
+        margin-left: 2rem;
+      }
+      .bawah{
+        width: 600px;
+      }
+      .bawah .isi{
+        width:60%;
+        right: -5rem;
+      }
+      .bawah .isi p{
+        font-family: 'Poppins';
+      font-size: 14px;
+      }
+      .bawah .isi button{
+      width: 124px;
+      height: 40px;
+      
+      }
+      .bawah input{
+      width: 200px;
+      height: 40px; 
+      }
+    /*  */
+    .garis3{
+      width: 80%;
+    }
+    .nearby-place{
+      width: 100%;
+      margin: 0 auto;
+    }
+    .map .gambarmaps p{
+      width:85%;
+    }
+
+
+    /* footer */
+    .row {
+      width: 65%;
+    }
+    .col2{
+      width: 100%;
+    }
+    
+    .cookie {
+      top: 80px;
+      right: 8rem;
+      width: 500px;
+      text-align: center;
+      margin: auto;
+      font-size: 13px;
+
+    }
+
+    .desc {
+    font-size: 11px;
+    }
+    .bawah input::placeholder{
+      font-size: 10px;
+    }
+    /* end */
+    .nearby-place{
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    margin:0;
+    }
+
+    .wisataterdekat .kiri .gambarwisataterdekat .map{
+      width: 87%;
+      position: absolute;
+    }
+
+    .atasGambar2{
+      left: 6rem;
+    }
+    .nearby-place{
+      position: relative;
+    }
+    .locate{
+      width: 29rem;
+    }
+    footer{
+      margin-top: 12rem;
+    }
+    .row .col1{
+      margin-bottom: -7rem;
+    }
+    .row .col2 {
+      margin-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+  /* end */
+
+
+@media (max-width:587px ){
+  .judulnya h1{
+      font-size: 13px;
+  }
+  .gambarRekomendasi .gambar{
+      width: 100%;
+  }
+  .garis{
+      width: 80%;
+      margin-top: 4px;
+  }
+  .lebihBanyak{
+    margin-left: 15rem;
+  }
+  .atasGambar2 h1{
+    font-size: 40px;
+    margin-left: -3rem;
+  }
+  .judulnya2 h1{
+    font-size: 16px;
+  }
+
+  /*  artikel */
+  .gambarartikel2 .gambarmain2{
+      width: 400px;
+  }
+  .gambarmain3 {
+      width: 340px;
+  }
+  .bawahgambarmain3{
+      width: 340px;
+  }
+  .bawahgambarmain3 .kanan p{
+      font-size: 9px;
+  }
+
+ /* aaa */
+ .bawah .logo{
+   width: 100%;
+ }
+      .bawah .logo img{
+        width: 100%;
+        margin: auto;
+      }
+      .bawah{
+        position: relative;
+        display: block;
+        margin: auto;
+        width: 400px;
+        height: 600px;
+      }
+      .bawah .isi{
+        position: relative;
+     top: -6rem;
+     width: 100%;
+     margin: auto;
+        width:90%;
+        right: -1rem;
+      }
+      .bawah .isi p{
+        font-family: 'Poppins';
+      font-size: 14px;
+      }
+      .bawah .isi button{
+      width: 124px;
+      height: 40px;
+      }
+      .bawah input{
+      width: 200px;
+      height: 40px; 
+      }
+
+      .gambarartikel2 .gambarmain2 .atas{
+        width: 90%;
+      }
+      .gambarartikel2 .gambarmain2 .atas p{
+        margin-right: 6rem;
+      font-size: 15px;
+      line-height: 30px;
+      }
+    /*  */
+
+
+    .garis3{
+      width: 90%;
+    }
+
+    .garis2bawah img{
+      position: relative;
+      right: -9rem;
+    }
+    .garis2{
+      left: -12rem;
+    }
+
+    .navbar,
+    .dropdown,
+    .icons{
+      position: relative;
+    }
+
+    .wisataterdekat .kiri .gambarwisataterdekat .map{
+      position: absolute;
+      width: 85%;
+    }
+    .nearby-place{
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    margin:0;
+    }
+    .wisataterdekat{
+      width: 90%;
+      top: -16rem;
+    }
+    .map .gambarmaps p{
+      width:100%;
+    }
+    .wisataterdekat{
+      margin-top: 24rem;
+    }
+    .wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+      font-size: 14.5px;
+    }
+
+    .wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+      font-size: 12px;
+    }
+.direction{
+  margin-left:-2rem;
+}
+  footer{
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width:450px ){
+  .judulnya h1{
+      font-size: 12px;
+  }
+              
+              .lebihBanyak{
+                  z-index: 3;
+              }
+
+              /* artikel */
+              
+              .atasGambar2 h1 {
+                font-size: 30px;
+                margin-top: -1rem;
+                margin-left: 1rem;
+              }
+              .judulnya2 h1{
+                font-size: 16px;
+              }
+              .gambarartikel2 .gambarmain2{
+                  width: 350px;
+              }
+              .gambarmain3 {
+                  width: 250px;
+              }
+              .gambarmain2 .atas{
+                margin-left: 3rem;
+              }
+              .gambarartikel2 .gambarmain2{
+                margin: 2rem 3rem;
+            }
+              .bawahgambarmain3{
+                  width: 250px;
+                }
+                .bawahgambarmain3 .kanan p{
+                  line-height: 13px;
+                  font-size: 8px; 
+              }
+
+              .artikel .button2{
+                top : 186rem;
+              }
+
+
+     /* aaa */
+ .bawah .logo{
+  width: 100%;
+}
+     .bawah .logo img{
+       width: 100%;
+       margin: auto;
+     }
+     .bawah{
+       position: relative;
+       display: block;
+       margin: auto;
+       width: 300px;
+       height: 400px;
+     }
+     .bawah .isi{
+       position: relative;
+    top: -8rem;
+    width: 100%;
+    margin: auto;
+       width:90%;
+       right: -1rem;
+     }
+     .bawah .isi p{
+       font-family: 'Poppins';
+     font-size: 14px;
+     }
+     .bawah .isi button{
+     width: 124px;
+     height: 40px;
+     
+     }
+     .bawah input{
+     width: 250px;
+     margin-top: -2rem;
+     margin-bottom: 1rem;
+     height: 40px; 
+     }
+
+     #load-more{
+       width: 30rem;
+      }
+      #load-more2{
+        width: 30rem;
+        margin-top: 2rem;
+     }
+    
+     .gambarartikel2 .gambarmain2 .atas{
+      width: 80%;
+    }
+    .gambarartikel2 .gambarmain2 .atas p{
+      margin-right: 4rem;
+      margin-bottom: 4rem;
+    font-size: 10px;
+    line-height: 20px;
+    }
+    .garis3{
+      width: 60%;
+    }
+    .locate {
+      margin-left: 13rem;
+      margin-top: 4rem;
+    }
+    .direction{
+      margin-left: 1rem;
+    }
+    .wisataterdekat{
+      width: 90%;
+    }
+    .wisataterdekat .kiri .gambarwisataterdekat .map h1{
+      font-size: 2.5rem;
+    }
+    .map .gambarmaps p{
+      width:100%;
+    }
+    .map .gambarmaps #map{
+      width:100%;
+    }
+    .wisataterdekat .kanan .gambar .kumpulangambarkanan p{
+      font-size: 11px;
+    }
+    .wisataterdekat .kanan{
+      width: 100%;
+      margin-top: 48rem;
+    }
+   /*  */
+   .garis2 img{
+    position: relative;
+    right: -12.5rem;
+  }
+  .col1 img{
+    width: 80%;
+  }
+  .col1 .sosmed{
+    margin-top: 1rem;
+  }
+.col2 form{
+  margin-left: -4rem;
+}
+  .cookie {
+    font-size: 8px;
+    width: 300px;
+margin-left: 5rem;
+
+  }
+.kumpulan{
+  margin-top: 14rem;
+}
+  .desc {
+  font-size: 10px;
+  }
+  .garis2bawah{
+    margin-left: -6rem;
+  }
+  .garis2bawah img{
+    position: relative;
+    right: -13rem;
+  }
+  
+  footer {
+    top: 83rem;
+  }
+  .bawah .isi button{
+    width: 164px;
+  height: 50px;
+  background: #62BAE7;
+  border-radius: 15px;
+  margin-left: 1rem ;
+  margin-top: -2rem;
+  }
+  .bawah input::placeholder{
+    font-size: 10px;
+    left: -0.5rem;
+  }
+  .logo {
+    width: 130px;
+    position: relative;
+  }
+
+}
+
+
