@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kotamu Wisataku</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="css/style.css">
+    <title>KotamuWisataku — Temukan Wisata Terdekat di Sekitarmu</title>
+    <meta name="description" content="KotamuWisataku membantumu menemukan destinasi wisata terdekat dari lokasimu saat ini — lengkap dengan peta radar, rekomendasi, berita, dan petunjuk arah.">
+    <meta name="keywords" content="wisata Indonesia, wisata terdekat, GPS wisata, rekomendasi tempat wisata, KotamuWisataku">
+    <meta name="theme-color" content="#0b1020">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KotamuWisataku — Temukan Wisata Terdekat di Sekitarmu">
+    <meta property="og:description" content="Cari wisata paling dekat dari lokasimu, lihat peta radar, dan dapatkan petunjuk arah langsung.">
+    <meta property="og:image" content="img/bromo.jpg">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="alternate" hreflang="id" href="index.html">
+    <link rel="alternate" hreflang="en" href="English.html">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nearby.css">
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-
-    
-</head>             
+</head>
 <body>
     <header class="header">
         <a href="index.html" class="logo"><img src="img/logo1.png" width="120" alt="logo"></a>
@@ -31,12 +43,10 @@
         </nav>
         
         <div class="dropdown">
-                <a href="index.html"><img src="img/indonesia.png" alt="" width="25" height="20">
-            </li>
+            <a href="index.html" aria-label="Bahasa Indonesia"><img src="img/indonesia.png" alt="Bendera Indonesia" width="25" height="20"></a>
             <ul class="wrapper">
-                
-                <li onclick="update_country(this);" class="usb">
-                    <a href="English.html"><img src="img/eng.png" alt="" width="25" height="20"></a>
+                <li class="usb">
+                    <a href="English.html" aria-label="Switch to English"><img src="img/eng.png" alt="UK flag" width="25" height="20"></a>
                 </li>
             </ul>
         </div>
@@ -235,7 +245,7 @@
             </div>
         </div>
 
-    </div>  -->
+    </div>
 </div>
     <!-- End Rekomendasi -->
 
@@ -489,93 +499,8 @@
             </div>
             
             <div class="waw" id="waw"></div>
-            
-            <section class="nearby-place" id="nearby-place">
-                    <div class="locate">
-                        <div id="dot"><i class="fa-solid fa-location-dot"></i></div>
-                        <h3>Jakarta, Indonesia</h3>
-                    </div>
-                    
-                    <div class="garis3"></div>
-                    
-                    <div class="atasGambar2">
-                        <h1 id="rekomen">Wisata Terdekat</h1>
-                    </div>
 
-                    <div class="wisataterdekat">
-                        <div class="kiri">
-                            <div class="gambarwisataterdekat">
-                                <div class="bawahgambarwisataterdekat">
-                                    <img src="img/monas.jpg" alt="">
-                                </div>
-                                <div class="map">
-                                    <h1>Monumen Nasional</h1>
-                                    <div class="direction">
-                                        <a href="https://goo.gl/maps/fAXHsSdA5fdRSe5i7" target="_blank">Direction</a>
-                                        <a href="https://goo.gl/maps/fAXHsSdA5fdRSe5i7" target="_blank"><i class="bi bi-signpost-split-fill" id="icon-direction"></i></a>
-                                    </div>
-                                    <div class="garissamping"></div>
-                                    <div class="gambarmaps">
-
-                                        <p id="monas">Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta</p>
-                                        <div id="map"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="kanan">
-
-                            <div class="gambar ">
-                                <div class="kumpulangambarkanan">
-                                    <img src="img/lapangan.jpg" alt="">
-                                    <p>Lapangan Banteng</p>
-                                </div>
-                            </div>
-                            
-                            <div class="gambar">
-                                <div class="kumpulangambarkanan">
-                                    <img src="img/Istiqlal.jpg" alt="">
-                                    <p>Masjid Istiqlal</p>
-                                </div>
-                            </div>
-                            
-                            <div class="gambar">
-                                <div class="kumpulangambarkanan">
-                                    <img src="img/gereja.png" alt="">
-                                    <p>Gereja Katedral</p>
-                                </div>
-                            </div>
-                            
-                            <div class="gambar">
-                                <div class="kumpulangambarkanan">
-                                    <img src="img/kota.jpg" alt="">
-                                    <p>Kota Tua</p>
-                                </div>
-                            </div>
-                            
-                            <div class="gambar">
-                                <div class="kumpulangambarkanan">
-                                    <img src="img/tim.jpeg" alt="">
-                                    <p>Taman Ismail Marzuki</p>
-                                </div>
-                            </div>
-                            
-                            <div class="gambar">
-                                <div class="kumpulangambarkanan">
-                                    <img src="img/gbk.jpg" alt="">
-                                    <p>Komplek GBK</p>
-                                </div>
-                            </div>
-                            
-                            <div class="garis2bawah">
-                                <img src="img/panah.png" alt="">
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
+            <section id="kw-nearby-host" aria-label="Wisata Terdekat" class="kw-nearby-host"></section>
 
                 <footer class="footer2">
                     <div class="row">
@@ -617,10 +542,11 @@
         </div>  
 
         
-</body>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script src="js/script.js"></script>
+<script src="data/destinations.js"></script>
+<script src="js/nearby.js"></script>
+</body>
 </html>
 
 

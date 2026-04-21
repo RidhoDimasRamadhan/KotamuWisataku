@@ -1,0 +1,492 @@
+/* ==========================================================================
+   KotamuWisataku — Nearby (GPS radar-style)
+   Scoped via .kw- prefix agar tidak bentrok dengan style.css
+   ========================================================================== */
+
+:root {
+  --kw-bg: #0b1020;
+  --kw-bg-2: #11172e;
+  --kw-surface: rgba(17, 23, 46, 0.75);
+  --kw-surface-solid: #141b36;
+  --kw-border: rgba(255, 255, 255, 0.08);
+  --kw-text: #e8edff;
+  --kw-text-dim: #9aa4c7;
+  --kw-accent: #22d3ee;
+  --kw-accent-2: #a855f7;
+  --kw-accent-3: #f43f5e;
+  --kw-radius: 16px;
+  --kw-shadow: 0 20px 60px rgba(8, 12, 30, 0.45);
+}
+
+/* --- Host wrapper ---------------------------------------------------------
+   Parent .gambarartikel2 di index.html adalah flex container dengan margin
+   kiri/kanan 6rem dan berada di dalam .gambarartikel (position: absolute).
+   Rule di bawah memaksa section ini jadi baris penuh sendiri dan punya
+   jarak atas yang cukup agar tidak overlap dengan artikel di atasnya.
+   -------------------------------------------------------------------------- */
+
+.kw-nearby-host {
+  display: block;
+  position: relative;
+  flex-basis: 100% !important;
+  width: 100% !important;
+  margin: clamp(180px, 20vw, 280px) 0 clamp(32px, 5vw, 64px) !important;
+  padding: 0 !important;
+  clear: both;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+@media (max-width: 991px) {
+  .kw-nearby-host { margin-top: clamp(120px, 14vw, 200px) !important; }
+}
+
+/* --- Section container ---------------------------------------------------- */
+
+.kw-nearby {
+  position: relative;
+  padding: 48px 6vw 80px;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(34, 211, 238, 0.12), transparent 60%),
+              radial-gradient(900px 500px at 90% 100%, rgba(168, 85, 247, 0.14), transparent 60%),
+              linear-gradient(180deg, var(--kw-bg) 0%, #070a1a 100%);
+  color: var(--kw-text);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+  overflow: hidden;
+}
+
+.kw-nearby::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 75%);
+}
+
+.kw-nearby-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.kw-locate {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kw-locate-dot {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--kw-accent), var(--kw-accent-2));
+  color: #fff;
+  font-size: 20px;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.18), 0 10px 30px rgba(34, 211, 238, 0.35);
+  animation: kw-pulse 2s ease-out infinite;
+}
+
+.kw-locate-label {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.kw-locate-sub {
+  display: block;
+  font-size: 12px;
+  color: var(--kw-text-dim);
+  margin-top: 2px;
+}
+
+/* --- Body grid ------------------------------------------------------------ */
+
+.kw-nearby-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+@media (max-width: 991px) {
+  .kw-nearby { padding: 40px 5vw 60px; }
+  .kw-nearby-body { grid-template-columns: 1fr; }
+}
+
+/* --- Map ------------------------------------------------------------------ */
+
+.kw-map-wrap {
+  position: relative;
+  border-radius: var(--kw-radius);
+  overflow: hidden;
+  border: 1px solid var(--kw-border);
+  box-shadow: var(--kw-shadow);
+  background: var(--kw-surface-solid);
+}
+
+.kw-map {
+  width: 100%;
+  height: 520px;
+  background: #050816;
+}
+
+@media (max-width: 767px) {
+  .kw-map { height: 420px; }
+}
+
+.kw-map-fade {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(5, 8, 22, 0.55) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Leaflet popup override */
+.leaflet-container { background: #050816 !important; font-family: inherit; }
+.leaflet-popup-content-wrapper {
+  background: var(--kw-surface-solid);
+  color: var(--kw-text);
+  border-radius: 14px;
+  border: 1px solid var(--kw-border);
+  box-shadow: var(--kw-shadow);
+}
+.leaflet-popup-tip { background: var(--kw-surface-solid); }
+.leaflet-popup-content { margin: 12px 14px; }
+
+.kw-popup img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.kw-popup h4 { margin: 0 0 2px; font-size: 16px; font-weight: 700; color: var(--kw-text); }
+.kw-popup-region { margin: 0 0 6px; font-size: 12px; color: var(--kw-text-dim); }
+.kw-popup-desc { margin: 0 0 10px; font-size: 13px; color: #c7cee8; line-height: 1.4; }
+.kw-popup-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* --- User icon (pulsing) -------------------------------------------------- */
+
+.kw-user-icon { position: relative; }
+.kw-user-icon .kw-user-dot {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--kw-accent);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 18px var(--kw-accent);
+}
+.kw-user-icon .kw-user-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--kw-accent);
+  opacity: 0.8;
+  animation: kw-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* --- Destination pin ------------------------------------------------------ */
+
+.kw-dest-icon { transform: translateZ(0); }
+.kw-dest-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, var(--kw-accent-3), var(--kw-accent-2));
+  color: #fff;
+  font-size: 16px;
+  transform: rotate(-45deg);
+  box-shadow: 0 6px 18px rgba(244, 63, 94, 0.45), 0 0 0 3px rgba(255, 255, 255, 0.12);
+  transition: transform .15s ease;
+}
+.kw-dest-pin i { transform: rotate(45deg); }
+.kw-dest-icon:hover .kw-dest-pin { transform: rotate(-45deg) scale(1.1); }
+
+/* --- Scan circle animation ------------------------------------------------ */
+
+.kw-scan-circle { animation: kw-scan 4s ease-in-out infinite; transform-origin: center; }
+
+/* --- Sidebar list --------------------------------------------------------- */
+
+.kw-list-wrap {
+  background: var(--kw-surface);
+  border: 1px solid var(--kw-border);
+  border-radius: var(--kw-radius);
+  padding: 18px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  max-height: 520px;
+  overflow: auto;
+}
+
+.kw-list-title {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--kw-text);
+  display: flex; align-items: center; gap: 8px;
+}
+.kw-list-title i { color: var(--kw-accent); }
+
+.kw-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+.kw-list-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 64px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.kw-list-item:hover {
+  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(34, 211, 238, 0.35);
+  transform: translateY(-1px);
+}
+
+.kw-rank {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 24px; height: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--kw-accent), var(--kw-accent-2));
+  color: #fff;
+}
+
+.kw-list-thumb {
+  width: 64px; height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a2244;
+  flex-shrink: 0;
+}
+.kw-list-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.kw-list-info h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--kw-text);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kw-list-info p {
+  margin: 2px 0 4px;
+  font-size: 11px;
+  color: var(--kw-text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kw-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.14);
+  color: var(--kw-accent);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  font-weight: 600;
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+
+.kw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+.kw-btn:active { transform: translateY(1px); }
+.kw-btn-sm { padding: 6px 10px; font-size: 12px; border-radius: 8px; }
+.kw-btn-primary {
+  background: linear-gradient(135deg, var(--kw-accent), var(--kw-accent-2));
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(34, 211, 238, 0.3);
+}
+.kw-btn-primary:hover { box-shadow: 0 14px 28px rgba(168, 85, 247, 0.4); }
+.kw-btn-ghost {
+  background: transparent;
+  color: var(--kw-text);
+  border-color: var(--kw-border);
+}
+.kw-btn-ghost:hover { background: rgba(255, 255, 255, 0.05); }
+.kw-btn-retry { white-space: nowrap; }
+
+/* --- Permission Modal ----------------------------------------------------- */
+
+.kw-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 6, 22, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.kw-modal.open { opacity: 1; }
+
+.kw-modal-card {
+  position: relative;
+  width: min(420px, 100%);
+  background: linear-gradient(180deg, #161d3b 0%, #0b1026 100%);
+  border: 1px solid var(--kw-border);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  text-align: center;
+  color: var(--kw-text);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  transform: translateY(10px) scale(.98);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.kw-modal.open .kw-modal-card { transform: translateY(0) scale(1); }
+
+.kw-modal-card h2 {
+  margin: 12px 0 8px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.kw-modal-card p {
+  margin: 0 0 20px;
+  color: var(--kw-text-dim);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.kw-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kw-radar-anim {
+  position: relative;
+  width: 92px; height: 92px;
+  margin: 0 auto 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,211,238,0.25), rgba(34,211,238,0) 65%);
+}
+.kw-radar-anim span {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--kw-accent);
+  opacity: 0;
+  animation: kw-ping 2s cubic-bezier(0,0,.2,1) infinite;
+}
+.kw-radar-anim span:nth-child(1) { width: 20px; height: 20px; animation-delay: 0s; }
+.kw-radar-anim span:nth-child(2) { width: 20px; height: 20px; animation-delay: 0.6s; }
+.kw-radar-anim span:nth-child(3) { width: 20px; height: 20px; animation-delay: 1.2s; }
+.kw-radar-anim::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--kw-accent);
+  box-shadow: 0 0 18px var(--kw-accent);
+}
+
+/* --- Keyframes ------------------------------------------------------------ */
+
+@keyframes kw-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55), 0 10px 30px rgba(34, 211, 238, 0.35); }
+  70% { box-shadow: 0 0 0 18px rgba(34, 211, 238, 0), 0 10px 30px rgba(34, 211, 238, 0.35); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0), 0 10px 30px rgba(34, 211, 238, 0.35); }
+}
+
+@keyframes kw-ping {
+  0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0.9; }
+  80% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+
+@keyframes kw-scan {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* --- Reduced motion preference ------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .kw-locate-dot,
+  .kw-user-icon .kw-user-ring,
+  .kw-scan-circle,
+  .kw-radar-anim span { animation: none; }
+}
+
+/* --- Dark mode (class-based, triggered by toggle) ------------------------ */
+
+body.kw-dark {
+  background: #002132;
+  color: #f3f5fa;
+  transition: background .25s ease, color .25s ease;
+}
+body.kw-dark .header { background: rgba(0, 33, 50, 0.95); }
+body.kw-dark .navbar a,
+body.kw-dark #darkmode,
+body.kw-dark #menu-btn,
+body.kw-dark #search-btn { color: #f3f5fa; }
+body.kw-dark h1,
+body.kw-dark h2,
+body.kw-dark h3,
+body.kw-dark h4,
+body.kw-dark p,
+body.kw-dark span { color: inherit; }
+body.kw-dark .rekomendasi,
+body.kw-dark .artikel,
+body.kw-dark .container { background: transparent; }
