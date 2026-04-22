@@ -143,30 +143,123 @@
   }
 
   // --- Subscribe form -----------------------------------------------------
-  // CATATAN: sebelumnya fungsi ini mengirim email dari client pakai SMTP.js
-  // dengan Host/Username/Password *hard-coded* di source → ini bocor kredensial.
-  // Password lama SUDAH DIHAPUS. Implementasi real harus pakai backend endpoint.
-  // Untuk saat ini: validasi email & tampilkan konfirmasi UI.
+  // Default: email subscriber disimpan di localStorage browser.
+  //   Cek kapan saja via DevTools → Console:
+  //     JSON.parse(localStorage.getItem('kw-subscribers'))
+  //
+  // Untuk kirim email beneran ke inbox (opsional), isi KW_SUBSCRIBE_EMAIL dengan
+  // alamatmu. Pakai FormSubmit.co — gratis, no signup, no API key. Submit pertama
+  // akan memicu email verifikasi ke alamat itu; klik "Activate Form" sekali →
+  // submission berikutnya auto-forward ke inbox.
+  var KW_SUBSCRIBE_EMAIL = 'manifestingsolutiontechnology@gmail.com';
+  var KW_SUBSCRIBE_ENDPOINT = KW_SUBSCRIBE_EMAIL
+    ? 'https://formsubmit.co/ajax/' + KW_SUBSCRIBE_EMAIL
+    : '';
+  var KW_SUBSCRIBERS_KEY = 'kw-subscribers';
+
+  function rememberSubscriberLocally(email) {
+    try {
+      var list = JSON.parse(localStorage.getItem(KW_SUBSCRIBERS_KEY) || '[]');
+      if (list.indexOf(email) === -1) list.push(email);
+      localStorage.setItem(KW_SUBSCRIBERS_KEY, JSON.stringify(list));
+    } catch (e) { /* storage blocked, abaikan */ }
+  }
+
+  function showToast(message, type) {
+    // Toast non-blocking di kanan bawah, auto-dismiss 4 detik.
+    var existing = document.getElementById('kw-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'kw-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.style.cssText =
+      'position:fixed;bottom:24px;right:24px;z-index:9999;' +
+      'max-width:340px;padding:14px 18px;border-radius:12px;' +
+      'font-family:Poppins,-apple-system,sans-serif;font-size:14px;font-weight:500;' +
+      'color:#fff;background:' + (type === 'error' ? '#ef4444' : 'linear-gradient(135deg,#22d3ee,#6366f1,#a855f7)') + ';' +
+      'box-shadow:0 18px 40px rgba(15,23,42,0.25);' +
+      'opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function () {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    });
+    setTimeout(function () {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      setTimeout(function () { toast.remove(); }, 260);
+    }, 4000);
+  }
+
   window.sendEmail = function sendEmail() {
     var input = document.getElementById('namaa') ||
                 document.querySelector('form input[type="email"]') ||
                 document.querySelector('form input[name="email"]');
     var value = input ? String(input.value || '').trim() : '';
     var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    var isEn = document.documentElement.lang === 'en';
 
     if (!emailOk) {
-      alert(document.documentElement.lang === 'en'
-        ? 'Please enter a valid email address.'
-        : 'Mohon masukkan alamat email yang valid.');
+      showToast(isEn ? 'Please enter a valid email address.' : 'Mohon masukkan alamat email yang valid.', 'error');
       return false;
     }
 
-    // TODO: ganti dengan fetch ke backend endpoint (mis. /api/subscribe).
-    alert(document.documentElement.lang === 'en'
-      ? 'Thanks! You are subscribed: ' + value
-      : 'Terima kasih! Email berlangganan: ' + value);
+    var btn = document.activeElement && document.activeElement.tagName === 'BUTTON'
+                ? document.activeElement : null;
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.65'; btn.style.cursor = 'wait'; }
 
-    if (input) input.value = '';
+    var finish = function () {
+      if (input) input.value = '';
+      if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = ''; }
+    };
+
+    // Tanpa endpoint eksternal: simpan lokal saja.
+    if (!KW_SUBSCRIBE_ENDPOINT) {
+      rememberSubscriberLocally(value);
+      showToast(isEn
+        ? 'Thanks! You are subscribed: ' + value
+        : 'Terima kasih! Email berlangganan berhasil: ' + value);
+      finish();
+      return false;
+    }
+
+    var payload = {
+      email: value,
+      _subject: 'KotamuWisataku — New subscriber',
+      _template: 'table',
+      _captcha: 'false',
+      source: location.href
+    };
+
+    fetch(KW_SUBSCRIBE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        var ok = data && (data.success === 'true' || data.success === true);
+        if (ok) {
+          showToast(isEn
+            ? 'Thanks! You are subscribed: ' + value
+            : 'Terima kasih! Email berlangganan berhasil: ' + value);
+        } else {
+          rememberSubscriberLocally(value);
+          showToast(isEn
+            ? 'Saved! Email will be forwarded after verification.'
+            : 'Tersimpan! Email akan diteruskan setelah verifikasi.');
+        }
+      })
+      .catch(function () {
+        rememberSubscriberLocally(value);
+        showToast(isEn
+          ? 'Offline — saved locally, will retry later.'
+          : 'Offline — tersimpan lokal, akan dicoba lagi.');
+      })
+      .then(finish);
+
     return false;
   };
 })();

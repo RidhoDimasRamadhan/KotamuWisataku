@@ -23,15 +23,17 @@
       fallback: 'Jakarta (default)',
       yourLocation: 'Kamu di sini',
       scanning: 'Memindai wisata di sekitarmu',
-      computing: 'Menghitung rute jalan...',
       nearest: 'Wisata Terdekat',
-      distance: 'jarak',
       direction: 'Arahkan',
       km: 'km',
       retry: 'Aktifkan GPS',
       min: 'mnt',
       hr: 'jam',
-      straightHint: '(garis lurus)'
+      modeLabel: 'Mode',
+      modeMotor: 'Motor',
+      modeCar: 'Mobil',
+      modeWalk: 'Jalan Kaki',
+      modeBike: 'Sepeda'
     },
     en: {
       modalTitle: 'Find Nearby Attractions',
@@ -44,22 +46,39 @@
       fallback: 'Jakarta (default)',
       yourLocation: 'You are here',
       scanning: 'Scanning nearby attractions',
-      computing: 'Computing road routes...',
       nearest: 'Nearest Attractions',
-      distance: 'distance',
       direction: 'Direction',
       km: 'km',
       retry: 'Enable GPS',
       min: 'min',
       hr: 'h',
-      straightHint: '(straight line)'
+      modeLabel: 'Mode',
+      modeMotor: 'Motorcycle',
+      modeCar: 'Car',
+      modeWalk: 'Walking',
+      modeBike: 'Cycling'
     }
   };
+
+  /**
+   * Travel modes untuk estimasi jarak/waktu + deep-link Google Maps.
+   * factor = pengali Haversine ke estimasi jarak jalan (urban Indonesia).
+   * speed  = km/jam rata-rata kondisi perkotaan.
+   * gmap   = nilai `travelmode` untuk Google Maps URL.
+   */
+  var MODES = {
+    motor: { key: 'motor', iconBi: 'bi-bicycle', factor: 1.40, speed: 30, gmap: 'driving' },
+    car:   { key: 'car',   iconBi: 'bi-car-front-fill', factor: 1.50, speed: 22, gmap: 'driving' },
+    walk:  { key: 'walk',  iconBi: 'bi-person-walking', factor: 1.20, speed: 5,  gmap: 'walking' },
+    bike:  { key: 'bike',  iconBi: 'bi-bicycle', factor: 1.30, speed: 14, gmap: 'bicycling' }
+  };
+  var MODE_ORDER = ['motor', 'car', 'walk', 'bike'];
+  var currentMode = 'motor';
 
   var t = I18N[LANG];
 
   var DEFAULT_LOCATION = { lat: -6.2088, lng: 106.8456, label: t.fallback };
-  var RESULT_LIMIT = 8;
+  var RESULT_LIMIT = 15;
 
   // --- Helpers ---------------------------------------------------------------
 
@@ -74,10 +93,89 @@
     return 2 * R * Math.asin(Math.sqrt(a));
   }
 
+  /**
+   * Peta id → filename Wikimedia Commons yang SUDAH diverifikasi (HTTP 200).
+   * Untuk id lain, pakai loremflickr.com dengan tag otomatis dari nama.
+   */
+  var WIKIMEDIA_IMAGES = {
+    'monas':       'Monas.jpg',
+    'borobudur':   'Borobudur-Nothwest-view.jpg',
+    'prambanan':   'Prambanan_Trimurti.jpg',
+    'bromo':       'Bromo_Sunrise.jpg',
+    'merapi':      'Mount_Merapi.jpg',
+    'ulun-danu':   'Pura_Ulun_Danu_Bratan.jpg',
+    'tanah-lot':   'Tanah_Lot_Bali.jpg',
+    'komodo':      'Komodo_Dragon.jpg',
+    'labuan-bajo': 'Labuan_Bajo.jpg',
+    'raja-ampat':  'Raja_Ampat.jpg',
+    'toba':        'Lake_Toba.jpg'
+  };
+
+  /**
+   * Bangun URL gambar per destinasi.
+   *   1. Wikimedia Commons kalau destinasi ada di WIKIMEDIA_IMAGES (real photo)
+   *   2. loremflickr.com dengan tag dari nama (real Flickr photo by tags)
+   * Fallback ke dest.image (lokal) ditangani via onerror di <img> tag.
+   */
+  function resolveImageUrl(dest) {
+    if (WIKIMEDIA_IMAGES[dest.id]) {
+      return 'https://commons.wikimedia.org/wiki/Special:FilePath/' +
+             encodeURIComponent(WIKIMEDIA_IMAGES[dest.id]) + '?width=500';
+    }
+    var tags = (dest.name || '')
+      .toLowerCase()
+      .replace(/[()'"]/g, '')
+      .replace(/[^a-z0-9\s-]/g, ' ')
+      .split(/\s+/)
+      .filter(function (w) { return w.length > 2; })
+      .slice(0, 3)
+      .join(',');
+    if (!tags) tags = 'indonesia,tourism';
+    else tags = tags + ',indonesia';
+    return 'https://loremflickr.com/500/350/' + encodeURIComponent(tags);
+  }
+
+  /** Render <img> dengan source eksternal + fallback ke lokal kalau error. */
+  function imgTag(dest, extraClass) {
+    var ext = resolveImageUrl(dest);
+    var fb = (dest.image || '').replace(/'/g, '&#39;');
+    var cls = extraClass ? ' class="' + extraClass + '"' : '';
+    return '<img' + cls + ' src="' + ext + '" alt="' + dest.name + '"' +
+           (fb ? ' onerror="this.onerror=null;this.src=\'' + fb + '\'"' : '') +
+           ' loading="lazy" decoding="async">';
+  }
+
   function formatDistance(km) {
     if (km < 1) return Math.round(km * 1000) + ' m';
     if (km < 10) return km.toFixed(1) + ' ' + t.km;
     return Math.round(km) + ' ' + t.km;
+  }
+
+  function formatDuration(min) {
+    if (!min || !isFinite(min)) return '';
+    if (min < 60) return Math.max(1, Math.round(min)) + ' ' + t.min;
+    var h = Math.floor(min / 60);
+    var m = Math.round(min % 60);
+    return h + ' ' + t.hr + (m ? ' ' + m + ' ' + t.min : '');
+  }
+
+  /** Hitung jarak & durasi estimasi untuk mode terpilih, berdasarkan Haversine. */
+  function estimateForMode(havKm, modeKey) {
+    var m = MODES[modeKey] || MODES.motor;
+    var distKm = havKm * m.factor;
+    var durMin = (distKm / m.speed) * 60;
+    return { distance: distKm, duration: durMin };
+  }
+
+  function distanceChipHtml(d) {
+    var est = estimateForMode(d.distance, currentMode);
+    var dur = formatDuration(est.duration);
+    var icon = MODES[currentMode].iconBi;
+    return '<span class="kw-chip">' +
+             '<i class="bi ' + icon + '"></i> ' +
+             formatDistance(est.distance) +
+             (dur ? ' · ' + dur : '') +
+           '</span>';
   }
 
   function findNearest(userLat, userLng, limit) {
@@ -90,10 +188,11 @@
 
   function directionsUrl(user, dest) {
     var origin = user ? (user.lat + ',' + user.lng) : '';
+    var mode = MODES[currentMode] ? MODES[currentMode].gmap : 'driving';
     return 'https://www.google.com/maps/dir/?api=1' +
            (origin ? ('&origin=' + encodeURIComponent(origin)) : '') +
            '&destination=' + encodeURIComponent(dest.lat + ',' + dest.lng) +
-           '&travelmode=driving';
+           '&travelmode=' + mode;
   }
 
   function describe(dest) {
@@ -165,6 +264,25 @@
 
   // --- Rendering -------------------------------------------------------------
 
+  function modeTabsHtml() {
+    var labels = { motor: t.modeMotor, car: t.modeCar, walk: t.modeWalk, bike: t.modeBike };
+    var badges = { motor: (LANG === 'en' ? 'Fastest' : 'Tercepat') };
+    return (
+      '<div class="kw-mode-tabs" role="tablist" aria-label="' + t.modeLabel + '">' +
+        MODE_ORDER.map(function (k) {
+          var m = MODES[k];
+          var active = (k === currentMode) ? ' kw-mode-active' : '';
+          var badge = badges[k] ? '<span class="kw-mode-badge">' + badges[k] + '</span>' : '';
+          return (
+            '<button type="button" role="tab" class="kw-mode-btn' + active + '" data-mode="' + k + '" aria-selected="' + (k === currentMode) + '">' +
+              '<i class="bi ' + m.iconBi + '" aria-hidden="true"></i> ' + labels[k] + badge +
+            '</button>'
+          );
+        }).join('') +
+      '</div>'
+    );
+  }
+
   function buildSection(hostEl) {
     hostEl.classList.add('kw-nearby');
     hostEl.innerHTML =
@@ -180,6 +298,7 @@
           '<i class="bi bi-crosshair" aria-hidden="true"></i> ' + t.retry +
         '</button>' +
       '</div>' +
+      modeTabsHtml() +
       '<div class="kw-nearby-body">' +
         '<div class="kw-map-wrap">' +
           '<div id="kw-map" class="kw-map" role="application" aria-label="' + t.nearest + '"></div>' +
@@ -193,6 +312,24 @@
 
     hostEl.querySelector('#kw-retry').addEventListener('click', function () {
       run(true);
+    });
+
+    hostEl.querySelectorAll('.kw-mode-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var next = btn.getAttribute('data-mode');
+        if (!next || next === currentMode) return;
+        currentMode = next;
+        hostEl.querySelectorAll('.kw-mode-btn').forEach(function (b) {
+          var on = b.getAttribute('data-mode') === currentMode;
+          b.classList.toggle('kw-mode-active', on);
+          b.setAttribute('aria-selected', String(on));
+        });
+        // Re-render list + popup isi pakai mode baru, tanpa recreate map
+        if (lastOrigin && lastNearest) {
+          renderList(lastOrigin, lastNearest, lastIsFallback);
+          refreshMarkerPopups(lastOrigin, lastNearest, lastIsFallback);
+        }
+      });
     });
   }
 
@@ -216,7 +353,7 @@
   }
 
   function popupHtml(dest, user) {
-    var img = dest.image ? '<img src="' + dest.image + '" alt="' + dest.name + '" loading="lazy">' : '';
+    var img = imgTag(dest);
     return (
       '<div class="kw-popup">' +
         img +
@@ -224,7 +361,7 @@
         '<p class="kw-popup-region">' + dest.region + '</p>' +
         '<p class="kw-popup-desc">' + describe(dest) + '</p>' +
         '<div class="kw-popup-foot">' +
-          '<span class="kw-chip"><i class="bi bi-signpost-2"></i> ' + formatDistance(dest.distance) + '</span>' +
+          distanceChipHtml(dest) +
           '<a href="' + directionsUrl(user, dest) + '" target="_blank" rel="noopener noreferrer" class="kw-btn kw-btn-primary kw-btn-sm">' +
             '<i class="bi bi-compass"></i> ' + t.direction +
           '</a>' +
@@ -234,7 +371,7 @@
   }
 
   function listItemHtml(dest, user, index) {
-    var img = dest.image ? '<img src="' + dest.image + '" alt="' + dest.name + '" loading="lazy">' : '';
+    var img = imgTag(dest);
     return (
       '<li class="kw-list-item" data-id="' + dest.id + '">' +
         '<span class="kw-rank">' + (index + 1) + '</span>' +
@@ -242,7 +379,7 @@
         '<div class="kw-list-info">' +
           '<h4>' + dest.name + '</h4>' +
           '<p>' + dest.region + '</p>' +
-          '<span class="kw-chip"><i class="bi bi-signpost-2"></i> ' + formatDistance(dest.distance) + '</span>' +
+          distanceChipHtml(dest) +
         '</div>' +
         '<a href="' + directionsUrl(user, dest) + '" target="_blank" rel="noopener noreferrer" class="kw-btn kw-btn-primary kw-btn-sm" aria-label="' + t.direction + ' ' + dest.name + '">' +
           '<i class="bi bi-compass"></i>' +
@@ -252,6 +389,19 @@
   }
 
   var mapInstance = null;
+  var lastOrigin = null;
+  var lastNearest = null;
+  var lastIsFallback = false;
+
+  function refreshMarkerPopups(user, nearest, isFallback) {
+    if (!mapInstance || !mapInstance._kwMarkers) return;
+    var byId = {};
+    nearest.forEach(function (d) { byId[d.id] = d; });
+    mapInstance._kwMarkers.forEach(function (m) {
+      var dest = byId[m._kwId];
+      if (dest) m.setPopupContent(popupHtml(dest, isFallback ? null : user));
+    });
+  }
 
   function renderMap(user, nearest, label, isFallback) {
     var mapEl = document.getElementById('kw-map');
@@ -337,20 +487,25 @@
 
   // --- Orchestration ---------------------------------------------------------
 
+  function renderAll(origin, originLabel, isFallback) {
+    var nearest = findNearest(origin.lat, origin.lng, RESULT_LIMIT);
+    lastOrigin = origin;
+    lastNearest = nearest;
+    lastIsFallback = isFallback;
+    renderMap(origin, nearest, originLabel, isFallback);
+    renderList(origin, nearest, isFallback);
+  }
+
   function useFallback(message) {
     var loc = DEFAULT_LOCATION;
-    var nearest = findNearest(loc.lat, loc.lng);
     setLabel(loc.label, message || t.scanning);
-    renderMap(loc, nearest, loc.label, true);
-    renderList(loc, nearest, true);
+    renderAll(loc, loc.label, true);
   }
 
   function useUserLocation(coords) {
-    var nearest = findNearest(coords.lat, coords.lng);
     var label = (LANG === 'en' ? 'Your current location' : 'Lokasimu saat ini');
     setLabel(label, t.scanning);
-    renderMap(coords, nearest, label, false);
-    renderList(coords, nearest, false);
+    renderAll(coords, label, false);
   }
 
   function run(skipModal) {

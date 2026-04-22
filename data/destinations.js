@@ -95,6 +95,86 @@ window.KW_DESTINATIONS = [
     desc: 'Pulau terdekat dari Jakarta (2 jam naik speedboat) dengan Jembatan Cinta ikonis, spot snorkeling, dan air laut biru kehijauan. Cocok untuk weekend escape.',
     descEn: 'The closest island escape from Jakarta (2-hour speedboat) featuring the iconic Love Bridge, snorkeling spots, and turquoise water. Perfect for a weekend getaway.'
   },
+  {
+    id: 'ancol',
+    name: 'Taman Impian Jaya Ancol',
+    region: 'Jakarta Utara, DKI Jakarta',
+    lat: -6.1239,
+    lng: 106.8417,
+    image: 'img/beach.jpg',
+    desc: 'Kawasan rekreasi terpadu terbesar di Jakarta — gabungan Dufan, Atlantis, Sea World, Ocean Dream Samudra, dan pantai. Tiket terusan hemat untuk seharian penuh.',
+    descEn: 'Jakarta’s largest integrated recreation area — combining Dufan, Atlantis, Sea World, Ocean Dream Samudra, and beaches. One-day combo tickets available.'
+  },
+  {
+    id: 'dufan',
+    name: 'Dunia Fantasi (Dufan)',
+    region: 'Ancol, Jakarta Utara',
+    lat: -6.1250,
+    lng: 106.8347,
+    image: 'img/mandalika.jpg',
+    desc: 'Theme park terbesar di Indonesia dengan 40+ wahana termasuk Halilintar (roller coaster), Tornado, dan Istana Boneka. Buka setiap hari hingga malam dengan pertunjukan parade.',
+    descEn: 'Indonesia’s largest theme park with 40+ rides including Halilintar roller coaster, Tornado, and Istana Boneka. Open daily until night with parade shows.'
+  },
+  {
+    id: 'sea-world',
+    name: 'Sea World Ancol',
+    region: 'Ancol, Jakarta Utara',
+    lat: -6.1246,
+    lng: 106.8400,
+    image: 'img/pswt.jpg',
+    desc: 'Akuarium air tawar terbesar di Asia Tenggara dengan terowongan kaca 80 meter tempat hiu dan pari berenang di atas kepala. Lokasi favorit edukasi keluarga.',
+    descEn: 'Southeast Asia’s largest freshwater aquarium featuring an 80-meter glass tunnel where sharks and rays swim overhead. A family-education favorite.'
+  },
+  {
+    id: 'atlantis',
+    name: 'Atlantis Water Adventure',
+    region: 'Ancol, Jakarta Utara',
+    lat: -6.1252,
+    lng: 106.8400,
+    image: 'img/beach.jpg',
+    desc: 'Waterpark bertema kota legenda Atlantis dengan 13 wahana air termasuk Octopus Race, Kiddy Pool, dan Antariksa Pool. Tempat ideal menghilangkan panas Jakarta.',
+    descEn: 'Atlantis-themed waterpark with 13 water rides including Octopus Race, Kiddy Pool, and Antariksa Pool. The perfect antidote to Jakarta heat.'
+  },
+  {
+    id: 'ocean-dream',
+    name: 'Ocean Dream Samudra',
+    region: 'Ancol, Jakarta Utara',
+    lat: -6.1260,
+    lng: 106.8370,
+    image: 'img/ampat.jpg',
+    desc: 'Taman hiburan berbasis mamalia laut — pertunjukan lumba-lumba, singa laut, dan teater 4D Pesut. Wahana Ubur-Ubur menyelam ke dasar laut tropis.',
+    descEn: 'Marine mammal park featuring dolphin and sea lion shows, a 4D Pesut theater, and the jellyfish underwater adventure. A kid favorite.'
+  },
+  {
+    id: 'tmii',
+    name: 'Taman Mini Indonesia Indah',
+    region: 'Jakarta Timur, DKI Jakarta',
+    lat: -6.3033,
+    lng: 106.8953,
+    image: 'img/prambanan.jpg',
+    desc: 'Miniatur Indonesia seluas 150 hektar — 34 anjungan rumah adat, Museum Indonesia, Keong Mas Imax, dan Danau Arsipel dengan pulau mini. Baru direvitalisasi 2022.',
+    descEn: 'A 150-hectare miniature Indonesia — 34 traditional-house pavilions, Museum Indonesia, Keong Mas IMAX, and Arsipel Lake with miniature islands. Revitalized in 2022.'
+  },
+  {
+    id: 'museum-nasional',
+    name: 'Museum Nasional Indonesia',
+    region: 'Jakarta Pusat, DKI Jakarta',
+    lat: -6.1764,
+    lng: 106.8222,
+    image: 'img/kota.jpg',
+    desc: 'Museum tertua dan terbesar di Indonesia (dijuluki "Museum Gajah") dengan 140.000+ koleksi dari prasejarah, etnografi, numismatik, hingga keramik dinasti Cina.',
+    descEn: 'Indonesia’s oldest and largest museum (nicknamed "Elephant Museum") housing 140,000+ artifacts from prehistoric, ethnographic, numismatic, and Chinese ceramic collections.'
+  },
+  {
+    id: 'setu-babakan',
+    name: 'Kampung Betawi Setu Babakan',
+    region: 'Jakarta Selatan, DKI Jakarta',
+    lat: -6.3511,
+    lng: 106.7803,
+    image: 'img/situ.jpg',
+    desc: 'Perkampungan budaya Betawi resmi dengan danau, rumah kebaya tradisional, pertunjukan lenong, dan kuliner kerak telor & bir pletok. Akhir pekan paling ramai.',
+    descEn: 'Official Betawi cultural village with a lake, traditional kebaya houses, lenong performances, and kerak telor & bir pletok street food. Busiest on weekends.'
+  },
 
   // --- Jawa Barat ----------------------------------------------------------
   {
@@ -186,6 +266,192 @@ window.KW_DESTINATIONS = [
     image: 'img/kayadanau.jpg',
     desc: 'Kawasan pegunungan 1.500 mdpl populer untuk weekend getaway dari Jabodetabek, penuh vila dan kafe dengan view hamparan kebun teh Gunung Mas. Sejuk sepanjang tahun.',
     descEn: 'A 1,500 m mountain area beloved for weekend getaways from Jakarta, dotted with villas and cafés overlooking Gunung Mas tea plantations. Cool year-round.'
+  },
+  {
+    id: 'mekarsari',
+    name: 'Taman Wisata Mekarsari',
+    region: 'Bogor, Jawa Barat',
+    lat: -6.4942,
+    lng: 106.9581,
+    image: 'Image/situgj.jpg',
+    desc: 'Agrowisata seluas 264 hektar dengan koleksi 100.000+ tanaman buah dari 6 benua. Ada Family Garden, perahu Danau Cipicung, dan petik buah langsung dari pohon.',
+    descEn: 'A 264-hectare agri-tourism featuring 100,000+ fruit trees from 6 continents. Includes Family Garden, Cipicung Lake boat rides, and pick-your-own-fruit experiences.'
+  },
+  {
+    id: 'taman-bunga-nusantara',
+    name: 'Taman Bunga Nusantara',
+    region: 'Cianjur, Jawa Barat',
+    lat: -6.6930,
+    lng: 107.0000,
+    image: 'Image/orangberdiri.jpg',
+    desc: 'Taman bunga pertama Indonesia dengan tema internasional — Amazon, Bali, Jepang, Mediterania. Jam Raksasa dan Labirin pohon cemara jadi spot foto paling populer.',
+    descEn: 'Indonesia’s first international-themed flower park — Amazon, Bali, Japanese, Mediterranean zones. The Giant Clock and cypress Labyrinth are top photo spots.'
+  },
+  {
+    id: 'cibodas',
+    name: 'Kebun Raya Cibodas',
+    region: 'Cianjur, Jawa Barat',
+    lat: -6.7458,
+    lng: 107.0053,
+    image: 'Image/situgj.jpg',
+    desc: 'Kebun raya pegunungan 1.300-1.400 mdpl dengan koleksi tumbuhan dataran tinggi. Taman Sakura tetap mekar di Jawa dan pintu gerbang pendakian Gunung Gede.',
+    descEn: 'Highland botanical garden at 1,300-1,400 m featuring mountain-plant collections. The Sakura Park blooms in Java, and it’s the gateway to Mount Gede hiking.'
+  },
+  {
+    id: 'farmhouse',
+    name: 'Farmhouse Lembang',
+    region: 'Bandung Barat, Jawa Barat',
+    lat: -6.8233,
+    lng: 107.6117,
+    image: 'img/krt.jpg',
+    desc: 'Wisata bertema desa Eropa dengan rumah Hobbit, peternakan mini, dan spot foto kostum ala Swiss. Tiket termasuk susu sapi segar atau sosis bakar.',
+    descEn: 'European-village themed attraction with Hobbit houses, a petting farm, and Swiss-style costume photo spots. Ticket includes fresh milk or grilled sausage.'
+  },
+  {
+    id: 'trans-studio-bdg',
+    name: 'Trans Studio Bandung',
+    region: 'Kota Bandung, Jawa Barat',
+    lat: -6.9258,
+    lng: 107.6362,
+    image: 'img/mandalika.jpg',
+    desc: 'Theme park indoor terbesar ketiga di dunia dengan 20+ wahana berbasis studio TV — Dragon Riders, Yamaha Racing Coaster, dan Trans Car Racing. Semua nyaman AC.',
+    descEn: 'The world’s third-largest indoor theme park with 20+ TV-studio themed rides — Dragon Riders, Yamaha Racing Coaster, and Trans Car Racing. Fully air-conditioned.'
+  },
+  {
+    id: 'dago-dreampark',
+    name: 'Dago Dreampark',
+    region: 'Kota Bandung, Jawa Barat',
+    lat: -6.8439,
+    lng: 107.6489,
+    image: 'Image/orangberdiri.jpg',
+    desc: 'Taman rekreasi outdoor dengan wahana sepeda terbang di atas jurang, rumah pohon, taman kelinci, dan Balon Udara Instagrammable. Udara sejuk Dago Pakar.',
+    descEn: 'Outdoor recreation park with flying-bike-over-cliff ride, tree houses, rabbit gardens, and an Instagrammable hot-air balloon. Cool air of Dago Pakar.'
+  },
+  {
+    id: 'orchid-forest',
+    name: 'Orchid Forest Cikole',
+    region: 'Bandung Barat, Jawa Barat',
+    lat: -6.8150,
+    lng: 107.6469,
+    image: 'Image/situgj.jpg',
+    desc: 'Hutan pinus dengan 157+ spesies anggrek, Jembatan Bercahaya Wood Bridge yang menyala di malam hari, dan terapi madu di Bee Zone. Malam hari paling memukau.',
+    descEn: 'Pine forest featuring 157+ orchid species, the glowing Wood Bridge at night, and honey therapy at Bee Zone. Nighttime visits are most mesmerizing.'
+  },
+
+  // --- Jawa Timur tambahan -------------------------------------------------
+  {
+    id: 'jatim-park-2',
+    name: 'Jatim Park 2 (Secret Zoo)',
+    region: 'Batu, Jawa Timur',
+    lat: -7.8844,
+    lng: 112.5258,
+    image: 'img/mandalika.jpg',
+    desc: 'Gabungan kebun binatang modern + museum satwa + wahana permainan. 200+ spesies satwa termasuk jerapah, harimau putih, dan kakatua. Tiket terusan dengan Museum Satwa.',
+    descEn: 'Combined modern zoo + wildlife museum + amusement rides. 200+ species including giraffes, white tigers, and cockatoos. Combo ticket available with Animal Museum.'
+  },
+  {
+    id: 'museum-angkut',
+    name: 'Museum Angkut',
+    region: 'Batu, Jawa Timur',
+    lat: -7.8861,
+    lng: 112.5275,
+    image: 'img/krt.jpg',
+    desc: 'Museum transportasi dengan 300+ koleksi mobil antik, motor, becak, hingga pesawat — disusun dalam zona tematik (Hollywood, Broadway, Eropa, Buckingham). Foto surga.',
+    descEn: 'Transportation museum with 300+ classic cars, motorcycles, rickshaws, and planes — arranged in themed zones (Hollywood, Broadway, Europe, Buckingham). A photo paradise.'
+  },
+  {
+    id: 'bns',
+    name: 'Batu Night Spectacular (BNS)',
+    region: 'Batu, Jawa Timur',
+    lat: -7.8761,
+    lng: 112.5372,
+    image: 'img/krt.jpg',
+    desc: 'Taman hiburan malam dengan Lampion Garden, Galeri Hantu, dan Air Mancur Menari. Buka sore hingga tengah malam — udara sejuk Batu menyempurnakan suasana.',
+    descEn: 'Nighttime amusement park featuring Lampion Garden, Ghost Gallery, and Dancing Fountain. Open from afternoon till midnight — Batu’s cool air completes the vibe.'
+  },
+
+  // --- Yogya tambahan ------------------------------------------------------
+  {
+    id: 'kraton-yogya',
+    name: 'Kraton Yogyakarta',
+    region: 'Kota Yogyakarta, DI Yogyakarta',
+    lat: -7.8053,
+    lng: 110.3642,
+    image: 'img/prambanan.jpg',
+    desc: 'Istana Kesultanan Yogyakarta yang masih aktif — abdi dalem berbusana Jawa, koleksi pusaka, dan pertunjukan gamelan harian. Pusat filosofi Catur Sagatra Yogya.',
+    descEn: 'The still-active Yogyakarta Sultanate palace — traditional-attired abdi dalem, royal heirloom collections, and daily gamelan performances. The heart of Yogya philosophy.'
+  },
+  {
+    id: 'taman-sari',
+    name: 'Taman Sari Water Castle',
+    region: 'Kota Yogyakarta, DI Yogyakarta',
+    lat: -7.8098,
+    lng: 110.3590,
+    image: 'img/ulun.jpg',
+    desc: 'Taman air kerajaan abad ke-18 dengan kolam Umbul Pasiraman tempat pemandian raja dan selir. Lorong bawah tanah dan Masjid Sumur Gumuling ikonis untuk foto.',
+    descEn: '18th-century royal water garden featuring Umbul Pasiraman pools where kings and concubines bathed. Underground tunnels and the iconic Sumur Gumuling Mosque for photos.'
+  },
+  {
+    id: 'jogja-bay',
+    name: 'Jogja Bay Pirates Adventure Waterpark',
+    region: 'Sleman, DI Yogyakarta',
+    lat: -7.7556,
+    lng: 110.3989,
+    image: 'img/beach.jpg',
+    desc: 'Waterpark bertema bajak laut dengan 19 wahana — Timo-Timo Rider, Volcano of Fury, dan Harlem Tornado. Salah satu waterpark terbesar di Asia Tenggara.',
+    descEn: 'Pirate-themed waterpark with 19 rides including Timo-Timo Rider, Volcano of Fury, and Harlem Tornado. One of Southeast Asia’s largest waterparks.'
+  },
+
+  // --- Bali tambahan -------------------------------------------------------
+  {
+    id: 'waterbom',
+    name: 'Waterbom Bali',
+    region: 'Kuta, Bali',
+    lat: -8.7236,
+    lng: 115.1714,
+    image: 'img/beach.jpg',
+    desc: 'Waterpark peringkat #1 Asia versi TripAdvisor selama bertahun-tahun. 22 slide termasuk Climax drop 100°, Green Viper, dan Pipeline 3-racing. Makanan halal tersedia.',
+    descEn: 'TripAdvisor’s #1 waterpark in Asia for multiple years. 22 slides including the 100° Climax drop, Green Viper, and 3-lane Pipeline. Halal food available.'
+  },
+  {
+    id: 'tegalalang',
+    name: 'Tegalalang Rice Terrace',
+    region: 'Ubud, Bali',
+    lat: -8.4336,
+    lng: 115.2798,
+    image: 'Image/situgj.jpg',
+    desc: 'Sawah terasering ikonis Bali dengan sistem irigasi Subak warisan UNESCO. Ayunan Bali Swing dan kafe-kafe dengan view lembah hijau jadi magnet wisatawan.',
+    descEn: 'Bali’s iconic terraced rice fields with UNESCO-listed Subak irrigation system. Bali Swing attractions and valley-view cafés are the main tourist draws.'
+  },
+  {
+    id: 'tirta-empul',
+    name: 'Pura Tirta Empul',
+    region: 'Gianyar, Bali',
+    lat: -8.4157,
+    lng: 115.3153,
+    image: 'img/ulun.jpg',
+    desc: 'Pura abad ke-10 dengan mata air suci tempat ritual melukat (penyucian diri). Wisatawan diperbolehkan ikut ritual dengan berpakaian kain kamen tradisional.',
+    descEn: '10th-century temple with sacred springs used for melukat (self-purification) rituals. Visitors may participate wearing traditional kamen cloth.'
+  },
+  {
+    id: 'goa-gajah',
+    name: 'Goa Gajah',
+    region: 'Ubud, Bali',
+    lat: -8.5230,
+    lng: 115.2869,
+    image: 'img/ulun.jpg',
+    desc: 'Gua pertapaan abad ke-11 dengan mulut gua berhias ukiran wajah raksasa. Kompleks dilengkapi kolam suci, patung Ganesha, dan area peninggalan Buddha.',
+    descEn: '11th-century hermit cave with a giant-face carved entrance. The complex includes sacred pools, a Ganesha statue, and Buddhist relic areas.'
+  },
+  {
+    id: 'pura-lempuyang',
+    name: 'Pura Lempuyang (Gates of Heaven)',
+    region: 'Karangasem, Bali',
+    lat: -8.3900,
+    lng: 115.6300,
+    image: 'img/ulun.jpg',
+    desc: 'Pura dengan "Gates of Heaven" viral — gerbang Candi Bentar dengan latar Gunung Agung. Spot foto #1 Bali, antrean bisa 2-3 jam di musim liburan.',
+    descEn: 'Temple with the viral "Gates of Heaven" — a split Candi Bentar gate framing Mount Agung. Bali’s #1 photo spot, queues can reach 2-3 hours in peak season.'
   },
 
   // --- DI Yogyakarta & Jawa Tengah ----------------------------------------
