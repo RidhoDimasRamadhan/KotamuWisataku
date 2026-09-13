@@ -108,13 +108,10 @@
       .replace(/[\u0300-\u036f]/g, '');
   }
 
-  /**
-   * Tautan tujuan untuk satu destinasi. Sengaja satu fungsi supaya kalau nanti
-   * ada halaman detail, cukup diganti di sini.
-   */
+  /** Tautan tujuan untuk satu destinasi — halaman detail berbasis data. */
   function destinationUrl(dest) {
-    return 'https://www.google.com/maps/dir/?api=1&destination=' +
-           encodeURIComponent(dest.lat + ',' + dest.lng);
+    return 'wisata.html?id=' + encodeURIComponent(dest.id) +
+           (isEnglish() ? '&lang=en' : '');
   }
 
   /**
@@ -211,7 +208,7 @@
 
       panel.innerHTML = results.map(function (d, i) {
         return '<a class="kw-search-item" role="option" aria-selected="false" id="kw-search-opt-' + i + '"' +
-               ' href="' + esc(destinationUrl(d)) + '" target="_blank" rel="noopener noreferrer">' +
+               ' href="' + esc(destinationUrl(d)) + '">' +
                  '<i class="bi bi-geo-alt-fill" aria-hidden="true"></i>' +
                  '<span class="kw-search-name">' + esc(d.name) + '</span>' +
                  '<span class="kw-search-region">' + esc(d.region) + '</span>' +
