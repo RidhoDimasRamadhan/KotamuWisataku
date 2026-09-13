@@ -14,19 +14,26 @@ body {
 /* end navbar */
 
 /* gambar */
+/* Hero halaman rekomendasi.
+   Versi lama menampilkan pita foto dengan cara yang rapuh: gambar potret
+   dirender setinggi ~1800px, dipotong `clip-path: inset(80rem 0 30rem 0)`,
+   lalu seluruh bloknya ditarik naik `top: -80rem` dan konten di bawahnya
+   ditarik lagi `margin-top: -110rem`. Tiga angka itu saling bergantung —
+   mengubah tinggi gambar sedikit saja menggeser seluruh halaman.
+
+   Sekarang tingginya ditentukan langsung dan gambar diposisikan dengan
+   object-fit. Hasil tampilannya sama: pita 700px di desktop, 400px di bawah
+   1200px, memperlihatkan bagian foto yang sama (pusat ~65% tinggi gambar). */
 .ke1 {
-  position: relative;
-  top: -80rem;
+  height: 700px;
+  overflow: hidden;
 }
 
 .ke1 img {
   width: 100%;
-  object-fit: cover;
   height: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  clip-path: inset(80rem 0 30rem 0);
+  object-fit: cover;
+  object-position: center 65%;
 }
 /* end gambar */
 
@@ -65,7 +72,8 @@ body {
 
 /* container kiri */
 .isi {
-  margin-top: -110rem;
+  /* dulu -110rem untuk mengompensasi hero yang ditarik ke atas */
+  margin-top: 0;
   width: 100%;
   position: relative;
   display: flex;
@@ -305,12 +313,8 @@ footer {
   .isi .kiri {
     padding-left: 3rem;
   }
-  .ke1 img {
-    height: 150rem;
-  }
   .ke1 {
-    position: relative;
-    top: -80rem;
+    height: 400px;
   }
 
   .isi1 {
