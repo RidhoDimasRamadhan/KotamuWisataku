@@ -350,19 +350,6 @@ h2 {
     top: 1rem;
     right: 2rem;
   }
-  // Ikon header hanya seluas glyph-nya (±16x25px) — terlalu kecil untuk jempol.
-  // Beri kotak sentuh 44px sesuai pedoman aksesibilitas, tanpa mengubah
-  // ukuran ikon yang terlihat.
-  .header .icons > div,
-  .header .icons > i,
-  .header .icons > a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 4.4rem;
-    min-height: 4.4rem;
-    margin-left: 0.5rem;
-  }
   .swiper-button-next::after,
   .swiper-button-prev::after {
     display: none;

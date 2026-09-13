@@ -4,24 +4,13 @@ body {
   margin: 0;
 }
 
-/* Navbar */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 0.5rem 9%;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  height: 9rem;
-  transition: 2s;
-}
-
-.header.active {
-  background-color: #1717176a;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
+/* Navbar
+   Blok .header / .header.active di sini dulu menyalin ulang aturan dari
+   style.css, dengan dua beda: `height: 9rem` dan `padding: .5rem 9%`.
+   Karena file ini dimuat SETELAH style.css, salinan itu menimpa tata letak
+   header bersama — membuat halaman ini punya tinggi header berbeda (90px vs
+   72px) dan meluber di layar 320px. Dihapus; header sepenuhnya diatur
+   style.css supaya konsisten di semua halaman. */
 /* end navbar */
 
 /* gambar */
@@ -484,5 +473,13 @@ footer {
   .a {
     margin-left: 2rem;
     margin-top: -1rem;
+  }
+}
+
+/* Tautan breadcrumb hanya setinggi barisnya (18px) — di bawah ambang sentuh
+   32px. Padding vertikal memperbesar area klik tanpa mengubah tampilan. */
+@media (max-width: 768px) {
+  .beranda a {
+    padding-block: 7px;
   }
 }

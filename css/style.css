@@ -358,19 +358,6 @@ h2 {
     position: absolute;
     top: 1rem;
   }
-  /* Ikon header hanya seluas glyph-nya (±16x25px) — terlalu kecil untuk jempol.
-     Beri kotak sentuh 44px sesuai pedoman aksesibilitas, tanpa mengubah
-     ukuran ikon yang terlihat. */
-  .header .icons > div,
-  .header .icons > i,
-  .header .icons > a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 4.4rem;
-    min-height: 4.4rem;
-    margin-left: 0.5rem;
-  }
 }
 @media (max-width: 450px) {
   html {
@@ -2268,7 +2255,224 @@ hr {
   .footer2 .cookie {
     text-align: center;
   }
+  /* Tinggi area klik jadi 29px — sedikit di bawah ambang sentuh 32px. */
+  .footer2 .cookie a {
+    padding: 7px 0;
+  }
   .footer2 hr {
     margin: 3rem auto 2rem;
+  }
+}
+
+/* ==========================================================================
+   HEADER (.header)
+   --------------------------------------------------------------------------
+   Masalah pada versi lama:
+   1. `.icons` tidak pernah dijadikan flex row, sedangkan #menu-btn dan
+      #search-btn adalah <div> (block) — tiap ikon jatuh ke barisnya sendiri.
+      Akibatnya ikon cari & mode gelap menumpuk vertikal dan tinggi header
+      melompat-lompat (71px → 101px → 113px → 154px tergantung lebar layar).
+   2. Jarak antar blok diatur offset manual yang saling dorong:
+        .dropdown        { left: 14px }
+        #search-btn      { left: 10px }
+        #darkmode        { left: 10px }
+        .navbar/.dropdown/.icons { left: -4rem }  (dan -1rem di breakpoint lain)
+      Hasilnya bendera menempel ke ikon (jarak 0px) dan di 820-900px logo
+      justru menimpa navbar (-11px).
+   3. Menu off-canvas baru muncul di <=768px, padahal di 820-900px navigasi
+      sudah tidak muat.
+
+   Diganti satu sistem: header adalah flex row, jarak diatur `gap`, dan menu
+   berubah jadi hamburger sejak <=991px. Semua offset lama dinetralkan.
+   Blok ini sengaja diletakkan di luar wilayah hasil kompilasi SCSS supaya
+   tidak hilang kalau style.scss di-compile ulang.
+   ========================================================================== */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 2.5rem;
+  min-height: 7rem;
+  padding: 0.8rem clamp(1.6rem, 5vw, 7%);
+}
+
+/* Logo mendorong sisanya ke kanan.
+   `width: auto` penting: aturan global `.logo { width: 230px }` sebenarnya
+   untuk logo di footer, tapi ikut kena ke <a class="logo"> di header. Karena
+   gambarnya hanya 120px, sisa 110px jadi ruang kosong tak terlihat yang
+   mendorong ikon melewati tepi kanan layar (dan di 1024px menabrak navbar). */
+.header .logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: auto;
+  margin-right: auto;
+}
+
+.header .logo img {
+  display: block;
+  width: 120px;
+  height: auto;
+}
+
+/* --- Navigasi --- */
+
+.header .navbar {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.header .navbar a {
+  margin-left: 0;          /* jarak diambil alih oleh gap */
+  white-space: nowrap;
+}
+
+/* --- Pemilih bahasa --- */
+
+.header .dropdown {
+  left: 0;                 /* buang offset 14px */
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.header .dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+}
+
+.header .dropdown img {
+  display: block;
+}
+
+/* Menu bahasa dirapatkan ke tepi kanan pemicunya supaya tidak keluar layar. */
+.header .dropdown .wrapper {
+  right: 0;
+  left: auto;
+  padding-top: 0.5rem;
+}
+
+.header .dropdown .wrapper .usb {
+  margin-top: 0;
+  list-style: none;
+}
+
+.header .dropdown .wrapper a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+}
+
+/* --- Ikon aksi --- */
+
+.header .icons {
+  left: 0;                 /* buang offset -4rem / -1rem */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+}
+
+/* Kotak sentuh 44px sesuai pedoman aksesibilitas — ukuran glyph tidak berubah,
+   hanya area kliknya yang diperbesar. */
+.header .icons > div,
+.header .icons > i,
+.header .icons > a,
+.header .icons #search-btn,
+.header .icons #darkmode {
+  position: static;        /* buang left: 10px */
+  left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+  margin: 0;               /* buang margin-left: 2rem */
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+/* --- Tablet & HP: navigasi jadi hamburger sejak 991px ---------------------
+   Di 820-900px menu horizontal sudah bertabrakan dengan logo, jadi ambang
+   off-canvas dinaikkan dari 768px ke 991px. */
+
+@media (max-width: 991px) {
+  .header {
+    gap: 1.2rem;
+  }
+
+  /* Offset warisan yang menggeser seluruh blok ke kiri. */
+  .header .navbar,
+  .header .dropdown,
+  .header .icons {
+    position: relative;
+    left: 0;
+    font-size: inherit;
+  }
+
+  .header #menu-btn {
+    display: inline-flex;
+  }
+
+  .header .navbar {
+    position: fixed;
+    top: 0;
+    left: -110%;
+    /* 35rem bisa lebih lebar dari layar 320px — dibatasi ke 80vw. */
+    width: min(35rem, 80vw);
+    height: 100%;
+    padding: 2rem;
+    background: #1b1b1b;
+    z-index: 10000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-sizing: border-box;
+  }
+
+  .header .navbar.active {
+    left: 0;
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
+  }
+
+  .header .navbar a {
+    margin: 1rem 0;
+    font-size: 2.6rem;
+  }
+
+  .header .navbar #nav-close {
+    display: block;
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 3.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    gap: 1rem;
+    padding-inline: 1.2rem;
+  }
+  .header .logo img {
+    width: 96px;
+  }
+  .header .icons > div,
+  .header .icons > i,
+  .header .icons #search-btn,
+  .header .icons #darkmode,
+  .header .dropdown > a {
+    min-width: 4rem;
+    min-height: 4rem;
+    font-size: 2rem;
   }
 }
