@@ -1,406 +1,373 @@
-.head-img{
-    padding: 0;
+.head-img {
+  padding: 0;
 }
 
-.head-img img{
-    width: 100%;
-    height: 60rem;
-    object-fit: cover;
-    background-position: top !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
+.head-img img {
+  width: 100%;
+  height: 60rem;
+  object-fit: cover;
+  background-position: top !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
-.head-link{
-    position: relative;
-    /* padding kiri menggantikan `left: 2rem` — offset relative ikut mendorong
+.head-link {
+  position: relative;
+  /* padding kiri menggantikan `left: 2rem` — offset relative ikut mendorong
        lebar keluar viewport, padding tidak. */
-    padding: 1rem 3% 1rem calc(3% + 2rem);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: .25rem;
-    font-size: 1.3rem;
-    top: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    font-weight: bold;
+  padding: 1rem 3% 1rem calc(3% + 2rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.3rem;
+  top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
 }
 
-.head-link h1{
-    padding: 0 1%;
-    position: relative;
-    top: -10px;
-    color: black;
+.head-link h1 {
+  padding: 0 1%;
+  position: relative;
+  top: -10px;
+  color: black;
 }
 
 /*Content Start*/
 
 /* min() menjaga lebar maksimum di desktop tanpa memaksa halaman melebar
    di layar kecil — sebelumnya 1300px kaku, jadi HP harus scroll ke samping. */
-.main-content{
-    width: min(1300px, 100%);
-    margin-inline: auto;
-    box-sizing: border-box;
+.main-content {
+  width: min(1300px, 100%);
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
-.content{
-    width: min(1200px, 100%);
-    margin-inline: auto;
-    box-sizing: border-box;
+.content {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
-.headline{
-    background: #c5c5c5;
-    width: 96%;
-    height: 1px;
-    position: relative;
-    left: 4.5%;
+.headline {
+  background: #c5c5c5;
+  width: 96%;
+  height: 1px;
+  position: relative;
+  left: 4.5%;
 }
 
-.footline{
-    background: #c5c5c5;
-    position: relative;
-    top: 5rem;
-    width: 91%;   /* 104% + left 4.5% dulu meluber keluar container */
-    height: 1px;
-    left: 4.5%;
+.footline {
+  background: #c5c5c5;
+  position: relative;
+  top: 5rem;
+  width: 91%; /* 104% + left 4.5% dulu meluber keluar container */
+  height: 1px;
+  left: 4.5%;
 }
 
-#judul{
-    font-size: 3.5rem;
-    left: 4.5%;
-    position: relative;
+#judul {
+  font-size: 3.5rem;
+  left: 4.5%;
+  position: relative;
 }
 
-.article{
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    left: 4.5%;
-    top: 3rem;
+.article {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: 4.5%;
+  top: 3rem;
 }
 
-.article span{
-    font-size: 1.3rem;
+.article span {
+  font-size: 1.3rem;
 }
 
-#img-content{
-    width: min(1200px, 100%);
-    height: 500px;
-    object-fit: cover;
-    padding: 3rem 5%;
-    box-sizing: border-box;
-    position: relative;
-    top: 10px;
+#img-content {
+  width: min(1200px, 100%);
+  height: 500px;
+  object-fit: cover;
+  padding: 3rem 5%;
+  box-sizing: border-box;
+  position: relative;
+  top: 10px;
 }
 
-.bot-content{
-    position: relative;
-    top: 7rem;
-    padding: 1rem 3.7%;
+.bot-content {
+  position: relative;
+  top: 7rem;
+  padding: 1rem 3.7%;
 }
 
-.bot-content h1{
-    font-size: 3.5rem;
+.bot-content h1 {
+  font-size: 3.5rem;
 }
 
-.wrapp{
-    margin: 20px 0;
-    width: 100%;
+.wrapp {
+  margin: 20px 0;
+  width: 100%;
 }
 
-.wrapp .card_wrap{
-    display: flex;
-    flex-wrap: wrap;
+.wrapp .card_wrap {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.card_wrap .card_item{
-    width: 25%;
-    padding: 10px;
+.card_wrap .card_item {
+  width: 25%;
+  padding: 10px;
 }
 
-.card_wrap .card_inner{
-    border: 2px solid #D9D9D9;
-    border-radius: 15px;
-    height: 28rem;
+.card_wrap .card_inner {
+  border: 2px solid #d9d9d9;
+  border-radius: 15px;
+  height: 28rem;
 }
 
-.card_wrap .card_inner:hover{
-    border: 2px solid #64CDD4;
+.card_wrap .card_inner:hover {
+  border: 2px solid #64cdd4;
 }
 
-.card_img img{
-    width: 100%;
-    height: 200px;
-    display: block;
-    object-fit: cover;
-    padding: 15px;
-    padding-bottom: 0;
-    border-radius: 25px;
+.card_img img {
+  width: 100%;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+  padding: 15px;
+  padding-bottom: 0;
+  border-radius: 25px;
 }
 
-.card_tittle{
-    color: white;
-    position: relative;
-    top: -50px;
-    padding-left: 2.5rem;
+.card_tittle {
+  color: white;
+  position: relative;
+  top: -50px;
+  padding-left: 2.5rem;
 }
 
-.card_wrap .card_bott{
-    display: flex;
-    position: relative;
-    padding-left: 10px;
-    top: -3rem;
+.card_wrap .card_bott {
+  display: flex;
+  position: relative;
+  padding-left: 10px;
+  top: -3rem;
 }
 
-.card_bott .card_sideline{
-    width: 4px;
-    height: 5rem;
-    background: #D2D2D2;
-    border-radius: 10px;
-    position: relative;
-    top: 1rem;
+.card_bott .card_sideline {
+  width: 4px;
+  height: 5rem;
+  background: #d2d2d2;
+  border-radius: 10px;
+  position: relative;
+  top: 1rem;
 }
 
-.card_bott .card_sideline:active{
-    background: #64CDD4;
+.card_bott .card_sideline:active {
+  background: #64cdd4;
 }
 
-.card_bott .card_info{
-    padding-left: 5px;
-    position: relative;
-    top: .8rem;
-    font-size: 12px;
+.card_bott .card_info {
+  padding-left: 5px;
+  position: relative;
+  top: 0.8rem;
+  font-size: 12px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*Media Queries Start*/
 
-@media screen and (min-width: 1220px){ /*TV*/
+@media screen and (min-width: 1220px) {
+  /*TV*/
 
-    .headline{
-        width: 89%;
-    }
+  .headline {
+    width: 89%;
+  }
 
-    .footline{
-        width: 100%;
-    }
+  .footline {
+    width: 100%;
+  }
 
-    .content{
-        width: min(1150px, calc(100% - 3rem));
-        position: relative;
-        left: 1.5rem;
-        top: 10px;
-    }
+  .content {
+    width: min(1150px, calc(100% - 3rem));
+    position: relative;
+    left: 1.5rem;
+    top: 10px;
+  }
 
-    #img-content{
-        width: min(1090px, 100%);
-        left: 30px;
-    }
+  #img-content {
+    width: min(1090px, 100%);
+    left: 30px;
+  }
 
-    .bot-content h1{
-        left: 2rem;
-        position: relative;
-    } 
+  .bot-content h1 {
+    left: 2rem;
+    position: relative;
+  }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1220px){ /*Laptop*/
+@media screen and (min-width: 1024px) and (max-width: 1220px) {
+  /*Laptop*/
 
-    .headline{
-        width: 83%;
-    }
+  .headline {
+    width: 83%;
+  }
 
-    .footline{
-        width: 100%;
-    }
-    
-    .content{
-        width: min(1000px, calc(100% - 4.4rem));
-        position: relative;
-        left: 2.2rem;
-        top: 10px;
-    }
+  .footline {
+    width: 100%;
+  }
 
-    #img-content{
-        width: min(1000px, 100%);
-        left: 30px;
-    }
+  .content {
+    width: min(1000px, calc(100% - 4.4rem));
+    position: relative;
+    left: 2.2rem;
+    top: 10px;
+  }
 
-    .bot-content h1{
-        left: 2rem;
-        position: relative;
-    }
+  #img-content {
+    width: min(1000px, 100%);
+    left: 30px;
+  }
+
+  .bot-content h1 {
+    left: 2rem;
+    position: relative;
+  }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px){ /*Tablet*/
-    
-    .head-link{
-        width: 80%;
-    }
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /*Tablet*/
 
-    .head-link h1{
-        top: -11px;
-    }
+  .head-link {
+    width: 80%;
+  }
 
-    .headline{
-        width: 55.5%;
-    }
+  .head-link h1 {
+    top: -11px;
+  }
 
-    .footline{
-        width: 100%;
-    }
+  .headline {
+    width: 55.5%;
+  }
 
-    .content{
-        width: min(700px, calc(100% - 5rem));
-        position: relative;
-        left: 2.5rem;
-        top: 10px;
-    }
+  .footline {
+    width: 100%;
+  }
 
-    #img-content{
-        width: min(700px, 100%);
-    }
+  .content {
+    width: min(700px, calc(100% - 5rem));
+    position: relative;
+    left: 2.5rem;
+    top: 10px;
+  }
 
-    .bot-content h1{
-        position: relative;
-        left: 2.5rem;
-    }
+  #img-content {
+    width: min(700px, 100%);
+  }
 
-    .card_wrap .card_item{
-        width: 40%;
-        position: relative;
-        left: 6.5rem;
-    }
+  .bot-content h1 {
+    position: relative;
+    left: 2.5rem;
+  }
 
-    .card_wrap .card_inner{
-        height: 26rem;
-    }
+  .card_wrap .card_item {
+    width: 40%;
+    position: relative;
+    left: 6.5rem;
+  }
+
+  .card_wrap .card_inner {
+    height: 26rem;
+  }
 }
 
-@media screen and (max-width: 768px){ /*Mobile*/
+@media screen and (max-width: 768px) {
+  /*Mobile*/
 
-    .head-img img{
-        height: 40rem;
-    }
+  .head-img img {
+    height: 40rem;
+  }
 
-    .head-link{
-        font-size: 1.2rem;   /* 80% dari induk menghasilkan ~9px, terlalu kecil */
-        padding: 1rem 1%;
-    }
+  .head-link {
+    font-size: 1.2rem; /* 80% dari induk menghasilkan ~9px, terlalu kecil */
+    padding: 1rem 1%;
+  }
 
-    .head-link h1{
-        top: -5px;
-        padding: 0 5px;
-    }
+  .head-link h1 {
+    top: -5px;
+    padding: 0 5px;
+  }
 
-    /* Semua lebar di bawah ini dulu dipaku dalam px (350/300) sehingga hanya
+  /* Semua lebar di bawah ini dulu dipaku dalam px (350/300) sehingga hanya
        pas di satu ukuran HP. Diganti persentase supaya ikut lebar layar. */
-    .headline{
-        width: 90%;
-        left: 5%;
-        top: 2px;
-    }
+  .headline {
+    width: 90%;
+    left: 5%;
+    top: 2px;
+  }
 
-    .footline{
-        width: 90%;
-        left: 5%;
-    }
+  .footline {
+    width: 90%;
+    left: 5%;
+  }
 
-    .content{
-        width: 100%;
-    }
+  .content {
+    width: 100%;
+  }
 
-    #judul{
-        font-size: 2.5rem;
-        left: 0;
-        padding-inline: 5%;
-        top: 10px;
-    }
+  #judul {
+    font-size: 2.5rem;
+    left: 0;
+    padding-inline: 5%;
+    top: 10px;
+  }
 
-    .article{
-        width: 100%;
-        left: 0;
-        padding-inline: 5%;
-        box-sizing: border-box;
-    }
+  .article {
+    width: 100%;
+    left: 0;
+    padding-inline: 5%;
+    box-sizing: border-box;
+  }
 
-    #img-content{
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        left: 0;
-        padding: 1rem 0;
-    }
+  #img-content {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    left: 0;
+    padding: 1rem 0;
+  }
 
-    .bot-content h1{
-        font-size: 2.5rem;
-        position: relative;
-        left: 0;          /* offset 5% mendorong judul keluar layar */
-        padding-left: 5%;
-    }
+  .bot-content h1 {
+    font-size: 2.5rem;
+    position: relative;
+    left: 0; /* offset 5% mendorong judul keluar layar */
+    padding-left: 5%;
+  }
 
-    .card_wrap .card_inner{
-        height: 35rem;
-    }
+  .card_wrap .card_inner {
+    height: 35rem;
+  }
 
-    .card_wrap .card_item{
-        width: 50%;
-    }
+  .card_wrap .card_item {
+    width: 50%;
+  }
 
-    /* Judul & tanggal kartu turun ke 11.7px/10px karena diperkecil mengikuti
+  /* Judul & tanggal kartu turun ke 11.7px/10px karena diperkecil mengikuti
        lebar kartu; kunci ke ambang baca. */
-    .card_tittle h3{
-        font-size: 1.4rem;
-    }
+  .card_tittle h3 {
+    font-size: 1.4rem;
+  }
 
-    .card_tittle p{
-        font-size: 1.2rem;
-    }
+  .card_tittle p {
+    font-size: 1.2rem;
+  }
 
-    .card_bott .card_sideline{
-        top: -5px;
-        height: 6rem;
-    }
+  .card_bott .card_sideline {
+    top: -5px;
+    height: 6rem;
+  }
 
-    .card_bott .card_info{
-        top: -8px;
-        font-size: 12px;
-    }
+  .card_bott .card_info {
+    top: -8px;
+    font-size: 12px;
+  }
 }

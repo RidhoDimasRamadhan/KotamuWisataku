@@ -8,24 +8,24 @@ picture {
 }
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   outline: none;
   border: none;
   text-decoration: none;
   text-transform: capitalize;
-  -webkit-transition: .2s linear;
-  transition: .2s linear;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
 }
 
-$blue:#62BAE7;
-$black : #1b1b1b;
-$white : #fff;
-$border: .2rem solid black;
-$box-shadow :0 .5rem 1rem rgba(0,0,0,.1);
+$blue: #62bae7;
+$black: #1b1b1b;
+$white: #fff;
+$border: 0.2rem solid black;
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 
 html {
   font-size: 62.5%;
@@ -55,19 +55,19 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  padding: .5rem 9%;
+  padding: 0.5rem 9%;
   z-index: 1000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .header.active {
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 .header .logo {
@@ -119,19 +119,19 @@ section {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   z-index: 10000;
   -webkit-transform: translateY(-110%);
-          transform: translateY(-110%);
+  transform: translateY(-110%);
 }
 
 .search-form.active {
   -webkit-transform: translateY(0%);
-          transform: translateY(0%);
+  transform: translateY(0%);
 }
 
 .search-form #close-search {
@@ -149,15 +149,21 @@ section {
 
 .search-form form {
   width: 70rem;
+  max-width: 90%;
   margin: 0 2rem;
+  // Aturan global `form { position: relative; top: 70px }` dibuat untuk form
+  // langganan di section .bawah, tapi ikut terkena ke overlay pencarian dan
+  // menggesernya 70px di bawah titik tengah layar.
+  position: static;
+  top: auto;
   padding-bottom: 2rem;
   border-bottom: 0.2rem solid $white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .search-form form input {
@@ -205,13 +211,13 @@ section {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-size: cover !important;
   background-position: center !important;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-start;
+  -ms-flex-pack: end;
+  justify-content: flex-start;
   padding: 2rem 9%;
 }
 
@@ -227,7 +233,7 @@ section {
 .home .box .content h3 {
   font-size: 7rem;
   color: $white;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
 .swiper-button-next::after,
@@ -236,37 +242,34 @@ section {
   color: $white;
 }
 
-.locate{
+.locate {
   display: flex;
   top: 2rem;
 }
 
-#dot{
-  color: #FF9900;
+#dot {
+  color: #ff9900;
   font-size: 3rem;
 }
 
-.locate h3{
+.locate h3 {
   display: inline;
   color: $blue;
   font-size: 2.2rem;
-  padding: .9rem 1%;
+  padding: 0.9rem 1%;
 }
 
-.lines{
+.lines {
   width: 100%;
   background: $black;
   height: 1px;
   top: 5rem;
 }
 
-h2{
+h2 {
   font-size: 4rem;
   font-weight: bold;
 }
-
-
-
 
 @media (max-width: 1200px) {
   .header {
@@ -285,14 +288,14 @@ h2{
   .home .box {
     padding: 2rem;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     background-position: right !important;
   }
   .home .box.second {
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     background-position: left !important;
   }
   .home .box .content {
@@ -323,19 +326,19 @@ h2{
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
   .header .navbar.active {
     left: 0;
     -webkit-box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
   }
   .header .navbar a {
     margin: 1rem 0;
