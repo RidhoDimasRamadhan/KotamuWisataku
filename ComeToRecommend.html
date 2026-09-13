@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Recommend.css">
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 </head>
 <body>
 
@@ -146,7 +146,12 @@
             </div>
 <div class="kanan">
 
-    <div id="map"></div>
+    <div id="map"
+         data-lat="-6.8319444"
+         data-lng="106.9186782"
+         data-label="Situ Gunung"
+         data-zoom="13"
+         data-radius="500"></div>
     <br>
     <div class="col1">
         
@@ -181,9 +186,9 @@
             <p class="isi1">Langganan dan Dapatkan Info Tentang Wisata di seluruh INDONESIA </p>
             
             <div class="inputbutton" >
-                <form onsubmit="sendEmail(); reset(); return false;">
-                    <input type="text" name="FirstName" id="namaa" required   >
-                    <button type="button" onclick="sendEmail()"><p class="subscribe">Subscribe</p></button>
+                <form data-subscribe>
+                    <input type="email" name="email" id="namaa" placeholder="Masukan email anda disini ....." autocomplete="email" required>
+                    <button type="submit"><p class="subscribe">Subscribe</p></button>
                 </form>
             </div>
         </div>
@@ -205,9 +210,9 @@
                 
             </div>
             <div class="col2">
-                <form onsubmit="sendEmail(); reset(); return false;">
-                    <input type="email" name="email" id="" placeholder="Masukkan Email Anda ...">
-                    <button type="button" onclick="sendEmail()">Berlangganan</button>
+                <form data-subscribe>
+                    <input type="email" name="email" placeholder="Masukkan Email Anda ..." autocomplete="email" required>
+                    <button type="submit">Berlangganan</button>
                 </form>
                 <div class="cookie">
                     <a href="#">Buka Bantuan (Hubungi Kami) |</a>
@@ -225,10 +230,9 @@
                 <br> situs ini bertujuan untuk memberikan informasi dan bukan sebagai tujuan komersial</span> 
         </div>
         <p class="copyright">&#169;2026 Si Paling USB</p>
-    </footer> 
+    </footer>
+
+<script defer src="js/script.js"></script>
+<script defer src="js/recomend.js"></script>
 </body>
-
-<script src="js/script.js"></script>
-<script src="js/recomend.js"></script>
-
 </html>

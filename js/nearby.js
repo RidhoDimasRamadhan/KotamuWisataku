@@ -82,6 +82,20 @@
 
   // --- Helpers ---------------------------------------------------------------
 
+  /**
+   * Escape untuk teks/atribut yang masuk ke innerHTML. Data destinasi saat ini
+   * datang dari file lokal, tapi begitu suatu hari diambil dari API atau input
+   * user, tanpa ini kita punya lubang XSS. Murah, jadi selalu dipakai.
+   */
+  function esc(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function haversine(lat1, lng1, lat2, lng2) {
     var R = 6371; // km
     var toRad = function (x) { return (x * Math.PI) / 180; };
@@ -135,14 +149,35 @@
     return 'https://loremflickr.com/500/350/' + encodeURIComponent(tags);
   }
 
-  /** Render <img> dengan source eksternal + fallback ke lokal kalau error. */
+  /**
+   * Render <img> dengan source eksternal + fallback ke lokal kalau error.
+   * Path fallback ditaruh di data-fallback, bukan di inline onerror, supaya
+   * markup-nya bersih dan tetap aman kalau suatu saat dipasang CSP.
+   */
   function imgTag(dest, extraClass) {
-    var ext = resolveImageUrl(dest);
-    var fb = (dest.image || '').replace(/'/g, '&#39;');
-    var cls = extraClass ? ' class="' + extraClass + '"' : '';
-    return '<img' + cls + ' src="' + ext + '" alt="' + dest.name + '"' +
-           (fb ? ' onerror="this.onerror=null;this.src=\'' + fb + '\'"' : '') +
+    var cls = extraClass ? ' class="' + esc(extraClass) + '"' : '';
+    return '<img' + cls +
+           ' src="' + esc(resolveImageUrl(dest)) + '"' +
+           ' alt="' + esc(dest.name) + '"' +
+           (dest.image ? ' data-fallback="' + esc(dest.image) + '"' : '') +
            ' loading="lazy" decoding="async">';
+  }
+
+  /**
+   * Pasang fallback gambar sekali di level container (event delegation).
+   * `error` tidak bubble, jadi dipakai capture phase.
+   */
+  function bindImageFallback(root) {
+    if (!root || root._kwImgFallback) return;
+    root._kwImgFallback = true;
+    root.addEventListener('error', function (e) {
+      var img = e.target;
+      if (!img || img.tagName !== 'IMG') return;
+      var fallback = img.getAttribute('data-fallback');
+      if (!fallback) return;
+      img.removeAttribute('data-fallback'); // sekali saja, cegah loop
+      img.src = fallback;
+    }, true);
   }
 
   function formatDistance(km) {
@@ -310,6 +345,10 @@
         '</aside>' +
       '</div>';
 
+    // Satu listener untuk seluruh section — mencakup thumbnail list maupun
+    // gambar di dalam popup peta, karena keduanya di-render di dalam hostEl.
+    bindImageFallback(hostEl);
+
     hostEl.querySelector('#kw-retry').addEventListener('click', function () {
       run(true);
     });
@@ -353,13 +392,12 @@
   }
 
   function popupHtml(dest, user) {
-    var img = imgTag(dest);
     return (
       '<div class="kw-popup">' +
-        img +
-        '<h4>' + dest.name + '</h4>' +
-        '<p class="kw-popup-region">' + dest.region + '</p>' +
-        '<p class="kw-popup-desc">' + describe(dest) + '</p>' +
+        imgTag(dest) +
+        '<h4>' + esc(dest.name) + '</h4>' +
+        '<p class="kw-popup-region">' + esc(dest.region) + '</p>' +
+        '<p class="kw-popup-desc">' + esc(describe(dest)) + '</p>' +
         '<div class="kw-popup-foot">' +
           distanceChipHtml(dest) +
           '<a href="' + directionsUrl(user, dest) + '" target="_blank" rel="noopener noreferrer" class="kw-btn kw-btn-primary kw-btn-sm">' +
@@ -371,17 +409,16 @@
   }
 
   function listItemHtml(dest, user, index) {
-    var img = imgTag(dest);
     return (
-      '<li class="kw-list-item" data-id="' + dest.id + '">' +
+      '<li class="kw-list-item" data-id="' + esc(dest.id) + '">' +
         '<span class="kw-rank">' + (index + 1) + '</span>' +
-        '<div class="kw-list-thumb">' + img + '</div>' +
+        '<div class="kw-list-thumb">' + imgTag(dest) + '</div>' +
         '<div class="kw-list-info">' +
-          '<h4>' + dest.name + '</h4>' +
-          '<p>' + dest.region + '</p>' +
+          '<h4>' + esc(dest.name) + '</h4>' +
+          '<p>' + esc(dest.region) + '</p>' +
           distanceChipHtml(dest) +
         '</div>' +
-        '<a href="' + directionsUrl(user, dest) + '" target="_blank" rel="noopener noreferrer" class="kw-btn kw-btn-primary kw-btn-sm" aria-label="' + t.direction + ' ' + dest.name + '">' +
+        '<a href="' + directionsUrl(user, dest) + '" target="_blank" rel="noopener noreferrer" class="kw-btn kw-btn-primary kw-btn-sm" aria-label="' + esc(t.direction + ' ' + dest.name) + '">' +
           '<i class="bi bi-compass"></i>' +
         '</a>' +
       '</li>'
@@ -436,7 +473,7 @@
     // User marker
     var userMarker = L.marker(center, { icon: userIcon(), zIndexOffset: 1000 })
       .addTo(mapInstance)
-      .bindPopup('<strong>' + t.yourLocation + '</strong><br><small>' + label + '</small>');
+      .bindPopup('<strong>' + esc(t.yourLocation) + '</strong><br><small>' + esc(label) + '</small>');
 
     // Destination markers
     var group = L.featureGroup([userMarker]);

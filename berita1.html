@@ -181,9 +181,9 @@
                 
             </div>
             <div class="col2">
-                <form onsubmit="sendEmail(); reset(); return false;">
-                    <input type="email" name="email" id="" placeholder="Masukkan Email Anda ...">
-                    <button type="button" onclick="sendEmail()">Berlangganan</button>
+                <form data-subscribe>
+                    <input type="email" name="email" placeholder="Masukkan Email Anda ..." autocomplete="email" required>
+                    <button type="submit">Berlangganan</button>
                 </form>
                 <div class="cookie">
                     <a href="#">Buka Bantuan (Hubungi Kami) |</a>
@@ -204,6 +204,6 @@
     </footer> 
 
 
-    <script src="js/script.js"></script>
+    <script defer src="js/script.js"></script>
 </body>
 </html>

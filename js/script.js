@@ -1,56 +1,121 @@
 /**
  * KotamuWisataku — UI behaviour
- * - Navbar toggle & scroll state
- * - Search form toggle
- * - Swiper hero slider
- * - "Load more" untuk Rekomendasi & Artikel
- * - Dark mode (class-based, lebih scalable)
- * - Subscribe form (tanpa kredensial SMTP di client — lihat CATATAN di sendEmail)
  *
- * Dipisah dari fitur GPS (lihat js/nearby.js).
+ * Setiap fitur berdiri sebagai satu fungsi `init*` yang idempotent dan aman
+ * dipanggil di halaman mana pun (semua query DOM dijaga null-check), lalu
+ * dirangkai di `boot()` paling bawah.
+ *
+ *   initNavbar()      navbar toggle + state saat scroll
+ *   initSearchForm()  toggle search overlay
+ *   initHeroSlider()  Swiper di halaman home
+ *   initLoadMore()    tombol "muat lebih banyak"
+ *   initTheme()       dark mode persisten (class-based)
+ *   hardenDocument()  lazy-load gambar + rel="noopener" untuk link eksternal
+ *   initSubscribe()   form berlangganan (lihat CATATAN di bawah)
+ *
+ * Fitur GPS terpisah di js/nearby.js.
  */
 (function () {
   'use strict';
 
-  // --- Header / Navbar -----------------------------------------------------
-  var header = document.querySelector('.header');
-  var navbar = document.querySelector('.header .navbar');
-  var menuBtn = document.querySelector('#menu-btn');
-  var navClose = document.querySelector('#nav-close');
+  // ===========================================================================
+  // Konstanta
+  // ===========================================================================
 
-  if (menuBtn && navbar) {
-    menuBtn.addEventListener('click', function () { navbar.classList.add('active'); });
-  }
-  if (navClose && navbar) {
-    navClose.addEventListener('click', function () { navbar.classList.remove('active'); });
+  var THEME_KEY = 'kw-theme';
+  var SUBSCRIBERS_KEY = 'kw-subscribers';
+
+  // Email subscriber disimpan di localStorage browser. Cek kapan saja lewat
+  // DevTools → Console:  JSON.parse(localStorage.getItem('kw-subscribers'))
+  //
+  // Untuk meneruskan ke inbox sungguhan, isi SUBSCRIBE_EMAIL. Pakai
+  // FormSubmit.co — gratis, tanpa signup/API key. Submit pertama memicu email
+  // verifikasi; klik "Activate Form" sekali → submission berikutnya auto-forward.
+  var SUBSCRIBE_EMAIL = 'manifestingsolutiontechnology@gmail.com';
+  var SUBSCRIBE_ENDPOINT = SUBSCRIBE_EMAIL
+    ? 'https://formsubmit.co/ajax/' + SUBSCRIBE_EMAIL
+    : '';
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // ===========================================================================
+  // Helper
+  // ===========================================================================
+
+  function $(selector, scope) {
+    return (scope || document).querySelector(selector);
   }
 
-  // --- Search form --------------------------------------------------------
-  var searchForm = document.querySelector('.search-form');
-  var searchBtn = document.querySelector('#search-btn');
-  var closeSearch = document.querySelector('#close-search');
-
-  if (searchBtn && searchForm) {
-    searchBtn.addEventListener('click', function () { searchForm.classList.add('active'); });
-  }
-  if (closeSearch && searchForm) {
-    closeSearch.addEventListener('click', function () { searchForm.classList.remove('active'); });
+  function $$(selector, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(selector));
   }
 
-  // --- Header scroll state ------------------------------------------------
-  function syncHeaderScroll() {
-    if (!header) return;
-    if (window.scrollY > 0) header.classList.add('active');
-    else header.classList.remove('active');
+  function on(el, type, handler, opts) {
+    if (el) el.addEventListener(type, handler, opts);
   }
-  window.addEventListener('scroll', function () {
-    if (navbar) navbar.classList.remove('active');
+
+  function isEnglish() {
+    return document.documentElement.lang === 'en';
+  }
+
+  /** localStorage bisa diblokir (private mode, cookie policy) — jangan sampai fatal. */
+  function storageGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function storageSet(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+  }
+
+  // ===========================================================================
+  // Navbar
+  // ===========================================================================
+
+  function initNavbar() {
+    var header = $('.header');
+    var navbar = $('.header .navbar');
+
+    on($('#menu-btn'), 'click', function () {
+      if (navbar) navbar.classList.add('active');
+    });
+    on($('#nav-close'), 'click', function () {
+      if (navbar) navbar.classList.remove('active');
+    });
+
+    function syncHeaderScroll() {
+      if (header) header.classList.toggle('active', window.scrollY > 0);
+    }
+
+    on(window, 'scroll', function () {
+      if (navbar) navbar.classList.remove('active');
+      syncHeaderScroll();
+    }, { passive: true });
+
     syncHeaderScroll();
-  }, { passive: true });
-  window.addEventListener('load', syncHeaderScroll);
+  }
 
-  // --- Swiper (home slider) ----------------------------------------------
-  if (typeof Swiper !== 'undefined' && document.querySelector('.home-slider')) {
+  // ===========================================================================
+  // Search overlay
+  // ===========================================================================
+
+  function initSearchForm() {
+    var searchForm = $('.search-form');
+    if (!searchForm) return;
+
+    on($('#search-btn'), 'click', function () { searchForm.classList.add('active'); });
+    on($('#close-search'), 'click', function () { searchForm.classList.remove('active'); });
+    on(document, 'keydown', function (e) {
+      if (e.key === 'Escape') searchForm.classList.remove('active');
+    });
+  }
+
+  // ===========================================================================
+  // Hero slider (Swiper)
+  // ===========================================================================
+
+  function initHeroSlider() {
+    if (typeof Swiper === 'undefined' || !$('.home-slider')) return;
+
     // eslint-disable-next-line no-new
     new Swiper('.home-slider', {
       loop: true,
@@ -62,204 +127,285 @@
     });
   }
 
-  // --- Load more (reusable) ----------------------------------------------
+  // ===========================================================================
+  // Load more
+  // ===========================================================================
+
+  /**
+   * Tampilkan `step` item tambahan tiap klik; tombol hilang saat habis.
+   * Daftar item di-query sekali saat init — konten section ini statis.
+   */
   function setupLoadMore(btnSelector, itemsSelector, step) {
-    var btn = document.querySelector(btnSelector);
+    var btn = $(btnSelector);
     if (!btn) return;
-    var current = step;
-    btn.addEventListener('click', function () {
-      var boxes = Array.prototype.slice.call(document.querySelectorAll(itemsSelector));
-      for (var i = current; i < current + step && i < boxes.length; i++) {
-        boxes[i].style.display = 'inline-block';
-      }
-      current += step;
-      if (current >= boxes.length) btn.style.display = 'none';
+
+    var items = $$(itemsSelector);
+    var shown = step;
+
+    if (shown >= items.length) {
+      btn.style.display = 'none';
+      return;
+    }
+
+    on(btn, 'click', function () {
+      var end = Math.min(shown + step, items.length);
+      for (var i = shown; i < end; i++) items[i].style.display = 'inline-block';
+      shown = end;
+      if (shown >= items.length) btn.style.display = 'none';
     });
   }
-  setupLoadMore('#load-more', '.main .gambarRekomendasi .gambar', 5);
-  setupLoadMore('#load-more2', '.main2 .gambarartikel2 .gambarmain2', 5);
 
-  // --- Dark mode (persistent, class-based) -------------------------------
-  var STORAGE_KEY = 'kw-theme';
-  var toggle = document.getElementById('darkmode');
-
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.body.classList.add('kw-dark');
-      if (toggle) {
-        toggle.classList.remove('bi-moon-fill');
-        toggle.classList.add('bi-sun');
-      }
-    } else {
-      document.body.classList.remove('kw-dark');
-      if (toggle) {
-        toggle.classList.add('bi-moon-fill');
-        toggle.classList.remove('bi-sun');
-      }
-    }
+  function initLoadMore() {
+    setupLoadMore('#load-more', '.main .gambarRekomendasi .gambar', 5);
+    setupLoadMore('#load-more2', '.main2 .gambarartikel2 .gambarmain2', 5);
   }
 
-  var savedTheme = null;
-  try { savedTheme = localStorage.getItem(STORAGE_KEY); } catch (e) { /* storage blocked */ }
-  applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+  // ===========================================================================
+  // Dark mode
+  // ===========================================================================
 
-  if (toggle) {
+  function initTheme() {
+    var toggle = document.getElementById('darkmode');
+
+    function applyTheme(theme) {
+      var dark = theme === 'dark';
+      document.body.classList.toggle('kw-dark', dark);
+      if (!toggle) return;
+      toggle.classList.toggle('bi-sun', dark);
+      toggle.classList.toggle('bi-moon-fill', !dark);
+      toggle.setAttribute('aria-pressed', String(dark));
+    }
+
+    applyTheme(storageGet(THEME_KEY) === 'dark' ? 'dark' : 'light');
+    if (!toggle) return;
+
     toggle.setAttribute('role', 'button');
     toggle.setAttribute('tabindex', '0');
-    toggle.setAttribute('aria-label', 'Toggle dark mode');
+    toggle.setAttribute('aria-label', isEnglish() ? 'Toggle dark mode' : 'Ubah mode gelap');
 
-    var toggleTheme = function () {
+    function toggleTheme() {
       var next = document.body.classList.contains('kw-dark') ? 'light' : 'dark';
       applyTheme(next);
-      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) { /* ignore */ }
-    };
-    toggle.addEventListener('click', toggleTheme);
-    toggle.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
+      storageSet(THEME_KEY, next);
+    }
+
+    on(toggle, 'click', toggleTheme);
+    on(toggle, 'keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleTheme();
+      }
     });
   }
 
-  // --- Lazy-load images + safer external links ---------------------------
-  // Tambahkan loading="lazy" pada gambar non-critical dan rel="noopener noreferrer"
-  // pada semua link target="_blank" supaya aman dari reverse tabnabbing.
+  // ===========================================================================
+  // Hardening dokumen
+  // ===========================================================================
+
+  /**
+   * - `loading="lazy"` untuk gambar di luar viewport awal (yang di dalam
+   *   viewport dibiarkan eager supaya LCP tidak melambat).
+   * - `rel="noopener noreferrer"` pada semua target="_blank" → cegah
+   *   reverse tabnabbing.
+   */
   function hardenDocument() {
-    var imgs = document.querySelectorAll('img');
-    imgs.forEach(function (img, i) {
-      if (!img.hasAttribute('loading') && i > 0) img.setAttribute('loading', 'lazy');
+    var foldHeight = window.innerHeight || 800;
+
+    $$('img').forEach(function (img) {
       if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      if (img.hasAttribute('loading')) return;
+      var aboveFold = img.getBoundingClientRect().top < foldHeight;
+      if (!aboveFold) img.setAttribute('loading', 'lazy');
     });
-    var extLinks = document.querySelectorAll('a[target="_blank"]');
-    extLinks.forEach(function (a) {
+
+    $$('a[target="_blank"]').forEach(function (a) {
       var rel = (a.getAttribute('rel') || '').toLowerCase();
       if (rel.indexOf('noopener') === -1) {
         a.setAttribute('rel', (rel ? rel + ' ' : '') + 'noopener noreferrer');
       }
     });
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', hardenDocument);
-  } else {
-    hardenDocument();
+
+  // ===========================================================================
+  // Toast
+  // ===========================================================================
+
+  var TOAST_STYLE_ID = 'kw-toast-style';
+  var TOAST_CSS =
+    '#kw-toast{position:fixed;bottom:24px;right:24px;z-index:9999;max-width:340px;' +
+    'padding:14px 18px;border-radius:12px;font-family:Poppins,-apple-system,sans-serif;' +
+    'font-size:14px;font-weight:500;color:#fff;box-shadow:0 18px 40px rgba(15,23,42,.25);' +
+    'background:linear-gradient(135deg,#22d3ee,#6366f1,#a855f7);opacity:0;' +
+    'transform:translateY(10px);transition:opacity .25s,transform .25s}' +
+    '#kw-toast.kw-toast-error{background:#ef4444}' +
+    '#kw-toast.kw-toast-visible{opacity:1;transform:translateY(0)}' +
+    '@media (prefers-reduced-motion:reduce){#kw-toast{transition:none}}';
+
+  function ensureToastStyle() {
+    if (document.getElementById(TOAST_STYLE_ID)) return;
+    var style = document.createElement('style');
+    style.id = TOAST_STYLE_ID;
+    style.textContent = TOAST_CSS;
+    document.head.appendChild(style);
   }
 
-  // --- Subscribe form -----------------------------------------------------
-  // Default: email subscriber disimpan di localStorage browser.
-  //   Cek kapan saja via DevTools → Console:
-  //     JSON.parse(localStorage.getItem('kw-subscribers'))
-  //
-  // Untuk kirim email beneran ke inbox (opsional), isi KW_SUBSCRIBE_EMAIL dengan
-  // alamatmu. Pakai FormSubmit.co — gratis, no signup, no API key. Submit pertama
-  // akan memicu email verifikasi ke alamat itu; klik "Activate Form" sekali →
-  // submission berikutnya auto-forward ke inbox.
-  var KW_SUBSCRIBE_EMAIL = 'manifestingsolutiontechnology@gmail.com';
-  var KW_SUBSCRIBE_ENDPOINT = KW_SUBSCRIBE_EMAIL
-    ? 'https://formsubmit.co/ajax/' + KW_SUBSCRIBE_EMAIL
-    : '';
-  var KW_SUBSCRIBERS_KEY = 'kw-subscribers';
-
-  function rememberSubscriberLocally(email) {
-    try {
-      var list = JSON.parse(localStorage.getItem(KW_SUBSCRIBERS_KEY) || '[]');
-      if (list.indexOf(email) === -1) list.push(email);
-      localStorage.setItem(KW_SUBSCRIBERS_KEY, JSON.stringify(list));
-    } catch (e) { /* storage blocked, abaikan */ }
-  }
-
+  /** Toast non-blocking di kanan bawah, auto-dismiss 4 detik. */
   function showToast(message, type) {
-    // Toast non-blocking di kanan bawah, auto-dismiss 4 detik.
+    ensureToastStyle();
+
     var existing = document.getElementById('kw-toast');
     if (existing) existing.remove();
+
     var toast = document.createElement('div');
     toast.id = 'kw-toast';
+    if (type === 'error') toast.classList.add('kw-toast-error');
     toast.setAttribute('role', 'status');
     toast.setAttribute('aria-live', 'polite');
-    toast.style.cssText =
-      'position:fixed;bottom:24px;right:24px;z-index:9999;' +
-      'max-width:340px;padding:14px 18px;border-radius:12px;' +
-      'font-family:Poppins,-apple-system,sans-serif;font-size:14px;font-weight:500;' +
-      'color:#fff;background:' + (type === 'error' ? '#ef4444' : 'linear-gradient(135deg,#22d3ee,#6366f1,#a855f7)') + ';' +
-      'box-shadow:0 18px 40px rgba(15,23,42,0.25);' +
-      'opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;';
     toast.textContent = message;
     document.body.appendChild(toast);
-    requestAnimationFrame(function () {
-      toast.style.opacity = '1';
-      toast.style.transform = 'translateY(0)';
-    });
+
+    requestAnimationFrame(function () { toast.classList.add('kw-toast-visible'); });
     setTimeout(function () {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px)';
+      toast.classList.remove('kw-toast-visible');
       setTimeout(function () { toast.remove(); }, 260);
     }, 4000);
   }
 
-  window.sendEmail = function sendEmail() {
-    var input = document.getElementById('namaa') ||
-                document.querySelector('form input[type="email"]') ||
-                document.querySelector('form input[name="email"]');
-    var value = input ? String(input.value || '').trim() : '';
-    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    var isEn = document.documentElement.lang === 'en';
+  // ===========================================================================
+  // Subscribe
+  // ===========================================================================
 
-    if (!emailOk) {
-      showToast(isEn ? 'Please enter a valid email address.' : 'Mohon masukkan alamat email yang valid.', 'error');
-      return false;
+  function rememberSubscriberLocally(email) {
+    try {
+      var list = JSON.parse(localStorage.getItem(SUBSCRIBERS_KEY) || '[]');
+      if (list.indexOf(email) === -1) list.push(email);
+      localStorage.setItem(SUBSCRIBERS_KEY, JSON.stringify(list));
+    } catch (e) { /* storage diblokir — abaikan */ }
+  }
+
+  function setBusy(btn, busy) {
+    if (!btn) return;
+    btn.disabled = busy;
+    btn.style.opacity = busy ? '0.65' : '';
+    btn.style.cursor = busy ? 'wait' : '';
+  }
+
+  function successMessage(email) {
+    return isEnglish()
+      ? 'Thanks! You are subscribed: ' + email
+      : 'Terima kasih! Email berlangganan berhasil: ' + email;
+  }
+
+  /**
+   * Kirim satu email subscriber.
+   * @param {HTMLFormElement} form form yang di-submit — input dibaca dari
+   *        dalam form ini, bukan dari dokumen, supaya halaman dengan lebih
+   *        dari satu form subscribe tidak saling tertukar nilainya.
+   */
+  function submitSubscription(form) {
+    var input = $('input[type="email"]', form) || $('input', form);
+    var email = input ? String(input.value || '').trim() : '';
+
+    if (!EMAIL_RE.test(email)) {
+      showToast(
+        isEnglish() ? 'Please enter a valid email address.'
+                    : 'Mohon masukkan alamat email yang valid.',
+        'error'
+      );
+      if (input) input.focus();
+      return;
     }
 
-    var btn = document.activeElement && document.activeElement.tagName === 'BUTTON'
-                ? document.activeElement : null;
-    if (btn) { btn.disabled = true; btn.style.opacity = '0.65'; btn.style.cursor = 'wait'; }
+    var btn = $('button', form);
+    setBusy(btn, true);
 
-    var finish = function () {
+    function finish() {
       if (input) input.value = '';
-      if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = ''; }
-    };
+      setBusy(btn, false);
+    }
 
     // Tanpa endpoint eksternal: simpan lokal saja.
-    if (!KW_SUBSCRIBE_ENDPOINT) {
-      rememberSubscriberLocally(value);
-      showToast(isEn
-        ? 'Thanks! You are subscribed: ' + value
-        : 'Terima kasih! Email berlangganan berhasil: ' + value);
+    if (!SUBSCRIBE_ENDPOINT) {
+      rememberSubscriberLocally(email);
+      showToast(successMessage(email));
       finish();
-      return false;
+      return;
     }
 
-    var payload = {
-      email: value,
-      _subject: 'KotamuWisataku — New subscriber',
-      _template: 'table',
-      _captcha: 'false',
-      source: location.href
-    };
-
-    fetch(KW_SUBSCRIBE_ENDPOINT, {
+    fetch(SUBSCRIBE_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        email: email,
+        _subject: 'KotamuWisataku — New subscriber',
+        _template: 'table',
+        _captcha: 'false',
+        source: location.href
+      })
     })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) {
-        var ok = data && (data.success === 'true' || data.success === true);
-        if (ok) {
-          showToast(isEn
-            ? 'Thanks! You are subscribed: ' + value
-            : 'Terima kasih! Email berlangganan berhasil: ' + value);
-        } else {
-          rememberSubscriberLocally(value);
-          showToast(isEn
-            ? 'Saved! Email will be forwarded after verification.'
-            : 'Tersimpan! Email akan diteruskan setelah verifikasi.');
+        if (data && (data.success === 'true' || data.success === true)) {
+          showToast(successMessage(email));
+          return;
         }
+        rememberSubscriberLocally(email);
+        showToast(isEnglish()
+          ? 'Saved! Email will be forwarded after verification.'
+          : 'Tersimpan! Email akan diteruskan setelah verifikasi.');
       })
       .catch(function () {
-        rememberSubscriberLocally(value);
-        showToast(isEn
+        rememberSubscriberLocally(email);
+        showToast(isEnglish()
           ? 'Offline — saved locally, will retry later.'
           : 'Offline — tersimpan lokal, akan dicoba lagi.');
       })
       .then(finish);
+  }
 
+  function initSubscribe() {
+    $$('form[data-subscribe]').forEach(function (form) {
+      on(form, 'submit', function (e) {
+        e.preventDefault();
+        submitSubscription(form);
+      });
+    });
+  }
+
+  /**
+   * Shim untuk markup lama yang masih memanggil `onclick="sendEmail()"`.
+   * Menyelesaikan form dari elemen yang sedang fokus supaya tetap scoped.
+   */
+  window.sendEmail = function sendEmail() {
+    var active = document.activeElement;
+    var form = (active && active.closest && active.closest('form')) || $('form[data-subscribe]');
+    if (form) submitSubscription(form);
     return false;
   };
+
+  // ===========================================================================
+  // Boot
+  // ===========================================================================
+
+  var booted = false;
+
+  /** Idempotent — dipanggil dua kali tidak menggandakan listener. */
+  function boot() {
+    if (booted) return;
+    booted = true;
+
+    initNavbar();
+    initSearchForm();
+    initHeroSlider();
+    initLoadMore();
+    initTheme();
+    initSubscribe();
+    hardenDocument();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();

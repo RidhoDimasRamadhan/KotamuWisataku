@@ -25,10 +25,10 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/nearby.css">
-    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 </head>
 <body>
     <header class="header">
@@ -237,9 +237,9 @@
                 <p>Langganan dan Dapatkan Info Tentang Wisata di seluruh INDONESIA </p>
                 
                 <div class="inputbutton">
-                    <form onsubmit="sendEmail(); reset(); return false;">
-                        <input type="text" name="FirstName" id="namaa" placeholder="Masukan email anda disini ....." required   >
-                        <button type="button" onclick="sendEmail()"><p class="subscribe">Subscribe</p></button>
+                    <form data-subscribe>
+                        <input type="email" name="email" id="namaa" placeholder="Masukan email anda disini ....." autocomplete="email" required>
+                        <button type="submit"><p class="subscribe">Subscribe</p></button>
                     </form>
                 </div>
             </div>
@@ -518,9 +518,9 @@
                             
                         </div>
                         <div class="col2">
-                            <form onsubmit="sendEmail(); reset(); return false;">
-                                <input type="email" name="email" id="" placeholder="Masukkan Email Anda ...">
-                                <button type="button" onclick="sendEmail()">Berlangganan</button>
+                            <form data-subscribe>
+                                <input type="email" name="email" placeholder="Masukkan Email Anda ..." autocomplete="email" required>
+                                <button type="submit">Berlangganan</button>
                             </form>
                             <div class="cookie">
                                 <a href="#">Buka Bantuan (Hubungi Kami) |</a>
@@ -542,10 +542,10 @@
         </div>  
 
         
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script src="js/script.js"></script>
-<script src="data/destinations.js"></script>
-<script src="js/nearby.js"></script>
+<script defer src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script defer src="js/script.js"></script>
+<script defer src="data/destinations.js"></script>
+<script defer src="js/nearby.js"></script>
 </body>
 </html>
 
