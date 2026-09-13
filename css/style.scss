@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap");
 
+// <picture> cuma pembungkus pemilih format (WebP vs JPEG). `display: contents`
+// membuatnya tidak menghasilkan kotak layout, sehingga <img> tetap menjadi
+// anak langsung dari flex/grid induknya dan semua CSS lama tetap berlaku.
+picture {
+  display: contents;
+}
+
 * {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -340,6 +347,19 @@ h2{
     top: 1rem;
     right: 2rem;
   }
+  // Ikon header hanya seluas glyph-nya (±16x25px) — terlalu kecil untuk jempol.
+  // Beri kotak sentuh 44px sesuai pedoman aksesibilitas, tanpa mengubah
+  // ukuran ikon yang terlihat.
+  .header .icons > div,
+  .header .icons > i,
+  .header .icons > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.4rem;
+    min-height: 4.4rem;
+    margin-left: 0.5rem;
+  }
   .swiper-button-next::after,
   .swiper-button-prev::after {
     display: none;
@@ -348,7 +368,9 @@ h2{
 
 @media (max-width: 450px) {
   html {
-    font-size: 50%;
+    // 50% membuat 1rem = 8px, sehingga teks 1.3rem turun ke ~10px —
+    // di bawah ambang baca nyaman. Disamakan dengan base desktop.
+    font-size: 62.5%;
   }
   .heading {
     font-size: 3rem;

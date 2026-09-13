@@ -41,7 +41,7 @@ window.KW_DESTINATIONS = [
     region: 'Jakarta Pusat, DKI Jakarta',
     lat: -6.1693,
     lng: 106.8313,
-    image: 'img/gereja.png',
+    image: 'img/gereja.jpg',
     desc: 'Gereja Santa Maria Diangkat ke Surga — cagar budaya bergaya neo-gotik dengan tiga menara tinggi menjulang. Dibangun 1901, memiliki organ pipa langka dan museum kecil di lantai atas.',
     descEn: 'Cathedral of Our Lady of the Assumption — a neo-Gothic heritage with three soaring spires. Built in 1901, it features a rare pipe organ and a small museum on its upper floor.'
   },

@@ -13,12 +13,17 @@
 
 .head-link{
     position: relative;
-    padding: 1rem 3%;
+    /* padding kiri menggantikan `left: 2rem` — offset relative ikut mendorong
+       lebar keluar viewport, padding tidak. */
+    padding: 1rem 3% 1rem calc(3% + 2rem);
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem;
     font-size: 1.3rem;
     top: 1rem;
-    left: 2rem;
     width: 100%;
+    box-sizing: border-box;
     font-weight: bold;
 }
 
@@ -31,12 +36,18 @@
 
 /*Content Start*/
 
+/* min() menjaga lebar maksimum di desktop tanpa memaksa halaman melebar
+   di layar kecil — sebelumnya 1300px kaku, jadi HP harus scroll ke samping. */
 .main-content{
-    width: 1300px;
+    width: min(1300px, 100%);
+    margin-inline: auto;
+    box-sizing: border-box;
 }
 
 .content{
-    width: 1200px;
+    width: min(1200px, 100%);
+    margin-inline: auto;
+    box-sizing: border-box;
 }
 
 .headline{
@@ -51,7 +62,7 @@
     background: #c5c5c5;
     position: relative;
     top: 5rem;
-    width: 104%;
+    width: 91%;   /* 104% + left 4.5% dulu meluber keluar container */
     height: 1px;
     left: 4.5%;
 }
@@ -75,10 +86,11 @@
 }
 
 #img-content{
-    width: 1200px;
+    width: min(1200px, 100%);
     height: 500px;
     object-fit: cover;
     padding: 3rem 5%;
+    box-sizing: border-box;
     position: relative;
     top: 10px;
 }
@@ -159,7 +171,7 @@
     padding-left: 5px;
     position: relative;
     top: .8rem;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
@@ -212,14 +224,14 @@
     }
 
     .content{
-        width: 1150px;
+        width: min(1150px, calc(100% - 3rem));
         position: relative;
         left: 1.5rem;
         top: 10px;
     }
 
     #img-content{
-        width: 1090px;
+        width: min(1090px, 100%);
         left: 30px;
     }
 
@@ -240,14 +252,14 @@
     }
     
     .content{
-        width: 1000px;
+        width: min(1000px, calc(100% - 4.4rem));
         position: relative;
         left: 2.2rem;
         top: 10px;
     }
 
     #img-content{
-        width: 1000px;
+        width: min(1000px, 100%);
         left: 30px;
     }
 
@@ -276,14 +288,14 @@
     }
 
     .content{
-        width: 700px;
+        width: min(700px, calc(100% - 5rem));
         position: relative;
         left: 2.5rem;
         top: 10px;
     }
 
     #img-content{
-        width: 700px;
+        width: min(700px, 100%);
     }
 
     .bot-content h1{
@@ -309,7 +321,7 @@
     }
 
     .head-link{
-        font-size: 80%;
+        font-size: 1.2rem;   /* 80% dari induk menghasilkan ~9px, terlalu kecil */
         padding: 1rem 1%;
     }
 
@@ -318,43 +330,50 @@
         padding: 0 5px;
     }
 
+    /* Semua lebar di bawah ini dulu dipaku dalam px (350/300) sehingga hanya
+       pas di satu ukuran HP. Diganti persentase supaya ikut lebar layar. */
     .headline{
-        width: 26%;
-        left: 3.5rem;
-        top: 2px;   
+        width: 90%;
+        left: 5%;
+        top: 2px;
     }
 
     .footline{
-        width: 94%;
-        left: 4rem;
+        width: 90%;
+        left: 5%;
     }
 
     .content{
-        width: 350px;
+        width: 100%;
     }
 
     #judul{
         font-size: 2.5rem;
-        left: 7.5%;
+        left: 0;
+        padding-inline: 5%;
         top: 10px;
     }
 
     .article{
-        width: 300px;
-        left: 1.5%;
+        width: 100%;
+        left: 0;
+        padding-inline: 5%;
+        box-sizing: border-box;
     }
 
     #img-content{
-        width: 350px;
+        width: 100%;
         height: 250px;
         object-fit: cover;
-        left: -1.8rem;
+        left: 0;
+        padding: 1rem 0;
     }
 
     .bot-content h1{
         font-size: 2.5rem;
         position: relative;
-        left: 5%;
+        left: 0;          /* offset 5% mendorong judul keluar layar */
+        padding-left: 5%;
     }
 
     .card_wrap .card_inner{
@@ -365,6 +384,16 @@
         width: 50%;
     }
 
+    /* Judul & tanggal kartu turun ke 11.7px/10px karena diperkecil mengikuti
+       lebar kartu; kunci ke ambang baca. */
+    .card_tittle h3{
+        font-size: 1.4rem;
+    }
+
+    .card_tittle p{
+        font-size: 1.2rem;
+    }
+
     .card_bott .card_sideline{
         top: -5px;
         height: 6rem;
@@ -372,6 +401,6 @@
 
     .card_bott .card_info{
         top: -8px;
-        font-size: 9px;
+        font-size: 12px;
     }
 }

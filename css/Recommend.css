@@ -274,7 +274,7 @@ margin-left: 2rem;
 
 color: #000000;
   }
-  .sosmed .fa-brands {
+  .sosmed .bi {
     position: relative;
     display: inline;
     top: -3rem;
@@ -287,7 +287,7 @@ color: #000000;
     background-color: #62BAE7;
   }
 
-  .sosmedd .fa-brands {
+  .sosmedd .bi {
     width: 45px;
     height: 35px;
     border-radius: 50%;
@@ -429,7 +429,7 @@ color: #000000;
     margin-top: 3rem;
     width: 70%;
   }
-  .sosmedd .fa-brands{
+  .sosmedd .bi{
     width: 10%;
   }
 }

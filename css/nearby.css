@@ -583,3 +583,14 @@ body.kw-dark span { color: inherit; }
 body.kw-dark .rekomendasi,
 body.kw-dark .artikel,
 body.kw-dark .container { background: transparent; }
+
+/* --- Keterbacaan di layar kecil -------------------------------------------
+   Diletakkan paling akhir supaya menang cascade atas aturan dasar di atas
+   (spesifisitasnya sama, jadi yang menentukan adalah urutan). */
+@media (max-width: 520px) {
+  .kw-list-info p,
+  .kw-chip,
+  .kw-mode-badge {
+    font-size: 12px;
+  }
+}

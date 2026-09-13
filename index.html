@@ -21,9 +21,9 @@
     <link rel="alternate" hreflang="id" href="index.html">
     <link rel="alternate" hreflang="en" href="English.html">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <link rel="stylesheet" href="css/style.css">
@@ -32,10 +32,10 @@
 </head>
 <body>
     <header class="header">
-        <a href="index.html" class="logo"><img src="img/logo1.png" width="120" alt="logo"></a>
+        <a href="index.html" class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" width="120" alt="logo"></picture></a>
         <!-- navbar -->
         <nav class="navbar">
-            <div id="nav-close" class="fas fa-times"></div>
+            <div id="nav-close" class="bi bi-x-lg"></div>
             <a href="#" target="_top" >Beranda</a>
             <a href="#Rekomendasi">Rekomendasi</a>
             <a href="#Artikel">Berita</a>
@@ -43,26 +43,26 @@
         </nav>
         
         <div class="dropdown">
-            <a href="index.html" aria-label="Bahasa Indonesia"><img src="img/indonesia.png" alt="Bendera Indonesia" width="25" height="20"></a>
+            <a href="index.html" aria-label="Bahasa Indonesia"><picture><source srcset="img/indonesia.webp" type="image/webp"><img src="img/indonesia.png" alt="Bendera Indonesia" width="25" height="20"></picture></a>
             <ul class="wrapper">
                 <li class="usb">
-                    <a href="English.html" aria-label="Switch to English"><img src="img/eng.png" alt="UK flag" width="25" height="20"></a>
+                    <a href="English.html" aria-label="Switch to English"><picture><source srcset="img/eng.webp" type="image/webp"><img src="img/eng.png" alt="UK flag" width="25" height="20"></picture></a>
                 </li>
             </ul>
         </div>
 
         <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="search-btn" class="fas fa-search"></div>
+            <div id="menu-btn" class="bi bi-list"></div>
+            <div id="search-btn" class="bi bi-search"></div>
             <i class="bi bi-moon-fill" id="darkmode"></i>
         </div>
     </header>
 
 <div class="search-form">
-    <div id="close-search" class="fas fa-times"></div>
+    <div id="close-search" class="bi bi-x-lg"></div>
     <form action="">
         <input type="search" name="" placeholder="mencari disini..." id="search-box">
-        <label for="search-box" class="fas fa-search"></label>
+        <label for="search-box" class="bi bi-search"></label>
     </form>
 </div>
 
@@ -124,103 +124,103 @@
         <div class="gambarRekomendasi">
             <div class="gambar gambar1">
                 <a href="ComeToRecommend.html">
-                    <img src="Image/Kelingking Beach.jpg" alt="">
+                    <picture><source srcset="Image/Kelingking%20Beach.webp" type="image/webp"><img src="Image/Kelingking Beach.jpg" alt="" width="600" height="900"></picture>
 
                 </a>
                 <p>Situ Gunung</p>
             </div>
         
             <div class="gambar gambar2">
-                <img src="Image/Kota Tua.jpg" alt="">
+                <picture><source srcset="Image/Kota%20Tua.webp" type="image/webp"><img src="Image/Kota Tua.jpg" alt="" width="676" height="900"></picture>
                 <p>Kota Tua</p>
             </div>
         
             <div class="gambar gambar3">
-                <img src="Image/Lombok.jpg" alt="">
+                <picture><source srcset="Image/Lombok.webp" type="image/webp"><img src="Image/Lombok.jpg" alt="" width="900" height="676"></picture>
                 <p>Lombok</p>
             </div>
             
             <div class="gambar gambar4">
-                <img src="Image/Borobudur.jpg" alt="">
+                <picture><source srcset="Image/Borobudur.webp" type="image/webp"><img src="Image/Borobudur.jpg" alt="" width="900" height="600"></picture>
                 <p>Borobudur</p>
             </div>
             <div class="gambar gambar5">
-                <img src="Image/Gunung Merapi.jpg" alt="">
+                <picture><source srcset="Image/Gunung%20Merapi.webp" type="image/webp"><img src="Image/Gunung Merapi.jpg" alt="" width="900" height="506"></picture>
                 <p>Gunung Merapi</p>
             </div>
             
             <div class="gambar gambar6">
-                <img src="Image/Pulo Uran.jpg" alt="">
+                <picture><source srcset="Image/Pulo%20Uran.webp" type="image/webp"><img src="Image/Pulo Uran.jpg" alt="" width="678" height="900"></picture>
                 <p>Pulau Ulun</p>
             </div>
     
             <div class="gambar gambar7">
-                <img src="Image/Pulo Badar.jpg" alt="">
+                <picture><source srcset="Image/Pulo%20Badar.webp" type="image/webp"><img src="Image/Pulo Badar.jpg" alt="" width="674" height="900"></picture>
                 <p>Pulau Padar</p>
             </div>
             
             <div class="gambar gambar8">
-                <img src="Image/Prambanan.jpg" alt="">
+                <picture><source srcset="Image/Prambanan.webp" type="image/webp"><img src="Image/Prambanan.jpg" alt="" width="676" height="900"></picture>
                 <p>Prambanan</p>
             </div>
             
             <div class="gambar gambar9">
-                <img src="Image/Situ Gunung.jpg" alt="">
+                <picture><source srcset="Image/Situ%20Gunung.webp" type="image/webp"><img src="Image/Situ Gunung.jpg" alt="" width="720" height="900"></picture>
                 <p>Situ Gunung</p>
             </div>
             
             <div class="gambar gambar10">
-                <img src="Image/Raja Ampat.jpg" alt="">
+                <picture><source srcset="Image/Raja%20Ampat.webp" type="image/webp"><img src="Image/Raja Ampat.jpg" alt="" width="900" height="600"></picture>
                 <p>Raja Ampat</p>
             </div>
 
             <div class="gambar gambar11">
-                <img src="img/gbk.jpg" alt="">
+                <picture><source srcset="img/gbk.webp" type="image/webp"><img src="img/gbk.jpg" alt="" width="900" height="506"></picture>
                 <p>Gelora Bung Karno</p>
             </div>
             
             <div class="gambar gambar12">
-                <img src="img/Istiqlal.jpg" alt="">
+                <picture><source srcset="img/Istiqlal.webp" type="image/webp"><img src="img/Istiqlal.jpg" alt="" width="900" height="600"></picture>
                 <p>Istiqlal</p>
             </div>
 
             <div class="gambar gambar13">
-                <img src="img/ulun.jpg" alt="">
+                <picture><source srcset="img/ulun.webp" type="image/webp"><img src="img/ulun.jpg" alt="" width="1920" height="1282"></picture>
                 <p>Ulun</p>
             </div>
             
             <div class="gambar gambar14">
-                <img src="img/monas.jpg" alt="">
+                <picture><source srcset="img/monas.webp" type="image/webp"><img src="img/monas.jpg" alt="" width="686" height="900"></picture>
                 <p>Monas</p>
             </div>
             
             <div class="gambar gambar15">
-                <img src="img/raja.jpg" alt="">
+                <picture><source srcset="img/raja.webp" type="image/webp"><img src="img/raja.jpg" alt="" width="500" height="333"></picture>
                 <p>Raja</p>
             </div>
  
  
             <div class="gambar gambar1">
-                <img src="Image/Kelingking Beach.jpg" alt="">
+                <picture><source srcset="Image/Kelingking%20Beach.webp" type="image/webp"><img src="Image/Kelingking Beach.jpg" alt="" width="600" height="900"></picture>
                 <p>Kelingking Beach</p>
             </div>
         
             <div class="gambar gambar2">
-                <img src="Image/Kota Tua.jpg" alt="">
+                <picture><source srcset="Image/Kota%20Tua.webp" type="image/webp"><img src="Image/Kota Tua.jpg" alt="" width="676" height="900"></picture>
                 <p>Kota Tua</p>
             </div>
         
             <div class="gambar gambar3">
-                <img src="Image/Lombok.jpg" alt="">
+                <picture><source srcset="Image/Lombok.webp" type="image/webp"><img src="Image/Lombok.jpg" alt="" width="900" height="676"></picture>
                 <p>Lombok</p>
             </div>
             
             <div class="gambar gambar4">
-                <img src="Image/Borobudur.jpg" alt="">
+                <picture><source srcset="Image/Borobudur.webp" type="image/webp"><img src="Image/Borobudur.jpg" alt="" width="900" height="600"></picture>
                 <p>Borobudur</p>
             </div>
             <div class="gambar gambar5">
-                <img src="Image/Gunung Merapi.jpg" alt="">
+                <picture><source srcset="Image/Gunung%20Merapi.webp" type="image/webp"><img src="Image/Gunung Merapi.jpg" alt="" width="900" height="506"></picture>
                 <p>Gunung Merapi</p> 
             </div>
         </div>
@@ -232,7 +232,7 @@
     <div class="footer1">
         
         <div class="bawah" style="background-image: url(Image/subscribe.jpg);">
-            <div class="logo"><img src="Image/Logo 1.png" alt=""></div>
+            <div class="logo"><picture><source srcset="Image/Logo%201.webp" type="image/webp"><img src="Image/Logo 1.png" alt="" width="512" height="512"></picture></div>
             <div class="isi">
                 <p>Langganan dan Dapatkan Info Tentang Wisata di seluruh INDONESIA </p>
                 
@@ -278,7 +278,7 @@
                     </div>
                                     <a href="berita1.html">
                     <div class="gambarmain3">
-                            <img src="img/krt.jpg" alt="">
+                            <picture><source srcset="img/krt.webp" type="image/webp"><img src="img/krt.jpg" alt="" width="1280" height="1920"></picture>
                         </div>
                         <div class="bawahgambarmain3">
                             <div class="kiri">
@@ -298,7 +298,7 @@
                     <a href="#">
 
                         <div class="gambarmain3">
-                            <img src="img/tinggilancip.jpg" alt="">
+                            <img src="img/tinggilancip.jpg" alt="" width="975" height="600">
                         </div>
                         <div class="bawahgambarmain3">
                             <div class="kiri">
@@ -320,7 +320,7 @@
                     <a href="#">
 
                         <div class="gambarmain3">
-                            <img src="img/kayadanau.jpg" alt="">
+                            <picture><source srcset="img/kayadanau.webp" type="image/webp"><img src="img/kayadanau.jpg" alt="" width="900" height="676"></picture>
                         </div>
                         <div class="bawahgambarmain3">
                             <div class="kiri">
@@ -339,7 +339,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="img/kayaanya.jpg" alt="">
+                        <picture><source srcset="img/kayaanya.webp" type="image/webp"><img src="img/kayaanya.jpg" alt="" width="900" height="396"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -358,7 +358,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/Mandalika.jpg" alt="">
+                        <picture><source srcset="Image/Mandalika.webp" type="image/webp"><img src="Image/Mandalika.jpg" alt="" width="640" height="480"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -375,7 +375,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/komodo1.jpg" alt="">
+                        <picture><source srcset="Image/komodo1.webp" type="image/webp"><img src="Image/komodo1.jpg" alt="" width="900" height="600"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -393,7 +393,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/Mandalika.jpg" alt="">
+                        <picture><source srcset="Image/Mandalika.webp" type="image/webp"><img src="Image/Mandalika.jpg" alt="" width="640" height="480"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -410,7 +410,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/komodo1.jpg" alt="">
+                        <picture><source srcset="Image/komodo1.webp" type="image/webp"><img src="Image/komodo1.jpg" alt="" width="900" height="600"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -428,7 +428,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/Dermaga-karampuang.jpg" alt="">
+                        <img src="Image/Dermaga-karampuang.jpg" alt="" width="700" height="447">
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -446,7 +446,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="img/ampat.jpg" alt="">
+                        <picture><source srcset="img/ampat.webp" type="image/webp"><img src="img/ampat.jpg" alt="" width="900" height="600"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -464,7 +464,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/Mandalika.jpg" alt="">
+                        <picture><source srcset="Image/Mandalika.webp" type="image/webp"><img src="Image/Mandalika.jpg" alt="" width="640" height="480"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -481,7 +481,7 @@
                         </p>
                     </div>
                     <div class="gambarmain3">
-                        <img src="Image/komodo1.jpg" alt="">
+                        <picture><source srcset="Image/komodo1.webp" type="image/webp"><img src="Image/komodo1.jpg" alt="" width="900" height="600"></picture>
                     </div>
                     <div class="bawahgambarmain3">
                         <div class="kiri">
@@ -505,13 +505,13 @@
                 <footer class="footer2">
                     <div class="row">
                         <div class="col1">
-                            <img src="img/logo1.png" alt="logo" class="logo">
+                            <picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" alt="logo" class="logo" width="512" height="512"></picture>
                             <div class="sosmed">
-                                <i class="fa-brands fa-instagram"></i>
-                                <i class="fa-brands fa-facebook"></i>
-                                <i class="fa-brands fa-twitter"></i>
-                                <i class="fa-brands fa-tiktok"></i>
-                                <i class="fa-brands fa-youtube"></i>
+                                <i class="bi bi-instagram"></i>
+                                <i class="bi bi-facebook"></i>
+                                <i class="bi bi-twitter"></i>
+                                <i class="bi bi-tiktok"></i>
+                                <i class="bi bi-youtube"></i>
                             </div>
                         </div>
                         <div class="col">

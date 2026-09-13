@@ -3,6 +3,13 @@
   width: 100%;
   height: 130px;
 }
+
+/* <picture> cuma pembungkus pemilih format (WebP vs JPEG). `display: contents`
+   membuatnya tidak menghasilkan kotak layout, sehingga <img> tetap menjadi
+   anak langsung dari flex/grid induknya dan semua CSS lama tetap berlaku. */
+picture {
+  display: contents;
+}
 * {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -345,10 +352,23 @@ h2 {
     position: absolute;
     top: 1rem;
   }
+  /* Ikon header hanya seluas glyph-nya (±16x25px) — terlalu kecil untuk jempol.
+     Beri kotak sentuh 44px sesuai pedoman aksesibilitas, tanpa mengubah
+     ukuran ikon yang terlihat. */
+  .header .icons > div,
+  .header .icons > i,
+  .header .icons > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.4rem;
+    min-height: 4.4rem;
+    margin-left: 0.5rem;
+  }
 }
 @media (max-width: 450px) {
   html {
-    font-size: 50%;
+    font-size: 62.5%;
   }
   .heading {
     font-size: 3rem;
@@ -803,7 +823,9 @@ color: #000000;
   margin-top: 2rem;
   margin-left: 6rem;
   margin-right: 6rem;
-  width: 100%;
+  /* `width: 100%` + margin kiri/kanan 6rem = 100% + 12rem → meluber.
+     `auto` membiarkan block mengisi sisa ruang setelah margin. */
+  width: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -814,7 +836,7 @@ color: #000000;
 .gambarartikel2 .gambarmain2{
   position: relative;
   top: 11rem;
-  width: 560px;
+  width: min(560px, 100%);
   height: 339px;
   margin-bottom: 3rem;
    border: 1px solid #BDBDBD;
@@ -1149,7 +1171,7 @@ footer {
 .row .col1{
   margin-top: -4rem;
 }
-.sosmed .fa-brands {
+.sosmed .bi {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -1293,6 +1315,11 @@ color: #FFFFFF;
 
 
 @media(max-width:1250px){
+  /* Offset negatif `right: -3rem` mendorong blok subscribe keluar viewport
+     begitu layar menyempit. Di desktop lebar masih muat, di bawah ini tidak. */
+  .bawah .isi{
+      right: 0;
+  }
   .lebihBanyak{
       z-index: 3;
       right: 12rem;
@@ -1362,7 +1389,7 @@ color: #FFFFFF;
   }
   .bawah .isi{
     width:80%;
-    right: -9rem;
+    right: 0;
   }
   .bawah .isi p{
     font-family: 'Poppins';
@@ -1484,7 +1511,7 @@ footer {
 }
 .bawah .isi{
   width:80%;
-  right: -2rem;
+  right: 0;
 }
 .bawah .isi p{
   font-family: 'Poppins';
@@ -1614,7 +1641,7 @@ footer{
           top: 1rem;
       }   
       .gambarartikel2 .gambarmain2{
-          width: 470px;
+          width: min(470px, 100%);
       }
       .gambarmain3 {
           width: 420px;
@@ -1674,7 +1701,8 @@ footer{
     .cookie {
       top: 80px;
       right: 8rem;
-      width: 500px;
+      width: min(500px, 100%);
+      box-sizing: border-box;
       text-align: center;
       margin: auto;
       font-size: 13px;
@@ -1685,7 +1713,7 @@ footer{
     font-size: 11px;
     }
     .bawah input::placeholder{
-      font-size: 10px;
+      font-size: 12px;
     }
     /* end */
     .nearby-place{
@@ -1747,7 +1775,7 @@ footer{
 
   /*  artikel */
   .gambarartikel2 .gambarmain2{
-      width: 400px;
+      width: min(400px, 100%);
   }
   .gambarmain3 {
       width: 340px;
@@ -1756,7 +1784,7 @@ footer{
       width: 340px;
   }
   .bawahgambarmain3 .kanan p{
-      font-size: 9px;
+      font-size: 12px;
   }
 
  /* aaa */
@@ -1870,6 +1898,11 @@ footer{
 
               /* artikel */
               
+              /* absolute + left:6rem membuat judul melewati tepi kanan di
+                 layar 360px; batasi lebarnya ke sisa ruang yang ada. */
+              .atasGambar2 {
+                max-width: calc(100% - 6rem);
+              }
               .atasGambar2 h1 {
                 font-size: 30px;
                 margin-top: -1rem;
@@ -1879,23 +1912,26 @@ footer{
                 font-size: 16px;
               }
               .gambarartikel2 .gambarmain2{
-                  width: 350px;
+                  width: min(350px, 100%);
               }
               .gambarmain3 {
-                  width: 250px;
+                  width: min(250px, 100%);
               }
               .gambarmain2 .atas{
-                margin-left: 3rem;
+                margin-left: 1rem;
               }
+              /* Margin horizontal 3rem di atas kartu selebar 100% membuat
+                 total melebihi layar. 0 di kanan-kiri, jarak antar kartu
+                 tetap dari margin vertikal. */
               .gambarartikel2 .gambarmain2{
-                margin: 2rem 3rem;
+                margin: 2rem 0;
             }
               .bawahgambarmain3{
-                  width: 250px;
+                  width: min(250px, 100%);
                 }
                 .bawahgambarmain3 .kanan p{
                   line-height: 13px;
-                  font-size: 8px; 
+                  font-size: 12px; 
               }
 
               .artikel .button2{
@@ -1956,7 +1992,7 @@ footer{
     .gambarartikel2 .gambarmain2 .atas p{
       margin-right: 4rem;
       margin-bottom: 4rem;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 20px;
     }
     .garis3{
@@ -2003,16 +2039,20 @@ footer{
   margin-left: -4rem;
 }
   .cookie {
-    font-size: 8px;
-    width: 300px;
-margin-left: 5rem;
-
+    font-size: 12px;   /* 8px di bawah ambang baca nyaman di layar HP */
+    width: auto;
+    margin-inline: 1rem;
+  }
+  /* Link kebijakan/bantuan perlu jarak sentuh, bukan sekadar teks. */
+  .cookie a {
+    display: inline-block;
+    padding: 6px 4px;
   }
 .kumpulan{
   margin-top: 14rem;
 }
   .desc {
-  font-size: 10px;
+  font-size: 12px;
   }
   .garis2bawah{
     margin-left: -6rem;
