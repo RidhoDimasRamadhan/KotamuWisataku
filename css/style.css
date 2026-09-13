@@ -2476,3 +2476,212 @@ hr {
     font-size: 2rem;
   }
 }
+
+/* ==========================================================================
+   ALUR VERTIKAL HALAMAN
+   --------------------------------------------------------------------------
+   Jarak antar bagian sebelumnya dibuat dengan `position: relative; top: Xrem`.
+   Offset semacam itu hanya MENGGESER tampilan — kotak layout aslinya tetap di
+   tempat semula, jadi ruangnya tidak pernah dipesan. Akibat berantai:
+
+     .gambarRekomendasi  top: 8rem   → kartu keluar 80px dari .main
+     #load-more          top: 2rem   → jarak atas 10px, bawah minus (menimpa)
+     .bawah              top: 5rem   → banner langganan naik menimpa kartu
+     .gambarmain2        top: 11rem  → kartu artikel keluar dari containernya
+     .artikel .button2   top: 84rem  → dan ditebak ulang tiap breakpoint
+                                       (153rem / 139rem / 186rem)
+
+   Semua diganti margin sungguhan supaya tinggi elemen = ruang yang dipakai.
+   Angka tebakan per-breakpoint ikut dinetralkan karena tidak diperlukan lagi.
+   ========================================================================== */
+
+/* Judul besar tiap section sebelumnya `position: absolute`, jadi melayang di
+   atas konten lain dan tidak menyisakan ruang untuk dirinya sendiri. */
+.atasGambar2 {
+  position: static;
+  left: auto;
+  max-width: 100%;
+  margin: 1rem 0 0 clamp(1.5rem, 5vw, 180px);
+}
+
+/* --- Bagian rekomendasi --- */
+
+.gambarRekomendasi {
+  top: auto;
+  margin: 8rem auto 0;
+}
+
+/* --- Bagian artikel --- */
+
+.artikel {
+  top: auto;
+  margin-top: 7rem;
+}
+
+/* Offset dipindah dari tiap kartu ke containernya, supaya container benar-benar
+   membungkus kartunya (2rem lama + 11rem geseran = 13rem). */
+.artikel .gambarartikel2 {
+  margin-top: 13rem;
+}
+
+.gambarartikel2 .gambarmain2 {
+  top: auto;
+}
+
+/* --- Tombol & banner: jarak atas-bawah dibuat sama --- */
+
+#load-more,
+#load-more2 {
+  top: auto;
+  margin: 6rem auto;
+}
+
+
+.bawah {
+  top: auto;
+  margin: 6rem auto;
+}
+
+.bawah .isi {
+  top: auto;
+}
+
+/* --- Irama vertikal yang konsisten ---------------------------------------
+   Satu skala dipakai untuk seluruh halaman, menggantikan angka yang
+   sebelumnya berbeda-beda di tiap bagian (80 / 99 / 210 / 50 px):
+
+     judul section  →  kontennya      : 6rem
+     konten         →  tombol         : 6rem  (atas = bawah)
+     antar section                    : 8rem
+   ------------------------------------------------------------------------ */
+
+.gambarRekomendasi {
+  margin: 6rem auto 0;
+}
+
+.artikel {
+  margin-top: 8rem;
+}
+
+.artikel .gambarartikel2 {
+  margin-top: 6rem;
+}
+
+
+/* Grid artikel dulu `position: absolute; top: 0`, sehingga tingginya nol di
+   alur layout — kartu-kartunya melayang menimpa judul "Berita" di atasnya,
+   dan semua yang di bawahnya harus didorong manual. Itulah asal-usul
+   `.button2 { top: 84rem }` yang lalu ditebak ulang jadi 139/153/186rem per
+   breakpoint. Dikembalikan ke alur normal supaya tingginya nyata. */
+.artikel .gambarartikel {
+  position: static;
+  top: auto;
+}
+
+/* Satu-satunya jarak yang masih 8rem sementara semua tetangganya 6rem. */
+.artikel {
+  margin-top: 6rem;
+}
+
+/* Nudge `top` kecil pada pasangan judul bikin jarak judul-kecil ke judul-besar
+   berbeda antar section (1px di Rekomendasi vs 10px di Berita). Diganti margin
+   supaya keduanya identik. */
+.judulnya {
+  top: auto;
+  margin-top: 1rem;
+}
+
+.judulnya2 h1 {
+  top: auto;
+  margin-top: 1rem;
+}
+
+/* `footer { top: 27rem }` (dan 55rem di <=1200px) mendorong footer turun tanpa
+   memesan ruang, meninggalkan area kosong 200-800px sebelum footer di halaman
+   berita. Offset itu dulu perlu karena blok di atasnya juga digeser `top`;
+   setelah semuanya pakai margin sungguhan, kompensasinya tidak diperlukan. */
+footer.footer2 {
+  top: auto;
+  /* `footer { margin-top: 11rem / 12rem / 4rem }` di beberapa breakpoint juga
+     kompensasi lama untuk alur yang rusak — kini menambah ruang mati. */
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   BANNER LANGGANAN (.bawah) DI LAYAR KECIL
+   --------------------------------------------------------------------------
+   Di bawah 768px banner masih memakai tinggi tetap (500px), `display: block`,
+   dan `.isi1` yang `position: absolute` — sehingga judul menimpa kolom email.
+   Diganti kolom flex dengan tinggi mengikuti isi.
+
+   Selektor diawali `body` semata-mata untuk menaikkan kekhususan di atas
+   aturan `.bawah` di Recommend.css, yang dimuat setelah file ini.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  body .bawah {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 2.5rem 2rem;
+    gap: 1.6rem;
+    text-align: center;
+  }
+
+  body .bawah .logo {
+    width: min(220px, 60%);
+    margin: 0;
+  }
+
+  body .bawah .logo img {
+    width: 100%;
+    height: auto;
+  }
+
+  body .bawah .isi {
+    position: static;
+    right: auto;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
+  }
+
+  /* `.bawah .isi .isi1` di Recommend.css (3 kelas) lebih khusus, jadi selektor
+     di sini harus setara + 1 elemen agar menang. */
+  body .bawah .isi p,
+  body .bawah .isi .isi1 {
+    position: static;
+    width: 100%;
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+
+  body .bawah .inputbutton {
+    width: 100%;
+    margin: 0;
+  }
+
+  body .bawah form {
+    position: static;
+    top: auto;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  body .bawah input,
+  body .bawah .isi button {
+    width: 100%;
+    height: 44px;
+    margin: 0;
+  }
+
+  body .bawah .isi .subscribe {
+    font-size: 1.6rem;
+  }
+}

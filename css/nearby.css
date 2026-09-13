@@ -30,7 +30,11 @@
   position: relative;
   flex-basis: 100% !important;
   width: 100% !important;
-  margin: 15rem 5rem 5rem 5rem;
+  /* Dulu 15rem karena grid artikel di atasnya `position: absolute` sehingga
+     tingginya nol — jarak harus ditebak manual. Setelah grid dikembalikan ke
+     alur normal, jarak atas cukup diambil dari margin bawah tombol (6rem);
+     di sini tinggal jarak bawah yang disamakan. */
+  margin: 0 5rem 6rem;
   padding: 0 !important;
   clear: both;
   box-sizing: border-box;
@@ -39,7 +43,9 @@
 
 @media (max-width: 991px) {
   .kw-nearby-host {
-    margin-top: clamp(80px, 10vw, 120px) !important;
+    /* Kompensasi lama untuk grid absolut di atasnya — tidak diperlukan lagi. */
+    margin-top: 0 !important;
+    margin-inline: 2rem;
   }
 }
 

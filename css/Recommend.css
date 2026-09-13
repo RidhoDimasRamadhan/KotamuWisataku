@@ -163,9 +163,12 @@ body {
 .bawah {
   position: relative;
   display: flex;
-  width: 1150px;
+  width: min(1150px, 90%);
   border-radius: 15px;
-  margin: auto;
+  /* `margin: auto` berarti nol di atas-bawah, dan karena file ini dimuat
+     setelah style.css ia menimpa jarak antar-seksi — banner jadi menempel
+     ke konten di atasnya. */
+  margin: 6rem auto;
   background-repeat: repeat;
   background-position: center;
 }
@@ -238,7 +241,6 @@ body {
 
 .sosmed {
   display: inline;
-  margin-top: -3rem;
 }
 .sosmed h3 {
   font-family: "Poppins";
@@ -282,7 +284,8 @@ body {
 footer {
   width: 100%;
   position: relative;
-  top: 7rem;
+  /* offset `top` menggeser tanpa memesan ruang — jarak diatur margin di style.css */
+  top: auto;
   background-color: #001d2c;
   color: #ffffff;
   padding: 0.5rem 1%;
@@ -293,9 +296,9 @@ footer {
   .bawah {
     position: relative;
     display: flex;
-    width: 800px;
+    width: min(800px, 90%);
     border-radius: 15px;
-    margin: auto;
+    margin: 6rem auto;
     background-repeat: repeat;
     background-position: center;
   }
@@ -310,11 +313,7 @@ footer {
     top: -80rem;
   }
 
-  .bawah {
-    margin-top: -4rem;
-  }
   .isi1 {
-    margin-top: -3rem;
     font-size: 0.1rem;
     padding-right: 1rem;
   }
@@ -323,7 +322,6 @@ footer {
   footer {
     width: 100%;
     position: relative;
-    margin-top: -1rem;
     background-color: #001d2c;
     color: #ffffff;
     padding: 0.5rem 1%;
@@ -359,17 +357,15 @@ footer {
     position: relative;
   }
   .bawah {
-    width: 800px;
-    margin-top: -6rem;
+    width: min(800px, 90%);
   }
 }
 
 @media (max-width: 872px) {
   .bawah {
-    width: 700px;
+    width: min(700px, 90%);
   }
   .isi1 {
-    margin-top: -3rem;
     font-size: 0.1rem;
     padding-right: 5rem;
   }
@@ -380,10 +376,9 @@ footer {
 
 @media (max-width: 723px) {
   .bawah {
-    width: 500px;
+    width: min(500px, 90%);
   }
   .isi1 {
-    margin-top: -3rem;
     font-size: 0.1rem;
     padding-right: 1rem;
   }
@@ -421,10 +416,9 @@ footer {
   .bawah {
     position: relative;
     display: block;
-    margin: auto;
-    width: 400px;
+    margin: 6rem auto;
+    width: min(400px, 90%);
     height: 500px;
-    margin-top: -5rem;
   }
   .bawah .isi {
     position: relative;
@@ -458,7 +452,7 @@ footer {
     width: 100%;
   }
   .bawah {
-    width: 300px;
+    width: min(300px, 90%);
   }
   .bawah .isi {
     width: 101%;
@@ -472,7 +466,6 @@ footer {
   }
   .a {
     margin-left: 2rem;
-    margin-top: -1rem;
   }
 }
 

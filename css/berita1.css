@@ -97,7 +97,10 @@
 
 .bot-content {
   position: relative;
-  top: 7rem;
+  /* `top: 7rem` menggeser tanpa memesan ruang, jadi footer di bawahnya ikut
+     tertimpa. Diganti margin sungguhan, atas dan bawah sama. */
+  top: auto;
+  margin-block: 6rem;
   padding: 1rem 3.7%;
 }
 
