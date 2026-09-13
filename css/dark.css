@@ -1,0 +1,178 @@
+/* ==========================================================================
+   KotamuWisataku — Tema Gelap
+   --------------------------------------------------------------------------
+   Diaktifkan js/script.js dengan menambahkan class `kw-dark` pada <body>,
+   dan pilihannya disimpan di localStorage.
+
+   File ini dimuat di SEMUA halaman. Sebelumnya aturan gelap hanya ada di
+   nearby.css yang cuma dipakai index.html & English.html, sehingga tombolnya
+   tidak berefek apa pun di Recomendations, ComeToRecommend, dan berita1.
+
+   Catatan kekhususan: banyak teks di stylesheet lain memakai warna eksplisit
+   lewat selektor dua kelas (mis. `.atasGambar2 h1 { color: #000 }`, 0-2-0).
+   Karena itu selektor di sini diawali `body.kw-dark` (0-2-1) agar menang tanpa
+   perlu `!important`.
+   ========================================================================== */
+
+body.kw-dark {
+  --kwd-bg: #002132;
+  --kwd-surface: #06304a;
+  --kwd-surface-2: #0a3a58;
+  --kwd-border: rgba(255, 255, 255, 0.14);
+  --kwd-text: #f3f5fa;
+  --kwd-text-dim: #b9c6d4;
+  --kwd-accent: #62bae7;
+
+  background: var(--kwd-bg);
+  color: var(--kwd-text);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+/* --- Header --------------------------------------------------------------- */
+
+body.kw-dark .header {
+  background: rgba(0, 33, 50, 0.95);
+}
+
+body.kw-dark .header.active {
+  background: rgba(0, 33, 50, 0.98);
+}
+
+body.kw-dark .header .navbar a,
+body.kw-dark .header .icons > div,
+body.kw-dark .header .icons > i,
+body.kw-dark #darkmode,
+body.kw-dark #menu-btn,
+body.kw-dark #search-btn {
+  color: var(--kwd-text);
+}
+
+body.kw-dark .header .navbar {
+  background: var(--kwd-surface);
+}
+
+/* --- Latar section -------------------------------------------------------- */
+
+body.kw-dark .rekomendasi,
+body.kw-dark .artikel,
+body.kw-dark .container,
+body.kw-dark .main,
+body.kw-dark .main2,
+body.kw-dark .main-content,
+body.kw-dark .bot-content,
+body.kw-dark .header2 {
+  background: transparent;
+}
+
+/* --- Judul & teks umum ----------------------------------------------------
+   Warna hitam eksplisit tersebar di style.css, Recommend.css, berita1.css,
+   dan English.css — semuanya dikembalikan ke warna teks tema. */
+
+body.kw-dark .atasGambar h1,
+body.kw-dark .atasGambar2 h1,
+body.kw-dark .bot-content h1,
+body.kw-dark #judul,
+body.kw-dark .head-link,
+body.kw-dark .head-link h1,
+body.kw-dark .head-link span,
+body.kw-dark .article span,
+body.kw-dark .situgunung h1,
+body.kw-dark .situgunung .tipis,
+body.kw-dark .situgunung .tipis1,
+body.kw-dark .situgunung .tebel,
+body.kw-dark .ul,
+body.kw-dark .ul li,
+body.kw-dark .sosmed h3,
+body.kw-dark .beranda a,
+body.kw-dark .beranda p {
+  color: var(--kwd-text);
+}
+
+/* Judul kecil biru tetap biru — kontrasnya sudah cukup di latar gelap. */
+body.kw-dark .judulnya h1,
+body.kw-dark .judulnya2 h1 {
+  color: var(--kwd-accent);
+}
+
+/* --- Garis pemisah --------------------------------------------------------- */
+
+body.kw-dark .garis,
+body.kw-dark .headline,
+body.kw-dark .footline {
+  background: var(--kwd-border);
+}
+
+/* --- Kartu ---------------------------------------------------------------- */
+
+body.kw-dark .gambarartikel2 .gambarmain2 {
+  background: var(--kwd-surface);
+  border-color: var(--kwd-border);
+}
+
+body.kw-dark .gambarmain2 .bawahgambarmain3,
+body.kw-dark .gambarmain2 .bawahgambarmain3 p,
+body.kw-dark .gambarmain2 .atas p {
+  color: var(--kwd-text);
+}
+
+/* Kartu berita di berita1.html */
+body.kw-dark .card_wrap .card_inner {
+  background: var(--kwd-surface);
+  border-color: var(--kwd-border);
+}
+
+body.kw-dark .card_bott .card_info,
+body.kw-dark .card_bott .card_info span {
+  color: var(--kwd-text-dim);
+}
+
+body.kw-dark .card_bott .card_sideline {
+  background: var(--kwd-border);
+}
+
+/* --- Formulir -------------------------------------------------------------- */
+
+body.kw-dark input[type="email"],
+body.kw-dark input[type="text"],
+body.kw-dark input[type="search"] {
+  background: var(--kwd-surface-2);
+  color: var(--kwd-text);
+  border: 1px solid var(--kwd-border);
+}
+
+body.kw-dark input::placeholder {
+  color: var(--kwd-text-dim);
+}
+
+/* Overlay pencarian sudah gelap secara bawaan; input di dalamnya transparan. */
+body.kw-dark .search-form form input {
+  background: none;
+  border: 0;
+}
+
+/* --- Peta ------------------------------------------------------------------ */
+
+body.kw-dark #map {
+  border: 1px solid var(--kwd-border);
+  border-radius: 12px;
+}
+
+/* --- Scrollbar ------------------------------------------------------------- */
+
+body.kw-dark::-webkit-scrollbar-track {
+  background: var(--kwd-bg);
+}
+
+body.kw-dark::-webkit-scrollbar-thumb {
+  background: var(--kwd-surface-2);
+}
+
+/* --- Hormati preferensi gerakan ------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body.kw-dark {
+    transition: none;
+  }
+}

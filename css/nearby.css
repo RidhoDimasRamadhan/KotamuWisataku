@@ -744,37 +744,9 @@
   }
 }
 
-/* --- Dark mode (class-based, triggered by toggle) ------------------------ */
-
-body.kw-dark {
-  background: #002132;
-  color: #f3f5fa;
-  transition:
-    background 0.25s ease,
-    color 0.25s ease;
-}
-body.kw-dark .header {
-  background: rgba(0, 33, 50, 0.95);
-}
-body.kw-dark .navbar a,
-body.kw-dark #darkmode,
-body.kw-dark #menu-btn,
-body.kw-dark #search-btn {
-  color: #f3f5fa;
-}
-body.kw-dark h1,
-body.kw-dark h2,
-body.kw-dark h3,
-body.kw-dark h4,
-body.kw-dark p,
-body.kw-dark span {
-  color: inherit;
-}
-body.kw-dark .rekomendasi,
-body.kw-dark .artikel,
-body.kw-dark .container {
-  background: transparent;
-}
+/* Tema gelap seluruh halaman dipindah ke css/dark.css — file ini hanya
+   dimuat di index & English, jadi aturan gelap di sini tidak pernah
+   berlaku di halaman lain. */
 
 /* --- Keterbacaan di layar kecil -------------------------------------------
    Diletakkan paling akhir supaya menang cascade atas aturan dasar di atas
