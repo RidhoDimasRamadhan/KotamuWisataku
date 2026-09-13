@@ -17,7 +17,9 @@ bukan tujuan komersial.
   dengan navigasi papan ketik.
 - **Halaman detail destinasi** — satu halaman (`wisata.html`) yang dirender
   dari data untuk ke-97 destinasi, jadi tidak ada berkas HTML per tempat.
-- **Dua bahasa** — Indonesia (`index.html`) dan Inggris (`English.html`).
+- **Dua bahasa** — setiap halaman punya pasangannya: `index.html`/`English.html`,
+  `berita1..3.html`/`news1..3.html`, `kebijakan.html`/`policy.html`, dan
+  `wisata.html?id=…&lang=en` untuk halaman detail.
 - **Mode gelap** — pilihan pengguna tersimpan di peramban.
 - **Berlangganan** — email disimpan di peramban dan, bila diaktifkan, diteruskan
   lewat FormSubmit.
@@ -43,7 +45,8 @@ English.html          beranda (Inggris)
 wisata.html           detail destinasi, dirender dari ?id=
 Recomendations.html   halaman Situ Gunung (Inggris)
 ComeToRecommend.html  halaman Situ Gunung (Indonesia)
-berita1..3.html       artikel
+berita1..3.html       artikel (Indonesia)
+news1..3.html         artikel (Inggris)
 kebijakan.html        kebijakan & ketentuan (Indonesia)
 policy.html           kebijakan & ketentuan (Inggris)
 
@@ -63,6 +66,9 @@ js/   script.js      navbar, pencarian, slider, mode gelap, berlangganan
 
 data/ destinations.js  97 destinasi: id, nama, daerah, koordinat, deskripsi
                        dua bahasa, dan gambar
+
+img/                   seluruh gambar, tiap JPEG/PNG berdampingan dengan
+                       versi .webp bila ukurannya memang lebih kecil
 ```
 
 ## Data destinasi

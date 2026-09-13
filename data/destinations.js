@@ -81,7 +81,7 @@ window.KW_DESTINATIONS = [
     region: 'Jakarta Selatan, DKI Jakarta',
     lat: -6.3103,
     lng: 106.8203,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Kebun binatang tertua di Indonesia (1864) seluas 140 hektar dengan 2.000+ satwa termasuk orangutan, harimau sumatera, dan komodo. Destinasi keluarga paling ramai di akhir pekan.',
     descEn: 'Indonesia’s oldest zoo (1864), 140 hectares home to 2,000+ animals including orangutans, Sumatran tigers, and Komodo dragons. The busiest family destination on weekends.'
   },
@@ -233,7 +233,7 @@ window.KW_DESTINATIONS = [
     region: 'Pangandaran, Jawa Barat',
     lat: -7.7358,
     lng: 108.4853,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Ngarai tersembunyi dengan air hijau zamrud diapit tebing karst dan stalaktit. Dijelajahi dengan perahu ketinting, bisa lanjut body rafting dan berenang di gua alami.',
     descEn: 'A hidden canyon with emerald-green water flanked by karst cliffs and stalactites. Explored by traditional boat, with body rafting and natural cave swimming options.'
   },
@@ -243,7 +243,7 @@ window.KW_DESTINATIONS = [
     region: 'Kota Bogor, Jawa Barat',
     lat: -6.5983,
     lng: 106.7993,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Kebun raya tertua di Asia Tenggara (1817) seluas 87 hektar dengan 15.000+ spesies tumbuhan. Berisi Istana Bogor, makam Belanda kuno, dan rafflesia yang mekar musiman.',
     descEn: 'Southeast Asia’s oldest botanical garden (1817) spanning 87 hectares with 15,000+ plant species. Home to Bogor Palace, old Dutch graves, and seasonal rafflesia blooms.'
   },
@@ -253,7 +253,7 @@ window.KW_DESTINATIONS = [
     region: 'Bogor, Jawa Barat',
     lat: -6.7250,
     lng: 106.9495,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Safari park di Puncak dengan jalur kendaraan menembus habitat terbuka singa, jerapah, gajah, hingga harimau putih. Ada pertunjukan satwa, wahana bermain, dan penginapan safari.',
     descEn: 'Puncak safari park with a drive-through route through open habitats of lions, giraffes, elephants, and white tigers. Features animal shows, rides, and safari lodges.'
   },
@@ -273,7 +273,7 @@ window.KW_DESTINATIONS = [
     region: 'Bogor, Jawa Barat',
     lat: -6.4942,
     lng: 106.9581,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Agrowisata seluas 264 hektar dengan koleksi 100.000+ tanaman buah dari 6 benua. Ada Family Garden, perahu Danau Cipicung, dan petik buah langsung dari pohon.',
     descEn: 'A 264-hectare agri-tourism featuring 100,000+ fruit trees from 6 continents. Includes Family Garden, Cipicung Lake boat rides, and pick-your-own-fruit experiences.'
   },
@@ -283,7 +283,7 @@ window.KW_DESTINATIONS = [
     region: 'Cianjur, Jawa Barat',
     lat: -6.6930,
     lng: 107.0000,
-    image: 'Image/orangberdiri.jpg',
+    image: 'img/orangberdiri.jpg',
     desc: 'Taman bunga pertama Indonesia dengan tema internasional — Amazon, Bali, Jepang, Mediterania. Jam Raksasa dan Labirin pohon cemara jadi spot foto paling populer.',
     descEn: 'Indonesia’s first international-themed flower park — Amazon, Bali, Japanese, Mediterranean zones. The Giant Clock and cypress Labyrinth are top photo spots.'
   },
@@ -293,7 +293,7 @@ window.KW_DESTINATIONS = [
     region: 'Cianjur, Jawa Barat',
     lat: -6.7458,
     lng: 107.0053,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Kebun raya pegunungan 1.300-1.400 mdpl dengan koleksi tumbuhan dataran tinggi. Taman Sakura tetap mekar di Jawa dan pintu gerbang pendakian Gunung Gede.',
     descEn: 'Highland botanical garden at 1,300-1,400 m featuring mountain-plant collections. The Sakura Park blooms in Java, and it’s the gateway to Mount Gede hiking.'
   },
@@ -323,7 +323,7 @@ window.KW_DESTINATIONS = [
     region: 'Kota Bandung, Jawa Barat',
     lat: -6.8439,
     lng: 107.6489,
-    image: 'Image/orangberdiri.jpg',
+    image: 'img/orangberdiri.jpg',
     desc: 'Taman rekreasi outdoor dengan wahana sepeda terbang di atas jurang, rumah pohon, taman kelinci, dan Balon Udara Instagrammable. Udara sejuk Dago Pakar.',
     descEn: 'Outdoor recreation park with flying-bike-over-cliff ride, tree houses, rabbit gardens, and an Instagrammable hot-air balloon. Cool air of Dago Pakar.'
   },
@@ -333,7 +333,7 @@ window.KW_DESTINATIONS = [
     region: 'Bandung Barat, Jawa Barat',
     lat: -6.8150,
     lng: 107.6469,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Hutan pinus dengan 157+ spesies anggrek, Jembatan Bercahaya Wood Bridge yang menyala di malam hari, dan terapi madu di Bee Zone. Malam hari paling memukau.',
     descEn: 'Pine forest featuring 157+ orchid species, the glowing Wood Bridge at night, and honey therapy at Bee Zone. Nighttime visits are most mesmerizing.'
   },
@@ -419,7 +419,7 @@ window.KW_DESTINATIONS = [
     region: 'Ubud, Bali',
     lat: -8.4336,
     lng: 115.2798,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Sawah terasering ikonis Bali dengan sistem irigasi Subak warisan UNESCO. Ayunan Bali Swing dan kafe-kafe dengan view lembah hijau jadi magnet wisatawan.',
     descEn: 'Bali’s iconic terraced rice fields with UNESCO-listed Subak irrigation system. Bali Swing attractions and valley-view cafés are the main tourist draws.'
   },
@@ -531,7 +531,7 @@ window.KW_DESTINATIONS = [
     region: 'Bantul, DI Yogyakarta',
     lat: -7.9306,
     lng: 110.4303,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Hutan pinus dengan panggung alam dan ayunan langit menghadap lembah. Kabut pagi membuatnya sangat sinematik — sering dipakai shooting film dan prewed.',
     descEn: 'A pine forest featuring a nature stage and sky swings over the valley. Morning mist makes it cinematic — a frequent filming and pre-wedding location.'
   },
@@ -541,7 +541,7 @@ window.KW_DESTINATIONS = [
     region: 'Gunungkidul, DI Yogyakarta',
     lat: -8.0436,
     lng: 110.6383,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Goa vertikal 60 meter dengan "Cahaya Surga" yang menerobos dari lubang atas tepat pukul 10-12 siang. Turun pakai single rope technique, petualangan kelas dunia.',
     descEn: 'A 60-meter vertical cave where a "Light of Heaven" beams through the ceiling hole from 10 am to noon. Accessed by single-rope technique — a world-class adventure.'
   },
@@ -561,7 +561,7 @@ window.KW_DESTINATIONS = [
     region: 'Jepara, Jawa Tengah',
     lat: -5.8472,
     lng: 110.4561,
-    image: 'Image/Raja Ampat.jpg',
+    image: 'img/ampat.jpg',
     desc: 'Kepulauan 27 pulau di Laut Jawa dengan snorkeling, island hopping, dan penangkaran hiu. Akses kapal 4 jam dari Jepara atau 2 jam speedboat dari Semarang.',
     descEn: 'A 27-island archipelago in the Java Sea offering snorkeling, island hopping, and shark sanctuaries. Reached by 4-hour ferry from Jepara or 2-hour speedboat from Semarang.'
   },
@@ -603,7 +603,7 @@ window.KW_DESTINATIONS = [
     region: 'Probolinggo, Jawa Timur',
     lat: -7.8600,
     lng: 112.9800,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Air terjun abadi 200 meter yang konon tempat semedi terakhir Gajah Mada. Dikelilingi tebing hijau penuh tirai air yang jatuh dari segala arah.',
     descEn: 'A perpetual 200-meter waterfall said to be Gajah Mada’s last meditation site. Surrounded by green cliffs with water curtains cascading from every direction.'
   },
@@ -665,7 +665,7 @@ window.KW_DESTINATIONS = [
     region: 'Nusa Penida, Bali',
     lat: -8.7517,
     lng: 115.4680,
-    image: 'Image/Kelingking Beach.jpg',
+    image: 'img/beach.jpg',
     desc: 'Tebing ikonis berbentuk kepala T-Rex dengan pantai pasir putih di bawahnya. Jalur turun sangat curam — butuh 30 menit, tapi pemandangannya layak dikagumi dari atas.',
     descEn: 'An iconic T-Rex shaped cliff with a white sand beach below. The descent is steep (30 minutes), but the view alone from the top is worth it.'
   },
@@ -779,7 +779,7 @@ window.KW_DESTINATIONS = [
     region: 'Ende, NTT',
     lat: -8.7667,
     lng: 121.8189,
-    image: 'Image/Pulo Uran.jpg',
+    image: 'img/ulun-danu-card.jpg',
     desc: 'Tiga danau kawah di satu gunung, masing-masing berubah warna secara misterius (biru, hijau, hitam/merah). Masyarakat Lio percaya tempat arwah leluhur — didaki subuh untuk sunrise.',
     descEn: 'Three crater lakes on one mountain, each mysteriously changing color (blue, green, black/red). The Lio people believe it’s where ancestral spirits rest — hike at dawn for sunrise.'
   },
@@ -833,7 +833,7 @@ window.KW_DESTINATIONS = [
     region: 'Wakatobi, Sulawesi Tenggara',
     lat: -5.3138,
     lng: 123.5809,
-    image: 'Image/Raja Ampat.jpg',
+    image: 'img/ampat.jpg',
     desc: 'Singkatan dari Wangi-Wangi, Kaledupa, Tomia, Binongko — empat pulau utama dengan karang warna-warni kelas dunia. Jacques Cousteau menyebutnya "underwater nirvana".',
     descEn: 'Named after Wangi-Wangi, Kaledupa, Tomia, Binongko — four main islands with world-class colorful reefs. Jacques Cousteau called it "underwater nirvana".'
   },
@@ -853,7 +853,7 @@ window.KW_DESTINATIONS = [
     region: 'Mamuju, Sulawesi Barat',
     lat: -2.6333,
     lng: 118.8333,
-    image: 'Image/Dermaga-karampuang.jpg',
+    image: 'img/dermaga.jpg',
     desc: 'Pulau berair jernih kaca dengan Sumur Jodoh di tebing — konon yang minum bersama pasangan akan langgeng. Rumah adat panggung dan snorkeling karang di sekelilingnya.',
     descEn: 'Crystal-clear island with the famous Love Well — legend says couples drinking here will stay together forever. Features stilt-house villages and coral snorkeling around.'
   },
@@ -863,7 +863,7 @@ window.KW_DESTINATIONS = [
     region: 'Tojo Una-Una, Sulawesi Tengah',
     lat: -0.3833,
     lng: 121.9833,
-    image: 'Image/Raja Ampat.jpg',
+    image: 'img/ampat.jpg',
     desc: 'Kepulauan tropis dengan 3 jenis terumbu karang (atoll, barrier, fringing) dalam satu lokasi — langka di dunia. Desa suku Bajo hidup di atas air.',
     descEn: 'Tropical archipelago with all three reef types (atoll, barrier, fringing) in one area — a global rarity. The Bajo sea-nomads live in stilt villages on the water.'
   },
@@ -895,7 +895,7 @@ window.KW_DESTINATIONS = [
     region: 'Karo, Sumatera Utara',
     lat: 2.9833,
     lng: 98.5166,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Air terjun 120 meter jatuh dari tebing kaldera Toba — salah satu tertinggi di Indonesia. Pemandangan ke Danau Toba dari atasnya adalah komposisi foto wajib.',
     descEn: 'A 120-meter waterfall plunging from the Toba caldera — one of the highest in Indonesia. The view of Lake Toba from above makes an essential photo composition.'
   },
@@ -925,7 +925,7 @@ window.KW_DESTINATIONS = [
     region: 'Payakumbuh, Sumatera Barat',
     lat: -0.0894,
     lng: 100.6814,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Ngarai tebing granit 80-300 meter vertikal dengan air terjun di sela-sela dan sawah terasering — julukannya "Little Yosemite" Indonesia. Penginapan homestay ala kampung Jepang.',
     descEn: 'A vertical granite canyon 80-300 m tall with waterfalls and terraced rice paddies in between — nicknamed Indonesia’s "Little Yosemite". Features homestays styled after a Japanese village.'
   },
@@ -945,7 +945,7 @@ window.KW_DESTINATIONS = [
     region: 'Sabang, Aceh',
     lat: 5.8754,
     lng: 95.2867,
-    image: 'Image/Situ Gunung.jpg',
+    image: 'img/situ-gunung.jpg',
     desc: 'Titik Nol Kilometer Indonesia di ujung barat. Pulau vulkanik dengan Pantai Iboih, Tugu Kilometer Nol, dan snorkeling Pulau Rubiah yang jernih.',
     descEn: 'Indonesia’s Zero Kilometer Point at the western tip. A volcanic island featuring Iboih Beach, the Zero KM Monument, and crystal-clear snorkeling at Rubiah Island.'
   },
@@ -987,7 +987,7 @@ window.KW_DESTINATIONS = [
     region: 'Berau, Kalimantan Timur',
     lat: 2.2833,
     lng: 118.2500,
-    image: 'Image/Raja Ampat.jpg',
+    image: 'img/ampat.jpg',
     desc: 'Kepulauan tropis dengan Pulau Kakaban (danau ubur-ubur tidak menyengat), Maratua (diving manta), dan Sangalaki (habitat penyu hijau). Saingan Raja Ampat di utara.',
     descEn: 'Tropical archipelago featuring Kakaban Island (stingless jellyfish lake), Maratua (manta diving), and Sangalaki (green turtle habitat). A northern rival to Raja Ampat.'
   },
@@ -997,7 +997,7 @@ window.KW_DESTINATIONS = [
     region: 'Palangka Raya, Kalimantan Tengah',
     lat: -2.5833,
     lng: 113.6667,
-    image: 'Image/situgj.jpg',
+    image: 'img/situgj.jpg',
     desc: 'Habitat orangutan Kalimantan terbesar (6.000+ individu) di hutan gambut seluas 568.700 hektar. Tur klotok menyusuri sungai Sebangau untuk melihat satwa liar.',
     descEn: 'The largest Bornean orangutan habitat (6,000+ individuals) in a 568,700-hectare peat forest. Klotok boat tours navigate the Sebangau River for wildlife viewing.'
   }
