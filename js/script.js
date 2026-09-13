@@ -98,14 +98,162 @@
   // Search overlay
   // ===========================================================================
 
+  var SEARCH_LIMIT = 8;
+
+  /** Samakan huruf besar-kecil dan buang aksen supaya "Bromo" cocok "bromo". */
+  function normalize(text) {
+    return String(text || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  /**
+   * Tautan tujuan untuk satu destinasi. Sengaja satu fungsi supaya kalau nanti
+   * ada halaman detail, cukup diganti di sini.
+   */
+  function destinationUrl(dest) {
+    return 'https://www.google.com/maps/dir/?api=1&destination=' +
+           encodeURIComponent(dest.lat + ',' + dest.lng);
+  }
+
+  /**
+   * Cari destinasi berdasarkan nama atau daerah.
+   * Yang namanya diawali kata kunci diprioritaskan di atas yang sekadar
+   * mengandung kata kunci — "bali" menampilkan tempat di Bali lebih dulu.
+   */
+  function searchDestinations(query) {
+    var q = normalize(query);
+    if (q.length < 2) return [];
+
+    var scored = [];
+    (window.KW_DESTINATIONS || []).forEach(function (d) {
+      var name = normalize(d.name);
+      var region = normalize(d.region);
+      var score = -1;
+      if (name.indexOf(q) === 0) score = 0;
+      else if (name.indexOf(q) > 0) score = 1;
+      else if (region.indexOf(q) !== -1) score = 2;
+      if (score >= 0) scored.push({ dest: d, score: score });
+    });
+
+    scored.sort(function (a, b) {
+      return a.score - b.score || a.dest.name.localeCompare(b.dest.name);
+    });
+    return scored.slice(0, SEARCH_LIMIT).map(function (s) { return s.dest; });
+  }
+
   function initSearchForm() {
     var searchForm = $('.search-form');
     if (!searchForm) return;
 
-    on($('#search-btn'), 'click', function () { searchForm.classList.add('active'); });
-    on($('#close-search'), 'click', function () { searchForm.classList.remove('active'); });
+    var input = $('#search-box', searchForm);
+    var form = $('form', searchForm);
+
+    // Panel hasil dibuat dari JS supaya markup tiap halaman tidak perlu diubah.
+    var panel = document.createElement('div');
+    panel.className = 'kw-search-results';
+    panel.id = 'kw-search-results';
+    panel.setAttribute('role', 'listbox');
+    if (form) form.insertAdjacentElement('afterend', panel);
+
+    if (input) {
+      input.setAttribute('role', 'combobox');
+      input.setAttribute('aria-expanded', 'false');
+      input.setAttribute('aria-controls', 'kw-search-results');
+      input.setAttribute('aria-autocomplete', 'list');
+      input.setAttribute('autocomplete', 'off');
+      input.placeholder = isEnglish()
+        ? 'Search a destination or region...'
+        : 'Cari destinasi atau daerah...';
+    }
+
+    var results = [];
+    var active = -1;
+
+    function esc(v) {
+      return String(v == null ? '' : v)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function setActive(i) {
+      var items = $$('.kw-search-item', panel);
+      if (!items.length) return;
+      active = (i + items.length) % items.length;
+      items.forEach(function (el, n) {
+        el.classList.toggle('kw-search-active', n === active);
+        el.setAttribute('aria-selected', String(n === active));
+      });
+      items[active].scrollIntoView({ block: 'nearest' });
+    }
+
+    function render(query) {
+      results = searchDestinations(query);
+      active = -1;
+
+      if (normalize(query).length < 2) {
+        panel.innerHTML = '';
+        panel.classList.remove('kw-search-open');
+        if (input) input.setAttribute('aria-expanded', 'false');
+        return;
+      }
+
+      panel.classList.add('kw-search-open');
+      if (input) input.setAttribute('aria-expanded', 'true');
+
+      if (!results.length) {
+        panel.innerHTML = '<p class="kw-search-empty">' +
+          (isEnglish() ? 'No destination found.' : 'Destinasi tidak ditemukan.') +
+          '</p>';
+        return;
+      }
+
+      panel.innerHTML = results.map(function (d, i) {
+        return '<a class="kw-search-item" role="option" aria-selected="false" id="kw-search-opt-' + i + '"' +
+               ' href="' + esc(destinationUrl(d)) + '" target="_blank" rel="noopener noreferrer">' +
+                 '<i class="bi bi-geo-alt-fill" aria-hidden="true"></i>' +
+                 '<span class="kw-search-name">' + esc(d.name) + '</span>' +
+                 '<span class="kw-search-region">' + esc(d.region) + '</span>' +
+               '</a>';
+      }).join('');
+    }
+
+    function open() {
+      searchForm.classList.add('active');
+      if (input) setTimeout(function () { input.focus(); }, 60);
+    }
+
+    function close() {
+      searchForm.classList.remove('active');
+      if (input) input.blur();
+    }
+
+    on($('#search-btn'), 'click', open);
+    on($('#close-search'), 'click', close);
     on(document, 'keydown', function (e) {
-      if (e.key === 'Escape') searchForm.classList.remove('active');
+      if (e.key === 'Escape') close();
+    });
+
+    on(input, 'input', function () { render(input.value); });
+
+    on(input, 'keydown', function (e) {
+      if (!results.length) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+    });
+
+    // Tanpa backend, submit tidak boleh me-reload halaman.
+    on(form, 'submit', function (e) {
+      e.preventDefault();
+      var items = $$('.kw-search-item', panel);
+      var pick = items[active >= 0 ? active : 0];
+      if (pick) pick.click();
+    });
+
+    // Klik di luar panel menutup overlay.
+    on(searchForm, 'click', function (e) {
+      if (e.target === searchForm) close();
     });
   }
 

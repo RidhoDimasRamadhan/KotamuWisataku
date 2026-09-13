@@ -2685,3 +2685,88 @@ footer.footer2 {
     font-size: 1.6rem;
   }
 }
+
+/* ==========================================================================
+   HASIL PENCARIAN
+   --------------------------------------------------------------------------
+   Panel dibuat oleh js/script.js dan disisipkan tepat di bawah form pencarian
+   di dalam overlay, jadi markup tiap halaman tidak perlu diubah.
+   ========================================================================== */
+
+/* Overlay aslinya flex BARIS, jadi panel hasil berjajar di samping form.
+   Dijadikan kolom supaya hasil tepat di bawah kotak pencarian. */
+.search-form {
+  flex-direction: column;
+}
+
+.kw-search-results {
+  display: none;
+  width: 70rem;
+  max-width: 90%;
+  max-height: min(46vh, 40rem);
+  margin-top: 1.6rem;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: rgba(12, 22, 34, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.kw-search-results.kw-search-open {
+  display: block;
+}
+
+.kw-search-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.6rem;
+  color: #f3f5fa;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: background 0.15s ease;
+}
+
+.kw-search-item:last-child {
+  border-bottom: 0;
+}
+
+.kw-search-item:hover,
+.kw-search-item.kw-search-active {
+  background: rgba(98, 186, 231, 0.18);
+}
+
+.kw-search-item i {
+  font-size: 1.8rem;
+  color: #62bae7;
+}
+
+.kw-search-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.kw-search-region {
+  font-size: 1.3rem;
+  color: #b9c6d4;
+  text-align: right;
+}
+
+.kw-search-empty {
+  padding: 2rem 1.6rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #b9c6d4;
+}
+
+@media (max-width: 600px) {
+  .kw-search-item {
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1rem;
+  }
+  /* Daerah pindah ke baris kedua, sejajar di bawah nama. */
+  .kw-search-region {
+    grid-column: 2;
+    text-align: left;
+  }
+}
