@@ -374,3 +374,71 @@
     font-size: 12px;
   }
 }
+
+/* ==========================================================================
+   Isi artikel
+   Artikel kini memakai subjudul <h2>; sebelumnya isinya satu blok panjang
+   tanpa struktur (dan masih Lorem ipsum).
+   ========================================================================== */
+
+.article h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 3rem 0 1rem;
+  color: inherit;
+  text-transform: none;
+}
+
+.article span {
+  display: block;
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  /* `* { text-transform: capitalize }` global membuat kalimat penuh terbaca
+     seperti judul. */
+  text-transform: none;
+}
+
+#judul,
+.head-link span,
+.bot-content h1,
+.card_tittle h3,
+.card_info span {
+  text-transform: none;
+}
+
+/* Grid kartu terkait: jumlahnya kini mengikuti jumlah artikel lain yang ada
+   (2), bukan 4 kartu placeholder identik. */
+.wrapp .card_wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card_wrap .card_item {
+  width: auto;
+  padding: 0;
+  /* `position: relative; left: 6.5rem` dari breakpoint tablet dibuat untuk
+     tata letak 4 kartu tetap; pada grid ini ia mendorong kartu keluar layar. */
+  position: static;
+  left: auto;
+}
+
+.card_wrap .card_inner {
+  display: block;
+  color: inherit;
+  overflow: hidden;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card_wrap .card_inner:hover {
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+  .card_wrap .card_item {
+    width: auto;
+  }
+}
