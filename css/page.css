@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Halaman teks statis (kebijakan.html, policy.html)
+   ========================================================================== */
+
+/* Halaman ini tidak diawali foto hero gelap, sedangkan header memakai teks
+   putih dengan latar transparan — hasilnya putih di atas putih. */
+.kw-page-body .header,
+.kw-page-body .header.active {
+  background: #001d2c;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+}
+
+.kw-page {
+  width: min(760px, 90%);
+  margin: 12rem auto 6rem; /* menghindari header position: fixed */
+  color: #1b1b1b;
+}
+
+.kw-page > h1 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.kw-page-updated {
+  font-size: 1.3rem;
+  color: #4e4e4e;
+  margin-bottom: 1rem;
+}
+
+/* Daftar isi */
+.kw-page-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.6rem;
+  padding: 1.8rem 2rem;
+  margin-bottom: 4rem;
+  border: 1px solid #e2e6ea;
+  border-radius: 14px;
+  font-size: 1.4rem;
+}
+
+.kw-page-toc a {
+  color: #1b1b1b;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.kw-page-toc a:hover {
+  color: #62bae7;
+  border-bottom-color: #62bae7;
+}
+
+.kw-page section {
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 10rem; /* judul tidak tertutup header saat lompat anchor */
+}
+
+.kw-page h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.kw-page h3 {
+  font-size: 1.7rem;
+  margin: 2.4rem 0 0.8rem;
+}
+
+/* `* { text-transform: capitalize }` global merusak kalimat panjang. */
+.kw-page p,
+.kw-page li,
+.kw-page dd,
+.kw-page dt {
+  font-size: 1.55rem;
+  line-height: 1.8;
+  text-transform: none;
+}
+
+.kw-page p {
+  margin-bottom: 1.4rem;
+}
+
+.kw-page ul {
+  margin: 0 0 1.4rem 2.2rem;
+}
+
+.kw-page li {
+  margin-bottom: 0.6rem;
+}
+
+.kw-page a:not(.kw-page-toc a) {
+  color: #1f7fa8;
+  text-decoration: underline;
+  /* Alamat email panjang tidak punya titik penggal alami — tanpa ini ia
+     mendorong halaman melebar di layar 360px. */
+  overflow-wrap: anywhere;
+}
+
+.kw-page code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: #eef2f5;
+  text-transform: none;
+}
+
+/* --- Tema gelap ------------------------------------------------------------ */
+
+body.kw-dark .kw-page,
+body.kw-dark .kw-page > h1,
+body.kw-dark .kw-page h2,
+body.kw-dark .kw-page h3,
+body.kw-dark .kw-page p,
+body.kw-dark .kw-page li,
+body.kw-dark .kw-page-toc a {
+  color: #f3f5fa;
+}
+
+body.kw-dark .kw-page-updated {
+  color: #b9c6d4;
+}
+
+body.kw-dark .kw-page-toc {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.kw-dark .kw-page a:not(.kw-page-toc a) {
+  color: #7fd0f5;
+}
+
+body.kw-dark .kw-page code {
+  background: #06304a;
+}
