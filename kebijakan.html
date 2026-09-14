@@ -43,13 +43,20 @@
 <!-- Kedua tautan bahasa diarahkan ulang js/detail.js ke destinasi yang
              sedang dibuka, supaya berpindah bahasa tidak kehilangan halaman. -->
 <div class="dropdown">
-<a aria-label="English" href="policy.html"><picture><source srcset="img/eng.webp" type="image/webp"/><img alt="UK flag" height="20" src="img/eng.png" width="25"/></picture></a>
-<ul class="wrapper">
-<li class="usb">
-<a aria-label="Bahasa Indonesia" href="kebijakan.html"><picture><source srcset="img/indonesia.webp" type="image/webp"/><img alt="Indonesia flag" height="20" src="img/indonesia.png" width="25"/></picture></a>
-</li>
-</ul>
-</div>
+            <button type="button" class="kw-lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Pilih bahasa">
+                <picture><source srcset="img/indonesia.webp" type="image/webp"><img src="img/indonesia.png" alt="Bendera Indonesia" width="24" height="18"></picture>
+                <span class="kw-lang-code">ID</span>
+                <i class="bi bi-chevron-down kw-lang-caret" aria-hidden="true"></i>
+            </button>
+            <ul class="wrapper">
+                <li class="usb">
+                    <a href="policy.html" hreflang="en" lang="en">
+                        <picture><source srcset="img/eng.webp" type="image/webp"><img src="img/eng.png" alt="Bendera Inggris" width="24" height="18"></picture>
+                        <span class="kw-lang-name">English</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 <div class="icons">
 <div class="bi bi-list" id="menu-btn"></div>
 <div class="bi bi-search" id="search-btn"></div>

@@ -6,7 +6,8 @@
  * dirangkai di `boot()` paling bawah.
  *
  *   initNavbar()      navbar toggle + state saat scroll
- *   initSearchForm()  toggle search overlay
+ *   initLangMenu()    menu pemilih bahasa (klik / hover / papan ketik)
+ *   initSearchForm()  overlay & pencarian destinasi
  *   initHeroSlider()  Swiper di halaman home
  *   initLoadMore()    tombol "muat lebih banyak"
  *   initTheme()       dark mode persisten (class-based)
@@ -92,6 +93,68 @@
     }, { passive: true });
 
     syncHeaderScroll();
+  }
+
+  // ===========================================================================
+  // Pemilih bahasa
+  // ===========================================================================
+
+  /**
+   * Menu bahasa sebelumnya hanya bereaksi pada :hover, sehingga di layar
+   * sentuh tidak pernah bisa dibuka. Di sini ditambahkan buka-tutup lewat
+   * klik; hover dan fokus papan ketik tetap ditangani CSS.
+   */
+  function initLangMenu() {
+    var dropdown = $('.header .dropdown');
+    if (!dropdown) return;
+
+    var btn = $('.kw-lang-btn', dropdown);
+    if (!btn) return;
+
+    function setOpen(open) {
+      dropdown.classList.toggle('kw-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    }
+
+    // Hover ditangani di sini, bukan di CSS, supaya Escape dan klik-di-luar
+    // benar-benar menutup menu alih-alih langsung dibuka lagi oleh :hover.
+    var openedByHover = false;
+
+    on(dropdown, 'mouseenter', function () {
+      openedByHover = true;
+      setOpen(true);
+    });
+
+    on(dropdown, 'mouseleave', function () {
+      openedByHover = false;
+      setOpen(false);
+    });
+
+    on(btn, 'click', function (e) {
+      e.stopPropagation();
+      // Pengguna mouse: menu sudah terbuka karena hover, jadi klik tidak boleh
+      // langsung menutupnya. Di layar sentuh tidak ada hover, klik yang bekerja.
+      if (openedByHover && dropdown.classList.contains('kw-open')) return;
+      setOpen(!dropdown.classList.contains('kw-open'));
+    });
+
+    on(document, 'click', function (e) {
+      if (!dropdown.contains(e.target)) setOpen(false);
+    });
+
+    on(document, 'keydown', function (e) {
+      if (e.key === 'Escape' && dropdown.classList.contains('kw-open')) {
+        openedByHover = false;   // agar bisa dibuka lagi lewat klik
+        setOpen(false);
+        btn.focus();
+      }
+    });
+
+    // Menutup sendiri setelah pilihan diklik, supaya tidak menggantung
+    // saat pengguna kembali ke halaman ini lewat tombol Back.
+    $$('a', dropdown).forEach(function (a) {
+      on(a, 'click', function () { setOpen(false); });
+    });
   }
 
   // ===========================================================================
@@ -540,6 +603,7 @@
     booted = true;
 
     initNavbar();
+    initLangMenu();
     initSearchForm();
     initHeroSlider();
     initLoadMore();

@@ -2315,6 +2315,10 @@ hr {
   display: block;
   width: 120px;
   height: auto;
+  /* Recommend.css memberi `margin-left: 2rem` pada .logo img di layar kecil —
+     20px ekstra yang mendorong isi header keluar layar di 320px. */
+  margin: 0;
+  padding: 0;
 }
 
 /* --- Navigasi --- */
@@ -2825,4 +2829,163 @@ footer.footer2 {
 .footer2 .sosmed .bi,
 .footer2 .sosmedd .bi {
   cursor: default;
+}
+
+/* ==========================================================================
+   PEMILIH BAHASA
+   --------------------------------------------------------------------------
+   Versi lama: <ul> ber-`position: absolute` tanpa `top`, sehingga jatuh di
+   posisi statiknya — yaitu menumpuk persis di atas bendera pemicunya
+   (terukur jarak -46px). Latarnya juga transparan, jadi tidak ada panel yang
+   terlihat; efeknya bendera hanya seperti berganti di tempat.
+
+   Selain itu menu hanya muncul saat :hover — di layar sentuh tidak ada hover,
+   jadi tombolnya tidak pernah bisa dipakai. Kini terbuka lewat klik (kelas
+   .kw-open dari js/script.js), hover, maupun fokus papan ketik.
+   ========================================================================== */
+
+.header .dropdown {
+  position: relative;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+/* --- Pemicu --- */
+
+.header .kw-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 4.4rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.header .kw-lang-btn:hover,
+.header .dropdown.kw-open .kw-lang-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.header .kw-lang-btn:focus-visible {
+  outline: 2px solid #62bae7;
+  outline-offset: 2px;
+}
+
+.header .kw-lang-btn img {
+  display: block;
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.header .kw-lang-caret {
+  font-size: 1.2rem;
+  transition: transform .2s ease;
+}
+
+.header .dropdown.kw-open .kw-lang-caret {
+  transform: rotate(180deg);
+}
+
+/* --- Panel --- */
+
+.header .dropdown .wrapper {
+  display: block;                 /* tampil/sembunyi diatur opacity + visibility */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 1200;
+  min-width: 20rem;
+  margin: 0;
+  /* jarak 8px sekaligus jembatan agar kursor bisa berpindah dari tombol ke
+     panel tanpa menutup menu */
+  padding: 0.8rem 0 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  background: none;
+}
+
+/* Hanya kelas dari JS yang menentukan buka/tutup. Dulu :hover dan
+   :focus-within ikut menentukan, sehingga Escape tidak pernah benar-benar
+   menutup menu: tombolnya masih ter-fokus dan kursor masih di atasnya, jadi
+   CSS langsung membukanya kembali. Hover kini ditangani JS juga. */
+.header .dropdown.kw-open .wrapper {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header .dropdown .usb {
+  margin: 0;
+  list-style: none;
+  background: #0d2436;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.header .dropdown .wrapper a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 4.4rem;
+  padding: 0 1.4rem;
+  color: #f3f5fa;
+  font-size: 1.4rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-transform: none;
+  transition: background .15s ease;
+}
+
+.header .dropdown .wrapper a:hover,
+.header .dropdown .wrapper a:focus-visible {
+  background: rgba(98, 186, 231, 0.22);
+  color: #fff;
+}
+
+.header .dropdown .wrapper img {
+  display: block;
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+/* --- Layar kecil --- */
+
+@media (max-width: 480px) {
+  /* kode bahasa dilepas agar header tetap lega; bendera sudah cukup */
+  .header .kw-lang-code {
+    display: none;
+  }
+  .header .kw-lang-btn {
+    gap: 0.4rem;
+    padding: 0 0.7rem;
+  }
+  /* `min-width: 20rem` membuat panel keluar 22px ke kiri layar di 320px.
+     Lebar mengikuti isi, dengan batas aman terhadap tepi layar. */
+  .header .dropdown .wrapper {
+    min-width: 0;
+    width: max-content;
+    max-width: calc(100vw - 1.6rem);
+  }
 }

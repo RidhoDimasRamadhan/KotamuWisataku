@@ -183,12 +183,46 @@
     }).addTo(map);
   }
 
-  /** Pindah bahasa tanpa kehilangan destinasi yang sedang dibuka. */
+  /**
+   * Pemilih bahasa di halaman ini dinamis: bendera pada tombol mengikuti
+   * bahasa yang sedang dibuka, dan pilihan di dalam menu menunjuk destinasi
+   * yang sama dalam bahasa satunya — jadi berpindah bahasa tidak membuang
+   * halaman yang sedang dibaca.
+   */
   function wireLanguageLinks(dest) {
-    var en = document.getElementById('kw-lang-en');
-    var id = document.getElementById('kw-lang-id');
-    if (en) en.href = dest ? 'wisata.html?id=' + encodeURIComponent(dest.id) + '&lang=en' : 'English.html';
-    if (id) id.href = dest ? 'wisata.html?id=' + encodeURIComponent(dest.id) : 'index.html';
+    var btn = document.getElementById('kw-lang-btn');
+    var alt = document.getElementById('kw-lang-alt');
+    var other = LANG === 'en' ? 'id' : 'en';
+
+    var FLAG = {
+      id: { img: 'img/indonesia', alt: 'Bendera Indonesia', name: 'Bahasa Indonesia', code: 'ID' },
+      en: { img: 'img/eng', alt: 'Bendera Inggris', name: 'English', code: 'EN' }
+    };
+
+    function paint(host, cfg) {
+      var img = host.querySelector('img');
+      var src = host.querySelector('source');
+      if (img) { img.src = cfg.img + '.png'; img.alt = cfg.alt; }
+      if (src) src.srcset = cfg.img + '.webp';
+    }
+
+    if (btn) {
+      paint(btn, FLAG[LANG]);
+      var code = btn.querySelector('.kw-lang-code');
+      if (code) code.textContent = FLAG[LANG].code;
+      btn.setAttribute('aria-label', LANG === 'en' ? 'Choose language' : 'Pilih bahasa');
+    }
+
+    if (alt) {
+      paint(alt, FLAG[other]);
+      var name = alt.querySelector('.kw-lang-name');
+      if (name) name.textContent = FLAG[other].name;
+      alt.setAttribute('hreflang', other);
+      alt.setAttribute('lang', other);
+      alt.href = dest
+        ? 'wisata.html?id=' + encodeURIComponent(dest.id) + (other === 'en' ? '&lang=en' : '')
+        : (other === 'en' ? 'English.html' : 'index.html');
+    }
   }
 
   function boot() {
