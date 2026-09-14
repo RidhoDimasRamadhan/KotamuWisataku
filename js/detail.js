@@ -1,23 +1,11 @@
-/**
- * Halaman detail destinasi (wisata.html).
- *
- * Seluruh isi dirender dari data/destinations.js berdasarkan query string:
- *
- *   wisata.html?id=borobudur          → Bahasa Indonesia
- *   wisata.html?id=borobudur&lang=en  → English
- *
- * Satu halaman ini melayani ke-97 destinasi, jadi tidak perlu membuat file
- * HTML per tempat. Kalau id tidak dikenal, tampilkan pesan yang jelas, bukan
- * halaman kosong.
- */
 (function () {
   'use strict';
 
-  var params = new URLSearchParams(location.search);
-  var id = params.get('id');
-  var LANG = params.get('lang') === 'en' ? 'en' : 'id';
+  const params = new URLSearchParams(location.search);
+  const destinationId = params.get('id');
+  const LANG = params.get('lang') === 'en' ? 'en' : 'id';
 
-  var T = {
+  const TEXT = {
     id: {
       notFound: 'Destinasi tidak ditemukan',
       notFoundBody: 'Tautan yang kamu buka tidak mengarah ke destinasi yang kami kenal.',
@@ -26,10 +14,10 @@
       breadcrumbList: 'Rekomendasi',
       about: 'Tentang Destinasi',
       location: 'Lokasi',
-      directions: 'Petunjuk Arah',
       openMaps: 'Buka di Google Maps',
       nearby: 'Destinasi Lain di Sekitar',
-      km: 'km'
+      km: 'km',
+      chooseLanguage: 'Pilih bahasa',
     },
     en: {
       notFound: 'Destination not found',
@@ -39,201 +27,197 @@
       breadcrumbList: 'Recommendations',
       about: 'About This Destination',
       location: 'Location',
-      directions: 'Directions',
       openMaps: 'Open in Google Maps',
       nearby: 'Other Destinations Nearby',
-      km: 'km'
-    }
+      km: 'km',
+      chooseLanguage: 'Choose language',
+    },
   }[LANG];
 
-  var HOME = LANG === 'en' ? 'English.html' : 'index.html';
+  const FLAGS = {
+    id: { image: 'img/indonesia', alt: 'Bendera Indonesia', name: 'Bahasa Indonesia', code: 'ID' },
+    en: { image: 'img/eng', alt: 'Bendera Inggris', name: 'English', code: 'EN' },
+  };
 
-  function esc(value) {
-    return String(value == null ? '' : value)
+  const HOME = LANG === 'en' ? 'English.html' : 'index.html';
+  const OTHER_LANG = LANG === 'en' ? 'id' : 'en';
+  const NEARBY_LIMIT = 6;
+  const EARTH_RADIUS_KM = 6371;
+
+  const escape = (value) =>
+    String(value ?? '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+
+  const detailUrl = (dest, lang = LANG) =>
+    `wisata.html?id=${encodeURIComponent(dest.id)}${lang === 'en' ? '&lang=en' : ''}`;
+
+  const mapsUrl = (dest) =>
+    `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${dest.lat},${dest.lng}`)}`;
+
+  const describe = (dest) =>
+    LANG === 'en' ? dest.descEn || dest.desc || '' : dest.desc || '';
+
+  const toRadians = (degrees) => (degrees * Math.PI) / 180;
+
+  function distanceInKm(fromLat, fromLng, toLat, toLng) {
+    const deltaLat = toRadians(toLat - fromLat);
+    const deltaLng = toRadians(toLng - fromLng);
+    const a =
+      Math.sin(deltaLat / 2) ** 2 +
+      Math.cos(toRadians(fromLat)) * Math.cos(toRadians(toLat)) * Math.sin(deltaLng / 2) ** 2;
+    return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(a));
   }
 
-  function detailUrl(dest) {
-    return 'wisata.html?id=' + encodeURIComponent(dest.id) +
-           (LANG === 'en' ? '&lang=en' : '');
-  }
-
-  function mapsUrl(dest) {
-    return 'https://www.google.com/maps/dir/?api=1&destination=' +
-           encodeURIComponent(dest.lat + ',' + dest.lng);
-  }
-
-  function describe(dest) {
-    return LANG === 'en' ? (dest.descEn || dest.desc || '') : (dest.desc || '');
-  }
-
-  /** Jarak garis lurus, dipakai hanya untuk mengurutkan destinasi terdekat. */
-  function haversine(lat1, lng1, lat2, lng2) {
-    var R = 6371;
-    var toRad = function (x) { return (x * Math.PI) / 180; };
-    var dLat = toRad(lat2 - lat1);
-    var dLng = toRad(lng2 - lng1);
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-            Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    return 2 * R * Math.asin(Math.sqrt(a));
-  }
-
-  function nearestOthers(dest, limit) {
-    return (window.KW_DESTINATIONS || [])
-      .filter(function (d) { return d.id !== dest.id; })
-      .map(function (d) {
-        return { dest: d, km: haversine(dest.lat, dest.lng, d.lat, d.lng) };
-      })
-      .sort(function (a, b) { return a.km - b.km; })
+  const nearestOthers = (dest, limit) =>
+    (window.KW_DESTINATIONS || [])
+      .filter((other) => other.id !== dest.id)
+      .map((other) => ({ dest: other, km: distanceInKm(dest.lat, dest.lng, other.lat, other.lng) }))
+      .sort((a, b) => a.km - b.km)
       .slice(0, limit);
-  }
+
+  const formatKm = (km) => `${km.toFixed(km < 10 ? 1 : 0)} ${escape(TEXT.km)}`;
+
+  const nearbyCard = ({ dest, km }) => `
+    <li>
+      <a href="${escape(detailUrl(dest))}">
+        <img src="${escape(dest.image)}" alt="" width="160" height="110" loading="lazy" decoding="async">
+        <span class="kw-detail-nearby-name">${escape(dest.name)}</span>
+        <span class="kw-detail-nearby-meta">${escape(dest.region)} · ${formatKm(km)}</span>
+      </a>
+    </li>`;
 
   function renderNotFound(host) {
-    document.title = T.notFound + ' — KotamuWisataku';
-    host.innerHTML =
-      '<div class="kw-detail-empty">' +
-        '<h1>' + esc(T.notFound) + '</h1>' +
-        '<p>' + esc(T.notFoundBody) + '</p>' +
-        '<a class="kw-detail-btn" href="' + HOME + '">' +
-          '<i class="bi bi-house-door" aria-hidden="true"></i> ' + esc(T.home) +
-        '</a>' +
-      '</div>';
+    document.title = `${TEXT.notFound} — KotamuWisataku`;
+    host.innerHTML = `
+      <div class="kw-detail-empty">
+        <h1>${escape(TEXT.notFound)}</h1>
+        <p>${escape(TEXT.notFoundBody)}</p>
+        <a class="kw-detail-btn" href="${HOME}">
+          <i class="bi bi-house-door" aria-hidden="true"></i> ${escape(TEXT.home)}
+        </a>
+      </div>`;
   }
 
   function render(host, dest) {
     document.documentElement.lang = LANG;
-    document.title = dest.name + ' — KotamuWisataku';
+    document.title = `${dest.name} — KotamuWisataku`;
 
-    var meta = document.querySelector('meta[name="description"]');
+    const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', describe(dest).slice(0, 155));
 
-    host.innerHTML =
-      '<nav class="kw-detail-crumbs" aria-label="breadcrumb">' +
-        '<a href="' + HOME + '">' + esc(T.breadcrumbHome) + '</a>' +
-        '<span aria-hidden="true">›</span>' +
-        '<a href="' + HOME + '#Rekomendasi">' + esc(T.breadcrumbList) + '</a>' +
-        '<span aria-hidden="true">›</span>' +
-        '<span aria-current="page">' + esc(dest.name) + '</span>' +
-      '</nav>' +
+    host.innerHTML = `
+      <nav class="kw-detail-crumbs" aria-label="breadcrumb">
+        <a href="${HOME}">${escape(TEXT.breadcrumbHome)}</a>
+        <span aria-hidden="true">›</span>
+        <a href="${HOME}#Rekomendasi">${escape(TEXT.breadcrumbList)}</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">${escape(dest.name)}</span>
+      </nav>
 
-      '<header class="kw-detail-head">' +
-        '<h1>' + esc(dest.name) + '</h1>' +
-        '<p class="kw-detail-region">' +
-          '<i class="bi bi-geo-alt-fill" aria-hidden="true"></i> ' + esc(dest.region) +
-        '</p>' +
-      '</header>' +
+      <header class="kw-detail-head">
+        <h1>${escape(dest.name)}</h1>
+        <p class="kw-detail-region">
+          <i class="bi bi-geo-alt-fill" aria-hidden="true"></i> ${escape(dest.region)}
+        </p>
+      </header>
 
-      '<img class="kw-detail-hero" src="' + esc(dest.image) + '" alt="' + esc(dest.name) + '" ' +
-           'width="1200" height="675" decoding="async">' +
+      <img class="kw-detail-hero" src="${escape(dest.image)}" alt="${escape(dest.name)}"
+           width="1200" height="675" decoding="async">
 
-      '<section class="kw-detail-section">' +
-        '<h2>' + esc(T.about) + '</h2>' +
-        '<p>' + esc(describe(dest)) + '</p>' +
-      '</section>' +
+      <section class="kw-detail-section">
+        <h2>${escape(TEXT.about)}</h2>
+        <p>${escape(describe(dest))}</p>
+      </section>
 
-      '<section class="kw-detail-section">' +
-        '<h2>' + esc(T.location) + '</h2>' +
-        '<div id="kw-detail-map" class="kw-detail-map" role="application" ' +
-             'aria-label="' + esc(T.location + ' ' + dest.name) + '"></div>' +
-        '<a class="kw-detail-btn" href="' + esc(mapsUrl(dest)) + '" ' +
-           'target="_blank" rel="noopener noreferrer">' +
-          '<i class="bi bi-compass" aria-hidden="true"></i> ' + esc(T.openMaps) +
-        '</a>' +
-      '</section>' +
+      <section class="kw-detail-section">
+        <h2>${escape(TEXT.location)}</h2>
+        <div id="kw-detail-map" class="kw-detail-map" role="application"
+             aria-label="${escape(`${TEXT.location} ${dest.name}`)}"></div>
+        <a class="kw-detail-btn" href="${escape(mapsUrl(dest))}" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-compass" aria-hidden="true"></i> ${escape(TEXT.openMaps)}
+        </a>
+      </section>
 
-      '<section class="kw-detail-section">' +
-        '<h2>' + esc(T.nearby) + '</h2>' +
-        '<ul class="kw-detail-nearby">' +
-          nearestOthers(dest, 6).map(function (n) {
-            return '<li><a href="' + esc(detailUrl(n.dest)) + '">' +
-                     '<img src="' + esc(n.dest.image) + '" alt="" width="160" height="110" loading="lazy" decoding="async">' +
-                     '<span class="kw-detail-nearby-name">' + esc(n.dest.name) + '</span>' +
-                     '<span class="kw-detail-nearby-meta">' + esc(n.dest.region) + ' · ' +
-                       n.km.toFixed(n.km < 10 ? 1 : 0) + ' ' + esc(T.km) +
-                     '</span>' +
-                   '</a></li>';
-          }).join('') +
-        '</ul>' +
-      '</section>';
+      <section class="kw-detail-section">
+        <h2>${escape(TEXT.nearby)}</h2>
+        <ul class="kw-detail-nearby">
+          ${nearestOthers(dest, NEARBY_LIMIT).map(nearbyCard).join('')}
+        </ul>
+      </section>`;
 
     initMap(dest);
   }
 
   function initMap(dest) {
     if (typeof L === 'undefined') return;
-    var el = document.getElementById('kw-detail-map');
-    if (!el || el._leaflet_id) return;
 
-    var latlng = [dest.lat, dest.lng];
-    var map = L.map(el).setView(latlng, 13);
+    const el = document.getElementById('kw-detail-map');
+    const alreadyInitialised = el && el._leaflet_id;
+    if (!el || alreadyInitialised) return;
+
+    const latlng = [dest.lat, dest.lng];
+    const map = L.map(el).setView(latlng, 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    L.marker(latlng).addTo(map).bindPopup('<b>' + esc(dest.name) + '</b>').openPopup();
+    L.marker(latlng).addTo(map).bindPopup(`<b>${escape(dest.name)}</b>`).openPopup();
+
     L.circle(latlng, {
-      color: '#62bae7', fillColor: '#62bae7', fillOpacity: 0.2, radius: 600
+      color: '#62bae7',
+      fillColor: '#62bae7',
+      fillOpacity: 0.2,
+      radius: 600,
     }).addTo(map);
   }
 
-  /**
-   * Pemilih bahasa di halaman ini dinamis: bendera pada tombol mengikuti
-   * bahasa yang sedang dibuka, dan pilihan di dalam menu menunjuk destinasi
-   * yang sama dalam bahasa satunya — jadi berpindah bahasa tidak membuang
-   * halaman yang sedang dibaca.
-   */
-  function wireLanguageLinks(dest) {
-    var btn = document.getElementById('kw-lang-btn');
-    var alt = document.getElementById('kw-lang-alt');
-    var other = LANG === 'en' ? 'id' : 'en';
+  function paintFlag(host, flag) {
+    const img = host.querySelector('img');
+    const source = host.querySelector('source');
+    if (img) {
+      img.src = `${flag.image}.png`;
+      img.alt = flag.alt;
+    }
+    if (source) source.srcset = `${flag.image}.webp`;
+  }
 
-    var FLAG = {
-      id: { img: 'img/indonesia', alt: 'Bendera Indonesia', name: 'Bahasa Indonesia', code: 'ID' },
-      en: { img: 'img/eng', alt: 'Bendera Inggris', name: 'English', code: 'EN' }
-    };
+  function wireLanguageMenu(dest) {
+    const button = document.getElementById('kw-lang-btn');
+    const otherLink = document.getElementById('kw-lang-alt');
 
-    function paint(host, cfg) {
-      var img = host.querySelector('img');
-      var src = host.querySelector('source');
-      if (img) { img.src = cfg.img + '.png'; img.alt = cfg.alt; }
-      if (src) src.srcset = cfg.img + '.webp';
+    if (button) {
+      paintFlag(button, FLAGS[LANG]);
+      const code = button.querySelector('.kw-lang-code');
+      if (code) code.textContent = FLAGS[LANG].code;
+      button.setAttribute('aria-label', TEXT.chooseLanguage);
     }
 
-    if (btn) {
-      paint(btn, FLAG[LANG]);
-      var code = btn.querySelector('.kw-lang-code');
-      if (code) code.textContent = FLAG[LANG].code;
-      btn.setAttribute('aria-label', LANG === 'en' ? 'Choose language' : 'Pilih bahasa');
-    }
-
-    if (alt) {
-      paint(alt, FLAG[other]);
-      var name = alt.querySelector('.kw-lang-name');
-      if (name) name.textContent = FLAG[other].name;
-      alt.setAttribute('hreflang', other);
-      alt.setAttribute('lang', other);
-      alt.href = dest
-        ? 'wisata.html?id=' + encodeURIComponent(dest.id) + (other === 'en' ? '&lang=en' : '')
-        : (other === 'en' ? 'English.html' : 'index.html');
+    if (otherLink) {
+      paintFlag(otherLink, FLAGS[OTHER_LANG]);
+      const name = otherLink.querySelector('.kw-lang-name');
+      if (name) name.textContent = FLAGS[OTHER_LANG].name;
+      otherLink.setAttribute('hreflang', OTHER_LANG);
+      otherLink.setAttribute('lang', OTHER_LANG);
+      otherLink.href = dest
+        ? detailUrl(dest, OTHER_LANG)
+        : (OTHER_LANG === 'en' ? 'English.html' : 'index.html');
     }
   }
 
   function boot() {
-    var host = document.getElementById('kw-detail');
+    const host = document.getElementById('kw-detail');
     if (!host) return;
 
-    var dest = (window.KW_DESTINATIONS || []).filter(function (d) {
-      return d.id === id;
-    })[0];
+    const dest = (window.KW_DESTINATIONS || []).find((d) => d.id === destinationId);
 
-    wireLanguageLinks(dest);
+    wireLanguageMenu(dest);
     if (dest) render(host, dest);
     else renderNotFound(host);
   }
