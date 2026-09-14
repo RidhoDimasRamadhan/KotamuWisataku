@@ -1,10 +1,5 @@
-/**
- * Database destinasi wisata Indonesia.
- * Tiap entri: id, name, region, lat, lng, image, desc (ID), descEn.
- * Dipakai oleh js/nearby.js untuk hitung jarak via Haversine.
- */
 window.KW_DESTINATIONS = [
-  // --- DKI Jakarta ---------------------------------------------------------
+
   {
     id: 'monas',
     name: 'Monumen Nasional',
@@ -176,7 +171,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Official Betawi cultural village with a lake, traditional kebaya houses, lenong performances, and kerak telor & bir pletok street food. Busiest on weekends.'
   },
 
-  // --- Jawa Barat ----------------------------------------------------------
   {
     id: 'situ-gunung',
     name: 'Situ Gunung',
@@ -338,7 +332,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Pine forest featuring 157+ orchid species, the glowing Wood Bridge at night, and honey therapy at Bee Zone. Nighttime visits are most mesmerizing.'
   },
 
-  // --- Jawa Timur tambahan -------------------------------------------------
   {
     id: 'jatim-park-2',
     name: 'Jatim Park 2 (Secret Zoo)',
@@ -370,7 +363,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Nighttime amusement park featuring Lampion Garden, Ghost Gallery, and Dancing Fountain. Open from afternoon till midnight — Batu’s cool air completes the vibe.'
   },
 
-  // --- Yogya tambahan ------------------------------------------------------
   {
     id: 'kraton-yogya',
     name: 'Kraton Yogyakarta',
@@ -402,7 +394,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Pirate-themed waterpark with 19 rides including Timo-Timo Rider, Volcano of Fury, and Harlem Tornado. One of Southeast Asia’s largest waterparks.'
   },
 
-  // --- Bali tambahan -------------------------------------------------------
   {
     id: 'waterbom',
     name: 'Waterbom Bali',
@@ -454,7 +445,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Temple with the viral "Gates of Heaven" — a split Candi Bentar gate framing Mount Agung. Bali’s #1 photo spot, queues can reach 2-3 hours in peak season.'
   },
 
-  // --- DI Yogyakarta & Jawa Tengah ----------------------------------------
   {
     id: 'borobudur',
     name: 'Candi Borobudur',
@@ -566,7 +556,6 @@ window.KW_DESTINATIONS = [
     descEn: 'A 27-island archipelago in the Java Sea offering snorkeling, island hopping, and shark sanctuaries. Reached by 4-hour ferry from Jepara or 2-hour speedboat from Semarang.'
   },
 
-  // --- Jawa Timur ----------------------------------------------------------
   {
     id: 'bromo',
     name: 'Gunung Bromo',
@@ -638,7 +627,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Snorkeling and coral conservation center with floating houses. Swim with sharks, adopt corals, or sail traditional boats to Tabuhan Island.'
   },
 
-  // --- Bali ----------------------------------------------------------------
   {
     id: 'ulun-danu',
     name: 'Pura Ulun Danu Beratan',
@@ -700,7 +688,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Bali’s largest and holiest temple on Mount Agung’s slope — the Balinese Hindu "Mother Temple". A complex of 23 shrines hosting the annual Betara Turun Kabeh ceremony.'
   },
 
-  // --- NTB / Lombok --------------------------------------------------------
   {
     id: 'mandalika',
     name: 'Mandalika',
@@ -742,7 +729,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Naturally pink-sand beach colored by red coral fragments ground by waves. Quieter than the Komodo Pink Beach — perfect for relaxation.'
   },
 
-  // --- NTT -----------------------------------------------------------------
   {
     id: 'komodo',
     name: 'Pulau Komodo',
@@ -794,7 +780,6 @@ window.KW_DESTINATIONS = [
     descEn: 'One of only 7 pink beaches on Earth. Sand becomes vivid when wet as red coral fragments mix with white sand. Snorkeling reveals clownfish schools.'
   },
 
-  // --- Papua ---------------------------------------------------------------
   {
     id: 'raja-ampat',
     name: 'Raja Ampat',
@@ -816,7 +801,6 @@ window.KW_DESTINATIONS = [
     descEn: 'A mini-Wayag karst formation with a 15-minute wooden-stair trek to the viewpoint. Boats weaving between islands produce the most sought-after photos in Raja Ampat.'
   },
 
-  // --- Sulawesi ------------------------------------------------------------
   {
     id: 'bunaken',
     name: 'Taman Laut Bunaken',
@@ -868,7 +852,6 @@ window.KW_DESTINATIONS = [
     descEn: 'Tropical archipelago with all three reef types (atoll, barrier, fringing) in one area — a global rarity. The Bajo sea-nomads live in stilt villages on the water.'
   },
 
-  // --- Sumatera ------------------------------------------------------------
   {
     id: 'toba',
     name: 'Danau Toba',
@@ -980,7 +963,6 @@ window.KW_DESTINATIONS = [
     descEn: 'An iconic 1,177-meter bridge straddling the Musi River, built in 1962. Glows red at night — the essential backdrop for photos with pempek and river boats.'
   },
 
-  // --- Kalimantan ----------------------------------------------------------
   {
     id: 'derawan',
     name: 'Kepulauan Derawan',

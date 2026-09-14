@@ -1,8 +1,3 @@
-/* ==========================================================================
-   KotamuWisataku — Nearby (GPS radar-style)
-   Scoped via .kw- prefix agar tidak bentrok dengan style.css
-   ========================================================================== */
-
 :root {
   --kw-bg: #0b1020;
   --kw-bg-2: #11172e;
@@ -18,24 +13,12 @@
   --kw-shadow: 0 20px 60px rgba(8, 12, 30, 0.45);
 }
 
-/* --- Host wrapper ---------------------------------------------------------
-   Parent .gambarartikel2 di index.html adalah flex container dengan margin
-   kiri/kanan 6rem dan berada di dalam .gambarartikel (position: absolute).
-   Rule di bawah memaksa section ini jadi baris penuh sendiri dan punya
-   jarak atas yang cukup agar tidak overlap dengan artikel di atasnya.
-   -------------------------------------------------------------------------- */
-
 .kw-nearby-host {
   display: block;
   position: relative;
-  /* Dulu section ini adalah item flex di dalam grid artikel, sehingga perlu
-     dipaksa mengambil satu baris penuh. Sekarang ia blok biasa di level body,
-     jadi `width: 100%` justru ditambah margin kiri-kanan dan meluber. */
+
   width: auto;
-  /* Dulu 15rem karena grid artikel di atasnya `position: absolute` sehingga
-     tingginya nol — jarak harus ditebak manual. Setelah grid dikembalikan ke
-     alur normal, jarak atas cukup diambil dari margin bawah tombol (6rem);
-     di sini tinggal jarak bawah yang disamakan. */
+
   margin: 0 5rem 6rem;
   padding: 0 !important;
   clear: both;
@@ -45,17 +28,11 @@
 
 @media (max-width: 991px) {
   .kw-nearby-host {
-    /* Kompensasi lama untuk grid absolut di atasnya — tidak diperlukan lagi. */
     margin-top: 0 !important;
     margin-inline: 2rem;
   }
 }
 
-/* Netralisir legacy layout hacks dari style.css yang bikin gap raksasa:
-   - .waw { margin-bottom: 14rem; } (style.css:449)
-   - footer { top: 27rem; }         (style.css:1091)
-   Keduanya sengaja dibuat untuk layout nearby-place versi lama.
-   Di-override hanya di halaman yang sudah pakai section baru (.kw-nearby-host). */
 .kw-nearby-host ~ footer,
 .kw-nearby-host ~ .footer2 {
   top: 0 !important;
@@ -65,8 +42,6 @@
   margin-bottom: 0 !important;
   height: 0 !important;
 }
-
-/* --- Section container ---------------------------------------------------- */
 
 .kw-nearby {
   position: relative;
@@ -162,8 +137,6 @@
   margin-top: 2px;
 }
 
-/* --- Mode tabs ------------------------------------------------------------ */
-
 .kw-mode-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -246,8 +219,6 @@
   }
 }
 
-/* --- Body grid ------------------------------------------------------------ */
-
 .kw-nearby-body {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -263,8 +234,6 @@
     grid-template-columns: 1fr;
   }
 }
-
-/* --- Map ------------------------------------------------------------------ */
 
 .kw-map-wrap {
   position: relative;
@@ -299,7 +268,6 @@
   mix-blend-mode: multiply;
 }
 
-/* Leaflet popup override */
 .leaflet-container {
   background: #050816 !important;
   font-family: inherit;
@@ -349,8 +317,6 @@
   gap: 8px;
 }
 
-/* --- User icon (pulsing) -------------------------------------------------- */
-
 .kw-user-icon {
   position: relative;
 }
@@ -380,8 +346,6 @@
   animation: kw-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* --- Destination pin ------------------------------------------------------ */
-
 .kw-dest-icon {
   transform: translateZ(0);
 }
@@ -408,14 +372,10 @@
   transform: rotate(-45deg) scale(1.1);
 }
 
-/* --- Scan circle animation ------------------------------------------------ */
-
 .kw-scan-circle {
   animation: kw-scan 4s ease-in-out infinite;
   transform-origin: center;
 }
-
-/* --- Sidebar list --------------------------------------------------------- */
 
 .kw-list-wrap {
   background: var(--kw-surface);
@@ -537,8 +497,6 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* --- Buttons -------------------------------------------------------------- */
-
 .kw-btn {
   display: inline-flex;
   align-items: center;
@@ -583,8 +541,6 @@
 .kw-btn-retry {
   white-space: nowrap;
 }
-
-/* --- Permission Modal ----------------------------------------------------- */
 
 .kw-modal {
   position: fixed;
@@ -690,8 +646,6 @@
   box-shadow: 0 0 18px var(--kw-accent);
 }
 
-/* --- Keyframes ------------------------------------------------------------ */
-
 @keyframes kw-pulse {
   0% {
     box-shadow:
@@ -735,8 +689,6 @@
   }
 }
 
-/* --- Reduced motion preference ------------------------------------------- */
-
 @media (prefers-reduced-motion: reduce) {
   .kw-locate-dot,
   .kw-user-icon .kw-user-ring,
@@ -746,13 +698,6 @@
   }
 }
 
-/* Tema gelap seluruh halaman dipindah ke css/dark.css — file ini hanya
-   dimuat di index & English, jadi aturan gelap di sini tidak pernah
-   berlaku di halaman lain. */
-
-/* --- Keterbacaan di layar kecil -------------------------------------------
-   Diletakkan paling akhir supaya menang cascade atas aturan dasar di atas
-   (spesifisitasnya sama, jadi yang menentukan adalah urutan). */
 @media (max-width: 520px) {
   .kw-list-info p,
   .kw-chip,

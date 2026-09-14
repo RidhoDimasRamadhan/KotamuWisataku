@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap");
 
-// <picture> cuma pembungkus pemilih format (WebP vs JPEG). `display: contents`
-// membuatnya tidak menghasilkan kotak layout, sehingga <img> tetap menjadi
-// anak langsung dari flex/grid induknya dan semua CSS lama tetap berlaku.
 picture {
   display: contents;
 }
@@ -151,9 +148,7 @@ section {
   width: 70rem;
   max-width: 90%;
   margin: 0 2rem;
-  // Aturan global `form { position: relative; top: 70px }` dibuat untuk form
-  // langganan di section .bawah, tapi ikut terkena ke overlay pencarian dan
-  // menggesernya 70px di bawah titik tengah layar.
+
   position: static;
   top: auto;
   padding-bottom: 2rem;
@@ -358,8 +353,6 @@ h2 {
 
 @media (max-width: 450px) {
   html {
-    // 50% membuat 1rem = 8px, sehingga teks 1.3rem turun ke ~10px —
-    // di bawah ambang baca nyaman. Disamakan dengan base desktop.
     font-size: 62.5%;
   }
   .heading {

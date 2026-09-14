@@ -4,26 +4,6 @@ body {
   margin: 0;
 }
 
-/* Navbar
-   Blok .header / .header.active di sini dulu menyalin ulang aturan dari
-   style.css, dengan dua beda: `height: 9rem` dan `padding: .5rem 9%`.
-   Karena file ini dimuat SETELAH style.css, salinan itu menimpa tata letak
-   header bersama — membuat halaman ini punya tinggi header berbeda (90px vs
-   72px) dan meluber di layar 320px. Dihapus; header sepenuhnya diatur
-   style.css supaya konsisten di semua halaman. */
-/* end navbar */
-
-/* gambar */
-/* Hero halaman rekomendasi.
-   Versi lama menampilkan pita foto dengan cara yang rapuh: gambar potret
-   dirender setinggi ~1800px, dipotong `clip-path: inset(80rem 0 30rem 0)`,
-   lalu seluruh bloknya ditarik naik `top: -80rem` dan konten di bawahnya
-   ditarik lagi `margin-top: -110rem`. Tiga angka itu saling bergantung —
-   mengubah tinggi gambar sedikit saja menggeser seluruh halaman.
-
-   Sekarang tingginya ditentukan langsung dan gambar diposisikan dengan
-   object-fit. Hasil tampilannya sama: pita 700px di desktop, 400px di bawah
-   1200px, memperlihatkan bagian foto yang sama (pusat ~65% tinggi gambar). */
 .ke1 {
   height: 700px;
   overflow: hidden;
@@ -35,9 +15,7 @@ body {
   object-fit: cover;
   object-position: center 65%;
 }
-/* end gambar */
 
-/* beranda */
 .isi .beranda {
   display: inline;
   float: left;
@@ -53,35 +31,28 @@ body {
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  /* identical to box height */
+
   color: #000000;
 }
 .beranda img {
   width: 1.4rem;
   margin: 0 1rem;
 }
-/* end beranda */
 
-/* garis */
 .garis {
   position: relative;
   width: 90%;
   z-index: 11;
 }
-/* end garis */
 
-/* container kiri */
 .isi {
-  /* dulu -110rem untuk mengompensasi hero yang ditarik ke atas */
   margin-top: 0;
   width: 100%;
   position: relative;
   display: flex;
   flex-wrap: wrap;
 }
-/* end*/
 
-/* .kiri */
 .kumpulankiri {
   width: 727px;
   position: relative;
@@ -165,17 +136,12 @@ body {
   color: #000000;
 }
 
-/* end kiri*/
-
-/* subscribe */
 .bawah {
   position: relative;
   display: flex;
   width: min(1150px, 90%);
   border-radius: 15px;
-  /* `margin: auto` berarti nol di atas-bawah, dan karena file ini dimuat
-     setelah style.css ia menimpa jarak antar-seksi — banner jadi menempel
-     ke konten di atasnya. */
+
   margin: 6rem auto;
   background-repeat: repeat;
   background-position: center;
@@ -239,7 +205,6 @@ body {
   line-height: 24px;
   color: rgba(0, 0, 0, 0.22);
 }
-/* end subscribe */
 
 #map {
   width: 90%;
@@ -292,7 +257,7 @@ body {
 footer {
   width: 100%;
   position: relative;
-  /* offset `top` menggeser tanpa memesan ruang — jarak diatur margin di style.css */
+
   top: auto;
   background-color: #001d2c;
   color: #ffffff;
@@ -409,7 +374,6 @@ footer {
 }
 
 @media (max-width: 587px) {
-  /* aaa */
   .bawah .logo {
     width: 100%;
   }
@@ -473,8 +437,6 @@ footer {
   }
 }
 
-/* Tautan breadcrumb hanya setinggi barisnya (18px) — di bawah ambang sentuh
-   32px. Padding vertikal memperbesar area klik tanpa mengubah tampilan. */
 @media (max-width: 768px) {
   .beranda a {
     padding-block: 7px;

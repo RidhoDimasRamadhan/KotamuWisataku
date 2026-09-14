@@ -13,8 +13,7 @@
 
 .head-link {
   position: relative;
-  /* padding kiri menggantikan `left: 2rem` — offset relative ikut mendorong
-       lebar keluar viewport, padding tidak. */
+
   padding: 1rem 3% 1rem calc(3% + 2rem);
   display: flex;
   flex-wrap: wrap;
@@ -34,10 +33,6 @@
   color: black;
 }
 
-/*Content Start*/
-
-/* min() menjaga lebar maksimum di desktop tanpa memaksa halaman melebar
-   di layar kecil — sebelumnya 1300px kaku, jadi HP harus scroll ke samping. */
 .main-content {
   width: min(1300px, 100%);
   margin-inline: auto;
@@ -62,7 +57,7 @@
   background: #c5c5c5;
   position: relative;
   top: 5rem;
-  width: 91%; /* 104% + left 4.5% dulu meluber keluar container */
+  width: 91%;
   height: 1px;
   left: 4.5%;
 }
@@ -97,8 +92,7 @@
 
 .bot-content {
   position: relative;
-  /* `top: 7rem` menggeser tanpa memesan ruang, jadi footer di bawahnya ikut
-     tertimpa. Diganti margin sungguhan, atas dan bawah sama. */
+
   top: auto;
   margin-block: 6rem;
   padding: 1rem 3.7%;
@@ -177,11 +171,7 @@
   font-size: 12px;
 }
 
-/*Media Queries Start*/
-
 @media screen and (min-width: 1220px) {
-  /*TV*/
-
   .headline {
     width: 89%;
   }
@@ -209,8 +199,6 @@
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1220px) {
-  /*Laptop*/
-
   .headline {
     width: 83%;
   }
@@ -238,8 +226,6 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  /*Tablet*/
-
   .head-link {
     width: 80%;
   }
@@ -284,14 +270,12 @@
 }
 
 @media screen and (max-width: 768px) {
-  /*Mobile*/
-
   .head-img img {
     height: 40rem;
   }
 
   .head-link {
-    font-size: 1.2rem; /* 80% dari induk menghasilkan ~9px, terlalu kecil */
+    font-size: 1.2rem;
     padding: 1rem 1%;
   }
 
@@ -300,8 +284,6 @@
     padding: 0 5px;
   }
 
-  /* Semua lebar di bawah ini dulu dipaku dalam px (350/300) sehingga hanya
-       pas di satu ukuran HP. Diganti persentase supaya ikut lebar layar. */
   .headline {
     width: 90%;
     left: 5%;
@@ -342,7 +324,7 @@
   .bot-content h1, .bot-content h2 {
     font-size: 2.5rem;
     position: relative;
-    left: 0; /* offset 5% mendorong judul keluar layar */
+    left: 0;
     padding-left: 5%;
   }
 
@@ -354,8 +336,6 @@
     width: 50%;
   }
 
-  /* Judul & tanggal kartu turun ke 11.7px/10px karena diperkecil mengikuti
-       lebar kartu; kunci ke ambang baca. */
   .card_tittle h3 {
     font-size: 1.4rem;
   }
@@ -375,12 +355,6 @@
   }
 }
 
-/* ==========================================================================
-   Isi artikel
-   Artikel kini memakai subjudul <h2>; sebelumnya isinya satu blok panjang
-   tanpa struktur (dan masih Lorem ipsum).
-   ========================================================================== */
-
 .article h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -394,8 +368,7 @@
   display: block;
   margin-bottom: 1.2rem;
   line-height: 1.8;
-  /* `* { text-transform: capitalize }` global membuat kalimat penuh terbaca
-     seperti judul. */
+
   text-transform: none;
 }
 
@@ -407,8 +380,6 @@
   text-transform: none;
 }
 
-/* Grid kartu terkait: jumlahnya kini mengikuti jumlah artikel lain yang ada
-   (2), bukan 4 kartu placeholder identik. */
 .wrapp .card_wrap {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -418,8 +389,7 @@
 .card_wrap .card_item {
   width: auto;
   padding: 0;
-  /* `position: relative; left: 6.5rem` dari breakpoint tablet dibuat untuk
-     tata letak 4 kartu tetap; pada grid ini ia mendorong kartu keluar layar. */
+
   position: static;
   left: auto;
 }

@@ -4,9 +4,6 @@
   height: 130px;
 }
 
-/* <picture> cuma pembungkus pemilih format (WebP vs JPEG). `display: contents`
-   membuatnya tidak menghasilkan kotak layout, sehingga <img> tetap menjadi
-   anak langsung dari flex/grid induknya dan semua CSS lama tetap berlaku. */
 picture {
   display: contents;
 }
@@ -154,9 +151,7 @@ section {
   border-bottom: 0.2rem solid #fff;
   display: flex;
   align-items: center;
-  /* Aturan global `form { position: relative; top: 70px }` dibuat untuk form
-     langganan di section .bawah, tapi ikut terkena ke overlay pencarian dan
-     menggesernya 70px di bawah titik tengah layar. */
+
   position: static;
   top: auto;
 }
@@ -262,7 +257,6 @@ h2 {
   font-weight: bold;
 }
 
-/*languange*/
 .dropdown {
   position: relative;
   display: inline-block;
@@ -366,9 +360,8 @@ h2 {
   .heading {
     font-size: 3rem;
   }
-} /*# sourceMappingURL=style.css.map */
+}
 
-/* REKOMENDASI */
 .judulnya {
   position: relative;
   display: flex;
@@ -658,7 +651,7 @@ h2 {
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  /* identical to box height */
+
   color: #62bae7;
 }
 
@@ -744,9 +737,7 @@ h2 {
   line-height: 24px;
   color: rgba(0, 0, 0, 0.22);
 }
-/* END REKOMENDASI  */
 
-/* ARTIKEL */
 .artikel {
   position: relative;
   top: 7rem;
@@ -797,8 +788,7 @@ h2 {
   margin-top: 2rem;
   margin-left: 6rem;
   margin-right: 6rem;
-  /* `width: 100%` + margin kiri/kanan 6rem = 100% + 12rem → meluber.
-     `auto` membiarkan block mengisi sisa ruang setelah margin. */
+
   width: auto;
   display: flex;
   flex-wrap: wrap;
@@ -834,7 +824,7 @@ h2 {
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
+
   color: #ffffff;
   z-index: 11;
 }
@@ -1047,7 +1037,7 @@ h2 {
   font-size: 20px;
   line-height: 30px;
   top: -4rem;
-  /* identical to box height */
+
   color: #ffffff;
 }
 .garis2bawah {
@@ -1074,8 +1064,6 @@ h2 {
   margin: auto;
   background: black;
 }
-
-/* footer */
 
 footer {
   width: 100%;
@@ -1245,14 +1233,13 @@ hr {
 .col2 form button {
   background-color: #62bae7;
 }
-/* end */
 
 @media (min-width: 1250px) {
   .lebihBanyak {
     z-index: 3;
     right: 12rem;
   }
-  /* artikel */
+
   .judulnya2 h1, .judulnya2 p {
     top: 1rem;
   }
@@ -1277,8 +1264,6 @@ hr {
 }
 
 @media (max-width: 1250px) {
-  /* Offset negatif `right: -3rem` mendorong blok subscribe keluar viewport
-     begitu layar menyempit. Di desktop lebar masih muat, di bawah ini tidak. */
   .bawah .isi {
     right: 0;
   }
@@ -1286,7 +1271,7 @@ hr {
     z-index: 3;
     right: 12rem;
   }
-  /* artikel */
+
   .judulnya2 h1, .judulnya2 p {
     top: 1rem;
   }
@@ -1336,12 +1321,10 @@ hr {
     right: 9rem;
   }
 
-  /* Artikel */
   .judulnya2 h1, .judulnya2 p {
     top: 1rem;
   }
 
-  /* aa */
   .bawah .logo img {
     width: 80%;
   }
@@ -1401,7 +1384,6 @@ hr {
   .wisataterdekat .kanan .gambar .kumpulangambarkanan p {
     font-size: 17.5px;
   }
-  /*  */
 
   .header {
     padding: 2rem;
@@ -1417,15 +1399,12 @@ hr {
     left: -4rem;
   }
 
-  /* footer */
-
   footer {
     top: 22rem;
   }
   .row {
     width: 100%;
   }
-  /* end */
 }
 
 @media (max-width: 991px) {
@@ -1453,7 +1432,6 @@ hr {
     left: -13rem;
   }
 
-  /* Artikel */
   .judulnya2 h1, .judulnya2 p {
     top: 1rem;
   }
@@ -1461,7 +1439,6 @@ hr {
     top: 139rem;
   }
 
-  /* aaa */
   .bawah .logo img {
     width: 80%;
   }
@@ -1484,7 +1461,6 @@ hr {
     width: 330px;
     height: 40px;
   }
-  /*  */
 
   .garis3 {
     width: 85%;
@@ -1545,7 +1521,7 @@ hr {
   .atasGambar2 {
     left: 6rem;
   }
-  /* fppter */
+
   footer {
     top: 55rem;
   }
@@ -1576,7 +1552,6 @@ hr {
     left: -1rem;
     font-size: 0.1rem;
   }
-  /* end */
 }
 
 @media (max-width: 768px) {
@@ -1591,7 +1566,6 @@ hr {
     right: 9.6rem;
   }
 
-  /* artikel */
   .judulnya2 h1, .judulnya2 p {
     top: 1rem;
   }
@@ -1607,7 +1581,7 @@ hr {
   .bawahgambarmain3 .kanan p {
     font-size: 10px;
   }
-  /* aaa */
+
   .bawah .logo img {
     width: 100%;
     margin-left: 2rem;
@@ -1631,7 +1605,7 @@ hr {
     width: 200px;
     height: 40px;
   }
-  /*  */
+
   .garis3 {
     width: 80%;
   }
@@ -1643,7 +1617,6 @@ hr {
     width: 85%;
   }
 
-  /* footer */
   .row {
     width: 65%;
   }
@@ -1667,7 +1640,7 @@ hr {
   .bawah input::placeholder {
     font-size: 12px;
   }
-  /* end */
+
   .nearby-place {
     display: inline-block;
     width: 100%;
@@ -1700,7 +1673,6 @@ hr {
     padding-bottom: 2rem;
   }
 }
-/* end */
 
 @media (max-width: 587px) {
   .judulnya h1, .judulnya p {
@@ -1724,7 +1696,6 @@ hr {
     font-size: 16px;
   }
 
-  /*  artikel */
   .gambarartikel2 .gambarmain2 {
     width: min(400px, 100%);
   }
@@ -1738,7 +1709,6 @@ hr {
     font-size: 12px;
   }
 
-  /* aaa */
   .bawah .logo {
     width: 100%;
   }
@@ -1782,7 +1752,6 @@ hr {
     font-size: 15px;
     line-height: 30px;
   }
-  /*  */
 
   .garis3 {
     width: 90%;
@@ -1846,10 +1815,6 @@ hr {
     z-index: 3;
   }
 
-  /* artikel */
-
-  /* absolute + left:6rem membuat judul melewati tepi kanan di
-                 layar 360px; batasi lebarnya ke sisa ruang yang ada. */
   .atasGambar2 {
     max-width: calc(100% - 6rem);
   }
@@ -1870,9 +1835,7 @@ hr {
   .gambarmain2 .atas {
     margin-left: 1rem;
   }
-  /* Margin horizontal 3rem di atas kartu selebar 100% membuat
-                 total melebihi layar. 0 di kanan-kiri, jarak antar kartu
-                 tetap dari margin vertikal. */
+
   .gambarartikel2 .gambarmain2 {
     margin: 2rem 0;
   }
@@ -1888,7 +1851,6 @@ hr {
     top: 186rem;
   }
 
-  /* aaa */
   .bawah .logo {
     width: 100%;
   }
@@ -1972,7 +1934,7 @@ hr {
     width: 100%;
     margin-top: 48rem;
   }
-  /*  */
+
   .garis2 img {
     position: relative;
     right: -12.5rem;
@@ -1987,11 +1949,11 @@ hr {
     margin-left: -4rem;
   }
   .cookie {
-    font-size: 12px; /* 8px di bawah ambang baca nyaman di layar HP */
+    font-size: 12px;
     width: auto;
     margin-inline: 1rem;
   }
-  /* Link kebijakan/bantuan perlu jarak sentuh, bukan sekadar teks. */
+
   .cookie a {
     display: inline-block;
     padding: 6px 4px;
@@ -2031,23 +1993,6 @@ hr {
   }
 }
 
-/* ==========================================================================
-   FOOTER (.footer2)
-   --------------------------------------------------------------------------
-   Tata letak lama dibangun dari offset relative yang saling menimpa:
-     form      { top: 70px }      .cookie { top: 80px }
-     .sosmed i { top: -6rem }     hr      { top: -50px }
-     .row .col1{ margin-top: -4rem }
-   Tiap elemen digeser sendiri-sendiri, jadi tinggi baris ditentukan kolom
-   terpanjang dan menyisakan lubang kosong besar di tengah — di mobile garis
-   <hr> bahkan memotong form langganan.
-
-   Blok di bawah menggantinya dengan flexbox: posisi diatur oleh gap dan
-   alignment, bukan pergeseran manual. Semua di-scope ke .footer2 karena
-   .col1/.sosmed juga dipakai di luar footer (blok "Share" di halaman
-   rekomendasi), jadi aturan lama tidak boleh diganggu.
-   ========================================================================== */
-
 .footer2 {
   padding: 5rem 0 1rem;
 }
@@ -2068,8 +2013,6 @@ hr {
   padding: 0;
   min-width: 0;
 }
-
-/* --- Kolom kiri: logo + sosial media --- */
 
 .footer2 .col1 {
   display: flex;
@@ -2095,7 +2038,7 @@ hr {
 
 .footer2 .sosmed .bi,
 .footer2 .sosmedd .bi {
-  position: static; /* buang top:-6rem / left:2rem */
+  position: static;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2121,8 +2064,6 @@ hr {
   transform: translateY(-2px);
 }
 
-/* --- Kolom kanan: form langganan + tautan --- */
-
 .footer2 .col2 {
   display: flex;
   flex-direction: column;
@@ -2132,7 +2073,7 @@ hr {
 }
 
 .footer2 .col2 form {
-  position: static; /* buang top:70px */
+  position: static;
   display: flex;
   gap: 10px;
   width: 100%;
@@ -2156,7 +2097,7 @@ hr {
 }
 
 .footer2 .cookie {
-  position: static; /* buang top:80px */
+  position: static;
   width: auto;
   margin: 0;
   padding: 0;
@@ -2176,28 +2117,19 @@ hr {
   text-decoration: underline;
 }
 
-/* Pemisah dibuat lewat CSS, bukan karakter "|" yang diketik di dalam teks
-   link — supaya garisnya tidak ikut jadi bagian area klik.
-   Dipasang sebagai ::after pada link SEBELUMNYA (bukan ::before pada link
-   berikutnya) supaya saat teks membungkus, "|" ikut baris link di depannya
-   dan tidak pernah menggantung di awal baris. */
 .footer2 .cookie a:not(:last-child)::after {
   content: "|";
   margin: 0 0.9rem;
   opacity: 0.45;
 }
 
-/* --- Garis pemisah & keterangan bawah --- */
-
 .footer2 hr {
-  position: static; /* buang top:-50px yang memotong form */
+  position: static;
   width: min(1200px, 90%);
   margin: 4rem auto 2.5rem;
 }
 
 .footer2 .kumpulan {
-  /* `.kumpulan { margin-top: 14rem }` di breakpoint 450px meninggalkan lubang
-     kosong ~180px antara garis pemisah dan teks keterangan. */
   margin-top: 0;
   padding-inline: 5%;
 }
@@ -2208,8 +2140,7 @@ hr {
   margin-inline: auto;
   font-size: 1.3rem;
   line-height: 1.8;
-  /* `text-transform: capitalize` global membuat kalimat penuh terbaca
-     "This Site Is A Site Made By..." — kalimat utuh dibiarkan apa adanya. */
+
   text-transform: none;
 }
 
@@ -2218,8 +2149,6 @@ hr {
   font-size: 1.2rem;
   text-transform: none;
 }
-
-/* --- Tablet & HP --- */
 
 @media (max-width: 768px) {
   .footer2 {
@@ -2255,7 +2184,7 @@ hr {
   .footer2 .cookie {
     text-align: center;
   }
-  /* Tinggi area klik jadi 29px — sedikit di bawah ambang sentuh 32px. */
+
   .footer2 .cookie a {
     padding: 7px 0;
   }
@@ -2263,30 +2192,6 @@ hr {
     margin: 3rem auto 2rem;
   }
 }
-
-/* ==========================================================================
-   HEADER (.header)
-   --------------------------------------------------------------------------
-   Masalah pada versi lama:
-   1. `.icons` tidak pernah dijadikan flex row, sedangkan #menu-btn dan
-      #search-btn adalah <div> (block) — tiap ikon jatuh ke barisnya sendiri.
-      Akibatnya ikon cari & mode gelap menumpuk vertikal dan tinggi header
-      melompat-lompat (71px → 101px → 113px → 154px tergantung lebar layar).
-   2. Jarak antar blok diatur offset manual yang saling dorong:
-        .dropdown        { left: 14px }
-        #search-btn      { left: 10px }
-        #darkmode        { left: 10px }
-        .navbar/.dropdown/.icons { left: -4rem }  (dan -1rem di breakpoint lain)
-      Hasilnya bendera menempel ke ikon (jarak 0px) dan di 820-900px logo
-      justru menimpa navbar (-11px).
-   3. Menu off-canvas baru muncul di <=768px, padahal di 820-900px navigasi
-      sudah tidak muat.
-
-   Diganti satu sistem: header adalah flex row, jarak diatur `gap`, dan menu
-   berubah jadi hamburger sejak <=991px. Semua offset lama dinetralkan.
-   Blok ini sengaja diletakkan di luar wilayah hasil kompilasi SCSS supaya
-   tidak hilang kalau style.scss di-compile ulang.
-   ========================================================================== */
 
 .header {
   display: flex;
@@ -2298,11 +2203,6 @@ hr {
   padding: 0.8rem clamp(1.6rem, 5vw, 7%);
 }
 
-/* Logo mendorong sisanya ke kanan.
-   `width: auto` penting: aturan global `.logo { width: 230px }` sebenarnya
-   untuk logo di footer, tapi ikut kena ke <a class="logo"> di header. Karena
-   gambarnya hanya 120px, sisa 110px jadi ruang kosong tak terlihat yang
-   mendorong ikon melewati tepi kanan layar (dan di 1024px menabrak navbar). */
 .header .logo {
   display: flex;
   align-items: center;
@@ -2315,13 +2215,10 @@ hr {
   display: block;
   width: 120px;
   height: auto;
-  /* Recommend.css memberi `margin-left: 2rem` pada .logo img di layar kecil —
-     20px ekstra yang mendorong isi header keluar layar di 320px. */
+
   margin: 0;
   padding: 0;
 }
-
-/* --- Navigasi --- */
 
 .header .navbar {
   display: flex;
@@ -2330,14 +2227,12 @@ hr {
 }
 
 .header .navbar a {
-  margin-left: 0;          /* jarak diambil alih oleh gap */
+  margin-left: 0;
   white-space: nowrap;
 }
 
-/* --- Pemilih bahasa --- */
-
 .header .dropdown {
-  left: 0;                 /* buang offset 14px */
+  left: 0;
   display: flex;
   align-items: center;
   flex: 0 0 auto;
@@ -2355,7 +2250,6 @@ hr {
   display: block;
 }
 
-/* Menu bahasa dirapatkan ke tepi kanan pemicunya supaya tidak keluar layar. */
 .header .dropdown .wrapper {
   right: 0;
   left: auto;
@@ -2375,45 +2269,36 @@ hr {
   min-height: 4.4rem;
 }
 
-/* --- Ikon aksi --- */
-
 .header .icons {
-  left: 0;                 /* buang offset -4rem / -1rem */
+  left: 0;
   display: flex;
   align-items: center;
   gap: 0.4rem;
   flex: 0 0 auto;
 }
 
-/* Kotak sentuh 44px sesuai pedoman aksesibilitas — ukuran glyph tidak berubah,
-   hanya area kliknya yang diperbesar. */
 .header .icons > div,
 .header .icons > i,
 .header .icons > a,
 .header .icons #search-btn,
 .header .icons #darkmode {
-  position: static;        /* buang left: 10px */
+  position: static;
   left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 4.4rem;
   min-height: 4.4rem;
-  margin: 0;               /* buang margin-left: 2rem */
+  margin: 0;
   font-size: 2.2rem;
   line-height: 1;
 }
-
-/* --- Tablet & HP: navigasi jadi hamburger sejak 991px ---------------------
-   Di 820-900px menu horizontal sudah bertabrakan dengan logo, jadi ambang
-   off-canvas dinaikkan dari 768px ke 991px. */
 
 @media (max-width: 991px) {
   .header {
     gap: 1.2rem;
   }
 
-  /* Offset warisan yang menggeser seluruh blok ke kiri. */
   .header .navbar,
   .header .dropdown,
   .header .icons {
@@ -2430,7 +2315,7 @@ hr {
     position: fixed;
     top: 0;
     left: -110%;
-    /* 35rem bisa lebih lebar dari layar 320px — dibatasi ke 80vw. */
+
     width: min(35rem, 80vw);
     height: 100%;
     padding: 2rem;
@@ -2481,26 +2366,6 @@ hr {
   }
 }
 
-/* ==========================================================================
-   ALUR VERTIKAL HALAMAN
-   --------------------------------------------------------------------------
-   Jarak antar bagian sebelumnya dibuat dengan `position: relative; top: Xrem`.
-   Offset semacam itu hanya MENGGESER tampilan — kotak layout aslinya tetap di
-   tempat semula, jadi ruangnya tidak pernah dipesan. Akibat berantai:
-
-     .gambarRekomendasi  top: 8rem   → kartu keluar 80px dari .main
-     #load-more          top: 2rem   → jarak atas 10px, bawah minus (menimpa)
-     .bawah              top: 5rem   → banner langganan naik menimpa kartu
-     .gambarmain2        top: 11rem  → kartu artikel keluar dari containernya
-     .artikel .button2   top: 84rem  → dan ditebak ulang tiap breakpoint
-                                       (153rem / 139rem / 186rem)
-
-   Semua diganti margin sungguhan supaya tinggi elemen = ruang yang dipakai.
-   Angka tebakan per-breakpoint ikut dinetralkan karena tidak diperlukan lagi.
-   ========================================================================== */
-
-/* Judul besar tiap section sebelumnya `position: absolute`, jadi melayang di
-   atas konten lain dan tidak menyisakan ruang untuk dirinya sendiri. */
 .atasGambar2 {
   position: static;
   left: auto;
@@ -2508,22 +2373,16 @@ hr {
   margin: 1rem 0 0 clamp(1.5rem, 5vw, 180px);
 }
 
-/* --- Bagian rekomendasi --- */
-
 .gambarRekomendasi {
   top: auto;
   margin: 8rem auto 0;
 }
-
-/* --- Bagian artikel --- */
 
 .artikel {
   top: auto;
   margin-top: 7rem;
 }
 
-/* Offset dipindah dari tiap kartu ke containernya, supaya container benar-benar
-   membungkus kartunya (2rem lama + 11rem geseran = 13rem). */
 .artikel .gambarartikel2 {
   margin-top: 13rem;
 }
@@ -2532,14 +2391,11 @@ hr {
   top: auto;
 }
 
-/* --- Tombol & banner: jarak atas-bawah dibuat sama --- */
-
 #load-more,
 #load-more2 {
   top: auto;
   margin: 6rem auto;
 }
-
 
 .bawah {
   top: auto;
@@ -2549,15 +2405,6 @@ hr {
 .bawah .isi {
   top: auto;
 }
-
-/* --- Irama vertikal yang konsisten ---------------------------------------
-   Satu skala dipakai untuk seluruh halaman, menggantikan angka yang
-   sebelumnya berbeda-beda di tiap bagian (80 / 99 / 210 / 50 px):
-
-     judul section  →  kontennya      : 6rem
-     konten         →  tombol         : 6rem  (atas = bawah)
-     antar section                    : 8rem
-   ------------------------------------------------------------------------ */
 
 .gambarRekomendasi {
   margin: 6rem auto 0;
@@ -2571,25 +2418,15 @@ hr {
   margin-top: 6rem;
 }
 
-
-/* Grid artikel dulu `position: absolute; top: 0`, sehingga tingginya nol di
-   alur layout — kartu-kartunya melayang menimpa judul "Berita" di atasnya,
-   dan semua yang di bawahnya harus didorong manual. Itulah asal-usul
-   `.button2 { top: 84rem }` yang lalu ditebak ulang jadi 139/153/186rem per
-   breakpoint. Dikembalikan ke alur normal supaya tingginya nyata. */
 .artikel .gambarartikel {
   position: static;
   top: auto;
 }
 
-/* Satu-satunya jarak yang masih 8rem sementara semua tetangganya 6rem. */
 .artikel {
   margin-top: 6rem;
 }
 
-/* Nudge `top` kecil pada pasangan judul bikin jarak judul-kecil ke judul-besar
-   berbeda antar section (1px di Rekomendasi vs 10px di Berita). Diganti margin
-   supaya keduanya identik. */
 .judulnya {
   top: auto;
   margin-top: 1rem;
@@ -2600,27 +2437,11 @@ hr {
   margin-top: 1rem;
 }
 
-/* `footer { top: 27rem }` (dan 55rem di <=1200px) mendorong footer turun tanpa
-   memesan ruang, meninggalkan area kosong 200-800px sebelum footer di halaman
-   berita. Offset itu dulu perlu karena blok di atasnya juga digeser `top`;
-   setelah semuanya pakai margin sungguhan, kompensasinya tidak diperlukan. */
 footer.footer2 {
   top: auto;
-  /* `footer { margin-top: 11rem / 12rem / 4rem }` di beberapa breakpoint juga
-     kompensasi lama untuk alur yang rusak — kini menambah ruang mati. */
+
   margin-top: 0;
 }
-
-/* ==========================================================================
-   BANNER LANGGANAN (.bawah) DI LAYAR KECIL
-   --------------------------------------------------------------------------
-   Di bawah 768px banner masih memakai tinggi tetap (500px), `display: block`,
-   dan `.isi1` yang `position: absolute` — sehingga judul menimpa kolom email.
-   Diganti kolom flex dengan tinggi mengikuti isi.
-
-   Selektor diawali `body` semata-mata untuk menaikkan kekhususan di atas
-   aturan `.bawah` di Recommend.css, yang dimuat setelah file ini.
-   ========================================================================== */
 
 @media (max-width: 768px) {
   body .bawah {
@@ -2654,8 +2475,6 @@ footer.footer2 {
     gap: 1.4rem;
   }
 
-  /* `.bawah .isi .isi1` di Recommend.css (3 kelas) lebih khusus, jadi selektor
-     di sini harus setara + 1 elemen agar menang. */
   body .bawah .isi p,
   body .bawah .isi .isi1 {
     position: static;
@@ -2690,15 +2509,6 @@ footer.footer2 {
   }
 }
 
-/* ==========================================================================
-   HASIL PENCARIAN
-   --------------------------------------------------------------------------
-   Panel dibuat oleh js/script.js dan disisipkan tepat di bawah form pencarian
-   di dalam overlay, jadi markup tiap halaman tidak perlu diubah.
-   ========================================================================== */
-
-/* Overlay aslinya flex BARIS, jadi panel hasil berjajar di samping form.
-   Dijadikan kolom supaya hasil tepat di bawah kotak pencarian. */
 .search-form {
   flex-direction: column;
 }
@@ -2768,27 +2578,12 @@ footer.footer2 {
     grid-template-columns: auto 1fr;
     gap: 0.4rem 1rem;
   }
-  /* Daerah pindah ke baris kedua, sejajar di bawah nama. */
+
   .kw-search-region {
     grid-column: 2;
     text-align: left;
   }
 }
-
-/* ==========================================================================
-   GAMBAR KARTU ARTIKEL
-   --------------------------------------------------------------------------
-   `.gambarmain3` adalah flex container setinggi 200px, dan gambarnya diberi
-   `height: 100%`. Di konteks flex, persentase tinggi itu tidak selalu
-   terselesaikan — sehingga aspect-ratio bawaan dari atribut width/height pada
-   <img> mengambil alih dan gambar tumbuh mengikuti rasio aslinya (terukur
-   391px, 320px, dan 229px pada kartu yang berbeda), meluber keluar kartu dan
-   menimpa kartu di atasnya.
-
-   Container dijadikan blok biasa dengan tinggi pasti, jadi `height: 100%`
-   punya acuan yang jelas; `overflow: hidden` menjaga agar tidak ada yang
-   keluar walau rasionya tidak pas.
-   ========================================================================== */
 
 .gambarmain3 {
   display: block;
@@ -2802,12 +2597,6 @@ footer.footer2 {
   object-fit: cover;
 }
 
-/* ==========================================================================
-   UTILITAS & PERBAIKAN SEMANTIK
-   ========================================================================== */
-
-/* Terbaca pembaca layar, tidak terlihat di layar. Dipakai untuk <h1> halaman
-   beranda, yang judulnya selama ini hanya berupa logo bergambar. */
 .kw-sr-only {
   position: absolute;
   width: 1px;
@@ -2820,29 +2609,12 @@ footer.footer2 {
   border: 0;
 }
 
-/* Ikon sosial belum menaut ke akun mana pun. Menandainya sebagai dekorasi
-   lebih jujur daripada memberi tautan mati — dan pembaca layar tidak lagi
-   membacakan lima ikon yang tidak bisa diapa-apakan. Begitu akunnya ada,
-   bungkus tiap ikon dengan <a href="..."> dan hapus blok ini. */
 .sosmed .bi,
 .sosmedd .bi,
 .footer2 .sosmed .bi,
 .footer2 .sosmedd .bi {
   cursor: default;
 }
-
-/* ==========================================================================
-   PEMILIH BAHASA
-   --------------------------------------------------------------------------
-   Versi lama: <ul> ber-`position: absolute` tanpa `top`, sehingga jatuh di
-   posisi statiknya — yaitu menumpuk persis di atas bendera pemicunya
-   (terukur jarak -46px). Latarnya juga transparan, jadi tidak ada panel yang
-   terlihat; efeknya bendera hanya seperti berganti di tempat.
-
-   Selain itu menu hanya muncul saat :hover — di layar sentuh tidak ada hover,
-   jadi tombolnya tidak pernah bisa dipakai. Kini terbuka lewat klik (kelas
-   .kw-open dari js/script.js), hover, maupun fokus papan ketik.
-   ========================================================================== */
 
 .header .dropdown {
   position: relative;
@@ -2851,8 +2623,6 @@ footer.footer2 {
   align-items: center;
   flex: 0 0 auto;
 }
-
-/* --- Pemicu --- */
 
 .header .kw-lang-btn {
   display: inline-flex;
@@ -2900,10 +2670,8 @@ footer.footer2 {
   transform: rotate(180deg);
 }
 
-/* --- Panel --- */
-
 .header .dropdown .wrapper {
-  display: block;                 /* tampil/sembunyi diatur opacity + visibility */
+  display: block;
   position: absolute;
   top: 100%;
   right: 0;
@@ -2911,8 +2679,7 @@ footer.footer2 {
   z-index: 1200;
   min-width: 20rem;
   margin: 0;
-  /* jarak 8px sekaligus jembatan agar kursor bisa berpindah dari tombol ke
-     panel tanpa menutup menu */
+
   padding: 0.8rem 0 0;
   list-style: none;
   opacity: 0;
@@ -2922,10 +2689,6 @@ footer.footer2 {
   background: none;
 }
 
-/* Hanya kelas dari JS yang menentukan buka/tutup. Dulu :hover dan
-   :focus-within ikut menentukan, sehingga Escape tidak pernah benar-benar
-   menutup menu: tombolnya masih ter-fokus dan kursor masih di atasnya, jadi
-   CSS langsung membukanya kembali. Hover kini ditangani JS juga. */
 .header .dropdown.kw-open .wrapper {
   opacity: 1;
   visibility: visible;
@@ -2970,10 +2733,7 @@ footer.footer2 {
   object-fit: cover;
 }
 
-/* --- Layar kecil --- */
-
 @media (max-width: 480px) {
-  /* kode bahasa dilepas agar header tetap lega; bendera sudah cukup */
   .header .kw-lang-code {
     display: none;
   }
@@ -2981,8 +2741,7 @@ footer.footer2 {
     gap: 0.4rem;
     padding: 0 0.7rem;
   }
-  /* `min-width: 20rem` membuat panel keluar 22px ke kiri layar di 320px.
-     Lebar mengikuti isi, dengan batas aman terhadap tepi layar. */
+
   .header .dropdown .wrapper {
     min-width: 0;
     width: max-content;

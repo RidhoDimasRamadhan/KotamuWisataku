@@ -1,9 +1,3 @@
-/* ==========================================================================
-   Halaman teks statis (kebijakan.html, policy.html)
-   ========================================================================== */
-
-/* Halaman ini tidak diawali foto hero gelap, sedangkan header memakai teks
-   putih dengan latar transparan — hasilnya putih di atas putih. */
 .kw-page-body .header,
 .kw-page-body .header.active {
   background: #001d2c;
@@ -12,7 +6,7 @@
 
 .kw-page {
   width: min(760px, 90%);
-  margin: 12rem auto 6rem; /* menghindari header position: fixed */
+  margin: 12rem auto 6rem;
   color: #1b1b1b;
 }
 
@@ -28,7 +22,6 @@
   margin-bottom: 1rem;
 }
 
-/* Daftar isi */
 .kw-page-toc {
   display: flex;
   flex-wrap: wrap;
@@ -53,7 +46,7 @@
 
 .kw-page section {
   margin-bottom: 4.5rem;
-  scroll-margin-top: 10rem; /* judul tidak tertutup header saat lompat anchor */
+  scroll-margin-top: 10rem;
 }
 
 .kw-page h2 {
@@ -66,7 +59,6 @@
   margin: 2.4rem 0 0.8rem;
 }
 
-/* `* { text-transform: capitalize }` global merusak kalimat panjang. */
 .kw-page p,
 .kw-page li,
 .kw-page dd,
@@ -91,8 +83,7 @@
 .kw-page a:not(.kw-page-toc a) {
   color: #1f7fa8;
   text-decoration: underline;
-  /* Alamat email panjang tidak punya titik penggal alami — tanpa ini ia
-     mendorong halaman melebar di layar 360px. */
+
   overflow-wrap: anywhere;
 }
 
@@ -104,8 +95,6 @@
   background: #eef2f5;
   text-transform: none;
 }
-
-/* --- Tema gelap ------------------------------------------------------------ */
 
 body.kw-dark .kw-page,
 body.kw-dark .kw-page > h1,
