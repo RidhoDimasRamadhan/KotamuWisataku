@@ -66,6 +66,16 @@ body.kw-dark .beranda p {
   color: var(--kwd-text);
 }
 
+body.kw-dark .rekomendasi h2,
+body.kw-dark .artikel h2,
+body.kw-dark .atasGambar h2,
+body.kw-dark .atasGambar2 h2,
+body.kw-dark .bot-content h2,
+body.kw-dark .article h2,
+body.kw-dark .situgunung h2 {
+  color: var(--kwd-text);
+}
+
 body.kw-dark .judulnya h1,
 body.kw-dark .judulnya2 h1 {
   color: var(--kwd-accent);
@@ -122,6 +132,11 @@ body.kw-dark .search-form form input {
 body.kw-dark #map {
   border: 1px solid var(--kwd-border);
   border-radius: 12px;
+}
+
+body.kw-dark #map .leaflet-tile-pane,
+body.kw-dark #kw-detail-map .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.88) contrast(0.92) saturate(0.8);
 }
 
 body.kw-dark::-webkit-scrollbar-track {
