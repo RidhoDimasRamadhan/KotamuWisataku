@@ -1,233 +1,212 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Situ Gunung — KotamuWisataku Recommendation</title>
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-    <meta name="description" content="Situ Gunung Sukabumi: natural lake, suspension bridge, and waterfall in a single tour.">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Recommend.css">
-    <link rel="stylesheet" href="css/dark.css">
-    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<title>Situ Gunung — KotamuWisataku Recommendation</title>
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Situ Gunung — KotamuWisataku Recommendation">
+    <meta property="og:description" content="Situ Gunung — KotamuWisataku Recommendation">
+    <meta property="og:image" content="img/situ.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="id_ID">
+    <meta name="twitter:card" content="summary_large_image">
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="img/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="img/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="Situ Gunung Sukabumi: natural lake, suspension bridge, and waterfall in a single tour." name="description"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://unpkg.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet"/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/Recommend.css" rel="stylesheet"/>
+<link href="css/dark.css" rel="stylesheet"/>
+<script crossorigin="" defer="" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 <body>
-
-    <header class="header">
-        <a href="English.html" class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" width="120" height="56" alt="logo"></picture></a>
-        <!-- navbar -->
-        
-        <nav class="navbar">
-            <div id="nav-close" class="bi bi-x-lg"></div>
-        </nav>
-
-        <div class="dropdown">
-            <a href="English.html" aria-label="English"><picture><source srcset="img/eng.webp" type="image/webp"><img src="img/eng.png" alt="UK flag" width="25" height="20"></picture></a>
-            <ul class="wrapper">
-                <li class="usb">
-                    <a href="ComeToRecommend.html" aria-label="Bahasa Indonesia"><picture><source srcset="img/indonesia.webp" type="image/webp"><img src="img/indonesia.png" alt="Indonesia flag" width="25" height="20"></picture></a>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="icons">
-            <div id="menu-btn" class="bi bi-list"></div>   
-            <div id="search-btn" class="bi bi-search"></div>
-            <i class="bi bi-moon-fill" id="darkmode"></i>
-        </div>
-    </header>
-
-<div class="search-form">
-    <div id="close-search" class="bi bi-x-lg"></div>
-    <form action="">
-        <input type="search" name="" placeholder="mencari disini..." id="search-box">
-        <label for="search-box" class="bi bi-search"></label>
-    </form>
+<header class="header">
+<a class="logo" href="English.html"><picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" height="56" src="img/logo1.png" width="120"/></picture></a>
+<!-- navbar -->
+<nav class="navbar">
+<div class="bi bi-x-lg" id="nav-close"></div>
+</nav>
+<div class="dropdown">
+<a aria-label="English" href="English.html"><picture><source srcset="img/eng.webp" type="image/webp"/><img alt="UK flag" height="20" src="img/eng.png" width="25"/></picture></a>
+<ul class="wrapper">
+<li class="usb">
+<a aria-label="Bahasa Indonesia" href="ComeToRecommend.html"><picture><source srcset="img/indonesia.webp" type="image/webp"/><img alt="Indonesia flag" height="20" src="img/indonesia.png" width="25"/></picture></a>
+</li>
+</ul>
 </div>
-
-
-<div class="container ">
-    <div class="ke1">
-        <picture><source srcset="img/situ.webp" type="image/webp"><img src="img/situ.jpg" alt="gambar cewe" width="1536" height="1920"></picture>
-    </div>
-    <div class="isi">
-        <div class="beranda">
-            <a href="index.html"><p>Beranda</p></a>
-            <picture><source srcset="img/panahitem.webp" type="image/webp"><img src="img/panahitem.jpg" alt="" width="35" height="38"></picture>
-            <p>Rekomendasi</p>
-            <picture><source srcset="img/panahitem.webp" type="image/webp"><img src="img/panahitem.jpg" alt="" width="35" height="38"></picture>
-            <p>Situ Gunung</p>
-
-        </div>
-        
-        <div class="garis"></div>
-        <div class="kiri">
-            <div class="kumpulankiri">
-                    <div class="situgunung">
-                        <h1>Situ Gunung</h1>
-                        <p class="tipis1">Situ Gunung is a tourist attraction in Sukabumi that holds millions of charms, millions of beauties, which translates into several very popular tourist spots. In fact, one of the spots, namely the Situ Gunung Suspension Bridge, is the Situ Gunung Bridge which has the status of a suspension bridge in the middle of the longest forest in Southeast Asia.
+<div class="icons">
+<div class="bi bi-list" id="menu-btn"></div>
+<div class="bi bi-search" id="search-btn"></div>
+<i class="bi bi-moon-fill" id="darkmode"></i>
+</div>
+</header>
+<div class="search-form">
+<div class="bi bi-x-lg" id="close-search"></div>
+<form action="">
+<input id="search-box" name="" placeholder="mencari disini..." type="search"/>
+<label class="bi bi-search" for="search-box"></label>
+</form>
+</div>
+<main><div class="container">
+<div class="ke1">
+<picture><source srcset="img/situ.webp" type="image/webp"/><img alt="gambar cewe" height="1920" src="img/situ.jpg" width="1536"/></picture>
+</div>
+<div class="isi">
+<div class="beranda">
+<a href="index.html"><p>Beranda</p></a>
+<picture><source srcset="img/panahitem.webp" type="image/webp"/><img alt="" height="38" src="img/panahitem.jpg" width="35"/></picture>
+<p>Rekomendasi</p>
+<picture><source srcset="img/panahitem.webp" type="image/webp"/><img alt="" height="38" src="img/panahitem.jpg" width="35"/></picture>
+<p>Situ Gunung</p>
+</div>
+<div class="garis"></div>
+<div class="kiri">
+<div class="kumpulankiri">
+<div class="situgunung">
+<h1>Situ Gunung</h1>
+<p class="tipis1">Situ Gunung is a tourist attraction in Sukabumi that holds millions of charms, millions of beauties, which translates into several very popular tourist spots. In fact, one of the spots, namely the Situ Gunung Suspension Bridge, is the Situ Gunung Bridge which has the status of a suspension bridge in the middle of the longest forest in Southeast Asia.
                             </p>
-                            <br>
-                        <p class="tebel">Location and Address of Situ Gunung</p>
-                        <p class="tipis">The location of Situ Gunung is located in Situ Gunung Nature Park, Sukabumi. The address of Situ Gunung Sukabumi is in Kadudampit, Sukabumi, West Java Province.</p>
-
-                        <p class="tebel">Route to Situ Mount Sukabumi</p>
-                        <br>
-                        <div class="kumpulangambar">
-                            <picture><source srcset="img/situgj.webp" type="image/webp"><img src="img/situgj.jpg" alt="The road into Situ Gunung between tall trees" width="800" height="600"></picture>
-                        </div>
-                        <br>
-                        <p class="tipis">The road to Situ Gunung can be accessed by using two-wheeled vehicles, or four-wheeled vehicles, until you reach the main parking area. The distance of Situ Gunung from Sukabumi City square is only about 16 kilometers, with a travel time range of 40 minutes by using a private vehicle</p>
-                        <br>
-                        <p class="tebel">Situ Gunung Entrance Ticket Price</p>
-                        <p class="tipis">Situ Gunung entrance ticket Rp. 16.000 per person, on weekdays, for recreation.
+<br/>
+<h2 class="tebel">Location and Address of Situ Gunung</h2>
+<p class="tipis">The location of Situ Gunung is located in Situ Gunung Nature Park, Sukabumi. The address of Situ Gunung Sukabumi is in Kadudampit, Sukabumi, West Java Province.</p>
+<h2 class="tebel">Route to Situ Mount Sukabumi</h2>
+<br/>
+<div class="kumpulangambar">
+<picture><source srcset="img/situgj.webp" type="image/webp"/><img alt="The road into Situ Gunung between tall trees" height="600" src="img/situgj.jpg" width="800"/></picture>
+</div>
+<br/>
+<p class="tipis">The road to Situ Gunung can be accessed by using two-wheeled vehicles, or four-wheeled vehicles, until you reach the main parking area. The distance of Situ Gunung from Sukabumi City square is only about 16 kilometers, with a travel time range of 40 minutes by using a private vehicle</p>
+<br/>
+<h2 class="tebel">Situ Gunung Entrance Ticket Price</h2>
+<p class="tipis">Situ Gunung entrance ticket Rp. 16.000 per person, on weekdays, for recreation.
                             <div class="ul">
-                                <ul>
-                                    <li>Situ Gunung entrance ticket Rp. 18,500 per person, on weekends, for recreation.</li>
-                                    <li>Situ Gunung camping ticket Rp. 24.000 per person, on weekdays.</li>
-                                    <li>Situ Gunung camping ticket Rp. 29.000 per person, on weekends.</li>
-                                  </ul>  
-                            </div>
-                        </p>
-                        <br>
-                        <p class="tebel">Facilities in Situ Gunung</p>
-                        <p class="tipis">
+<ul>
+<li>Situ Gunung entrance ticket Rp. 18,500 per person, on weekends, for recreation.</li>
+<li>Situ Gunung camping ticket Rp. 24.000 per person, on weekdays.</li>
+<li>Situ Gunung camping ticket Rp. 29.000 per person, on weekends.</li>
+</ul>
+</div>
+</p>
+<br/>
+<h2 class="tebel">Facilities in Situ Gunung</h2>
+<p class="tipis">
                             Tourist facilities in Situ Gunung Sukabumi are very complete to support the comfort of visitors' tourism. These include:
                             <div class="ul">
-                                <ul>
-                                <li>Parking area</li>
-                                    <li>Toilet</li>
-                                    <li>Mosque</li>
-                                    <li>Glamping Situ Mount Sukabumi</li>
-                                    <li>Marung</li>
-                                    <li>24-hour Reservation Service</li>
-                                    <li>Spot Selfie</li>
-                                    <li>Other popular tourist spots</li>
-                                  </ul>  
-                            </div>
-                        </p>
-                        <br>
-                        <p class="tebel"> Attractions of Situ Gunung</p>
-                        <br>
-                        <p class="tebel">1. Raft Trip</p>
-                        <p class="tipis">
+<ul>
+<li>Parking area</li>
+<li>Toilet</li>
+<li>Mosque</li>
+<li>Glamping Situ Mount Sukabumi</li>
+<li>Marung</li>
+<li>24-hour Reservation Service</li>
+<li>Spot Selfie</li>
+<li>Other popular tourist spots</li>
+</ul>
+</div>
+</p>
+<br/>
+<h2 class="tebel"> Attractions of Situ Gunung</h2>
+<br/>
+<h3 class="tebel">1. Raft Trip</h3>
+<p class="tipis">
                             The first attraction of Situ Gunung, we start from the tourist activity in the form of a raft trip around the very exotic Situ Gunung lake. Raft trips are becoming a rare activity, especially for those who are used to living in big cities. Introduce our children to nature, so that they grow up with a love for nature.
                         </p>
-                        <br>
-                        <p class="tebel">2. Camping</p>
-                        <p class="tipis">
+<br/>
+<h3 class="tebel">2. Camping</h3>
+<p class="tipis">
                             The second tourist activity in Situ Gunung, as well as being the attraction is camping. The spot has been specially provided by the manager. For those who are camping, or visitors who rent glamping facilities, the management has prepared bonfire facilities.
                         </p>
-                        <br>
-                        <p class="tebel">3. Situ Gunung Suspension Bridge</p>
-                        <p class="tipis">Situ Gunung Suspension Bridge, or Situ Gunung Sukabumi Suspension Bridge was first built in mid-2017, one of which was with the involvement of the surrounding community. And on March 9, 2019, the new Situ Gunung Suspension Bridge was inaugurated, and opened to the public. Since its opening, the suspension bridge has become a favorite spot for visitors to take selfies. In addition, the Situ Gunung Sukabumi Suspension Bridge holds the status of the longest forest suspension bridge in Southeast Asia, as well as a new road, or new access to Curug Sawer.
+<br/>
+<h3 class="tebel">3. Situ Gunung Suspension Bridge</h3>
+<p class="tipis">Situ Gunung Suspension Bridge, or Situ Gunung Sukabumi Suspension Bridge was first built in mid-2017, one of which was with the involvement of the surrounding community. And on March 9, 2019, the new Situ Gunung Suspension Bridge was inaugurated, and opened to the public. Since its opening, the suspension bridge has become a favorite spot for visitors to take selfies. In addition, the Situ Gunung Sukabumi Suspension Bridge holds the status of the longest forest suspension bridge in Southeast Asia, as well as a new road, or new access to Curug Sawer.
                         </p>
-                        <br>
-                        <div class="kumpulangambar">
-                            <img src="img/orangberdiri.jpg" alt="A visitor on a viewing deck facing a waterfall" width="1080" height="1350">
-                        </div>
-                        <p class="tebel">4. Curug Sawer</p>
-                        <p class="tipis">Curug Sawer Sukabumi is still in the same area as Situ Gunung Suspension Bridge, precisely at the foot of Mount Gede Pangrango. It can be ascertained that the air felt is very cool, decorated with shady trees around the waterfall. Curug or Sawer Waterfall has a height of about 35 meters, with a fairly fast water flow. So visitors are prohibited from playing in the water or even bathing right under the fall of the water.
-                        </p>
-
-                        
-    
-                    </div>
-                </div>
-            </div>
-<div class="kanan">
-
-    <a href="https://www.google.com/maps/place/Situ+Gunung/@-6.8319442,106.9143008,15z/data=!3m1!4b1!4m5!3m4!1s0x2e684a7d24eb8f4f:0x1e5e0f34bcb62779!8m2!3d-6.8319444!4d106.9230556">
-        <div id="map"
-             data-lat="-6.8319444"
-             data-lng="106.9186782"
-             data-label="Situ Gunung"
-             data-zoom="13"
-             data-radius="500"></div>
-    </a>
-    <br>
-    <div class="col1">
-        
-        <div class="sosmed">
-            <h3>Share</h3>
-            <div class="a">
-                <i class="bi bi-instagram"></i>
-                <i class="bi bi-facebook"></i>
-                <i class="bi bi-twitter"></i>
-                <i class="bi bi-tiktok"></i>
-                <i class="bi bi-youtube"></i>
-            </div>
-        </div>
-    </div>
+<br/>
+<div class="kumpulangambar">
+<img alt="A visitor on a viewing deck facing a waterfall" height="1350" src="img/orangberdiri.jpg" width="1080"/>
 </div>
-            
-                      
-            
-        </div>
-    </div>
-
-
-    <div class="bawah" style="background-image: url(img/subscribe.jpg);">
-        <div class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" alt="KotamuWisataku" width="452" height="212"></picture></div>
-        <div class="isi">
-            
-            <p class="isi1">Subscribe and Get Info About Travel across INDONESIA </p>
-            
-            <div class="inputbutton" >
-                <form data-subscribe>
-                    <input type="email" name="email" id="namaa" placeholder="Enter your email here....." autocomplete="email" required>
-                    <button type="submit"><p class="subscribe">Subscribe</p></button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer2">
-        <div class="row">
-            <div class="col1">
-                <picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" alt="logo" class="logo" width="452" height="212"></picture>
-                <div class="sosmedd">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-facebook"></i>
-                    <i class="bi bi-twitter"></i>
-                    <i class="bi bi-tiktok"></i>
-                    <i class="bi bi-youtube"></i>
-                </div>
-            </div>
-
-            <div class="col2">
-                <form data-subscribe>
-                    <input type="email" name="email" placeholder="Enter your email..." autocomplete="email" required>
-                    <button type="submit">Subscription</button>
-                </form>
-                <div class="cookie">
-                    <a href="policy.html#contact">Go to Help (Contact Us)</a>
-                    <a href="policy.html#privacy">Privacy Policy</a>
-                    <a href="policy.html#cookie">Cookie Policy</a>
-                    <a href="policy.html#terms">Terms and Conditions</a>
-                </div>
-            </div>
-        </div>
-        
-        <hr>
-        <div class="kumpulan">
-            <span class="desc">This site is a site made by students of Gunadarma Kalimalang University. All contents listed inside 
-                <br>
-                <br> This site is intended to provide information and not as a commercial purpose</span> 
-        </div>
-        <p class="copyright">&#169;2026 Si Paling USB</p>
-    </footer>
-
-<script defer src="data/destinations.js"></script>
-<script defer src="js/script.js"></script>
-<script defer src="js/recomend.js"></script>
+<h3 class="tebel">4. Curug Sawer</h3>
+<p class="tipis">Curug Sawer Sukabumi is still in the same area as Situ Gunung Suspension Bridge, precisely at the foot of Mount Gede Pangrango. It can be ascertained that the air felt is very cool, decorated with shady trees around the waterfall. Curug or Sawer Waterfall has a height of about 35 meters, with a fairly fast water flow. So visitors are prohibited from playing in the water or even bathing right under the fall of the water.
+                        </p>
+</div>
+</div>
+</div>
+<div class="kanan">
+<a href="https://www.google.com/maps/place/Situ+Gunung/@-6.8319442,106.9143008,15z/data=!3m1!4b1!4m5!3m4!1s0x2e684a7d24eb8f4f:0x1e5e0f34bcb62779!8m2!3d-6.8319444!4d106.9230556">
+<div data-label="Situ Gunung" data-lat="-6.8319444" data-lng="106.9186782" data-radius="500" data-zoom="13" id="map"></div>
+</a>
+<br/>
+<div class="col1">
+<div class="sosmed">
+<h2>Share</h2>
+<div class="a">
+<i aria-hidden="true" class="bi bi-instagram"></i>
+<i aria-hidden="true" class="bi bi-facebook"></i>
+<i aria-hidden="true" class="bi bi-twitter"></i>
+<i aria-hidden="true" class="bi bi-tiktok"></i>
+<i aria-hidden="true" class="bi bi-youtube"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bawah" style="background-image: url(img/subscribe.jpg);">
+<div class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="KotamuWisataku" height="212" src="img/logo1.png" width="452"/></picture></div>
+<div class="isi">
+<p class="isi1">Subscribe and Get Info About Travel across INDONESIA </p>
+<div class="inputbutton">
+<form data-subscribe="">
+<input autocomplete="email" id="namaa" name="email" placeholder="Enter your email here....." required="" type="email"/>
+<button type="submit"><p class="subscribe">Subscribe</p></button>
+</form>
+</div>
+</div>
+</div>
+</main><footer class="footer2">
+<div class="row">
+<div class="col1">
+<picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" class="logo" height="212" src="img/logo1.png" width="452"/></picture>
+<div class="sosmedd">
+<i aria-hidden="true" class="bi bi-instagram"></i>
+<i aria-hidden="true" class="bi bi-facebook"></i>
+<i aria-hidden="true" class="bi bi-twitter"></i>
+<i aria-hidden="true" class="bi bi-tiktok"></i>
+<i aria-hidden="true" class="bi bi-youtube"></i>
+</div>
+</div>
+<div class="col2">
+<form data-subscribe="">
+<input autocomplete="email" name="email" placeholder="Enter your email..." required="" type="email"/>
+<button type="submit">Subscription</button>
+</form>
+<div class="cookie">
+<a href="policy.html#contact">Go to Help (Contact Us)</a>
+<a href="policy.html#privacy">Privacy Policy</a>
+<a href="policy.html#cookie">Cookie Policy</a>
+<a href="policy.html#terms">Terms and Conditions</a>
+</div>
+</div>
+</div>
+<hr/>
+<div class="kumpulan">
+<span class="desc">This site is a site made by students of Gunadarma Kalimalang University. All contents listed inside 
+                <br/>
+<br/> This site is intended to provide information and not as a commercial purpose</span>
+</div>
+<p class="copyright">©2026 Si Paling USB</p>
+</footer>
+<script defer="" src="data/destinations.js"></script>
+<script defer="" src="js/script.js"></script>
+<script defer="" src="js/recomend.js"></script>
 </body>
 </html>

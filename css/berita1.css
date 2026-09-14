@@ -27,7 +27,7 @@
   font-weight: bold;
 }
 
-.head-link h1 {
+.head-link h1, .head-link .sep {
   padding: 0 1%;
   position: relative;
   top: -10px;
@@ -104,7 +104,7 @@
   padding: 1rem 3.7%;
 }
 
-.bot-content h1 {
+.bot-content h1, .bot-content h2 {
   font-size: 3.5rem;
 }
 
@@ -202,7 +202,7 @@
     left: 30px;
   }
 
-  .bot-content h1 {
+  .bot-content h1, .bot-content h2 {
     left: 2rem;
     position: relative;
   }
@@ -231,7 +231,7 @@
     left: 30px;
   }
 
-  .bot-content h1 {
+  .bot-content h1, .bot-content h2 {
     left: 2rem;
     position: relative;
   }
@@ -244,7 +244,7 @@
     width: 80%;
   }
 
-  .head-link h1 {
+  .head-link h1, .head-link .sep {
     top: -11px;
   }
 
@@ -267,7 +267,7 @@
     width: min(700px, 100%);
   }
 
-  .bot-content h1 {
+  .bot-content h1, .bot-content h2 {
     position: relative;
     left: 2.5rem;
   }
@@ -295,7 +295,7 @@
     padding: 1rem 1%;
   }
 
-  .head-link h1 {
+  .head-link h1, .head-link .sep {
     top: -5px;
     padding: 0 5px;
   }
@@ -339,7 +339,7 @@
     padding: 1rem 0;
   }
 
-  .bot-content h1 {
+  .bot-content h1, .bot-content h2 {
     font-size: 2.5rem;
     position: relative;
     left: 0; /* offset 5% mendorong judul keluar layar */
@@ -401,7 +401,7 @@
 
 #judul,
 .head-link span,
-.bot-content h1,
+.bot-content h1, .bot-content h2,
 .card_tittle h3,
 .card_info span {
   text-transform: none;

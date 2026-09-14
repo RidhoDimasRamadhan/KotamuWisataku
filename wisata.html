@@ -1,105 +1,105 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Destinasi — KotamuWisataku</title>
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-    <meta name="description" content="Detail destinasi wisata: deskripsi, lokasi di peta, petunjuk arah, dan tempat menarik di sekitarnya.">
-    <meta name="theme-color" content="#0b1020">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/detail.css">
-    <link rel="stylesheet" href="css/dark.css">
-    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detail Destinasi — KotamuWisataku</title>
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Detail Destinasi — KotamuWisataku">
+    <meta property="og:description" content="Detail Destinasi — KotamuWisataku">
+    <meta property="og:image" content="img/borobudur.jpg">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="img/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="img/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="Detail destinasi wisata: deskripsi, lokasi di peta, petunjuk arah, dan tempat menarik di sekitarnya." name="description"/>
+<meta content="#0b1020" name="theme-color"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://unpkg.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet"/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/detail.css" rel="stylesheet"/>
+<link href="css/dark.css" rel="stylesheet"/>
+<script crossorigin="" defer="" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 <body class="kw-detail-page">
-
-    <header class="header">
-        <a href="index.html" class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" width="120" height="56" alt="logo"></picture></a>
-        <!-- navbar -->
-        
-        <nav class="navbar">
-            <div id="nav-close" class="bi bi-x-lg"></div>
-            <a href="index.html">Beranda</a>
-            <a href="index.html#Rekomendasi">Rekomendasi</a>
-            <a href="index.html#Artikel">Berita</a>
-            <a href="index.html#waw">Wisata Terdekat</a>
-        </nav>
-
-        <!-- Kedua tautan bahasa diarahkan ulang js/detail.js ke destinasi yang
+<header class="header">
+<a class="logo" href="index.html"><picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" height="56" src="img/logo1.png" width="120"/></picture></a>
+<!-- navbar -->
+<nav class="navbar">
+<div class="bi bi-x-lg" id="nav-close"></div>
+<a href="index.html">Beranda</a>
+<a href="index.html#Rekomendasi">Rekomendasi</a>
+<a href="index.html#Artikel">Berita</a>
+<a href="index.html#waw">Wisata Terdekat</a>
+</nav>
+<!-- Kedua tautan bahasa diarahkan ulang js/detail.js ke destinasi yang
              sedang dibuka, supaya berpindah bahasa tidak kehilangan halaman. -->
-        <div class="dropdown">
-            <a href="index.html" id="kw-lang-en" aria-label="English"><picture><source srcset="img/eng.webp" type="image/webp"><img src="img/eng.png" alt="UK flag" width="25" height="20"></picture></a>
-            <ul class="wrapper">
-                <li class="usb">
-                    <a href="index.html" id="kw-lang-id" aria-label="Bahasa Indonesia"><picture><source srcset="img/indonesia.webp" type="image/webp"><img src="img/indonesia.png" alt="Indonesia flag" width="25" height="20"></picture></a>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="icons">
-            <div id="menu-btn" class="bi bi-list"></div>   
-            <div id="search-btn" class="bi bi-search"></div>
-            <i class="bi bi-moon-fill" id="darkmode"></i>
-        </div>
-    </header>
-
-<div class="search-form">
-    <div id="close-search" class="bi bi-x-lg"></div>
-    <form action="">
-        <input type="search" name="q" placeholder="Cari destinasi atau daerah..." id="search-box">
-        <label for="search-box" class="bi bi-search"></label>
-    </form>
+<div class="dropdown">
+<a aria-label="English" href="index.html" id="kw-lang-en"><picture><source srcset="img/eng.webp" type="image/webp"/><img alt="UK flag" height="20" src="img/eng.png" width="25"/></picture></a>
+<ul class="wrapper">
+<li class="usb">
+<a aria-label="Bahasa Indonesia" href="index.html" id="kw-lang-id"><picture><source srcset="img/indonesia.webp" type="image/webp"/><img alt="Indonesia flag" height="20" src="img/indonesia.png" width="25"/></picture></a>
+</li>
+</ul>
 </div>
-
-<main id="kw-detail" class="kw-detail"></main>
-
-    <footer class="footer2">
-        <div class="row">
-            <div class="col1">
-                <picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" alt="logo" class="logo" width="452" height="212"></picture>
-                <div class="sosmedd">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-facebook"></i>
-                    <i class="bi bi-twitter"></i>
-                    <i class="bi bi-tiktok"></i>
-                    <i class="bi bi-youtube"></i>
-                </div>
-            </div>
-
-            <div class="col2">
-                <form data-subscribe>
-                    <input type="email" name="email" placeholder="Masukkan Email Anda ..." autocomplete="email" required>
-                    <button type="submit">Berlangganan</button>
-                </form>
-                <div class="cookie">
-                    <a href="kebijakan.html#kontak">Buka Bantuan (Hubungi Kami)</a>
-                    <a href="kebijakan.html#privasi">Kebijakan Privasi</a>
-                    <a href="kebijakan.html#cookie">Kebijakan Cookie</a>
-                    <a href="kebijakan.html#syarat">Syarat dan Ketentuan</a>
-                </div>
-            </div>
-        </div>
-        
-        <hr>
-        <div class="kumpulan">
-            <span class="desc">Situs ini merupakan situs buatan mahasiswa Universitas Gunadarma Kalimalang. Semua isi yang tercantum di dalam 
-                <br>
-                <br> situs ini bertujuan untuk memberikan informasi dan bukan sebagai tujuan komersial</span> 
-        </div>
-        <p class="copyright">&#169;2026 Si Paling USB</p>
-    </footer>
-
-<script defer src="data/destinations.js"></script>
-<script defer src="js/script.js"></script>
-<script defer src="js/detail.js"></script>
+<div class="icons">
+<div class="bi bi-list" id="menu-btn"></div>
+<div class="bi bi-search" id="search-btn"></div>
+<i class="bi bi-moon-fill" id="darkmode"></i>
+</div>
+</header>
+<div class="search-form">
+<div class="bi bi-x-lg" id="close-search"></div>
+<form action="">
+<input id="search-box" name="q" placeholder="Cari destinasi atau daerah..." type="search"/>
+<label class="bi bi-search" for="search-box"></label>
+</form>
+</div>
+<main class="kw-detail" id="kw-detail"></main>
+<footer class="footer2">
+<div class="row">
+<div class="col1">
+<picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" class="logo" height="212" src="img/logo1.png" width="452"/></picture>
+<div class="sosmedd">
+<i aria-hidden="true" class="bi bi-instagram"></i>
+<i aria-hidden="true" class="bi bi-facebook"></i>
+<i aria-hidden="true" class="bi bi-twitter"></i>
+<i aria-hidden="true" class="bi bi-tiktok"></i>
+<i aria-hidden="true" class="bi bi-youtube"></i>
+</div>
+</div>
+<div class="col2">
+<form data-subscribe="">
+<input autocomplete="email" name="email" placeholder="Masukkan Email Anda ..." required="" type="email"/>
+<button type="submit">Berlangganan</button>
+</form>
+<div class="cookie">
+<a href="kebijakan.html#kontak">Buka Bantuan (Hubungi Kami)</a>
+<a href="kebijakan.html#privasi">Kebijakan Privasi</a>
+<a href="kebijakan.html#cookie">Kebijakan Cookie</a>
+<a href="kebijakan.html#syarat">Syarat dan Ketentuan</a>
+</div>
+</div>
+</div>
+<hr/>
+<div class="kumpulan">
+<span class="desc">Situs ini merupakan situs buatan mahasiswa Universitas Gunadarma Kalimalang. Semua isi yang tercantum di dalam 
+                <br/>
+<br/> situs ini bertujuan untuk memberikan informasi dan bukan sebagai tujuan komersial</span>
+</div>
+<p class="copyright">©2026 Si Paling USB</p>
+</footer>
+<script defer="" src="data/destinations.js"></script>
+<script defer="" src="js/script.js"></script>
+<script defer="" src="js/detail.js"></script>
 </body>
 </html>
