@@ -12,12 +12,32 @@
       home: 'Kembali ke beranda',
       breadcrumbHome: 'Beranda',
       breadcrumbList: 'Rekomendasi',
+      province: 'Provinsi',
+      category: 'Kategori',
+      timezone: 'Zona waktu',
+      coordinates: 'Koordinat',
       about: 'Tentang Destinasi',
-      location: 'Lokasi',
+      why: 'Kenapa Layak Dikunjungi',
+      doing: 'Yang Bisa Kamu Lakukan',
+      timing: 'Waktu Terbaik Berkunjung',
+      season:
+        'Secara umum musim kemarau di Indonesia berlangsung sekitar April hingga Oktober, sedangkan musim hujan November hingga Maret. Rentang kemarau biasanya paling aman untuk menyusun rencana perjalanan.',
+      tips: 'Tips Berkunjung',
+      location: 'Lokasi & Cara ke Sana',
       openMaps: 'Buka di Google Maps',
+      reference: 'Titik Acuan Terdekat',
       nearby: 'Destinasi Lain di Sekitar',
+      more: 'Jelajahi',
       km: 'km',
       chooseLanguage: 'Pilih bahasa',
+      directions: ['utara', 'timur laut', 'timur', 'tenggara', 'selatan', 'barat daya', 'barat', 'barat laut'],
+      compass: { north: 'LU', south: 'LS', east: 'BT', west: 'BB' },
+      locationLead: (name, region, coords, zone) =>
+        `${name} berada di ${region}, tepatnya pada koordinat ${coords}, dan mengikuti zona waktu ${zone}.`,
+      referenceLead:
+        'Beberapa destinasi lain dalam daftar kami bisa dipakai sebagai patokan jarak saat menyusun rute:',
+      referenceItem: (name, km, direction) => `${name} — sekitar ${km} ke arah ${direction}`,
+      moreLead: (province) => `Destinasi lain yang berada di ${province}:`,
     },
     en: {
       notFound: 'Destination not found',
@@ -25,12 +45,32 @@
       home: 'Back to home',
       breadcrumbHome: 'Home',
       breadcrumbList: 'Recommendations',
+      province: 'Province',
+      category: 'Category',
+      timezone: 'Time zone',
+      coordinates: 'Coordinates',
       about: 'About This Destination',
-      location: 'Location',
+      why: 'Why It Is Worth Visiting',
+      doing: 'Things You Can Do',
+      timing: 'Best Time to Visit',
+      season:
+        'Broadly speaking, the dry season in Indonesia runs from around April to October, while the rainy season falls between November and March. The dry months are usually the safest window to plan a trip around.',
+      tips: 'Visiting Tips',
+      location: 'Location & Getting There',
       openMaps: 'Open in Google Maps',
+      reference: 'Nearest Reference Points',
       nearby: 'Other Destinations Nearby',
+      more: 'Explore',
       km: 'km',
       chooseLanguage: 'Choose language',
+      directions: ['north', 'north-east', 'east', 'south-east', 'south', 'south-west', 'west', 'north-west'],
+      compass: { north: 'N', south: 'S', east: 'E', west: 'W' },
+      locationLead: (name, region, coords, zone) =>
+        `${name} sits in ${region}, at coordinates ${coords}, and follows the ${zone} time zone.`,
+      referenceLead:
+        'A few other destinations in our list make useful distance markers while you plan a route:',
+      referenceItem: (name, km, direction) => `${name} — roughly ${km} to the ${direction}`,
+      moreLead: (province) => `Other destinations in ${province}:`,
     },
   }[LANG];
 
@@ -42,6 +82,8 @@
   const HOME = LANG === 'en' ? 'English.html' : 'index.html';
   const OTHER_LANG = LANG === 'en' ? 'id' : 'en';
   const NEARBY_LIMIT = 6;
+  const REFERENCE_LIMIT = 3;
+  const PROVINCE_LIMIT = 6;
   const EARTH_RADIUS_KM = 6371;
 
   const escape = (value) =>
@@ -61,6 +103,30 @@
   const describe = (dest) =>
     LANG === 'en' ? dest.descEn || dest.desc || '' : dest.desc || '';
 
+  const provinceOf = (dest) => String(dest.region || '').split(',').pop().trim();
+
+  const timeZoneOf = (dest) => {
+    if (dest.lng < 114.7) return 'WIB (UTC+7)';
+    if (dest.lng < 127) return 'WITA (UTC+8)';
+    return 'WIT (UTC+9)';
+  };
+
+  const formatCoordinates = (dest) => {
+    const lat = `${Math.abs(dest.lat).toFixed(4)}° ${dest.lat < 0 ? TEXT.compass.south : TEXT.compass.north}`;
+    const lng = `${Math.abs(dest.lng).toFixed(4)}° ${dest.lng < 0 ? TEXT.compass.west : TEXT.compass.east}`;
+    return `${lat}, ${lng}`;
+  };
+
+  const guideOf = (dest) => {
+    const haystack = `${dest.name} ${dest.region}`.toLowerCase();
+    const rule = (window.KW_GUIDE_RULES || []).find(([, keywords]) =>
+      keywords.some((keyword) => haystack.includes(keyword))
+    );
+    const guides = window.KW_GUIDES || {};
+    const entry = guides[rule ? rule[0] : 'umum'] || guides.umum;
+    return entry ? entry[LANG] : null;
+  };
+
   const toRadians = (degrees) => (degrees * Math.PI) / 180;
 
   function distanceInKm(fromLat, fromLng, toLat, toLng) {
@@ -72,33 +138,105 @@
     return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(a));
   }
 
+  function bearingLabel(from, to) {
+    const y = Math.sin(toRadians(to.lng - from.lng)) * Math.cos(toRadians(to.lat));
+    const x =
+      Math.cos(toRadians(from.lat)) * Math.sin(toRadians(to.lat)) -
+      Math.sin(toRadians(from.lat)) * Math.cos(toRadians(to.lat)) * Math.cos(toRadians(to.lng - from.lng));
+    const degrees = (Math.atan2(y, x) * 180) / Math.PI;
+    const index = Math.round(((degrees + 360) % 360) / 45) % 8;
+    return TEXT.directions[index];
+  }
+
+  const allDestinations = () => window.KW_DESTINATIONS || [];
+
   const nearestOthers = (dest, limit) =>
-    (window.KW_DESTINATIONS || [])
+    allDestinations()
       .filter((other) => other.id !== dest.id)
       .map((other) => ({ dest: other, km: distanceInKm(dest.lat, dest.lng, other.lat, other.lng) }))
       .sort((a, b) => a.km - b.km)
       .slice(0, limit);
 
-  const formatKm = (km) => `${km.toFixed(km < 10 ? 1 : 0)} ${escape(TEXT.km)}`;
+  const sameProvince = (dest, limit) =>
+    allDestinations()
+      .filter((other) => other.id !== dest.id && provinceOf(other) === provinceOf(dest))
+      .slice(0, limit);
 
-  const nearbyCard = ({ dest, km }) => `
+  const formatKm = (km) => `${km.toFixed(km < 10 ? 1 : 0)} ${TEXT.km}`;
+
+  const factItem = (label, value) =>
+    `<li><span class="kw-fact-label">${escape(label)}</span><strong class="kw-fact-value">${escape(value)}</strong></li>`;
+
+  const listItems = (items, className) =>
+    `<ul class="${className}">${items.map((item) => `<li>${escape(item)}</li>`).join('')}</ul>`;
+
+  const cardItem = (dest, meta) => `
     <li>
       <a href="${escape(detailUrl(dest))}">
-        <img src="${escape(dest.image)}" alt="" width="160" height="110" loading="lazy" decoding="async">
+        <img src="${escape(dest.image)}" alt="" width="320" height="220" loading="lazy" decoding="async">
         <span class="kw-detail-nearby-name">${escape(dest.name)}</span>
-        <span class="kw-detail-nearby-meta">${escape(dest.region)} · ${formatKm(km)}</span>
+        <span class="kw-detail-nearby-meta">${escape(meta)}</span>
       </a>
     </li>`;
+
+  function referenceSection(dest) {
+    const points = nearestOthers(dest, REFERENCE_LIMIT);
+    if (!points.length) return '';
+
+    const items = points.map(({ dest: other, km }) =>
+      TEXT.referenceItem(other.name, formatKm(km), bearingLabel(dest, other))
+    );
+
+    return `
+      <h3>${escape(TEXT.reference)}</h3>
+      <p>${escape(TEXT.referenceLead)}</p>
+      ${listItems(items, 'kw-article-list')}`;
+  }
+
+  function provinceSection(dest) {
+    const others = sameProvince(dest, PROVINCE_LIMIT);
+    if (!others.length) return '';
+
+    const province = provinceOf(dest);
+    return `
+      <section class="kw-detail-section">
+        <h2>${escape(`${TEXT.more} ${province}`)}</h2>
+        <p>${escape(TEXT.moreLead(province))}</p>
+        <ul class="kw-detail-nearby">
+          ${others.map((other) => cardItem(other, other.region)).join('')}
+        </ul>
+      </section>`;
+  }
+
+  function articleSection(dest, guide) {
+    if (!guide) return '';
+
+    return `
+      <h2>${escape(TEXT.why)}</h2>
+      <p>${escape(guide.why)}</p>
+
+      <h2>${escape(TEXT.doing)}</h2>
+      ${listItems(guide.activities, 'kw-article-list kw-article-ticks')}
+
+      <h2>${escape(TEXT.timing)}</h2>
+      <p>${escape(TEXT.season)}</p>
+      <p>${escape(guide.timing)}</p>
+
+      <h2>${escape(TEXT.tips)}</h2>
+      <ol class="kw-article-steps">${guide.tips.map((tip) => `<li>${escape(tip)}</li>`).join('')}</ol>`;
+  }
 
   function renderNotFound(host) {
     document.title = `${TEXT.notFound} — KotamuWisataku`;
     host.innerHTML = `
-      <div class="kw-detail-empty">
-        <h1>${escape(TEXT.notFound)}</h1>
-        <p>${escape(TEXT.notFoundBody)}</p>
-        <a class="kw-detail-btn" href="${HOME}">
-          <i class="bi bi-house-door" aria-hidden="true"></i> ${escape(TEXT.home)}
-        </a>
+      <div class="kw-detail-body">
+        <div class="kw-detail-empty">
+          <h1>${escape(TEXT.notFound)}</h1>
+          <p>${escape(TEXT.notFoundBody)}</p>
+          <a class="kw-detail-btn" href="${HOME}">
+            <i class="bi bi-house-door" aria-hidden="true"></i> ${escape(TEXT.home)}
+          </a>
+        </div>
       </div>`;
   }
 
@@ -109,45 +247,64 @@
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', describe(dest).slice(0, 155));
 
+    const guide = guideOf(dest);
+    const coordinates = formatCoordinates(dest);
+    const zone = timeZoneOf(dest);
+
     host.innerHTML = `
-      <nav class="kw-detail-crumbs" aria-label="breadcrumb">
-        <a href="${HOME}">${escape(TEXT.breadcrumbHome)}</a>
-        <span aria-hidden="true">›</span>
-        <a href="${HOME}#Rekomendasi">${escape(TEXT.breadcrumbList)}</a>
-        <span aria-hidden="true">›</span>
-        <span aria-current="page">${escape(dest.name)}</span>
-      </nav>
+      <figure class="kw-hero">
+        <img src="${escape(dest.image)}" alt="${escape(dest.name)}" width="1600" height="900"
+             fetchpriority="high" decoding="async">
+      </figure>
 
-      <header class="kw-detail-head">
-        <h1>${escape(dest.name)}</h1>
-        <p class="kw-detail-region">
-          <i class="bi bi-geo-alt-fill" aria-hidden="true"></i> ${escape(dest.region)}
-        </p>
-      </header>
+      <div class="kw-detail-body">
+        <nav class="kw-detail-crumbs" aria-label="breadcrumb">
+          <a href="${HOME}">${escape(TEXT.breadcrumbHome)}</a>
+          <span aria-hidden="true">›</span>
+          <a href="${HOME}#Rekomendasi">${escape(TEXT.breadcrumbList)}</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">${escape(dest.name)}</span>
+        </nav>
 
-      <img class="kw-detail-hero" src="${escape(dest.image)}" alt="${escape(dest.name)}"
-           width="1200" height="675" decoding="async">
+        <header class="kw-detail-head">
+          <h1>${escape(dest.name)}</h1>
+          <p class="kw-detail-region">
+            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i> ${escape(dest.region)}
+          </p>
+          <ul class="kw-facts">
+            ${factItem(TEXT.province, provinceOf(dest))}
+            ${guide ? factItem(TEXT.category, guide.label) : ''}
+            ${factItem(TEXT.timezone, zone)}
+            ${factItem(TEXT.coordinates, coordinates)}
+          </ul>
+        </header>
 
-      <section class="kw-detail-section">
-        <h2>${escape(TEXT.about)}</h2>
-        <p>${escape(describe(dest))}</p>
-      </section>
+        <article class="kw-article">
+          <h2>${escape(TEXT.about)}</h2>
+          <p class="kw-article-lead">${escape(describe(dest))}</p>
+          ${articleSection(dest, guide)}
 
-      <section class="kw-detail-section">
-        <h2>${escape(TEXT.location)}</h2>
-        <div id="kw-detail-map" class="kw-detail-map" role="application"
-             aria-label="${escape(`${TEXT.location} ${dest.name}`)}"></div>
-        <a class="kw-detail-btn" href="${escape(mapsUrl(dest))}" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-compass" aria-hidden="true"></i> ${escape(TEXT.openMaps)}
-        </a>
-      </section>
+          <h2>${escape(TEXT.location)}</h2>
+          <p>${escape(TEXT.locationLead(dest.name, dest.region, coordinates, zone))}</p>
+          <div id="kw-detail-map" class="kw-detail-map" role="application"
+               aria-label="${escape(`${TEXT.location} ${dest.name}`)}"></div>
+          <a class="kw-detail-btn" href="${escape(mapsUrl(dest))}" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-compass" aria-hidden="true"></i> ${escape(TEXT.openMaps)}
+          </a>
+          ${referenceSection(dest)}
+        </article>
 
-      <section class="kw-detail-section">
-        <h2>${escape(TEXT.nearby)}</h2>
-        <ul class="kw-detail-nearby">
-          ${nearestOthers(dest, NEARBY_LIMIT).map(nearbyCard).join('')}
-        </ul>
-      </section>`;
+        <section class="kw-detail-section">
+          <h2>${escape(TEXT.nearby)}</h2>
+          <ul class="kw-detail-nearby">
+            ${nearestOthers(dest, NEARBY_LIMIT)
+              .map(({ dest: other, km }) => cardItem(other, `${other.region} · ${formatKm(km)}`))
+              .join('')}
+          </ul>
+        </section>
+
+        ${provinceSection(dest)}
+      </div>`;
 
     initMap(dest);
   }
@@ -215,7 +372,7 @@
     const host = document.getElementById('kw-detail');
     if (!host) return;
 
-    const dest = (window.KW_DESTINATIONS || []).find((d) => d.id === destinationId);
+    const dest = allDestinations().find((d) => d.id === destinationId);
 
     wireLanguageMenu(dest);
     if (dest) render(host, dest);

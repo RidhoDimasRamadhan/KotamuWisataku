@@ -103,7 +103,7 @@ window.KW_DESTINATIONS = [
   {
     id: 'dufan',
     name: 'Dunia Fantasi (Dufan)',
-    region: 'Ancol, Jakarta Utara',
+    region: 'Ancol, Jakarta Utara, DKI Jakarta',
     lat: -6.1250,
     lng: 106.8347,
     image: 'img/mandalika.jpg',
@@ -113,7 +113,7 @@ window.KW_DESTINATIONS = [
   {
     id: 'sea-world',
     name: 'Sea World Ancol',
-    region: 'Ancol, Jakarta Utara',
+    region: 'Ancol, Jakarta Utara, DKI Jakarta',
     lat: -6.1246,
     lng: 106.8400,
     image: 'img/pswt.jpg',
@@ -123,7 +123,7 @@ window.KW_DESTINATIONS = [
   {
     id: 'atlantis',
     name: 'Atlantis Water Adventure',
-    region: 'Ancol, Jakarta Utara',
+    region: 'Ancol, Jakarta Utara, DKI Jakarta',
     lat: -6.1252,
     lng: 106.8400,
     image: 'img/beach.jpg',
@@ -133,7 +133,7 @@ window.KW_DESTINATIONS = [
   {
     id: 'ocean-dream',
     name: 'Ocean Dream Samudra',
-    region: 'Ancol, Jakarta Utara',
+    region: 'Ancol, Jakarta Utara, DKI Jakarta',
     lat: -6.1260,
     lng: 106.8370,
     image: 'img/ampat.jpg',
