@@ -28,8 +28,10 @@
 .kw-nearby-host {
   display: block;
   position: relative;
-  flex-basis: 100% !important;
-  width: 100% !important;
+  /* Dulu section ini adalah item flex di dalam grid artikel, sehingga perlu
+     dipaksa mengambil satu baris penuh. Sekarang ia blok biasa di level body,
+     jadi `width: 100%` justru ditambah margin kiri-kanan dan meluber. */
+  width: auto;
   /* Dulu 15rem karena grid artikel di atasnya `position: absolute` sehingga
      tingginya nol — jarak harus ditebak manual. Setelah grid dikembalikan ke
      alur normal, jarak atas cukup diambil dari margin bawah tombol (6rem);

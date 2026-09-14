@@ -1,468 +1,401 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KotamuWisataku — Temukan Wisata Terdekat di Sekitarmu</title>
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-    <meta name="description" content="KotamuWisataku membantumu menemukan destinasi wisata terdekat dari lokasimu saat ini — lengkap dengan peta radar, rekomendasi, berita, dan petunjuk arah.">
-    <meta name="keywords" content="wisata Indonesia, wisata terdekat, GPS wisata, rekomendasi tempat wisata, KotamuWisataku">
-    <meta name="theme-color" content="#0b1020">
-
-    <!-- Open Graph / Twitter -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="KotamuWisataku — Temukan Wisata Terdekat di Sekitarmu">
-    <meta property="og:description" content="Cari wisata paling dekat dari lokasimu, lihat peta radar, dan dapatkan petunjuk arah langsung.">
-    <meta property="og:image" content="img/bromo.jpg">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <link rel="alternate" hreflang="id" href="index.html">
-    <link rel="alternate" hreflang="en" href="English.html">
-
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/nearby.css">
-    <link rel="stylesheet" href="css/dark.css">
-    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KotamuWisataku — Temukan Wisata Terdekat di Sekitarmu</title>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="img/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="img/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="KotamuWisataku membantumu menemukan destinasi wisata terdekat dari lokasimu saat ini — lengkap dengan peta radar, rekomendasi, berita, dan petunjuk arah." name="description"/>
+<meta content="wisata Indonesia, wisata terdekat, GPS wisata, rekomendasi tempat wisata, KotamuWisataku" name="keywords"/>
+<meta content="#0b1020" name="theme-color"/>
+<!-- Open Graph / Twitter -->
+<meta content="website" property="og:type"/>
+<meta content="KotamuWisataku — Temukan Wisata Terdekat di Sekitarmu" property="og:title"/>
+<meta content="Cari wisata paling dekat dari lokasimu, lihat peta radar, dan dapatkan petunjuk arah langsung." property="og:description"/>
+<meta content="img/bromo.jpg" property="og:image"/>
+<meta content="id_ID" property="og:locale"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="index.html" hreflang="id" rel="alternate"/>
+<link href="English.html" hreflang="en" rel="alternate"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://unpkg.com" rel="preconnect"/>
+<link href="https://unpkg.com/swiper@7/swiper-bundle.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet"/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/nearby.css" rel="stylesheet"/>
+<link href="css/dark.css" rel="stylesheet"/>
+<script crossorigin="" defer="" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 <body>
-    <header class="header">
-        <a href="index.html" class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" width="120" height="56" alt="logo"></picture></a>
-        <!-- navbar -->
-        <nav class="navbar">
-            <div id="nav-close" class="bi bi-x-lg"></div>
-            <a href="#home">Beranda</a>
-            <a href="#Rekomendasi">Rekomendasi</a>
-            <a href="#Artikel">Berita</a>
-            <a href="#waw">Wisata Terdekat</a>
-        </nav>
-        
-        <div class="dropdown">
-            <a href="index.html" aria-label="Bahasa Indonesia"><picture><source srcset="img/indonesia.webp" type="image/webp"><img src="img/indonesia.png" alt="Bendera Indonesia" width="25" height="20"></picture></a>
-            <ul class="wrapper">
-                <li class="usb">
-                    <a href="English.html" aria-label="Switch to English"><picture><source srcset="img/eng.webp" type="image/webp"><img src="img/eng.png" alt="UK flag" width="25" height="20"></picture></a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="icons">
-            <div id="menu-btn" class="bi bi-list"></div>
-            <div id="search-btn" class="bi bi-search"></div>
-            <i class="bi bi-moon-fill" id="darkmode"></i>
-        </div>
-    </header>
-
+<header class="header">
+<a class="logo" href="index.html"><picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" height="56" src="img/logo1.png" width="120"/></picture></a>
+<!-- navbar -->
+<nav class="navbar">
+<div class="bi bi-x-lg" id="nav-close"></div>
+<a href="#home">Beranda</a>
+<a href="#Rekomendasi">Rekomendasi</a>
+<a href="#Artikel">Berita</a>
+<a href="#waw">Wisata Terdekat</a>
+</nav>
+<div class="dropdown">
+<a aria-label="Bahasa Indonesia" href="index.html"><picture><source srcset="img/indonesia.webp" type="image/webp"/><img alt="Bendera Indonesia" height="20" src="img/indonesia.png" width="25"/></picture></a>
+<ul class="wrapper">
+<li class="usb">
+<a aria-label="Switch to English" href="English.html"><picture><source srcset="img/eng.webp" type="image/webp"/><img alt="UK flag" height="20" src="img/eng.png" width="25"/></picture></a>
+</li>
+</ul>
+</div>
+<div class="icons">
+<div class="bi bi-list" id="menu-btn"></div>
+<div class="bi bi-search" id="search-btn"></div>
+<i class="bi bi-moon-fill" id="darkmode"></i>
+</div>
+</header>
 <div class="search-form">
-    <div id="close-search" class="bi bi-x-lg"></div>
-    <form action="">
-        <input type="search" name="" placeholder="mencari disini..." id="search-box">
-        <label for="search-box" class="bi bi-search"></label>
-    </form>
+<div class="bi bi-x-lg" id="close-search"></div>
+<form action="">
+<input id="search-box" name="" placeholder="mencari disini..." type="search"/>
+<label class="bi bi-search" for="search-box"></label>
+</form>
 </div>
-
 <section class="home" id="home">
-    <div class="swiper home-slider">
-         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="box" style="background: url(img/bromo.jpg) no-repeat">
-                    <div class="content">
-                        <h3>Gunung Bromo</h3>
-                        <span>Jawa Timur,<br>Indonesia</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="box" style="background: url(img/borobudur.jpg) no-repeat">
-                    <div class="content">
-                        <h3>Candi Borobudur</h3>
-                        <span>Jawa Tengah,<br> Indonesia</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="swiper-slide">
-                <div class="box" style="background: url(img/ulun.jpg) no-repeat">
-                    <div class="content">
-                        <h3>Pura Ulun Danu</h3>
-                        <span>Bali,<br> Indonesia</span>
-                    </div>    
-                </div>
-            </div>
-         </div>
-
-         <div class="swiper-button-next"></div>
-         <div class="swiper-button-prev" ></div>
-    </div>
-    <div class="linkrekomendasi" id="Rekomendasi">
-
-    </div>
-</section >
-
-
-<div class="rekomendasi"> 
-    <div class="header2" >
-        <div class="judulnya">
-            <h1  id="white">Rekomendasi Tempat Wisata Terbaik dari Kami</h1>
-        </div>
-        
-        <div class="garis"></div>
-        
-        
-        <div class="atasGambar2">
-            <h1 id="rekomen">Rekomendasi</h1>
-        </div>
-    </div>
-    
-    <div class="main">
-        <div class="gambarRekomendasi">
-            <div class="gambar gambar1">
-                <a href="ComeToRecommend.html">
-                    <picture><source srcset="img/situ-gunung.webp" type="image/webp"><img src="img/situ-gunung.jpg" alt="Danau Situ Gunung dikelilingi hutan pinus di Sukabumi" width="600" height="900"></picture>
-
-                </a>
-                <p>Situ Gunung</p>
-            </div>
-        
-            <div class="gambar gambar2">
-                <a href="wisata.html?id=kota-tua"><picture><source srcset="img/kota.webp" type="image/webp"><img src="img/kota.jpg" alt="Gedung bergaya kolonial di kawasan Kota Tua Jakarta" width="676" height="900"></picture></a>
-                <p>Kota Tua</p>
-            </div>
-        
-            <div class="gambar gambar3">
-                <a href="wisata.html?id=pink-beach-lombok"><picture><source srcset="img/lombok.webp" type="image/webp"><img src="img/lombok.jpg" alt="Perairan jernih dan garis pantai Lombok dari ketinggian" width="900" height="676"></picture></a>
-                <p>Pantai Pink Lombok</p>
-            </div>
-            
-            <div class="gambar gambar4">
-                <a href="wisata.html?id=borobudur"><picture><source srcset="img/borobudur-card.webp" type="image/webp"><img src="img/borobudur-card.jpg" alt="Stupa Candi Borobudur berselimut kabut pagi" width="900" height="600"></picture></a>
-                <p>Borobudur</p>
-            </div>
-            <div class="gambar gambar5">
-                <a href="wisata.html?id=merapi"><picture><source srcset="img/merapi.webp" type="image/webp"><img src="img/merapi.jpg" alt="Punggungan Gunung Merapi dengan padang rumput keemasan" width="900" height="506"></picture></a>
-                <p>Gunung Merapi</p>
-            </div>
-            
-            <div class="gambar gambar6">
-                <a href="wisata.html?id=ulun-danu"><picture><source srcset="img/ulun-danu-card.webp" type="image/webp"><img src="img/ulun-danu-card.jpg" alt="Pura Ulun Danu Beratan di tepi danau dengan pantulan air" width="678" height="900"></picture></a>
-                <p>Pura Ulun Danu</p>
-            </div>
-    
-            <div class="gambar gambar7">
-                <a href="wisata.html?id=padar"><picture><source srcset="img/padar.webp" type="image/webp"><img src="img/padar.jpg" alt="Perbukitan berundak dan teluk Pulau Padar" width="674" height="900"></picture></a>
-                <p>Pulau Padar</p>
-            </div>
-            
-            <div class="gambar gambar8">
-                <a href="wisata.html?id=prambanan"><picture><source srcset="img/prambanan.webp" type="image/webp"><img src="img/prambanan.jpg" alt="Menara Candi Prambanan menjulang saat senja" width="676" height="900"></picture></a>
-                <p>Prambanan</p>
-            </div>
-            
-            <div class="gambar gambar9">
-    <a href="wisata.html?id=bromo"><picture><source srcset="img/bromo.webp" type="image/webp"><img src="img/bromo.jpg" alt="Kaldera Gunung Bromo saat matahari terbit" width="1920" height="1212"></picture></a>
-    <p>Gunung Bromo</p>
+<div class="swiper home-slider">
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<div class="box" style="background: url(img/bromo.jpg) no-repeat">
+<div class="content">
+<h3>Gunung Bromo</h3>
+<span>Jawa Timur,<br/>Indonesia</span>
 </div>
-<div class="gambar gambar10">
-                <a href="wisata.html?id=raja-ampat"><picture><source srcset="img/ampat.webp" type="image/webp"><img src="img/ampat.jpg" alt="Gugusan pulau karst Raja Ampat di laut biru kehijauan" width="900" height="600"></picture></a>
-                <p>Raja Ampat</p>
-            </div>
-
-            <div class="gambar gambar11">
-                <a href="wisata.html?id=gbk"><picture><source srcset="img/gbk.webp" type="image/webp"><img src="img/gbk.jpg" alt="Kompleks Gelora Bung Karno di Jakarta" width="900" height="506"></picture></a>
-                <p>Gelora Bung Karno</p>
-            </div>
-            
-            <div class="gambar gambar12">
-                <a href="wisata.html?id=istiqlal"><picture><source srcset="img/Istiqlal.webp" type="image/webp"><img src="img/Istiqlal.jpg" alt="Kubah dan menara Masjid Istiqlal Jakarta" width="900" height="600"></picture></a>
-                <p>Istiqlal</p>
-            </div>
-
-            <div class="gambar gambar13">
-    <a href="wisata.html?id=komodo"><picture><source srcset="img/komodo.webp" type="image/webp"><img src="img/komodo.jpg" alt="Komodo berjalan di pesisir Taman Nasional Komodo" width="900" height="600"></picture></a>
-    <p>Pulau Komodo</p>
 </div>
-<div class="gambar gambar14">
-                <a href="wisata.html?id=monas"><picture><source srcset="img/monas.webp" type="image/webp"><img src="img/monas.jpg" alt="Monumen Nasional di Jakarta Pusat" width="686" height="900"></picture></a>
-                <p>Monas</p>
-            </div>
-            
-            <div class="gambar gambar15">
-    <a href="wisata.html?id=labuan-bajo"><picture><img src="img/dermaga.jpg" alt="Perahu bersandar di dermaga Labuan Bajo dengan air jernih" width="700" height="447"></picture></a>
-    <p>Labuan Bajo</p>
 </div>
+<div class="swiper-slide">
+<div class="box" style="background: url(img/borobudur.jpg) no-repeat">
+<div class="content">
+<h3>Candi Borobudur</h3>
+<span>Jawa Tengah,<br/> Indonesia</span>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<div class="box" style="background: url(img/ulun.jpg) no-repeat">
+<div class="content">
+<h3>Pura Ulun Danu</h3>
+<span>Bali,<br/> Indonesia</span>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+</div>
+<div class="linkrekomendasi" id="Rekomendasi">
+</div>
+</section>
+<div class="rekomendasi">
+<div class="header2">
+<div class="judulnya">
+<h1 id="white">Rekomendasi Tempat Wisata Terbaik dari Kami</h1>
+</div>
+<div class="garis"></div>
+<div class="atasGambar2">
+<h1 id="rekomen">Rekomendasi</h1>
+</div>
+</div>
+<div class="main">
+<div class="gambarRekomendasi">
 <div class="gambar gambar1">
-                <a href="wisata.html?id=kelingking"><picture><source srcset="img/beach.webp" type="image/webp"><img src="img/beach.jpg" alt="Tebing Kelingking Beach di Nusa Penida" width="600" height="900"></picture></a>
-                <p>Kelingking Beach</p>
-            </div>
-        
-            <div class="gambar gambar2">
-    <a href="wisata.html?id=katedral"><picture><source srcset="img/gereja.webp" type="image/webp"><img src="img/gereja.jpg" alt="Fasad neo-gotik Gereja Katedral Jakarta" width="900" height="1198"></picture></a>
-    <p>Katedral Jakarta</p>
+<a href="ComeToRecommend.html">
+<picture><source srcset="img/situ-gunung.webp" type="image/webp"/><img alt="Danau Situ Gunung dikelilingi hutan pinus di Sukabumi" height="900" src="img/situ-gunung.jpg" width="600"/></picture>
+</a>
+<p>Situ Gunung</p>
+</div>
+<div class="gambar gambar2">
+<a href="wisata.html?id=kota-tua"><picture><source srcset="img/kota.webp" type="image/webp"/><img alt="Gedung bergaya kolonial di kawasan Kota Tua Jakarta" height="900" src="img/kota.jpg" width="676"/></picture></a>
+<p>Kota Tua</p>
 </div>
 <div class="gambar gambar3">
-    <a href="wisata.html?id=lapangan-banteng"><picture><source srcset="img/lapangan.webp" type="image/webp"><img src="img/lapangan.jpg" alt="Monumen Pembebasan Irian Barat di Lapangan Banteng" width="506" height="900"></picture></a>
-    <p>Lapangan Banteng</p>
+<a href="wisata.html?id=pink-beach-lombok"><picture><source srcset="img/lombok.webp" type="image/webp"/><img alt="Perairan jernih dan garis pantai Lombok dari ketinggian" height="676" src="img/lombok.jpg" width="900"/></picture></a>
+<p>Pantai Pink Lombok</p>
 </div>
 <div class="gambar gambar4">
-    <a href="wisata.html?id=tim"><picture><img src="img/tim.jpeg" alt="Kompleks kesenian Taman Ismail Marzuki dari udara" width="1080" height="809"></picture></a>
-    <p>Taman Ismail Marzuki</p>
+<a href="wisata.html?id=borobudur"><picture><source srcset="img/borobudur-card.webp" type="image/webp"/><img alt="Stupa Candi Borobudur berselimut kabut pagi" height="600" src="img/borobudur-card.jpg" width="900"/></picture></a>
+<p>Borobudur</p>
 </div>
 <div class="gambar gambar5">
-    <a href="wisata.html?id=toba"><picture><source srcset="img/toba.webp" type="image/webp"><img src="img/toba.jpg" alt="Danau Toba dengan perbukitan hijau di sekelilingnya" width="900" height="508"></picture></a>
-    <p>Danau Toba</p>
+<a href="wisata.html?id=merapi"><picture><source srcset="img/merapi.webp" type="image/webp"/><img alt="Punggungan Gunung Merapi dengan padang rumput keemasan" height="506" src="img/merapi.jpg" width="900"/></picture></a>
+<p>Gunung Merapi</p>
+</div>
+<div class="gambar gambar6">
+<a href="wisata.html?id=ulun-danu"><picture><source srcset="img/ulun-danu-card.webp" type="image/webp"/><img alt="Pura Ulun Danu Beratan di tepi danau dengan pantulan air" height="900" src="img/ulun-danu-card.jpg" width="678"/></picture></a>
+<p>Pura Ulun Danu</p>
+</div>
+<div class="gambar gambar7">
+<a href="wisata.html?id=padar"><picture><source srcset="img/padar.webp" type="image/webp"/><img alt="Perbukitan berundak dan teluk Pulau Padar" height="900" src="img/padar.jpg" width="674"/></picture></a>
+<p>Pulau Padar</p>
+</div>
+<div class="gambar gambar8">
+<a href="wisata.html?id=prambanan"><picture><source srcset="img/prambanan.webp" type="image/webp"/><img alt="Menara Candi Prambanan menjulang saat senja" height="900" src="img/prambanan.jpg" width="676"/></picture></a>
+<p>Prambanan</p>
+</div>
+<div class="gambar gambar9">
+<a href="wisata.html?id=bromo"><picture><source srcset="img/bromo.webp" type="image/webp"/><img alt="Kaldera Gunung Bromo saat matahari terbit" height="1212" src="img/bromo.jpg" width="1920"/></picture></a>
+<p>Gunung Bromo</p>
+</div>
+<div class="gambar gambar10">
+<a href="wisata.html?id=raja-ampat"><picture><source srcset="img/ampat.webp" type="image/webp"/><img alt="Gugusan pulau karst Raja Ampat di laut biru kehijauan" height="600" src="img/ampat.jpg" width="900"/></picture></a>
+<p>Raja Ampat</p>
+</div>
+<div class="gambar gambar11">
+<a href="wisata.html?id=gbk"><picture><source srcset="img/gbk.webp" type="image/webp"/><img alt="Kompleks Gelora Bung Karno di Jakarta" height="506" src="img/gbk.jpg" width="900"/></picture></a>
+<p>Gelora Bung Karno</p>
+</div>
+<div class="gambar gambar12">
+<a href="wisata.html?id=istiqlal"><picture><source srcset="img/Istiqlal.webp" type="image/webp"/><img alt="Kubah dan menara Masjid Istiqlal Jakarta" height="600" src="img/Istiqlal.jpg" width="900"/></picture></a>
+<p>Istiqlal</p>
+</div>
+<div class="gambar gambar13">
+<a href="wisata.html?id=komodo"><picture><source srcset="img/komodo.webp" type="image/webp"/><img alt="Komodo berjalan di pesisir Taman Nasional Komodo" height="600" src="img/komodo.jpg" width="900"/></picture></a>
+<p>Pulau Komodo</p>
+</div>
+<div class="gambar gambar14">
+<a href="wisata.html?id=monas"><picture><source srcset="img/monas.webp" type="image/webp"/><img alt="Monumen Nasional di Jakarta Pusat" height="900" src="img/monas.jpg" width="686"/></picture></a>
+<p>Monas</p>
+</div>
+<div class="gambar gambar15">
+<a href="wisata.html?id=labuan-bajo"><picture><img alt="Perahu bersandar di dermaga Labuan Bajo dengan air jernih" height="447" src="img/dermaga.jpg" width="700"/></picture></a>
+<p>Labuan Bajo</p>
+</div>
+<div class="gambar gambar1">
+<a href="wisata.html?id=kelingking"><picture><source srcset="img/beach.webp" type="image/webp"/><img alt="Tebing Kelingking Beach di Nusa Penida" height="900" src="img/beach.jpg" width="600"/></picture></a>
+<p>Kelingking Beach</p>
+</div>
+<div class="gambar gambar2">
+<a href="wisata.html?id=katedral"><picture><source srcset="img/gereja.webp" type="image/webp"/><img alt="Fasad neo-gotik Gereja Katedral Jakarta" height="1198" src="img/gereja.jpg" width="900"/></picture></a>
+<p>Katedral Jakarta</p>
+</div>
+<div class="gambar gambar3">
+<a href="wisata.html?id=lapangan-banteng"><picture><source srcset="img/lapangan.webp" type="image/webp"/><img alt="Monumen Pembebasan Irian Barat di Lapangan Banteng" height="900" src="img/lapangan.jpg" width="506"/></picture></a>
+<p>Lapangan Banteng</p>
+</div>
+<div class="gambar gambar4">
+<a href="wisata.html?id=tim"><picture><img alt="Kompleks kesenian Taman Ismail Marzuki dari udara" height="809" src="img/tim.jpeg" width="1080"/></picture></a>
+<p>Taman Ismail Marzuki</p>
+</div>
+<div class="gambar gambar5">
+<a href="wisata.html?id=toba"><picture><source srcset="img/toba.webp" type="image/webp"/><img alt="Danau Toba dengan perbukitan hijau di sekelilingnya" height="508" src="img/toba.jpg" width="900"/></picture></a>
+<p>Danau Toba</p>
 </div>
 </div>
-    
-    </div>
-    
-    <div id="load-more"><p>Baca Yang Lainnya</p></div>
-    
-    <div class="footer1">
-        
-        <div class="bawah" style="background-image: url(img/subscribe.jpg);">
-            <div class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" alt="KotamuWisataku" width="452" height="212"></picture></div>
-            <div class="isi">
-                <p>Langganan dan Dapatkan Info Tentang Wisata di seluruh INDONESIA </p>
-                
-                <div class="inputbutton">
-                    <form data-subscribe>
-                        <input type="email" name="email" id="namaa" placeholder="Masukan email anda disini ....." autocomplete="email" required>
-                        <button type="submit"><p class="subscribe">Subscribe</p></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
-    <!-- End Rekomendasi -->
-
-
-
+<div id="load-more"><p>Baca Yang Lainnya</p></div>
+<div class="footer1">
+<div class="bawah" style="background-image: url(img/subscribe.jpg);">
+<div class="logo"><picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="KotamuWisataku" height="212" src="img/logo1.png" width="452"/></picture></div>
+<div class="isi">
+<p>Langganan dan Dapatkan Info Tentang Wisata di seluruh INDONESIA </p>
+<div class="inputbutton">
+<form data-subscribe="">
+<input autocomplete="email" id="namaa" name="email" placeholder="Masukan email anda disini ....." required="" type="email"/>
+<button type="submit"><p class="subscribe">Subscribe</p></button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Rekomendasi -->
 <!-- Artikel -->
 <div class="linkrekomendasi2" id="Artikel">
-
 </div>
 <div class="artikel">
-    <div class="header2">
-        <div class="judulnya2">
-            <h1 id="white2">Bacaan Untuk Sobat Traveler</h1>
-        </div>
-        
-        <div class="garis"></div>
-    </div>
-
-    <div class="atasGambar2">
-        <h1 id="berita">Berita</h1>
-    </div>
-    
-    <div class="main2">
-        <div class="gambarartikel">
-            <div class="gambarartikel2">
-                <div class="gambarmain2 mandalika">
-                    <div class="atas">
-                        <p>Wajib Tahu! Ini Aturan Lengkap Pelaku...
+<div class="header2">
+<div class="judulnya2">
+<h1 id="white2">Bacaan Untuk Sobat Traveler</h1>
+</div>
+<div class="garis"></div>
+</div>
+<div class="atasGambar2">
+<h1 id="berita">Berita</h1>
+</div>
+<div class="main2">
+<div class="gambarartikel">
+<div class="gambarartikel2">
+<div class="gambarmain2 mandalika">
+<div class="atas">
+<p>Wajib Tahu! Ini Aturan Lengkap Pelaku...
                         </p>
-                    </div>
-                                    <a href="berita1.html">
-                    <div class="gambarmain3">
-                            <picture><source srcset="img/krt.webp" type="image/webp"><img src="img/krt.jpg" alt="Petugas berdiri di pintu kereta commuter line" width="1280" height="1920"></picture>
-                        </div>
-                        <div class="bawahgambarmain3">
-                            <div class="kiri">
-                            </div>
-                            <div class="kanan">
-                                <p id="mandalika">Sobat Pesona, sebagai pencegahan kenaikan kasus Covid-19 di Indonesia, pemerintah kembali menerapkan ketentuan perjalanan dan himbauan protokol kesehatan pada pelaku perjalanan dalam negeri (PPDN) di masa pandemi Covid-19. ...</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="gambarmain2 komodo">
-                    <div class="atas">
-                        <p>20 Tempat Wisata di Indonesia yang popu...
+</div>
+<a href="berita1.html">
+<div class="gambarmain3">
+<picture><source srcset="img/krt.webp" type="image/webp"/><img alt="Petugas berdiri di pintu kereta commuter line" height="1920" src="img/krt.jpg" width="1280"/></picture>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="mandalika">Sobat Pesona, sebagai pencegahan kenaikan kasus Covid-19 di Indonesia, pemerintah kembali menerapkan ketentuan perjalanan dan himbauan protokol kesehatan pada pelaku perjalanan dalam negeri (PPDN) di masa pandemi Covid-19. ...</p>
+</div>
+</div>
+</a>
+</div>
+<div class="gambarmain2 komodo">
+<div class="atas">
+<p>20 Tempat Wisata di Indonesia yang popu...
                         </p>
-                    </div>
-                    <div class="gambarmain3">
-                            <a href="index.html#Rekomendasi"><img src="img/tinggilancip.jpg" alt="Pura beratap meru bertingkat dengan langit senja" width="975" height="600"></a>
-                        </div>
-                        <div class="bawahgambarmain3">
-                            <div class="kiri">
-                                
-                            </div>
-                            <div class="kanan">
-                                <p id="komodo">Negara kita tercinta, Indonesia, memang memiliki alam yang sangat indah. Dari Sabang sampai Merauke, kita bisa dengan mudah menemukan tempat-tempat indah dan memukau ...</p>
-                            </div>
-                        </div>
-                </div>
-                
-
-                <div class="gambarmain2 kerampuang">
-                    <div class="atas">
-                        <p>Cara Berwisata yang Sehat dan Aman</p>
-                    </div>
-                    <div class="gambarmain3">
-                            <a href="berita2.html"><picture><source srcset="img/kayadanau.webp" type="image/webp"><img src="img/kayadanau.jpg" alt="Perbukitan dan teluk Pulau Padar saat matahari terbenam" width="900" height="676"></picture></a>
-                        </div>
-                        <div class="bawahgambarmain3">
-                            <div class="kiri">
-                                
-                            </div>
-                            <div class="kanan">
-                                <p id="karampuang">Liburan yang berakhir di klinik bukan liburan yang berhasil. Sebagian besar masalah kesehatan dan keselamatan di perjalanan sebenarnya bisa dicegah dengan kebiasaan sederhana — mulai dari memastikan kondisi tubuh sebelum berangkat sampai mengenali arus balik di pantai berombak.</p>
-                            </div>
-                        </div>
-                    </div>
-                
-                <div class="gambarmain2 rajaampat">
-                    <div class="atas">
-                        <p>Etika dan Aturan Dasar di Tempat Wisata</p>
-                    </div>
-                    <div class="gambarmain3">
-                        <a href="berita3.html"><picture><source srcset="img/kayaanya.webp" type="image/webp"><img src="img/kayaanya.jpg" alt="Penumpang bermasker menunggu di ruang tunggu bandara bertanda jaga jarak" width="900" height="396"></picture></a>
-                    </div>
-                    <div class="bawahgambarmain3">
-                        <div class="kiri">
-                            
-                        </div>
-                        <div class="kanan">
-                            <p id="raja">Hampir semua destinasi berdiri di atas tanah yang punya pemilik, adat, dan aturannya sendiri. Berpakaian pantas di tempat ibadah, meminta izin sebelum memotret orang, membawa pulang sampah, dan menjaga jarak dengan satwa liar menentukan apakah tempat itu masih terbuka bagi pengunjung berikutnya.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gambarmain2 kerampuang">
-                    <div class="atas">
-                        <p>Mandalika Adalah Pulau Kecil yang Indah
+</div>
+<div class="gambarmain3">
+<a href="index.html#Rekomendasi"><img alt="Pura beratap meru bertingkat dengan langit senja" height="600" src="img/tinggilancip.jpg" width="975"/></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="komodo">Negara kita tercinta, Indonesia, memang memiliki alam yang sangat indah. Dari Sabang sampai Merauke, kita bisa dengan mudah menemukan tempat-tempat indah dan memukau ...</p>
+</div>
+</div>
+</div>
+<div class="gambarmain2 kerampuang">
+<div class="atas">
+<p>Cara Berwisata yang Sehat dan Aman</p>
+</div>
+<div class="gambarmain3">
+<a href="berita2.html"><picture><source srcset="img/kayadanau.webp" type="image/webp"/><img alt="Perbukitan dan teluk Pulau Padar saat matahari terbenam" height="676" src="img/kayadanau.jpg" width="900"/></picture></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="karampuang">Liburan yang berakhir di klinik bukan liburan yang berhasil. Sebagian besar masalah kesehatan dan keselamatan di perjalanan sebenarnya bisa dicegah dengan kebiasaan sederhana — mulai dari memastikan kondisi tubuh sebelum berangkat sampai mengenali arus balik di pantai berombak.</p>
+</div>
+</div>
+</div>
+<div class="gambarmain2 rajaampat">
+<div class="atas">
+<p>Etika dan Aturan Dasar di Tempat Wisata</p>
+</div>
+<div class="gambarmain3">
+<a href="berita3.html"><picture><source srcset="img/kayaanya.webp" type="image/webp"/><img alt="Penumpang bermasker menunggu di ruang tunggu bandara bertanda jaga jarak" height="396" src="img/kayaanya.jpg" width="900"/></picture></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="raja">Hampir semua destinasi berdiri di atas tanah yang punya pemilik, adat, dan aturannya sendiri. Berpakaian pantas di tempat ibadah, meminta izin sebelum memotret orang, membawa pulang sampah, dan menjaga jarak dengan satwa liar menentukan apakah tempat itu masih terbuka bagi pengunjung berikutnya.</p>
+</div>
+</div>
+</div>
+<div class="gambarmain2 kerampuang">
+<div class="atas">
+<p>Mandalika Adalah Pulau Kecil yang Indah
                         </p>
-                    </div>
-                    <div class="gambarmain3">
-                        <a href="wisata.html?id=mandalika"><picture><source srcset="img/mandalika.webp" type="image/webp"><img src="img/mandalika.jpg" alt="Pantai dan perbukitan kawasan Mandalika, Lombok" width="640" height="480"></picture></a>
-                    </div>
-                    <div class="bawahgambarmain3">
-                        <div class="kiri">
-                        </div>
-                        <div class="kanan">
-                            <p id="mandalika">Mandalika adalah pulau kecil yang indah yang terletak di Laut Jawa. Terletak tepat di depan pantai benteng Portugis, yang berjarak sekitar 2 Km dari desa Donorejo, kecamatan Donorejo, Jepara, Jawa Tengah. Lokasinya dekat berbatasan dengan kabupaten Pati, dan dekat dengan pegunungan Muria di utara ...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gambarmain2 komodo">
-                    <div class="atas">
-                        <p>10 Destinasi Wisata Terbaik di Indonesia Versi Wisatawan Mancanegara.
+</div>
+<div class="gambarmain3">
+<a href="wisata.html?id=mandalika"><picture><source srcset="img/mandalika.webp" type="image/webp"/><img alt="Pantai dan perbukitan kawasan Mandalika, Lombok" height="480" src="img/mandalika.jpg" width="640"/></picture></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="mandalika">Mandalika adalah pulau kecil yang indah yang terletak di Laut Jawa. Terletak tepat di depan pantai benteng Portugis, yang berjarak sekitar 2 Km dari desa Donorejo, kecamatan Donorejo, Jepara, Jawa Tengah. Lokasinya dekat berbatasan dengan kabupaten Pati, dan dekat dengan pegunungan Muria di utara ...</p>
+</div>
+</div>
+</div>
+<div class="gambarmain2 komodo">
+<div class="atas">
+<p>10 Destinasi Wisata Terbaik di Indonesia Versi Wisatawan Mancanegara.
                         </p>
-                    </div>
-                    <div class="gambarmain3">
-                        <a href="index.html#Rekomendasi"><picture><source srcset="img/komodo.webp" type="image/webp"><img src="img/komodo.jpg" alt="Komodo di habitat aslinya di Taman Nasional Komodo" width="900" height="600"></picture></a>
-                    </div>
-                    <div class="bawahgambarmain3">
-                        <div class="kiri">
-                            
-                        </div>
-                        <div class="kanan">
-                            <p id="komodo">Keindahan alam Indonesia tidak akan pernah berakhir untuk dijelajahi. Bahkan, beberapa wisatawan mancanegara mengakui keindahan Indonesia yang benar-benar menawan. Dari Sabang sampai Merauke, beberapa wisatawan mancanegara memilih beberapa destinasi wisata terbaik. Dilansir dari ...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gambarmain2 kerampuang">
-                    <div class="atas">
-                        <p>Wisata Pulau Karampuang di Mamuju
+</div>
+<div class="gambarmain3">
+<a href="index.html#Rekomendasi"><picture><source srcset="img/komodo.webp" type="image/webp"/><img alt="Komodo di habitat aslinya di Taman Nasional Komodo" height="600" src="img/komodo.jpg" width="900"/></picture></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="komodo">Keindahan alam Indonesia tidak akan pernah berakhir untuk dijelajahi. Bahkan, beberapa wisatawan mancanegara mengakui keindahan Indonesia yang benar-benar menawan. Dari Sabang sampai Merauke, beberapa wisatawan mancanegara memilih beberapa destinasi wisata terbaik. Dilansir dari ...</p>
+</div>
+</div>
+</div>
+<div class="gambarmain2 kerampuang">
+<div class="atas">
+<p>Wisata Pulau Karampuang di Mamuju
                         </p>
-                    </div>
-                    <div class="gambarmain3">
-                        <a href="wisata.html?id=karampuang"><img src="img/dermaga.jpg" alt="Dermaga kayu Pulau Karampuang di Mamuju" width="700" height="447"></a>
-                    </div>
-                    <div class="bawahgambarmain3">
-                        <div class="kiri">
-                            
-                        </div>
-                        <div class="kanan">
-                            <p id="karampuang">Pulau Karampuang adalah sebuah pulau indah yang terletak di Desa Karampuang, Kecamatan Mamuju, Kabupaten Mamuju, Provinsi Sulawesi Barat. Dengan menaiki kapal sebagai satu-satunya alat transportasi menuju Pulau Karampuang dari pelabuhan Mamuju, pengunjung sudah dapat menikmati keindahan pulau yang ...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gambarmain2 rajaampat">
-                    <div class="atas">
-                        <p>Wisata Raja Ampat di Papua Barat</p>
-                    </div>
-                    <div class="gambarmain3">
-                        <a href="wisata.html?id=raja-ampat"><picture><source srcset="img/ampat.webp" type="image/webp"><img src="img/ampat.jpg" alt="Gugusan pulau kecil Raja Ampat dari atas bukit" width="900" height="600"></picture></a>
-                    </div>
-                    <div class="bawahgambarmain3">
-                        <div class="kiri">
-                            
-                        </div>
-                        <div class="kanan">
-                            <p id="raja">Raja Ampat adalah sebuah kabupaten di Papua Barat dan juga menjadi salah satu tujuan indah di Indonesia oleh pemandangan alam yang indah dan terumbu karang. Ibu kota terletak di Waisai ...</p>
-                        </div>
-                    </div>
-                </div>
+</div>
+<div class="gambarmain3">
+<a href="wisata.html?id=karampuang"><img alt="Dermaga kayu Pulau Karampuang di Mamuju" height="447" src="img/dermaga.jpg" width="700"/></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="karampuang">Pulau Karampuang adalah sebuah pulau indah yang terletak di Desa Karampuang, Kecamatan Mamuju, Kabupaten Mamuju, Provinsi Sulawesi Barat. Dengan menaiki kapal sebagai satu-satunya alat transportasi menuju Pulau Karampuang dari pelabuhan Mamuju, pengunjung sudah dapat menikmati keindahan pulau yang ...</p>
+</div>
+</div>
+</div>
+<div class="gambarmain2 rajaampat">
+<div class="atas">
+<p>Wisata Raja Ampat di Papua Barat</p>
+</div>
+<div class="gambarmain3">
+<a href="wisata.html?id=raja-ampat"><picture><source srcset="img/ampat.webp" type="image/webp"/><img alt="Gugusan pulau kecil Raja Ampat dari atas bukit" height="600" src="img/ampat.jpg" width="900"/></picture></a>
+</div>
+<div class="bawahgambarmain3">
+<div class="kiri">
+</div>
+<div class="kanan">
+<p id="raja">Raja Ampat adalah sebuah kabupaten di Papua Barat dan juga menjadi salah satu tujuan indah di Indonesia oleh pemandangan alam yang indah dan terumbu karang. Ibu kota terletak di Waisai ...</p>
+</div>
+</div>
+</div>
 
-                <div id="load-more2"><p>Baca Yang Lainnya</p>
 
-            </div>
-            
-            <div class="waw" id="waw"></div>
 
-            <section id="kw-nearby-host" aria-label="Wisata Terdekat" class="kw-nearby-host"></section>
 
-                <footer class="footer2">
-                    <div class="row">
-                        <div class="col1">
-                            <picture><source srcset="img/logo1.webp" type="image/webp"><img src="img/logo1.png" alt="logo" class="logo" width="452" height="212"></picture>
-                            <div class="sosmed">
-                                <i class="bi bi-instagram"></i>
-                                <i class="bi bi-facebook"></i>
-                                <i class="bi bi-twitter"></i>
-                                <i class="bi bi-tiktok"></i>
-                                <i class="bi bi-youtube"></i>
-                            </div>
-                        </div>
-
-                        <div class="col2">
-                            <form data-subscribe>
-                                <input type="email" name="email" placeholder="Masukkan Email Anda ..." autocomplete="email" required>
-                                <button type="submit">Berlangganan</button>
-                            </form>
-                            <div class="cookie">
-                                <a href="kebijakan.html#kontak">Buka Bantuan (Hubungi Kami)</a>
-                                <a href="kebijakan.html#privasi">Kebijakan Privasi</a>
-                                <a href="kebijakan.html#cookie">Kebijakan Cookie</a>
-                                <a href="kebijakan.html#syarat">Syarat dan Ketentuan</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <hr>
-                    <div class="kumpulan">
-                        <span class="desc">Situs ini merupakan situs buatan mahasiswa Universitas Gunadarma Kalimalang. Semua isi yang tercantum di dalam 
-                            <br>
-                            <br> situs ini bertujuan untuk memberikan informasi dan bukan sebagai tujuan komersial</span> 
-                    </div>
-                    <p class="copyright">&#169;2026 Si Paling USB</p>
-                </footer> 
-        </div>  
-
-        
-<script defer src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script defer src="js/script.js"></script>
-<script defer src="data/destinations.js"></script>
-<script defer src="js/nearby.js"></script>
-</body>
+</div>
+<script defer="" src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script defer="" src="js/script.js"></script>
+<script defer="" src="data/destinations.js"></script>
+<script defer="" src="js/nearby.js"></script>
+</div><div id="load-more2"><p>Baca Yang Lainnya</p>
+</div></div></div><div class="waw" id="waw"></div><section aria-label="Wisata Terdekat" class="kw-nearby-host" id="kw-nearby-host"></section><footer class="footer2">
+<div class="row">
+<div class="col1">
+<picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" class="logo" height="212" src="img/logo1.png" width="452"/></picture>
+<div class="sosmed">
+<i class="bi bi-instagram"></i>
+<i class="bi bi-facebook"></i>
+<i class="bi bi-twitter"></i>
+<i class="bi bi-tiktok"></i>
+<i class="bi bi-youtube"></i>
+</div>
+</div>
+<div class="col2">
+<form data-subscribe="">
+<input autocomplete="email" name="email" placeholder="Masukkan Email Anda ..." required="" type="email"/>
+<button type="submit">Berlangganan</button>
+</form>
+<div class="cookie">
+<a href="kebijakan.html#kontak">Buka Bantuan (Hubungi Kami)</a>
+<a href="kebijakan.html#privasi">Kebijakan Privasi</a>
+<a href="kebijakan.html#cookie">Kebijakan Cookie</a>
+<a href="kebijakan.html#syarat">Syarat dan Ketentuan</a>
+</div>
+</div>
+</div>
+<hr/>
+<div class="kumpulan">
+<span class="desc">Situs ini merupakan situs buatan mahasiswa Universitas Gunadarma Kalimalang. Semua isi yang tercantum di dalam 
+                            <br/>
+<br/> situs ini bertujuan untuk memberikan informasi dan bukan sebagai tujuan komersial</span>
+</div>
+<p class="copyright">©2026 Si Paling USB</p>
+</footer></body>
 </html>
-
-
