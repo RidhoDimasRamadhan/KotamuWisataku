@@ -2748,3 +2748,29 @@ footer.footer2 {
     max-width: calc(100vw - 1.6rem);
   }
 }
+
+.leaflet-control-attribution {
+  font-size: 11px;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .leaflet-touch .leaflet-bar a,
+  .leaflet-control-zoom a {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 22px;
+  }
+
+  .leaflet-container a.leaflet-popup-close-button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    font-size: 22px;
+    line-height: 34px;
+  }
+
+  .leaflet-popup-content {
+    margin-right: 28px;
+  }
+}
