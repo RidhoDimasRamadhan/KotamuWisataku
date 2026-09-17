@@ -228,6 +228,8 @@
 
   function renderNotFound(host) {
     document.title = `${TEXT.notFound} — KotamuWisataku`;
+    setMeta('meta[property="og:title"]', document.title);
+    setMeta('meta[property="og:description"]', TEXT.notFoundBody);
     host.innerHTML = `
       <div class="kw-detail-body">
         <div class="kw-detail-empty">
@@ -240,12 +242,43 @@
       </div>`;
   }
 
+  function setMeta(selector, value) {
+    const tag = document.querySelector(selector);
+    if (tag) tag.setAttribute('content', value);
+  }
+
+  function paintMetadata(dest) {
+    const title = `${dest.name} — KotamuWisataku`;
+    const summary = describe(dest).slice(0, 155);
+    const image = new URL(dest.image, location.href).href;
+
+    document.title = title;
+
+    setMeta('meta[name="description"]', summary);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[property="og:description"]', summary);
+    setMeta('meta[property="og:image"]', image);
+    setMeta('meta[property="og:image:alt"]', dest.name);
+    setMeta('meta[property="og:url"]', location.href);
+    setMeta('meta[property="og:locale"]', LANG === 'en' ? 'en_US' : 'id_ID');
+    setMeta('meta[property="og:locale:alternate"]', LANG === 'en' ? 'id_ID' : 'en_US');
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[name="twitter:description"]', summary);
+    setMeta('meta[name="twitter:image"]', image);
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = location.href;
+
+    const alternate = document.querySelector('link[rel="alternate"]');
+    if (alternate) {
+      alternate.href = new URL(detailUrl(dest, OTHER_LANG), location.href).href;
+      alternate.hreflang = OTHER_LANG;
+    }
+  }
+
   function render(host, dest) {
     document.documentElement.lang = LANG;
-    document.title = `${dest.name} — KotamuWisataku`;
-
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', describe(dest).slice(0, 155));
+    paintMetadata(dest);
 
     const guide = guideOf(dest);
     const coordinates = formatCoordinates(dest);
