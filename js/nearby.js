@@ -95,65 +95,13 @@
     return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(a));
   }
 
-  const WIKIMEDIA_IMAGES = {
-    monas: 'Monas.jpg',
-    borobudur: 'Borobudur-Nothwest-view.jpg',
-    prambanan: 'Prambanan_Trimurti.jpg',
-    bromo: 'Bromo_Sunrise.jpg',
-    merapi: 'Mount_Merapi.jpg',
-    'ulun-danu': 'Pura_Ulun_Danu_Bratan.jpg',
-    'tanah-lot': 'Tanah_Lot_Bali.jpg',
-    komodo: 'Komodo_Dragon.jpg',
-    'labuan-bajo': 'Labuan_Bajo.jpg',
-    'raja-ampat': 'Raja_Ampat.jpg',
-    toba: 'Lake_Toba.jpg',
-  };
-
-  function resolveImageUrl(dest) {
-    const wikimedia = WIKIMEDIA_IMAGES[dest.id];
-    if (wikimedia) {
-      return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(wikimedia)}?width=500`;
-    }
-
-    const keywords = (dest.name || '')
-      .toLowerCase()
-      .replace(/[()'"]/g, '')
-      .replace(/[^a-z0-9\s-]/g, ' ')
-      .split(/\s+/)
-      .filter((word) => word.length > 2)
-      .slice(0, 3)
-      .join(',');
-
-    const tags = keywords ? `${keywords},indonesia` : 'indonesia,tourism';
-    return `https://loremflickr.com/500/350/${encodeURIComponent(tags)}`;
-  }
+  const PLACEHOLDER_IMAGE = 'img/logo1.png';
 
   const imgTag = (dest, extraClass) =>
     `<img${extraClass ? ` class="${esc(extraClass)}"` : ''}` +
-    ` src="${esc(resolveImageUrl(dest))}"` +
+    ` src="${esc(dest.image || PLACEHOLDER_IMAGE)}"` +
     ` alt="${esc(dest.name)}"` +
-    (dest.image ? ` data-fallback="${esc(dest.image)}"` : '') +
-    ' loading="lazy" decoding="async">';
-
-  function bindImageFallback(root) {
-    if (!root || root._kwImgFallback) return;
-    root._kwImgFallback = true;
-
-    root.addEventListener(
-      'error',
-      (e) => {
-        const img = e.target;
-        if (!img || img.tagName !== 'IMG') return;
-
-        const fallback = img.getAttribute('data-fallback');
-        if (!fallback) return;
-
-        img.removeAttribute('data-fallback');
-        img.src = fallback;
-      },
-      true
-    );
-  }
+    ' width="160" height="110" loading="lazy" decoding="async">';
 
   function formatDistance(km) {
     if (km < 1) return `${Math.round(km * 1000)} m`;
@@ -303,8 +251,6 @@
       '<ol class="kw-list" id="kw-list"></ol>' +
       '</aside>' +
       '</div>';
-
-    bindImageFallback(hostEl);
 
     hostEl.querySelector('#kw-retry').addEventListener('click', () => run(true));
 
