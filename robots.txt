@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /css/
+Disallow: /js/
+Disallow: /data/
+
+Sitemap: https://ridhodimasramadhan.github.io/KotamuWisataku/sitemap.xml
