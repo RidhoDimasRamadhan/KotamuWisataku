@@ -239,8 +239,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 4rem;
-  height: 4rem;
+  width: 4.4rem;
+  height: 4.4rem;
+  cursor: pointer;
   color: white;
   font-size: 2rem;
   line-height: 1;

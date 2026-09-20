@@ -2611,9 +2611,27 @@ footer.footer2 {
 
 .sosmed .bi,
 .sosmedd .bi,
-.footer2 .sosmed .bi,
-.footer2 .sosmedd .bi {
-  cursor: default;
+[data-share] {
+  cursor: pointer;
+  padding: 0;
+  height: auto;
+  background: none;
+  font: inherit;
+}
+
+.footer2 [data-share] {
+  cursor: pointer;
+}
+
+.sosmed [data-share],
+.sosmedd [data-share] {
+  min-width: 3.8rem;
+  min-height: 3.8rem;
+}
+
+[data-share]:focus-visible {
+  outline: 3px solid #62bae7;
+  outline-offset: 3px;
 }
 
 .header .dropdown {
@@ -2772,5 +2790,23 @@ footer.footer2 {
 
   .leaflet-popup-content {
     margin-right: 28px;
+  }
+}
+
+.footer2 .sosmed [data-share],
+.footer2 .sosmedd [data-share] {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #001d2c;
+  background: #ffffff;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .footer2 .sosmed [data-share],
+  .footer2 .sosmedd [data-share] {
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
   }
 }

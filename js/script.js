@@ -476,6 +476,8 @@
     });
   }
 
+  window.kwToast = showToast;
+
   window.sendEmail = function sendEmail() {
     const active = document.activeElement;
     const form = (active && active.closest && active.closest('form')) || $('form[data-subscribe]');
