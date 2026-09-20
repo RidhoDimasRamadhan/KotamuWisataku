@@ -213,7 +213,16 @@ body {
 }
 
 .sosmed {
-  display: inline;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+.sosmed .a {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 .sosmed h3 {
   font-family: "Poppins";
@@ -226,32 +235,17 @@ body {
   color: #000000;
 }
 .sosmed .bi {
-  position: relative;
-  display: inline;
-  top: -3rem;
-  left: 9rem;
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
   color: white;
   font-size: 2rem;
-  padding: 0.7rem;
-  height: 4rem;
+  line-height: 1;
   border-radius: 100%;
   background-color: #62bae7;
-}
-
-.sosmedd .bi {
-  width: 45px;
-  height: 35px;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 1.5rem;
-  color: #001d2c;
-  background: #ffffff;
-  cursor: pointer;
-  line-height: 35px;
-  margin-right: 5px;
-  position: relative;
-  top: -6rem;
-  left: 2rem;
 }
 
 footer {
@@ -322,9 +316,6 @@ footer {
     width: 90%;
     margin: 0 auto;
   }
-  .sosmed {
-    position: relative;
-  }
   .bawah {
     width: min(800px, 90%);
   }
@@ -367,9 +358,6 @@ footer {
   .row .col1 .logo {
     margin-top: 3rem;
     width: 70%;
-  }
-  .sosmedd .bi {
-    width: 10%;
   }
 }
 
