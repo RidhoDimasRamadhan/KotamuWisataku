@@ -18,6 +18,22 @@
     <xhtml:link rel="alternate" hreflang="id" href="https://ridhodimasramadhan.github.io/KotamuWisataku/index.html"/>
   </url>
   <url>
+    <loc>https://ridhodimasramadhan.github.io/KotamuWisataku/jelajahi.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://ridhodimasramadhan.github.io/KotamuWisataku/jelajahi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ridhodimasramadhan.github.io/KotamuWisataku/explore.html"/>
+  </url>
+  <url>
+    <loc>https://ridhodimasramadhan.github.io/KotamuWisataku/explore.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://ridhodimasramadhan.github.io/KotamuWisataku/jelajahi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ridhodimasramadhan.github.io/KotamuWisataku/explore.html"/>
+  </url>
+  <url>
     <loc>https://ridhodimasramadhan.github.io/KotamuWisataku/ComeToRecommend.html</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>

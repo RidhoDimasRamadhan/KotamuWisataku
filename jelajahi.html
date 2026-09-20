@@ -5,39 +5,30 @@
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Detail Destinasi — KotamuWisataku</title>
+<title>Jelajahi Semua Destinasi — KotamuWisataku</title>
 
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="KotamuWisataku">
-    <meta property="og:title" content="Detail Destinasi — KotamuWisataku">
-    <meta property="og:description" content="Detail destinasi wisata: deskripsi, lokasi di peta, petunjuk arah, dan tempat menarik di sekitarnya.">
-    <meta property="og:image" content="img/borobudur.jpg">
-    <meta property="og:image:alt" content="KotamuWisataku">
-    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jelajahi Semua Destinasi — KotamuWisataku">
+    <meta property="og:description" content="Katalog lengkap 97 destinasi wisata di 21 provinsi, bisa disaring per kategori dan provinsi.">
+    <meta property="og:image" content="img/bromo.jpg">
     <meta property="og:locale" content="id_ID">
     <meta property="og:locale:alternate" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Detail Destinasi — KotamuWisataku">
-    <meta name="twitter:description" content="Detail destinasi wisata: deskripsi, lokasi di peta, petunjuk arah, dan tempat menarik di sekitarnya.">
-    <meta name="twitter:image" content="img/borobudur.jpg">
-<link href="" rel="canonical"/>
-<link href="index.html" hreflang="en" rel="alternate"/>
 <link href="favicon.ico" rel="icon" sizes="any"/>
 <link href="img/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="img/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/>
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon"/>
-<meta content="Detail destinasi wisata: deskripsi, lokasi di peta, petunjuk arah, dan tempat menarik di sekitarnya." name="description"/>
+<meta content="Katalog lengkap 97 destinasi wisata di 21 provinsi, bisa disaring per kategori dan provinsi." name="description"/>
 <meta content="#0b1020" name="theme-color"/>
+<link href="jelajahi.html" hreflang="id" rel="alternate"/>
+<link href="explore.html" hreflang="en" rel="alternate"/>
 <link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
-<link crossorigin="" href="https://unpkg.com" rel="preconnect"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet"/>
-<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
 <link href="css/style.css" rel="stylesheet"/>
-<link href="css/detail.css" rel="stylesheet"/>
+<link href="css/explore.css" rel="stylesheet"/>
 <link href="css/dark.css" rel="stylesheet"/>
-<script crossorigin="" defer="" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
-<body class="kw-detail-page">
+<body class="kw-explore-body">
 <header class="header">
 <a class="logo" href="index.html"><picture><source srcset="img/logo1.webp" type="image/webp"/><img alt="logo" height="56" src="img/logo1.png" width="120"/></picture></a>
 <nav class="navbar">
@@ -49,14 +40,14 @@
 <a href="index.html#waw">Wisata Terdekat</a>
 </nav>
 <div class="dropdown">
-            <button type="button" class="kw-lang-btn" id="kw-lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Pilih bahasa">
+            <button type="button" class="kw-lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Pilih bahasa">
                 <picture><source srcset="img/indonesia.webp" type="image/webp"><img src="img/indonesia.png" alt="Bendera Indonesia" width="24" height="18"></picture>
                 <span class="kw-lang-code">ID</span>
                 <i class="bi bi-chevron-down kw-lang-caret" aria-hidden="true"></i>
             </button>
             <ul class="wrapper">
                 <li class="usb">
-                    <a id="kw-lang-alt" href="index.html" hreflang="en" lang="en">
+                    <a href="explore.html" hreflang="en" lang="en">
                         <picture><source srcset="img/eng.webp" type="image/webp"><img src="img/eng.png" alt="Bendera Inggris" width="24" height="18"></picture>
                         <span class="kw-lang-name">English</span>
                     </a>
@@ -76,7 +67,35 @@
 <label class="bi bi-search" for="search-box"></label>
 </form>
 </div>
-<main class="kw-detail" id="kw-detail"></main>
+<main class="kw-explore">
+<header class="kw-explore-head">
+<h1>Jelajahi Semua Destinasi</h1>
+<p class="kw-explore-sub">Telusuri seluruh destinasi dalam katalog kami, saring berdasarkan kategori atau provinsi.</p>
+</header>
+<form class="kw-explore-filters" id="kw-explore-filters" role="search" aria-label="Saring destinasi">
+<div class="kw-filter-row">
+<div class="kw-field">
+<label for="kw-explore-q">Cari</label>
+<input autocomplete="off" id="kw-explore-q" name="q" placeholder="Nama destinasi atau daerah..." type="search"/>
+</div>
+<div class="kw-field">
+<label for="kw-explore-prov">Provinsi</label>
+<select id="kw-explore-prov" name="provinsi"></select>
+</div>
+<div class="kw-field">
+<label for="kw-explore-sort">Urutkan</label>
+<select id="kw-explore-sort" name="urut"></select>
+</div>
+</div>
+<div class="kw-chips" id="kw-explore-cats" role="group" aria-label="Kategori"></div>
+<button class="kw-explore-reset" id="kw-explore-reset" type="button">
+<i aria-hidden="true" class="bi bi-arrow-counterclockwise"></i> Atur ulang
+</button>
+</form>
+<p aria-live="polite" class="kw-explore-count" id="kw-explore-count" role="status"></p>
+<ul class="kw-explore-grid" id="kw-explore-grid"></ul>
+<p class="kw-explore-empty" hidden="" id="kw-explore-empty"></p>
+</main>
 <footer class="footer2">
 <div class="row">
 <div class="col1">
@@ -113,6 +132,6 @@
 <script defer="" src="data/destinations.js"></script>
 <script defer="" src="data/guides.js"></script>
 <script defer="" src="js/script.js"></script>
-<script defer="" src="js/detail.js"></script>
+<script defer="" src="js/explore.js"></script>
 </body>
 </html>
