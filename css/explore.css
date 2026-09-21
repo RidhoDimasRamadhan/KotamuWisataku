@@ -354,3 +354,100 @@ body.kw-dark .kw-explore-dist {
 #kw-explore-favwrap:empty {
   display: none;
 }
+
+.kw-recent {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border: 1px solid #e2e6ea;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.kw-recent-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.kw-recent-head h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.kw-recent-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: auto;
+  min-height: 3.6rem;
+  padding: 0 1.4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #5a6874;
+  background: none;
+  border: 1px solid #d8dde2;
+  border-radius: 45px;
+  cursor: pointer;
+}
+
+.kw-recent-clear:hover {
+  color: #1b7fb0;
+  border-color: #62bae7;
+}
+
+.kw-recent-clear:focus-visible {
+  outline: 3px solid #1b7fb0;
+  outline-offset: 2px;
+}
+
+.kw-recent-list {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+  overflow-x: auto;
+  padding-bottom: 0.6rem;
+}
+
+.kw-recent-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 120px;
+  color: inherit;
+}
+
+.kw-recent-list img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.kw-recent-list span {
+  font-size: 1.25rem;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.kw-recent-list a:hover span {
+  color: #1b7fb0;
+}
+
+body.kw-dark .kw-recent {
+  background: #06304a;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.kw-dark .kw-recent-head h2,
+body.kw-dark .kw-recent-list a {
+  color: #f3f5fa;
+}
+
+body.kw-dark .kw-recent-clear {
+  color: #b9c6d4;
+  border-color: rgba(255, 255, 255, 0.14);
+}

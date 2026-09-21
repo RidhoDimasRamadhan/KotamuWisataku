@@ -407,6 +407,7 @@
 
     initMap(dest);
     wireRouteButton(dest);
+    if (window.kwRecent) window.kwRecent.push(dest.id);
   }
 
   const notify = (message, type) => {

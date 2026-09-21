@@ -351,8 +351,50 @@
     );
   }
 
+  const recentHost = document.getElementById('kw-recent');
+
+  function renderRecent() {
+    if (!recentHost || !window.kwRecent) return;
+
+    const items = window.kwRecent.destinations();
+    recentHost.hidden = items.length === 0;
+    if (!items.length) {
+      recentHost.innerHTML = '';
+      return;
+    }
+
+    recentHost.innerHTML =
+      '<div class="kw-recent-head">' +
+      `<h2>${escape(window.kwRecent.text.title)}</h2>` +
+      `<button class="kw-recent-clear" type="button" id="kw-recent-clear">` +
+      `<i class="bi bi-x-lg" aria-hidden="true"></i> ${escape(window.kwRecent.text.clear)}` +
+      '</button>' +
+      '</div>' +
+      '<ul class="kw-recent-list">' +
+      items
+        .map(
+          (dest) => `
+        <li>
+          <a href="${escape(detailUrl(dest))}">
+            <img src="${escape(dest.image)}" alt="" width="120" height="80" loading="lazy" decoding="async">
+            <span>${escape(dest.name)}</span>
+          </a>
+        </li>`
+        )
+        .join('') +
+      '</ul>';
+  }
+
+  if (recentHost) {
+    recentHost.addEventListener('click', (e) => {
+      if (e.target.closest('#kw-recent-clear')) window.kwRecent.clear();
+    });
+    document.addEventListener('kw-recent-change', renderRecent);
+  }
+
   buildControls();
   readUrl();
   wire();
   render();
+  renderRecent();
 })();
