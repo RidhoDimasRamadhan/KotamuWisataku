@@ -74,9 +74,14 @@
     },
   }[LANG];
 
+  const FLAG_ALT = {
+    id: { id: 'Bendera Indonesia', en: 'Bendera Inggris' },
+    en: { id: 'Indonesian flag', en: 'English flag' },
+  }[LANG];
+
   const FLAGS = {
-    id: { image: 'img/indonesia', alt: 'Bendera Indonesia', name: 'Bahasa Indonesia', code: 'ID' },
-    en: { image: 'img/eng', alt: 'Bendera Inggris', name: 'English', code: 'EN' },
+    id: { image: 'img/indonesia', alt: FLAG_ALT.id, name: 'Bahasa Indonesia', code: 'ID' },
+    en: { image: 'img/eng', alt: FLAG_ALT.en, name: 'English', code: 'EN' },
   };
 
   const HOME = LANG === 'en' ? 'English.html' : 'index.html';
