@@ -50,6 +50,22 @@
     <xhtml:link rel="alternate" hreflang="id" href="https://ridhodimasramadhan.github.io/KotamuWisataku/ComeToRecommend.html"/>
   </url>
   <url>
+    <loc>https://ridhodimasramadhan.github.io/KotamuWisataku/berita.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://ridhodimasramadhan.github.io/KotamuWisataku/berita.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ridhodimasramadhan.github.io/KotamuWisataku/news.html"/>
+  </url>
+  <url>
+    <loc>https://ridhodimasramadhan.github.io/KotamuWisataku/news.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://ridhodimasramadhan.github.io/KotamuWisataku/berita.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ridhodimasramadhan.github.io/KotamuWisataku/news.html"/>
+  </url>
+  <url>
     <loc>https://ridhodimasramadhan.github.io/KotamuWisataku/berita1.html</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
