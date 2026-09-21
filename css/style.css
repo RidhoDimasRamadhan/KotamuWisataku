@@ -2810,3 +2810,34 @@ footer.footer2 {
     font-size: 2rem;
   }
 }
+
+.kw-skip-link {
+  position: absolute;
+  left: 1.6rem;
+  top: -100%;
+  z-index: 100000;
+  display: inline-flex;
+  align-items: center;
+  min-height: 4.4rem;
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #001d2c;
+  background: #ffffff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.25);
+  text-transform: none;
+  transition: top 0.15s ease;
+}
+
+.kw-skip-link:focus {
+  top: 0;
+  outline: 3px solid #62bae7;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kw-skip-link {
+    transition: none;
+  }
+}
