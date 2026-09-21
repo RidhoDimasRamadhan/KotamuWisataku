@@ -13,6 +13,11 @@
       sortName: 'Nama A–Z',
       sortNameDesc: 'Nama Z–A',
       sortProvince: 'Provinsi',
+      sortNearest: 'Terdekat dari saya',
+      locating: 'Mencari posisimu...',
+      denied: 'Akses lokasi ditolak, urutan dikembalikan ke nama.',
+      unsupported: 'Peramban tidak mendukung GPS, urutan dikembalikan ke nama.',
+      km: 'km dari lokasimu',
       count: (shown, total) =>
         shown === total
           ? `Menampilkan seluruh ${total} destinasi.`
@@ -25,6 +30,11 @@
       sortName: 'Name A–Z',
       sortNameDesc: 'Name Z–A',
       sortProvince: 'Province',
+      sortNearest: 'Nearest to me',
+      locating: 'Locating you...',
+      denied: 'Location denied, sorting returned to name.',
+      unsupported: 'Your browser does not support GPS, sorting returned to name.',
+      km: 'km from you',
       count: (shown, total) =>
         shown === total
           ? `Showing all ${total} destinations.`
@@ -87,6 +97,23 @@
   const form = document.getElementById('kw-explore-filters');
 
   const state = { q: '', province: '', category: '', sort: 'name' };
+  let here = null;
+
+  const EARTH_RADIUS_KM = 6371;
+  const toRadians = (degrees) => (degrees * Math.PI) / 180;
+
+  function distanceInKm(from, dest) {
+    const deltaLat = toRadians(dest.lat - from.lat);
+    const deltaLng = toRadians(dest.lng - from.lng);
+    const a =
+      Math.sin(deltaLat / 2) ** 2 +
+      Math.cos(toRadians(from.lat)) * Math.cos(toRadians(dest.lat)) * Math.sin(deltaLng / 2) ** 2;
+    return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(a));
+  }
+
+  const notify = (message, type) => {
+    if (typeof window.kwToast === 'function') window.kwToast(message, type);
+  };
 
   function fillSelect(select, options) {
     select.innerHTML = options
@@ -104,6 +131,7 @@
       { value: 'name', label: TEXT.sortName },
       { value: 'name-desc', label: TEXT.sortNameDesc },
       { value: 'province', label: TEXT.sortProvince },
+      { value: 'nearest', label: TEXT.sortNearest },
     ]);
 
     chipHost.innerHTML = [{ value: '', label: TEXT.allCategories }, ...categories.map((c) => ({ value: c, label: categoryLabel(c) }))]
@@ -117,7 +145,12 @@
   const detailUrl = (dest) =>
     `wisata.html?id=${encodeURIComponent(dest.id)}${LANG === 'en' ? '&lang=en' : ''}`;
 
-  const card = ({ dest, province, category }) => `
+  const distanceBadge = (entry) =>
+    state.sort === 'nearest' && here
+      ? `<span class="kw-explore-dist"><i class="bi bi-cursor-fill" aria-hidden="true"></i> ${entry.km.toFixed(entry.km < 10 ? 1 : 0)} ${escape(TEXT.km)}</span>`
+      : '';
+
+  const card = ({ dest, province, category, km }) => `
     <li class="kw-explore-item">
       <a href="${escape(detailUrl(dest))}">
         <img src="${escape(dest.image)}" alt="" width="320" height="200" loading="lazy" decoding="async">
@@ -127,6 +160,7 @@
           <i class="bi bi-geo-alt-fill" aria-hidden="true"></i> ${escape(dest.region)}
         </span>
         <span class="kw-explore-prov">${escape(province)}</span>
+        ${distanceBadge({ dest, km })}
       </a>
     </li>`;
 
@@ -135,6 +169,8 @@
     'name-desc': (a, b) => b.dest.name.localeCompare(a.dest.name),
     province: (a, b) =>
       a.province.localeCompare(b.province) || a.dest.name.localeCompare(b.dest.name),
+    nearest: (a, b) =>
+      here ? a.km - b.km : a.dest.name.localeCompare(b.dest.name),
   };
 
   function matches(entry) {
@@ -183,7 +219,7 @@
     state.q = normalize(params.get('q') || '');
     state.province = provinces.includes(province) ? province : '';
     state.category = categories.includes(category) ? category : '';
-    state.sort = sorters[sort] ? sort : 'name';
+    state.sort = sorters[sort] && sort !== 'nearest' ? sort : 'name';
 
     inputQuery.value = params.get('q') || '';
     selectProvince.value = state.province;
@@ -204,6 +240,10 @@
     });
 
     selectSort.addEventListener('change', () => {
+      if (selectSort.value === 'nearest') {
+        locate();
+        return;
+      }
       state.sort = selectSort.value;
       render();
     });
@@ -226,6 +266,52 @@
       render();
       inputQuery.focus();
     });
+  }
+
+  function applyDistances(coords) {
+    here = coords;
+    destinations.forEach((entry) => {
+      entry.km = distanceInKm(coords, entry.dest);
+    });
+  }
+
+  function fallbackSort() {
+    state.sort = 'name';
+    selectSort.value = 'name';
+    render();
+  }
+
+  function locate() {
+    if (here) {
+      state.sort = 'nearest';
+      render();
+      return;
+    }
+
+    if (!('geolocation' in navigator)) {
+      notify(TEXT.unsupported, 'error');
+      fallbackSort();
+      return;
+    }
+
+    notify(TEXT.locating);
+    selectSort.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        selectSort.disabled = false;
+        applyDistances({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        state.sort = 'nearest';
+        selectSort.value = 'nearest';
+        render();
+      },
+      () => {
+        selectSort.disabled = false;
+        notify(TEXT.denied, 'error');
+        fallbackSort();
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 }
+    );
   }
 
   buildControls();

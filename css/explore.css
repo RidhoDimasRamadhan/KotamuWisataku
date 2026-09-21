@@ -309,3 +309,22 @@ body.kw-dark .kw-explore-cat {
   color: #cdeaf8;
   background: rgba(98, 186, 231, 0.18);
 }
+
+.kw-explore-dist {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 1.4rem 0;
+  padding: 0.3rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0e5a80;
+  background: #e4f3fb;
+  border-radius: 45px;
+}
+
+body.kw-dark .kw-explore-dist {
+  color: #cdeaf8;
+  background: rgba(98, 186, 231, 0.18);
+}
