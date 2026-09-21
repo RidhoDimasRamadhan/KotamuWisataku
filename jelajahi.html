@@ -25,6 +25,7 @@
 <link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet"/>
 <link href="css/style.css" rel="stylesheet"/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
 <link href="css/explore.css" rel="stylesheet"/>
 <link href="css/dark.css" rel="stylesheet"/>
 
@@ -120,8 +121,13 @@
 </button>
 </form>
 <section class="kw-recent" hidden="" id="kw-recent"></section>
+<div class="kw-view-toggle" role="group" aria-label="Tampilan">
+<button class="kw-view-btn kw-view-active" type="button" data-view="grid" aria-pressed="true"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i> Kartu</button>
+<button class="kw-view-btn" type="button" data-view="map" aria-pressed="false"><i class="bi bi-map-fill" aria-hidden="true"></i> Peta</button>
+</div>
 <p aria-live="polite" class="kw-explore-count" id="kw-explore-count" role="status"></p>
 <ul class="kw-explore-grid" id="kw-explore-grid"></ul>
+<div class="kw-explore-map" id="kw-explore-map" role="application" hidden=""></div>
 <p class="kw-explore-empty" hidden="" id="kw-explore-empty"></p>
 </main>
 <footer class="footer2">
@@ -157,6 +163,7 @@
 </div>
 <p class="copyright">©2026 Si Paling USB</p>
 </footer>
+<script crossorigin="" defer="" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script defer="" src="data/destinations.js"></script>
 <script defer="" src="data/guides.js"></script>
 <script defer="" src="js/script.js"></script>

@@ -23,6 +23,8 @@
           ? `Menampilkan seluruh ${total} destinasi.`
           : `Menampilkan ${shown} dari ${total} destinasi.`,
       empty: 'Tidak ada destinasi yang cocok. Coba ubah kata kunci atau saringannya.',
+      mapLabel: 'Peta destinasi yang sedang disaring',
+      openDetail: 'Lihat detail',
     },
     en: {
       allCategories: 'All categories',
@@ -40,6 +42,8 @@
           ? `Showing all ${total} destinations.`
           : `Showing ${shown} of ${total} destinations.`,
       empty: 'No destination matches. Try a different keyword or filter.',
+      mapLabel: 'Map of the destinations currently filtered',
+      openDetail: 'View details',
     },
   }[LANG];
 
@@ -210,13 +214,15 @@
   function render() {
     const shown = destinations.filter(matches).sort(sorters[state.sort] || sorters.name);
 
-    grid.innerHTML = shown.map(card).join('');
+    if (view === 'map') paintMarkers(shown);
+    else grid.innerHTML = shown.map(card).join('');
     counter.textContent = TEXT.count(shown.length, destinations.length);
     emptyNote.textContent =
       state.favorites && window.kwFavorites && !window.kwFavorites.count()
         ? window.kwFavorites.text.empty
         : TEXT.empty;
     emptyNote.hidden = shown.length > 0;
+    if (view === 'map') mapHost.hidden = shown.length === 0;
 
     [...chipHost.querySelectorAll('.kw-chip')].forEach((chip) => {
       const active = chip.dataset.category === state.category;
@@ -351,6 +357,64 @@
     );
   }
 
+  const mapHost = document.getElementById('kw-explore-map');
+  const viewToggle = document.querySelector('.kw-view-toggle');
+
+  let map = null;
+  let markerLayer = null;
+  let view = 'grid';
+
+  function ensureMap() {
+    if (map || typeof L === 'undefined' || !mapHost) return map;
+
+    mapHost.setAttribute('aria-label', TEXT.mapLabel);
+    map = L.map(mapHost, { center: [-2.5, 118], zoom: 4, scrollWheelZoom: false });
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    markerLayer = L.layerGroup().addTo(map);
+    return map;
+  }
+
+  function paintMarkers(entries) {
+    if (!ensureMap()) return;
+
+    markerLayer.clearLayers();
+    const points = [];
+
+    entries.forEach(({ dest }) => {
+      const marker = L.marker([dest.lat, dest.lng]).bindPopup(
+        `<strong>${escape(dest.name)}</strong><br><small>${escape(dest.region)}</small><br>` +
+          `<a href="${escape(detailUrl(dest))}">${escape(TEXT.openDetail)}</a>`
+      );
+      markerLayer.addLayer(marker);
+      points.push([dest.lat, dest.lng]);
+    });
+
+    map.invalidateSize();
+    if (points.length) map.fitBounds(L.latLngBounds(points).pad(0.15), { maxZoom: 12 });
+  }
+
+  function setView(next) {
+    view = next;
+    const isMap = view === 'map';
+
+    grid.hidden = isMap;
+    mapHost.hidden = !isMap;
+
+    viewToggle.querySelectorAll('.kw-view-btn').forEach((btn) => {
+      const active = btn.dataset.view === view;
+      btn.classList.toggle('kw-view-active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+
+    render();
+  }
+
   const recentHost = document.getElementById('kw-recent');
 
   function renderRecent() {
@@ -383,6 +447,13 @@
         )
         .join('') +
       '</ul>';
+  }
+
+  if (viewToggle && mapHost) {
+    viewToggle.addEventListener('click', (e) => {
+      const btn = e.target.closest('.kw-view-btn');
+      if (btn && btn.dataset.view !== view) setView(btn.dataset.view);
+    });
   }
 
   if (recentHost) {

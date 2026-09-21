@@ -451,3 +451,82 @@ body.kw-dark .kw-recent-clear {
   color: #b9c6d4;
   border-color: rgba(255, 255, 255, 0.14);
 }
+
+.kw-view-toggle {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-bottom: 1.6rem;
+  padding: 0.5rem;
+  border: 1px solid #e2e6ea;
+  border-radius: 45px;
+  background: #f7fafc;
+}
+
+.kw-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: auto;
+  min-height: 3.8rem;
+  padding: 0 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #5a6874;
+  background: none;
+  border: 0;
+  border-radius: 45px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.kw-view-btn:hover {
+  color: #1b7fb0;
+}
+
+.kw-view-active {
+  color: #fff;
+  background: #1b7fb0;
+}
+
+.kw-view-btn:focus-visible {
+  outline: 3px solid #1b7fb0;
+  outline-offset: 2px;
+}
+
+.kw-explore-map {
+  width: 100%;
+  height: clamp(380px, 60vh, 620px);
+  border: 1px solid #e2e6ea;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+body.kw-dark .kw-view-toggle {
+  background: #06304a;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.kw-dark .kw-view-btn {
+  color: #b9c6d4;
+}
+
+body.kw-dark .kw-view-active {
+  color: #002132;
+  background: #62bae7;
+}
+
+body.kw-dark .kw-explore-map {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.kw-dark .kw-explore-map .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.88) contrast(0.92) saturate(0.8);
+}
+
+.kw-explore-grid[hidden],
+.kw-explore-map[hidden],
+.kw-recent[hidden] {
+  display: none;
+}
