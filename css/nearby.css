@@ -709,3 +709,80 @@
     font-size: 12px;
   }
 }
+
+.kw-radius-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 20px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--kw-border);
+  border-radius: 14px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.kw-radius-label {
+  margin-right: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--kw-text-dim);
+}
+
+.kw-radius-btn {
+  height: auto;
+  min-height: 34px;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--kw-text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.kw-radius-btn:hover {
+  color: var(--kw-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.kw-radius-btn.kw-radius-active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--kw-accent), var(--kw-accent-2));
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.kw-radius-btn:focus-visible {
+  outline: 3px solid var(--kw-accent);
+  outline-offset: 2px;
+}
+
+.kw-list-empty {
+  padding: 24px 18px;
+  color: var(--kw-text-dim);
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .kw-radius-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .kw-radius-btn {
+    flex: 1 1 auto;
+    padding: 9px 6px;
+    font-size: 12px;
+  }
+}

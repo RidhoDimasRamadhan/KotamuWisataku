@@ -24,6 +24,9 @@
       min: 'mnt',
       hr: 'jam',
       modeLabel: 'Mode',
+      radiusLabel: 'Jarak',
+      radiusAll: 'Semua',
+      empty: 'Tidak ada destinasi dalam radius ini. Coba perbesar jaraknya.',
       fastest: 'Tercepat',
       modeMotor: 'Motor',
       modeCar: 'Mobil',
@@ -50,6 +53,9 @@
       min: 'min',
       hr: 'h',
       modeLabel: 'Mode',
+      radiusLabel: 'Distance',
+      radiusAll: 'All',
+      empty: 'No destination within this radius. Try widening the distance.',
       fastest: 'Fastest',
       modeMotor: 'Motorcycle',
       modeCar: 'Car',
@@ -65,14 +71,17 @@
     bike: { iconBi: 'bi-bicycle', factor: 1.3, speed: 14, gmap: 'bicycling', label: t.modeBike },
   };
   const MODE_ORDER = ['motor', 'car', 'walk', 'bike'];
+  const RADIUS_OPTIONS = [10, 25, 50, 0];
 
   const DEFAULT_LOCATION = { lat: -6.2088, lng: 106.8456, label: t.fallback };
   const RESULT_LIMIT = 15;
   const EARTH_RADIUS_KM = 6371;
 
   let currentMode = 'motor';
+  let currentRadius = 0;
   let mapInstance = null;
   let lastOrigin = null;
+  let lastLabel = '';
   let lastNearest = null;
   let lastIsFallback = false;
 
@@ -139,6 +148,7 @@
   const findNearest = (userLat, userLng, limit) =>
     (window.KW_DESTINATIONS || [])
       .map((dest) => ({ ...dest, distance: haversine(userLat, userLng, dest.lat, dest.lng) }))
+      .filter((dest) => !currentRadius || dest.distance <= currentRadius)
       .sort((a, b) => a.distance - b.distance)
       .slice(0, limit || RESULT_LIMIT);
 
@@ -210,6 +220,19 @@
       );
     });
 
+  const radiusTabsHtml = () =>
+    `<div class="kw-radius-tabs" role="group" aria-label="${t.radiusLabel}">` +
+    `<span class="kw-radius-label">${t.radiusLabel}</span>` +
+    RADIUS_OPTIONS.map((km) => {
+      const active = km === currentRadius;
+      const label = km ? `${km} ${t.km}` : t.radiusAll;
+      return (
+        `<button type="button" class="kw-radius-btn${active ? ' kw-radius-active' : ''}"` +
+        ` data-radius="${km}" aria-pressed="${active}">${label}</button>`
+      );
+    }).join('') +
+    '</div>';
+
   const modeTabsHtml = () =>
     `<div class="kw-mode-tabs" role="tablist" aria-label="${t.modeLabel}">` +
     MODE_ORDER.map((key) => {
@@ -241,6 +264,7 @@
       '</button>' +
       '</div>' +
       modeTabsHtml() +
+      radiusTabsHtml() +
       '<div class="kw-nearby-body">' +
       '<div class="kw-map-wrap">' +
       `<div id="kw-map" class="kw-map" role="application" aria-label="${t.nearest}"></div>` +
@@ -253,6 +277,22 @@
       '</div>';
 
     hostEl.querySelector('#kw-retry').addEventListener('click', () => run(true));
+
+    hostEl.querySelectorAll('.kw-radius-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const next = Number(btn.getAttribute('data-radius'));
+        if (next === currentRadius) return;
+
+        currentRadius = next;
+        hostEl.querySelectorAll('.kw-radius-btn').forEach((other) => {
+          const selected = Number(other.getAttribute('data-radius')) === currentRadius;
+          other.classList.toggle('kw-radius-active', selected);
+          other.setAttribute('aria-pressed', String(selected));
+        });
+
+        if (lastOrigin) renderAll(lastOrigin, lastLabel, lastIsFallback);
+      });
+    });
 
     hostEl.querySelectorAll('.kw-mode-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -385,9 +425,9 @@
     const list = document.getElementById('kw-list');
     if (!list) return;
 
-    list.innerHTML = nearest
-      .map((dest, index) => listItemHtml(dest, isFallback ? null : user, index))
-      .join('');
+    list.innerHTML = nearest.length
+      ? nearest.map((dest, index) => listItemHtml(dest, isFallback ? null : user, index)).join('')
+      : `<li class="kw-list-empty">${esc(t.empty)}</li>`;
 
     list.querySelectorAll('.kw-list-item').forEach((item) => {
       item.addEventListener('click', (e) => {
@@ -415,6 +455,7 @@
     const nearest = findNearest(origin.lat, origin.lng, RESULT_LIMIT);
 
     lastOrigin = origin;
+    lastLabel = originLabel;
     lastNearest = nearest;
     lastIsFallback = isFallback;
 
