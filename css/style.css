@@ -2841,3 +2841,49 @@ footer.footer2 {
     transition: none;
   }
 }
+
+.kw-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 2.2rem;
+  color: #ffffff;
+  background: linear-gradient(265.46deg, #62bae7 46.32%, #64cdd4 77.59%);
+  border-radius: 50%;
+  box-shadow: 0 0.8rem 2rem rgba(15, 23, 42, 0.28);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.kw-to-top-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.kw-to-top:hover {
+  filter: brightness(1.08);
+}
+
+.kw-to-top:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kw-to-top {
+    transition: none;
+  }
+}

@@ -328,6 +328,31 @@
     });
   }
 
+  function initBackToTop() {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.id = 'kw-to-top';
+    button.className = 'kw-to-top';
+    button.innerHTML = '<i class="bi bi-arrow-up" aria-hidden="true"></i>';
+    button.setAttribute('aria-label', text('Kembali ke atas halaman', 'Back to top of page'));
+    button.title = text('Kembali ke atas', 'Back to top');
+    document.body.appendChild(button);
+
+    const threshold = () => Math.max(600, window.innerHeight * 0.8);
+
+    const sync = () => button.classList.toggle('kw-to-top-show', window.scrollY > threshold());
+
+    on(window, 'scroll', sync, { passive: true });
+    on(button, 'click', () => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+      const skip = $('.kw-skip-link');
+      if (skip) skip.focus({ preventScroll: true });
+    });
+
+    sync();
+  }
+
   function hardenDocument() {
     const foldHeight = window.innerHeight || 800;
 
@@ -348,7 +373,7 @@
 
   const TOAST_STYLE_ID = 'kw-toast-style';
   const TOAST_CSS = `
-    #kw-toast{position:fixed;bottom:24px;right:24px;z-index:9999;max-width:340px;
+    #kw-toast{position:fixed;bottom:88px;right:24px;z-index:9999;max-width:340px;
     padding:14px 18px;border-radius:12px;font-family:Poppins,-apple-system,sans-serif;
     font-size:14px;font-weight:500;color:#fff;box-shadow:0 18px 40px rgba(15,23,42,.25);
     background:linear-gradient(135deg,#22d3ee,#6366f1,#a855f7);opacity:0;
@@ -498,6 +523,7 @@
     initLoadMore();
     initTheme();
     initSubscribe();
+    initBackToTop();
     hardenDocument();
   }
 
