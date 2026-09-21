@@ -1,0 +1,129 @@
+.kw-notfound-body .header,
+.kw-notfound-body .header.active {
+  background: #001d2c;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+}
+
+.kw-notfound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 7rem);
+  padding: 14rem 0 8rem;
+  color: #1b1b1b;
+}
+
+.kw-notfound,
+.kw-notfound * {
+  text-transform: none;
+}
+
+.kw-notfound-inner {
+  width: min(680px, 90%);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.kw-notfound-code {
+  font-size: clamp(8rem, 18vw, 14rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(265.46deg, #62bae7 46.32%, #64cdd4 77.59%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kw-notfound h1 {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  line-height: 1.2;
+  margin: 1rem 0 1.8rem;
+}
+
+.kw-notfound-lead {
+  font-size: 1.7rem;
+  line-height: 1.75;
+  color: #4e4e4e;
+  margin-bottom: 0.8rem;
+}
+
+.kw-notfound-lead[lang="en"],
+.kw-notfound-hint[lang="en"] {
+  color: #6b7885;
+}
+
+.kw-notfound-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 3.5rem 0 2.5rem;
+}
+
+.kw-notfound-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  min-height: 4.6rem;
+  padding: 0 2.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(265.46deg, #62bae7 46.32%, #64cdd4 77.59%);
+  border-radius: 45px;
+}
+
+.kw-notfound-btn:hover {
+  filter: brightness(1.06);
+}
+
+.kw-notfound-btn-ghost {
+  color: #0e5a80;
+  background: transparent;
+  border: 1px solid #c9d4dd;
+}
+
+.kw-notfound-btn-ghost:hover {
+  border-color: #62bae7;
+  filter: none;
+}
+
+.kw-notfound-btn:focus-visible {
+  outline: 3px solid #1b7fb0;
+  outline-offset: 3px;
+}
+
+.kw-notfound-hint {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #6b7885;
+}
+
+@media (max-width: 768px) {
+  .kw-notfound {
+    padding: 12rem 0 6rem;
+  }
+
+  .kw-notfound-actions {
+    flex-direction: column;
+  }
+}
+
+body.kw-dark .kw-notfound,
+body.kw-dark .kw-notfound h1 {
+  color: #f3f5fa;
+}
+
+body.kw-dark .kw-notfound-lead,
+body.kw-dark .kw-notfound-hint,
+body.kw-dark .kw-notfound-lead[lang="en"],
+body.kw-dark .kw-notfound-hint[lang="en"] {
+  color: #b9c6d4;
+}
+
+body.kw-dark .kw-notfound-btn-ghost {
+  color: #cdeaf8;
+  border-color: rgba(255, 255, 255, 0.18);
+}
