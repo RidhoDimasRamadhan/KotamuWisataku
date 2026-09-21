@@ -336,3 +336,35 @@ body.kw-dark .kw-detail-nearby a {
   background: #06304a;
   border-color: rgba(255, 255, 255, 0.14);
 }
+
+.kw-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.kw-detail-btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.kw-detail-btn-ghost {
+  color: #0e5a80;
+  background: none;
+  border: 1px solid #c9d4dd;
+}
+
+.kw-detail-btn-ghost:hover {
+  border-color: #62bae7;
+  filter: none;
+}
+
+.kw-detail-btn:focus-visible {
+  outline: 3px solid #1b7fb0;
+  outline-offset: 3px;
+}
+
+body.kw-dark .kw-detail-btn-ghost {
+  color: #cdeaf8;
+  border-color: rgba(255, 255, 255, 0.18);
+}

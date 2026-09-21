@@ -25,6 +25,10 @@
       tips: 'Tips Berkunjung',
       location: 'Lokasi & Cara ke Sana',
       openMaps: 'Buka di Google Maps',
+      routeFromMe: 'Rute dari lokasi saya',
+      routeLocating: 'Mencari posisimu...',
+      routeDenied: 'Akses lokasi ditolak. Tautan dibuka tanpa titik awal.',
+      routeUnsupported: 'Peramban tidak mendukung GPS. Tautan dibuka tanpa titik awal.',
       reference: 'Titik Acuan Terdekat',
       nearby: 'Destinasi Lain di Sekitar',
       more: 'Jelajahi',
@@ -58,6 +62,10 @@
       tips: 'Visiting Tips',
       location: 'Location & Getting There',
       openMaps: 'Open in Google Maps',
+      routeFromMe: 'Route from my location',
+      routeLocating: 'Locating you...',
+      routeDenied: 'Location denied. Opening the link without a starting point.',
+      routeUnsupported: 'Your browser does not support GPS. Opening without a starting point.',
       reference: 'Nearest Reference Points',
       nearby: 'Other Destinations Nearby',
       more: 'Explore',
@@ -102,8 +110,10 @@
   const detailUrl = (dest, lang = LANG) =>
     `wisata.html?id=${encodeURIComponent(dest.id)}${lang === 'en' ? '&lang=en' : ''}`;
 
-  const mapsUrl = (dest) =>
-    `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${dest.lat},${dest.lng}`)}`;
+  const mapsUrl = (dest, origin) =>
+    'https://www.google.com/maps/dir/?api=1' +
+    (origin ? `&origin=${encodeURIComponent(`${origin.lat},${origin.lng}`)}` : '') +
+    `&destination=${encodeURIComponent(`${dest.lat},${dest.lng}`)}`;
 
   const describe = (dest) =>
     LANG === 'en' ? dest.descEn || dest.desc || '' : dest.desc || '';
@@ -371,9 +381,14 @@
           <p>${escape(TEXT.locationLead(dest.name, dest.region, coordinates, zone))}</p>
           <div id="kw-detail-map" class="kw-detail-map" role="application"
                aria-label="${escape(`${TEXT.location} ${dest.name}`)}"></div>
-          <a class="kw-detail-btn" href="${escape(mapsUrl(dest))}" target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-compass" aria-hidden="true"></i> ${escape(TEXT.openMaps)}
-          </a>
+          <div class="kw-detail-actions">
+            <button class="kw-detail-btn" type="button" id="kw-route-btn">
+              <i class="bi bi-cursor-fill" aria-hidden="true"></i> ${escape(TEXT.routeFromMe)}
+            </button>
+            <a class="kw-detail-btn kw-detail-btn-ghost" href="${escape(mapsUrl(dest))}" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-compass" aria-hidden="true"></i> ${escape(TEXT.openMaps)}
+            </a>
+          </div>
           ${referenceSection(dest)}
         </article>
 
@@ -390,6 +405,43 @@
       </div>`;
 
     initMap(dest);
+    wireRouteButton(dest);
+  }
+
+  const notify = (message, type) => {
+    if (typeof window.kwToast === 'function') window.kwToast(message, type);
+  };
+
+  const openRoute = (dest, origin) =>
+    window.open(mapsUrl(dest, origin), '_blank', 'noopener,noreferrer');
+
+  function wireRouteButton(dest) {
+    const button = document.getElementById('kw-route-btn');
+    if (!button) return;
+
+    button.addEventListener('click', () => {
+      if (!('geolocation' in navigator)) {
+        notify(TEXT.routeUnsupported, 'error');
+        openRoute(dest);
+        return;
+      }
+
+      button.disabled = true;
+      notify(TEXT.routeLocating);
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          button.disabled = false;
+          openRoute(dest, { lat: pos.coords.latitude, lng: pos.coords.longitude });
+        },
+        () => {
+          button.disabled = false;
+          notify(TEXT.routeDenied, 'error');
+          openRoute(dest);
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 }
+      );
+    });
   }
 
   function initMap(dest) {
