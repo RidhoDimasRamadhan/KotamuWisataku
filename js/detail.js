@@ -363,6 +363,7 @@
           <h1>${escape(dest.name)}</h1>
           <p class="kw-detail-region">
             <i class="bi bi-geo-alt-fill" aria-hidden="true"></i> ${escape(dest.region)}
+            ${window.kwFavorites ? window.kwFavorites.button(dest.id, 'kw-fav-detail') : ''}
           </p>
           <ul class="kw-facts">
             ${factItem(TEXT.province, provinceOf(dest))}

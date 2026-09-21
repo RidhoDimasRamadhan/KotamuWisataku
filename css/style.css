@@ -2887,3 +2887,56 @@ footer.footer2 {
     transition: none;
   }
 }
+
+.kw-fav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  font-size: 2rem;
+  line-height: 1;
+  color: #4e4e4e;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #d8dde2;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.kw-fav:hover {
+  color: #e0245e;
+  border-color: #e0245e;
+  transform: scale(1.06);
+}
+
+.kw-fav-on {
+  color: #e0245e;
+  border-color: #e0245e;
+}
+
+.kw-fav:focus-visible {
+  outline: 3px solid #1b7fb0;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kw-fav {
+    transition: none;
+  }
+}
+
+body.kw-dark .kw-fav {
+  color: #b9c6d4;
+  background: rgba(10, 58, 88, 0.92);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+body.kw-dark .kw-fav-on {
+  color: #ff6b93;
+  border-color: #ff6b93;
+}

@@ -368,3 +368,12 @@ body.kw-dark .kw-detail-btn-ghost {
   color: #cdeaf8;
   border-color: rgba(255, 255, 255, 0.18);
 }
+
+.kw-fav-detail {
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+.kw-detail-region {
+  flex-wrap: wrap;
+}

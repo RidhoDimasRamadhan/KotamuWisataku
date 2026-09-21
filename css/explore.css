@@ -328,3 +328,29 @@ body.kw-dark .kw-explore-dist {
   color: #cdeaf8;
   background: rgba(98, 186, 231, 0.18);
 }
+
+.kw-explore-item {
+  position: relative;
+}
+
+.kw-fav-card {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  box-shadow: 0 0.4rem 1.2rem rgba(15, 23, 42, 0.18);
+}
+
+.kw-chip-fav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+#kw-explore-favwrap {
+  margin-top: 2rem;
+}
+
+#kw-explore-favwrap:empty {
+  display: none;
+}

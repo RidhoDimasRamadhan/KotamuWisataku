@@ -95,8 +95,9 @@
   const emptyNote = document.getElementById('kw-explore-empty');
   const resetButton = document.getElementById('kw-explore-reset');
   const form = document.getElementById('kw-explore-filters');
+  const favChip = document.getElementById('kw-explore-favwrap');
 
-  const state = { q: '', province: '', category: '', sort: 'name' };
+  const state = { q: '', province: '', category: '', sort: 'name', favorites: false };
   let here = null;
 
   const EARTH_RADIUS_KM = 6371;
@@ -134,6 +135,14 @@
       { value: 'nearest', label: TEXT.sortNearest },
     ]);
 
+    const favLabel = window.kwFavorites ? window.kwFavorites.text.filter : '';
+    if (favLabel) {
+      favChip.innerHTML =
+        `<button class="kw-chip kw-chip-fav" type="button" id="kw-explore-fav" aria-pressed="false">` +
+        `<i class="bi bi-heart" aria-hidden="true"></i> ${escape(favLabel)} <span id="kw-explore-fav-count"></span>` +
+        '</button>';
+    }
+
     chipHost.innerHTML = [{ value: '', label: TEXT.allCategories }, ...categories.map((c) => ({ value: c, label: categoryLabel(c) }))]
       .map(
         ({ value, label }) =>
@@ -150,6 +159,9 @@
       ? `<span class="kw-explore-dist"><i class="bi bi-cursor-fill" aria-hidden="true"></i> ${entry.km.toFixed(entry.km < 10 ? 1 : 0)} ${escape(TEXT.km)}</span>`
       : '';
 
+  const favButton = (dest) =>
+    window.kwFavorites ? window.kwFavorites.button(dest.id, 'kw-fav-card') : '';
+
   const card = ({ dest, province, category, km }) => `
     <li class="kw-explore-item">
       <a href="${escape(detailUrl(dest))}">
@@ -162,6 +174,7 @@
         <span class="kw-explore-prov">${escape(province)}</span>
         ${distanceBadge({ dest, km })}
       </a>
+      ${favButton(dest)}
     </li>`;
 
   const sorters = {
@@ -174,6 +187,7 @@
   };
 
   function matches(entry) {
+    if (state.favorites && !(window.kwFavorites && window.kwFavorites.has(entry.dest.id))) return false;
     if (state.province && entry.province !== state.province) return false;
     if (state.category && entry.category !== state.category) return false;
     if (state.q && !entry.haystack.includes(state.q)) return false;
@@ -198,7 +212,10 @@
 
     grid.innerHTML = shown.map(card).join('');
     counter.textContent = TEXT.count(shown.length, destinations.length);
-    emptyNote.textContent = TEXT.empty;
+    emptyNote.textContent =
+      state.favorites && window.kwFavorites && !window.kwFavorites.count()
+        ? window.kwFavorites.text.empty
+        : TEXT.empty;
     emptyNote.hidden = shown.length > 0;
 
     [...chipHost.querySelectorAll('.kw-chip')].forEach((chip) => {
@@ -206,6 +223,15 @@
       chip.classList.toggle('kw-chip-active', active);
       chip.setAttribute('aria-pressed', String(active));
     });
+
+    const favButtonEl = document.getElementById('kw-explore-fav');
+    if (favButtonEl && window.kwFavorites) {
+      const n = window.kwFavorites.count();
+      favButtonEl.classList.toggle('kw-chip-active', state.favorites);
+      favButtonEl.setAttribute('aria-pressed', String(state.favorites));
+      favButtonEl.querySelector('i').className = `bi ${state.favorites ? 'bi-heart-fill' : 'bi-heart'}`;
+      document.getElementById('kw-explore-fav-count').textContent = n ? `(${n})` : '';
+    }
 
     syncUrl();
   }
@@ -255,7 +281,18 @@
       render();
     });
 
+    if (favChip) {
+      favChip.addEventListener('click', (e) => {
+        if (!e.target.closest('#kw-explore-fav')) return;
+        state.favorites = !state.favorites;
+        render();
+      });
+    }
+
+    document.addEventListener('kw-favorites-change', () => render());
+
     resetButton.addEventListener('click', () => {
+      state.favorites = false;
       state.q = '';
       state.province = '';
       state.category = '';
