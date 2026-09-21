@@ -281,9 +281,54 @@
     }
   }
 
+  function paintStructuredData(dest) {
+    const previous = document.getElementById('kw-jsonld');
+    if (previous) previous.remove();
+
+    const absolute = (value) => new URL(value, location.href).href;
+    const home = absolute(HOME);
+
+    const data = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'TouristAttraction',
+          name: dest.name,
+          description: describe(dest),
+          image: absolute(dest.image),
+          url: location.href,
+          inLanguage: LANG === 'en' ? 'en-US' : 'id-ID',
+          geo: { '@type': 'GeoCoordinates', latitude: dest.lat, longitude: dest.lng },
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: String(dest.region || '').split(',')[0].trim(),
+            addressRegion: provinceOf(dest),
+            addressCountry: 'ID',
+          },
+          hasMap: mapsUrl(dest),
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: TEXT.breadcrumbHome, item: home },
+            { '@type': 'ListItem', position: 2, name: TEXT.breadcrumbList, item: `${home}#Rekomendasi` },
+            { '@type': 'ListItem', position: 3, name: dest.name, item: location.href },
+          ],
+        },
+      ],
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'kw-jsonld';
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
+  }
+
   function render(host, dest) {
     document.documentElement.lang = LANG;
     paintMetadata(dest);
+    paintStructuredData(dest);
 
     const guide = guideOf(dest);
     const coordinates = formatCoordinates(dest);
