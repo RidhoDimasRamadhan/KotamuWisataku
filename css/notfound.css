@@ -1,9 +1,3 @@
-.kw-notfound-body .header,
-.kw-notfound-body .header.active {
-  background: #001d2c;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
-}
-
 .kw-notfound {
   display: flex;
   align-items: center;

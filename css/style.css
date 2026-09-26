@@ -62,12 +62,43 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 2s;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
 }
 
 .header.active {
-  background-color: #1717176a;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background: #001d2c;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+}
+
+body.kw-solid-header .header {
+  background: #001d2c;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+}
+
+.header .navbar a,
+.header .icons > div,
+.header .icons > i,
+.header .logo img {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
+}
+
+.header.active .navbar a,
+.header.active .icons > div,
+.header.active .icons > i,
+.header.active .logo img,
+body.kw-solid-header .header .navbar a,
+body.kw-solid-header .header .icons > div,
+body.kw-solid-header .header .icons > i,
+body.kw-solid-header .header .logo img {
+  text-shadow: none;
+  filter: none;
 }
 
 .header .logo {

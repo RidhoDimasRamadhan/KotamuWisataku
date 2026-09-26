@@ -14,11 +14,8 @@ body.kw-dark {
     color 0.25s ease;
 }
 
-body.kw-dark .header {
-  background: rgba(0, 33, 50, 0.95);
-}
-
-body.kw-dark .header.active {
+body.kw-dark .header.active,
+body.kw-dark.kw-solid-header .header {
   background: rgba(0, 33, 50, 0.98);
 }
 
