@@ -17,6 +17,7 @@
       locating: 'Mencari posisimu...',
       denied: 'Akses lokasi ditolak, urutan dikembalikan ke nama.',
       unsupported: 'Peramban tidak mendukung GPS, urutan dikembalikan ke nama.',
+      localFile: 'Fitur lokasi belum bisa dipakai saat halaman dibuka langsung dari berkas. Coba lagi setelah situs online.',
       km: 'km dari lokasimu',
       count: (shown, total) =>
         shown === total
@@ -36,6 +37,7 @@
       locating: 'Locating you...',
       denied: 'Location denied, sorting returned to name.',
       unsupported: 'Your browser does not support GPS, sorting returned to name.',
+      localFile: 'Location does not work while the page is opened straight from a file. Try again once the site is online.',
       km: 'km from you',
       count: (shown, total) =>
         shown === total
@@ -328,6 +330,12 @@
     if (here) {
       state.sort = 'nearest';
       render();
+      return;
+    }
+
+    if (location.protocol === 'file:') {
+      notify(TEXT.localFile, 'error');
+      fallbackSort();
       return;
     }
 

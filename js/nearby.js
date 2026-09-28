@@ -13,6 +13,7 @@
       locating: 'Mencari posisimu...',
       denied: 'Akses lokasi ditolak. Menampilkan wisata di sekitar Jakarta.',
       unsupported: 'Peramban tidak mendukung GPS. Menampilkan wisata di sekitar Jakarta.',
+      localFile: 'Lokasi belum bisa dipakai saat halaman dibuka dari berkas. Menampilkan wisata di sekitar Jakarta.',
       fallback: 'Jakarta (default)',
       yourLocation: 'Kamu di sini',
       hereLabel: 'Lokasimu saat ini',
@@ -42,6 +43,7 @@
       locating: 'Locating you...',
       denied: 'Location denied. Showing attractions around Jakarta.',
       unsupported: 'Your browser does not support GPS. Showing attractions around Jakarta.',
+      localFile: 'Location is unavailable when the page is opened from a file. Showing attractions around Jakarta.',
       fallback: 'Jakarta (default)',
       yourLocation: 'You are here',
       hereLabel: 'Your current location',
@@ -480,6 +482,11 @@
     buildSection(host);
 
     const start = () => {
+      if (location.protocol === 'file:') {
+        useFallback(t.localFile);
+        return;
+      }
+
       setLabel(t.locating, t.scanning);
       getUserLocation().then((res) => {
         if (res.ok) useUserLocation(res.coords);

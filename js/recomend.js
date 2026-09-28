@@ -39,7 +39,7 @@
 
     const spot = readSpot(el);
     const latlng = [spot.lat, spot.lng];
-    const map = L.map(el).setView(latlng, spot.zoom);
+    const map = L.map(el, { scrollWheelZoom: false }).setView(latlng, spot.zoom);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,

@@ -29,6 +29,7 @@
       routeLocating: 'Mencari posisimu...',
       routeDenied: 'Akses lokasi ditolak. Tautan dibuka tanpa titik awal.',
       routeUnsupported: 'Peramban tidak mendukung GPS. Tautan dibuka tanpa titik awal.',
+      routeLocalFile: 'Fitur lokasi belum bisa dipakai saat halaman dibuka langsung dari berkas. Coba lagi setelah situs online.',
       reference: 'Titik Acuan Terdekat',
       nearby: 'Destinasi Lain di Sekitar',
       more: 'Jelajahi',
@@ -66,6 +67,7 @@
       routeLocating: 'Locating you...',
       routeDenied: 'Location denied. Opening the link without a starting point.',
       routeUnsupported: 'Your browser does not support GPS. Opening without a starting point.',
+      routeLocalFile: 'Location does not work while the page is opened straight from a file. Try again once the site is online.',
       reference: 'Nearest Reference Points',
       nearby: 'Other Destinations Nearby',
       more: 'Explore',
@@ -422,6 +424,12 @@
     if (!button) return;
 
     button.addEventListener('click', () => {
+      if (location.protocol === 'file:') {
+        notify(TEXT.routeLocalFile, 'error');
+        openRoute(dest);
+        return;
+      }
+
       if (!('geolocation' in navigator)) {
         notify(TEXT.routeUnsupported, 'error');
         openRoute(dest);
@@ -454,7 +462,7 @@
     if (!el || alreadyInitialised) return;
 
     const latlng = [dest.lat, dest.lng];
-    const map = L.map(el).setView(latlng, 13);
+    const map = L.map(el, { scrollWheelZoom: false }).setView(latlng, 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
