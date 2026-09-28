@@ -115,3 +115,15 @@ body.kw-dark .kw-page a:not(.kw-page-toc a) {
 body.kw-dark .kw-page code {
   background: #06304a;
 }
+
+.kw-page p,
+.kw-page li {
+  max-width: 68ch;
+  font-size: 1.65rem;
+  line-height: 1.75;
+}
+
+.kw-page h2,
+.kw-page h3 {
+  max-width: 36ch;
+}

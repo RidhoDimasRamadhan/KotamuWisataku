@@ -86,7 +86,7 @@
 }
 
 .kw-news-item p {
-  font-size: 1.55rem;
+  font-size: 1.6rem;
   line-height: 1.7;
   color: #4e4e4e;
 }
@@ -146,4 +146,9 @@ body.kw-dark .kw-news-item a {
 
 body.kw-dark .kw-news-more {
   color: #cdeaf8;
+}
+
+.kw-news-item p,
+.kw-news-lead {
+  max-width: 66ch;
 }

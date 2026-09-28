@@ -64,7 +64,7 @@
 
 #judul {
   font-size: 3.5rem;
-  left: 4.5%;
+  left: 0;
   position: relative;
 }
 
@@ -72,12 +72,8 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  left: 4.5%;
+  left: 0;
   top: 3rem;
-}
-
-.article span {
-  font-size: 1.3rem;
 }
 
 #img-content {
@@ -181,10 +177,11 @@
   }
 
   .content {
-    width: min(1150px, calc(100% - 3rem));
+    width: min(760px, calc(100% - 3rem));
     position: relative;
-    left: 1.5rem;
+    left: 0;
     top: 10px;
+    margin-inline: auto;
   }
 
   #img-content {
@@ -208,10 +205,11 @@
   }
 
   .content {
-    width: min(1000px, calc(100% - 4.4rem));
+    width: min(720px, calc(100% - 4.4rem));
     position: relative;
-    left: 2.2rem;
+    left: 0;
     top: 10px;
+    margin-inline: auto;
   }
 
   #img-content {
@@ -245,8 +243,9 @@
   .content {
     width: min(700px, calc(100% - 5rem));
     position: relative;
-    left: 2.5rem;
+    left: 0;
     top: 10px;
+    margin-inline: auto;
   }
 
   #img-content {
@@ -366,11 +365,16 @@
 
 .article span {
   display: block;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
+  font-size: 1.7rem;
   line-height: 1.8;
-
   text-transform: none;
 }
+
+.article h2 {
+  max-width: 34ch;
+}
+
 
 #judul,
 .head-link span,

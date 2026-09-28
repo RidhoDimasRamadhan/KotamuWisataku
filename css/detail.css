@@ -371,3 +371,14 @@ body.kw-dark .kw-detail-btn-ghost {
 .kw-detail-region {
   flex-wrap: wrap;
 }
+
+.kw-article > p,
+.kw-article-list li,
+.kw-article-steps li {
+  max-width: 68ch;
+}
+
+.kw-article h2,
+.kw-article h3 {
+  max-width: 36ch;
+}

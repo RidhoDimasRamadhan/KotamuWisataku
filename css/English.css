@@ -31,7 +31,7 @@
 }
 
 .situgunung h1 {
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -40,7 +40,7 @@
 }
 
 .situgunung .tipis1 {
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -50,7 +50,7 @@
 }
 
 .situgunung .tebel {
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -60,7 +60,7 @@
 }
 
 .situgunung .tipis {
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -113,7 +113,7 @@
   position: relative;
 }
 .bawah .isi p {
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -132,7 +132,7 @@
 
 .bawah .isi .subscribe {
   position: relative;
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -142,7 +142,7 @@
 .bawah input::placeholder {
   position: relative;
   left: 2rem;
-  font-family: "Poppins";
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
