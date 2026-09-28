@@ -39,6 +39,7 @@
 }
 
 .kw-page section {
+  padding: 0;
   margin-bottom: 4.5rem;
   scroll-margin-top: 10rem;
 }
