@@ -331,7 +331,6 @@ h2 {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  left: 14px;
 }
 
 .dropdown .usb {
@@ -358,7 +357,6 @@ h2 {
 #search-btn,
 #darkmode {
   position: relative;
-  left: 10px;
 }
 
 @media (max-width: 991px) {
@@ -437,7 +435,6 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 1rem;
 }
 
 .judulnya h1, .judulnya p {
@@ -458,8 +455,6 @@ h2 {
 }
 .atasGambar {
   position: relative;
-  left: 3rem;
-  top: 10px;
 }
 
 .atasGambar h1, .atasGambar h2 {
@@ -481,7 +476,6 @@ h2 {
   text-align: center;
   margin: auto;
   position: relative;
-  top: 8rem;
 }
 .gambarRekomendasi .gambar img {
   transform-origin: 55% 15%;
@@ -512,7 +506,6 @@ h2 {
   padding: 1rem 0;
   width: 24rem;
   margin-top: 7rem;
-  top: 2rem;
   background: linear-gradient(265.46deg, #62bae7 46.32%, #64cdd4 77.59%);
   border-radius: 45px;
   cursor: pointer;
@@ -544,7 +537,6 @@ h2 {
   margin: auto;
   padding: 1rem 0;
   width: 24rem;
-  top: 9rem;
   background: linear-gradient(265.46deg, #62bae7 46.32%, #64cdd4 77.59%);
   border-radius: 45px;
   cursor: pointer;
@@ -703,8 +695,6 @@ h2 {
 
 .lebihBanyak {
   position: relative;
-  bottom: -5rem;
-  left: -18rem;
 }
 .lebihBanyak button {
   float: right;
@@ -733,7 +723,6 @@ h2 {
   border-radius: 15px;
 
   margin: auto;
-  top: 5rem;
   background-repeat: repeat;
   background-position: center;
 }
@@ -799,7 +788,6 @@ h2 {
 }
 .bawah input::placeholder {
   position: relative;
-  left: 2rem;
   font-family: inherit;
   font-style: normal;
   font-weight: 400;
@@ -810,7 +798,6 @@ h2 {
 
 .artikel {
   position: relative;
-  top: 7rem;
 }
 .judulnya2 {
   width: 100%;
@@ -869,7 +856,6 @@ h2 {
 
 .gambarartikel2 .gambarmain2 {
   position: relative;
-  top: 11rem;
   width: min(560px, 100%);
   min-height: 339px;
   height: auto;
@@ -969,7 +955,6 @@ h2 {
   display: flex;
   margin: auto;
   justify-content: center;
-  top: 84rem;
   height: 50px;
 }
 
@@ -1060,7 +1045,6 @@ h2 {
   height: 330px;
   position: relative;
   z-index: 12;
-  top: 30rem;
   border: 1px solid black;
 }
 .map .gambarmaps p {
@@ -1076,7 +1060,6 @@ h2 {
   font-size: 24px;
   font-weight: bold;
   position: relative;
-  left: -3rem;
   font-family: inherit;
 }
 
@@ -1112,7 +1095,6 @@ h2 {
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  top: -4rem;
 
   color: #ffffff;
 }
@@ -1144,7 +1126,6 @@ h2 {
 footer {
   width: 100%;
   position: relative;
-  top: 27rem;
   background-color: #001d2c;
   color: #ffffff;
   padding: 0.5rem 1%;
@@ -1153,7 +1134,6 @@ footer {
 
 .map h1 {
   position: relative;
-  top: 30px;
   display: inline-block;
 }
 
@@ -1165,7 +1145,6 @@ footer {
   left: 65%;
   padding: 0.5rem 3%;
   border-radius: 5px;
-  top: -5px;
 }
 
 .direction a {
@@ -1177,7 +1156,6 @@ footer {
   color: white;
   position: relative;
   display: inline;
-  left: 10px;
   text-align: center;
   font-size: 1.3rem;
 }
@@ -1214,8 +1192,6 @@ footer {
   line-height: 35px;
   margin-right: 5px;
   position: relative;
-  top: -6rem;
-  left: 2rem;
 }
 
 form {
@@ -1263,7 +1239,6 @@ a {
 }
 
 .cookie {
-  top: 80px;
   position: relative;
   padding-right: 10px;
   margin-left: 10px;
@@ -1281,13 +1256,11 @@ hr {
   border: 0;
   border-bottom: 1px solid #62bae7;
   position: relative;
-  top: -50px;
 }
 
 .desc {
   text-align: center;
   position: relative;
-  top: -20px;
 
   font-family: inherit;
   font-style: normal;
@@ -1324,7 +1297,6 @@ hr {
   }
   .nearby-place {
     position: relative;
-    top: 10rem;
   }
 
   .wisataterdekat .kanan {
@@ -1356,7 +1328,6 @@ hr {
   }
   .nearby-place {
     position: relative;
-    top: 10rem;
   }
 
   .wisataterdekat .kanan {
@@ -1445,7 +1416,6 @@ hr {
     align-items: center;
     margin: auto;
     position: relative;
-    top: -9rem;
   }
   .direction {
     margin-left: -8rem;
@@ -2712,7 +2682,6 @@ footer.footer2 {
 
 .header .dropdown {
   position: relative;
-  left: 0;
   display: flex;
   align-items: center;
   flex: 0 0 auto;

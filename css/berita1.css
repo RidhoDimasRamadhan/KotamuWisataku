@@ -260,7 +260,6 @@
   .card_wrap .card_item {
     width: 40%;
     position: relative;
-    left: 6.5rem;
   }
 
   .card_wrap .card_inner {
@@ -374,7 +373,6 @@
 .article h2 {
   max-width: 34ch;
 }
-
 
 #judul,
 .head-link span,

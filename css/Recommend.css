@@ -197,7 +197,6 @@ body {
 
 .bawah input::placeholder {
   position: relative;
-  left: 2rem;
   font-family: inherit;
   font-style: normal;
   font-weight: 400;

@@ -1,6 +1,5 @@
 .ke1 {
   position: relative;
-  top: -80rem;
 }
 
 .ke1 img {
@@ -80,7 +79,6 @@
   width: 1150px;
   border-radius: 15px;
   margin: auto;
-  top: 27rem;
   background-repeat: repeat;
   background-position: center;
 }
@@ -141,7 +139,6 @@
 
 .bawah input::placeholder {
   position: relative;
-  left: 2rem;
   font-family: inherit;
   font-style: normal;
   font-weight: 400;
